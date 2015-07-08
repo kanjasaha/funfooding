@@ -1,0 +1,128 @@
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\obj\Debug\MealsToGoConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\ConsoleApp.exe
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\EntityFramework.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Mvc.Mailer.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Postal.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Http.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Optimization.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\GCheckout.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\WebActivator.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\AutoMapper.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\PagedList.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DataAnnotationsExtensions.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\RazorEngine.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\WebGrease.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.AspNet.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.Core.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Antlr3.Runtime.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OAuth.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OpenId.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\log4net.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\MealsToGo.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Integration.SolrNet.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Common.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Common.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Mvc.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Mvc.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\GCheckout.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\AutoMapper.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\RazorEngine.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\RazorEngine.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\MobileViewEngines.MVC3.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Helpers.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Mvc.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Razor.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\MobileViewEngines.MVC3.pdb
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Helpers.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Mvc.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.Razor.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Trirand.Web.Mvc.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\SolrNet.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\SolrNet.DSL.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\MealsToGo.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Integration.SolrNet.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Common.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Mvc.dll
+C:\Users\kanja-1\Documents\Visual Studio 2012\Projects\MealsToGo\MealsToGoConsoleApp\bin\Debug\HttpWebAdapters.dll
+C:\Users\kanja-1\Desktop\FunfoodingCode\MealsToGoConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\Users\kanja-1\Desktop\FunfoodingCode\MealsToGoConsoleApp\obj\Debug\ConsoleApp.exe
+C:\Users\kanja-1\Desktop\FunfoodingCode\MealsToGoConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\MealsToGoConsoleApp\bin\Debug\ConsoleApp.exe.config
+C:\MealsToGoConsoleApp\obj\Debug\ConsoleApp.exe
+C:\MealsToGoConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\MealsToGoConsoleApp\obj\Debug\MealsToGoConsoleApp.csprojResolveAssemblyReference.cache
+C:\MealsToGoConsoleApp\bin\Debug\ConsoleApp.exe
+C:\MealsToGoConsoleApp\bin\Debug\ConsoleApp.pdb
+C:\MealsToGoConsoleApp\bin\Debug\EntityFramework.dll
+C:\MealsToGoConsoleApp\bin\Debug\MealsToGo.dll
+C:\MealsToGoConsoleApp\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Helpers.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Mvc.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Razor.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Razor.dll
+C:\MealsToGoConsoleApp\bin\Debug\AutoMapper.dll
+C:\MealsToGoConsoleApp\bin\Debug\Mvc.Mailer.dll
+C:\MealsToGoConsoleApp\bin\Debug\Postal.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Http.dll
+C:\MealsToGoConsoleApp\bin\Debug\Trirand.Web.Mvc.dll
+C:\MealsToGoConsoleApp\bin\Debug\GCheckout.dll
+C:\MealsToGoConsoleApp\bin\Debug\Microsoft.Web.WebPages.OAuth.dll
+C:\MealsToGoConsoleApp\bin\Debug\PagedList.dll
+C:\MealsToGoConsoleApp\bin\Debug\DataAnnotationsExtensions.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Http.WebHost.dll
+C:\MealsToGoConsoleApp\bin\Debug\HttpWebAdapters.dll
+C:\MealsToGoConsoleApp\bin\Debug\RazorEngine.dll
+C:\MealsToGoConsoleApp\bin\Debug\System.Net.Http.Formatting.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.AspNet.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.Core.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OAuth.Consumer.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OAuth.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\MealsToGoConsoleApp\bin\Debug\DotNetOpenAuth.OpenId.dll
+C:\MealsToGoConsoleApp\bin\Debug\log4net.dll
+C:\MealsToGoConsoleApp\bin\Debug\MealsToGo.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Microsoft.Web.Infrastructure.xml
+C:\MealsToGoConsoleApp\bin\Debug\MobileViewEngines.MVC3.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.xml
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.Integration.SolrNet.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Common.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Common.xml
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Mvc.pdb
+C:\MealsToGoConsoleApp\bin\Debug\Ninject.Web.Mvc.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Helpers.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Mvc.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.Razor.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\MealsToGoConsoleApp\bin\Debug\System.Web.WebPages.Razor.xml
+C:\MealsToGoConsoleApp\bin\Debug\AutoMapper.xml
+C:\MealsToGoConsoleApp\bin\Debug\GCheckout.xml
+C:\MealsToGoConsoleApp\bin\Debug\RazorEngine.pdb
+C:\MealsToGoConsoleApp\bin\Debug\RazorEngine.xml
+C:\MealsToGoConsoleApp\bin\Debug\log4net.xml
+C:\MealsToGoConsoleApp\bin\Debug\PayPal.dll
+C:\MealsToGoConsoleApp\bin\Debug\PayPal.xml

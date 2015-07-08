@@ -1,0 +1,149 @@
+﻿@model MealsToGo.ViewModels.MealItemViewModel
+
+@{
+    ViewBag.Title = "Meal Item - Details";
+}
+
+<div class="cont-main">
+    <h1>Meal Item - Details</h1>
+
+    <div class="cont">
+        <div class="cont-rit">
+            <ul class="gen-form">
+                <li>
+                    <p>Name of Food</p>
+
+                    @Html.DisplayFor(model => model.MealItemName, new { placeholder = "Pizza,sandwich,kebab...", @class = "gen-ftb" })
+                </li>
+                <li>
+                    <p>Ingredients</p>
+                    @Html.DisplayFor(model => model.Ingredients)
+
+                </li>
+                <li>
+                    <p>Diet Type</p>
+                    @Html.DisplayFor(x => x.DietTypeDD.SelectedDietType)
+                </li>
+                <li>
+                    <p>Meal Type</p>
+                    @Html.DisplayFor(model => model.MealTypeDD.SelectedMealType)
+
+
+
+                </li>
+                <li>
+                    <p>Cuisine Type</p>
+                    @Html.DisplayFor(x => x.CusineTypeDD.SelectedCuisine)
+                </li>
+                <li>
+                    <p>Serving Unit</p>
+                    @Html.DisplayFor(x => x.ServingUnit)
+
+                </li>
+                <li>
+                    <p>Quantity</p>
+                    @Html.DisplayFor(model => model.Quantity)
+
+                </li>
+
+                <li>
+                    <p>Allergens(If Any)</p>
+                    @Html.DisplayFor(model => model.AllergenDD)
+
+                </li>
+                <li>
+                    <p>Date Created</p>
+                    @Html.DisplayFor(model => model.DateCreated)
+                </li>
+                <li>
+                    <p>Updated Date</p>
+                    @Html.DisplayFor(model => model.DateUpdated)
+                </li>
+                <li>
+                    <p>Status</p>
+                    @Html.DisplayFor(model => model.Status)
+                </li>
+                <li>
+                    @*<label>
+                            <input type="submit" name="button2" id="button2" value="Create" class="submit" />
+                        </label>*@
+
+                    @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.MealItemId }, "")|
+                    @Html.ActionLink("Meal Ads", "Index", "MealAd", routeValues: new { mealitemid = Model.MealItemId }, htmlAttributes: null) |
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.MealItemId }) |
+                    @*@Html.ActionLink("Back to List", "Index", routeValues: new { userID = WebSecurity.CurrentUserId })*@
+                    @Html.ActionLink("Back to List", "Index",  new { userID = WebSecurity.CurrentUserId }, new { @class = "menu-14u" })
+
+                </li>
+                <div class="clr"></div>
+            </ul>
+
+
+        </div>
+        <div class="clr"></div>
+
+    </div>
+
+</div>
+@*<fieldset>
+    <legend>MealItem</legend>
+
+       <div class="display-label">
+         @Html.DisplayNameFor(model => model.MealItemName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MealItemName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Ingredients)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Ingredients)
+    </div>
+
+   
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Quantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Quantity)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DateUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateUpdated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CusineTypeDD.SelectedCuisine)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CusineTypeDD.SelectedCuisine)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MealTypeDD.SelectedMealType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model =>model.MealTypeDD.SelectedMealType)
+    </div>
+</fieldset>*@
+

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Help";
+}
+@{
+    if (Request.IsAuthenticated)
+    {
+     Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    
+    else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+}
+<div class="cont-main">
+  <h1>Contact</h1>
+  <div class="cont">
+  <h3><a href="#help1">How do I use funfooding.com?</a></h3>
+  <h3><a href="#help2">How do I order online?</a></h3>
+  <h3><a href="#help3">Where is my food?</a></h3>
+  <h3><a href="#help4">Can I change my order after I place it?</a></h3>
+  <h3><a href="#help5">Did my order go through?</a></h3>
+  <h3><a href="#help6">Does it cost anything extra?</a></h3>
+  <h3><a href="#help7">Can I order catering through Funfooding?</a></h3>
+  <h3><a href="#help7">I have a question that I dont find here.</a>  </h3>
+  <h4><a name="help1" id="help1"></a>How do I use Funfooding.com?</h4>
+  <p>Sign up and enter your address or zipcode and we'll show you all the places to eat near you. You can then place your order online or by phone.</p>
+  
+  <h4><a name="help2" id="help2"></a>How do I order online?</h4>
+  <p>Choose from our network of providers that take online orders and select the items you'd like to order with a click. It will be added to your food cart. Once you are done selecting the items, click on "check out" and follow the instructions from there.</p>
+  
+  <h4><a name="help3" id="help3"></a>Where is my food?</h4>
+  <p>Check the status of your current order here.</p>
+  
+  <h4><a name="help4" id="help4"></a>Can I change my order after I place it?</h4>
+  <p>Maybe. If you placed your order in the last five minutes, you can click here to submit a change request. Call the provided contact number first to make sure they have not started working on your order.</p>
+  
+  <h4><a name="help5" id="help5"></a>Did my order go through?</h4>
+  <p>Check the status of your current order here.</p>
+  
+  <h4><a name="help6" id="help6"></a>Does it cost anything extra?</h4>
+  <p>Nope. It is free to use our website to place phone and online orders. We don't add any fees to the buyer.</p>
+  
+  <h4><a name="help7" id="help7"></a>Can I order catering through Funfooding?</h4>
+  <p>You sure can. Its like ordering any meal from a seller for a future date and time.
+   <h4><a name="help8" id="help8"></a>I have a question that I dont find here.</h4>
+  <p>Please <a href="#">Contact</a> us and we will help you.</p>
+  
+  
+  </div>
+
+</div>
+
+

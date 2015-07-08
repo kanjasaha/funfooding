@@ -1,0 +1,43 @@
+﻿@model MealsToGo.Models.EmailInvitation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>EmailInvitation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SenderID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SenderID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SenderEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SenderEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RecipientEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RecipientEmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.RecipientID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RecipientID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,220 @@
+﻿@model MealsToGo.ViewModels.ResultSetViewModel
+
+@using MealsToGo.Helpers
+@using MealsToGo.Models
+@using Trirand.Web.Mvc
+@using JQGridMVCExamples.Models;
+
+
+@{
+    ViewBag.Title = "Search" + @Url.Action("Index");
+}
+
+@*   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">*@
+ <link href="~/Content/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+   
+
+ <link href="~/Content/themes/smoothness/fun-fooding.css" rel="stylesheet" type="text/css" />
+   
+
+  
+   <link rel="stylesheet" type="text/css" href="http://www.trirand.net/aspnetmvc/Content/themes/ui.jqgrid.css" />
+
+  <script type="text/javascript" src="http://www.trirand.net/aspnetmvc/Scripts/trirand/i18n/grid.locale-en.js"></script>
+  <script type="text/javascript" src="http://www.trirand.net/aspnetmvc/Scripts/trirand/jquery.jqGrid.min.js"></script>
+  
+
+  
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+           
+            $('.date-tb').unbind();
+            $(".date-tb").datepicker({
+                dateFormat: "mm/dd/yy",
+                minDate: -30, maxDate: 180
+
+
+            });
+
+            removeSubgridIcon = function () {
+                var $this = $(this);
+                $this.find(">tbody>tr.jqgrow>td.ui-sgcollapsed").filter(function () {
+                    var rowData = $this.jqGrid("getLocalRow",
+                            $(this).closest("tr.jqgrow").attr("id"));
+                    return rowData.Products == null;
+                }).unbind("click").html("");
+            },
+
+            isHasSubrids = function (data) {
+                var l = data.length, i;
+                for (i = 0; i < l; i++) {
+                    if (data[i].Products != null) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            var myData = @Html.Raw(Json.Encode(Model.ProviderList))
+               myData, $grid = $("#list");
+
+        $grid.jqGrid({
+            datatype: "local",
+            data: myData,
+            width:"100%",
+            colNames: ["ProviderType", "ProviderName", "Country"],
+            colModel: [
+                { name: "ProviderType", width: 150, key: true, sorttype: "string" },
+                { name: "ProviderName", width: 150, sorttype: "string" },
+                { name: "Country", width: 150, sorttype: "string" }
+            ],
+            rowNum: 10,
+            rowList: [5, 10, 20],
+            pager: "#pager",
+            gridview: true,
+            ignoreCase: true,
+            rownumbers: true,
+            hidegrid: false,
+            viewrecords: true,
+            height: "100%",
+            subGrid: isHasSubrids(myData),
+            subGridRowExpanded: function (subgridId, rowid) {
+                var subgridTableId = subgridId + "_t";
+                $("#" + subgridId).html("<table id='" + subgridTableId + "'></table>");
+                $("#" + subgridTableId).jqGrid({
+                    datatype: "local",
+                    data: $(this).jqGrid("getLocalRow", rowid).Products,
+                    colNames: ["MealItemName", "Cuisine"],
+                    colModel: [
+                        { name: "MealItemName", width: 130, key: true },
+                        { name: "Cuisine", width: 130 }
+                    ],
+                    height: "100%",
+                    rowNum: 10,
+                    sortname: "MealItemName",
+                    idPrefix: "s_" + rowid + "_"
+                });
+            },
+            caption: "Eateries"
+        });
+        $grid.jqGrid("navGrid", "#pager", { add: false, edit: false, del: false, search: true, nav: false }, { width: 300 });
+
+        var subGridOptions = $grid.jqGrid("getGridParam", "subGridOptions"),
+            plusIcon = subGridOptions.plusicon,
+            minusIcon = subGridOptions.minusicon,
+            expandAllTitle = "Expand all subgrids",
+            collapseAllTitle = "Collapse all subgrids";
+        $("#jqgh_" + $grid[0].id + "_subgrid")
+            .html('<a style="cursor: pointer;"><span class="ui-icon ' + plusIcon + '" title="' + expandAllTitle + '"></span></a>')
+            .click(function () {
+                var $spanIcon = $(this).find(">a>span"),
+                    $body = $(this).closest(".ui-jqgrid-view")
+                        .find(">.ui-jqgrid-bdiv>div>.ui-jqgrid-btable>tbody");
+                if ($spanIcon.hasClass(plusIcon)) {
+                    $spanIcon.removeClass(plusIcon)
+                        .addClass(minusIcon)
+                        .attr("title", collapseAllTitle);
+                    $body.find(">tr.jqgrow>td.sgcollapsed")
+                        .click();
+                } else {
+                    $spanIcon.removeClass(minusIcon)
+                        .addClass(plusIcon)
+                        .attr("title", expandAllTitle);
+                    $body.find(">tr.jqgrow>td.sgexpanded")
+                        .click();
+                }
+            });
+        });
+
+           </script>
+
+  <div class="cont-main">
+    <div class="se-reslt">
+        <h2>Current Location: @Session["UserLoc"]
+             @using (Html.MyBeginForm(null, null, FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                @Html.TextBox("ChangeLocation", null, new { style = "width:125px;", placeholder = "Change Location" })
+                @Html.QueryAsHiddenFields()
+         
+          
+
+            }</h2>
+        <div class="se-reslt2">
+            <h3>Filter by</h3>
+
+             @foreach (var f in Model.Search.Facets)
+                { 
+        
+                    <h4>
+                            @(Html.SolrFieldPropName<SolrResultSet>(@f.Key)) </h4>
+                             <ul class="filter">
+                                <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key) ">@f.Value </a></li>
+                            </ul>
+                       
+                }
+            
+                    @foreach (var f in Model.Facets)
+                    {  
+                 
+                        <h4>
+                            @(Html.SolrFacetPropName<SolrResultSet>(@f.Key))</h4>
+                           <ul class="filter">
+                                @foreach (var fv in f.Value)
+                                { 
+                                    <li><a  href="@Url.SetFacet(f.Key, fv.Key) ">@fv.Key </a><span>(@fv.Value )</span></li>
+                                }
+                            </ul>
+                       
+                    }
+  
+
+</div>
+    </div>
+
+       <div class="cont-rit">
+        <div class="se-form">
+            @using (Html.MyBeginForm(null, null, FormMethod.Get))
+            {
+             
+                <label>
+                  @*  @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb", placeholder = "Current Date" })
+                  *@   @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb", placeholder = "Current Date" }) 
+               
+                </label>
+                <label>
+                    @Html.TextBoxFor(m => m.Search.FreeSearch, new { @class = "food-tb2", placeholder = "pizza,vegetarian" })
+                </label>
+                <label>
+                    @Html.DropDownListFor(x => x.DistanceDD.SelectedDistanceLimit, Model.DistanceDD.DistanceDDList, "Distance", new { @class = "dist-tb" })
+                    @Html.QueryAsHiddenFields()
+                </label>
+                <input name="button2" type="submit" class="search2" id="button2" value="Search" />
+                if (!string.IsNullOrEmpty(Model.DidYouMean))
+                { 
+                <div>Did you mean</div>
+                <strong><em>@Html.ActionLink(@Model.DidYouMean, @Url.ForQuery(Model.DidYouMean))</em></strong>
+                }
+                
+            }
+               <div></div>
+            <div class="gride"> <table id="list"><tr><td></td></tr></table></div>
+            <div id="pager"></div>
+        
+        </div>
+      
+
+           
+
+       </div>
+    <div class="clr"></div>
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+﻿@model MealsToGo.Models.EmailaddressesModel
+
+@{
+    ViewBag.Title = "Invite Your Contacts";
+}
+
+<h2>InviteYourContacts</h2>
+
+@using (Html.BeginForm("InviteYourContacts", "User", FormMethod.Post, new { enctype = "multipart/form-data" })){
+
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Invite Your Contacts</legend>
+
+        Add you contact emails delimited by comma or space.<br />
+        
+         @Html.HiddenFor(x => x.UserId)
+      
+         
+            @Html.TextBoxFor(x => x.Emailaddresses,new { style="width:250px;height:150" })
+        <br />
+        
+             
+            <input type="submit" value="Invite" />
+      
+    </fieldset>
+}
+
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+ 

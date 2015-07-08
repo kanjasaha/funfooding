@@ -1,0 +1,177 @@
+﻿@model MealsToGo.Models.ProductView
+@using MealsToGo.Helpers
+@using MealsToGo.Models
+
+
+<h4>Index (Mobile)</h4>
+<table>
+   
+    <tr>
+        <td style="vertical-align:top" > 
+@using (Html.BeginForm("Index","Home", FormMethod.Post)){
+
+    
+    
+       @Html.TextBox("q", Model.Search.FreeSearch) 
+        <input type="submit" value="Search" />
+        if (!string.IsNullOrEmpty(Model.DidYouMean)) { 
+         <div>Did you mean</div> <strong><em>@Html.ActionLink(@Model.DidYouMean,@Url.ForQuery(Model.DidYouMean))</em></strong>
+       
+         } 
+         if (Model.QueryError) {  
+        <span class="error">Invalid query</span>
+         } 
+         }
+    
+    
+    <div class="leftColumn">
+
+         @foreach (var f in Model.Search.Facets) { 
+        
+        <ul>
+            <li>
+                @(Html.SolrFieldPropName<Product>(@f.Key))
+                <ul>
+                    <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key) ">@f.Value </a></li>
+                </ul>
+            </li>
+        </ul>
+         } 
+        
+        <ul>            
+             @foreach (var f in Model.Facets) {  
+            <li>
+                @(Html.SolrFieldPropName<Product>(@f.Key))
+                <ul>
+                     @foreach (var fv in f.Value) { 
+                    <li><a href="@Url.SetFacet(f.Key, fv.Key) ">@fv.Key </a> <span>(@fv.Value )</span></li>
+                    } 
+                </ul>
+            </li>
+             } 
+        </ul>
+    </div>
+            </td>
+        <td>
+    <div class="rightColumn">
+    
+        <div>
+            Sort by: 
+             @if (string.IsNullOrEmpty(Model.Search.Sort)) { 
+            <strong>Best match</strong>
+             } else { 
+            <a href="@Url.RemoveParameters("sort") ">Best match</a>
+             } 
+            |
+             @if (Model.Search.Sort == "nameSort") { 
+            <strong>Name</strong>
+             } else { 
+            <a href="@Url.SetParameter("sort", "nameSort") ">Name</a>
+             } 
+            |
+             @if (Model.Search.Sort == "Price") { 
+            <strong>Price</strong>
+             } else { 
+            <a href="@Url.SetParameter("sort", "Price") ">Price</a>
+             } 
+            |
+             @if (Model.Search.Sort.NotNullAnd(s => s.StartsWith("random"))) {  
+            <strong>Random</strong>
+             } else { 
+            <a href="@Url.SetParameter("sort", "random_" + Html.RandomNumber()) ">Random</a>
+             } 
+        </div>
+        
+        <div>
+            @* @foreach (var p in Model.Products) { 
+            <div class="product">
+                <section class="productName">@p.MealItemName &nbsp;&nbsp; Price: @p.Price.ToString("C")&nbsp;&nbsp;  Food Category: @p.MealType &nbsp;&nbsp; <br />
+               Cuisine: @p.CuisineType &nbsp;&nbsp;Ingredients: @p.Ingredients&nbsp;&nbsp;
+               Description: @p.Description </section> &nbsp;&nbsp; @Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", routeValues: new { id = p.MealAdID ,userid = WebSecurity.CurrentUserId}, htmlAttributes: null)  &nbsp;&nbsp;
+                @Html.ActionLink("ShowMap", "ShowMap", null,new { target="_blank" }) 
+               @* &nbsp;&nbsp;<a href="@Url.Content("http://maps.google.com/maps?f=d&source=s_d&saddr="+ @ViewBag.UserAddress+"&daddr="+@ViewBag.ChefAddress+"")">Directions To</a>
+                &nbsp;&nbsp;<a href="@Url.Content("http://maps.google.com/maps?f=d&source=s_d&saddr="+@ViewBag.ChefAddress+"&daddr="+@ViewBag.UserAddress+"")">Directions From</a>
+             *@  
+           
+            </div>
+            } 
+        </div>
+        
+         @{Html.RenderPartial("Pagination", new PaginationInfo {
+            PageUrl = Url.SetParameter("page", "!0"),
+            CurrentPage = Model.Search.PageIndex, 
+            PageSize = Model.Search.PageSize,
+            TotalItemCount = Model.TotalCount,
+        }); }
+       
+        <div class="pagesize">
+        
+
+            @Html.Repeat(
+    new[] { 5, 10, 20 }, 
+    @<text>
+        @if (item == Model.Search.PageSize)
+        {
+            <span>@item</span>
+        }
+        else
+        {
+            <a href="@Url.SetParameters(new { pagesize = item, page = 1 })">
+                @item
+            </a>
+        }
+    </text>,
+    @<text>|</text>
+)
+            items per page
+        </div>
+    </div>
+            </td> </tr></table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+ 
+<script type="text/javascript">
+
+    $(function () {
+        $('#linkId').click(function () {
+            $.get(this.href, function (result) {
+                $(result).dialog();
+            });
+            return false;
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $.ajaxSetup({ cache: false });
+
+    $(document).ready(function () {
+        $(".openDialog").live("click", function (e) {
+            e.preventDefault();
+            $("<div></div>")
+              .addClass("dialog")
+              .attr("id", $(this).attr("dialog-id"))
+              .appendTo("body")
+              .dialog({
+                  title: $(this).attr("dialog-title"),
+                  close: function () { $(this).remove() },
+                  modal: true,
+                  width: "auto"
+              })
+              .load(this.href);
+        });
+
+        $(".close").live("click", function (e) {
+            e.preventDefault();
+            $(this).closest(".dialog").dialog("close");
+        });
+    });
+</script>
+
+@* @Ajax.ActionLink("openPopup", "SomeAction", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace, OnSuccess="openPopup" }) 
+Add action that returns the partial view. 
+[HttpGet] 
+public PartialViewResult SomeAction() { 
+return PartialView();
+ }*@

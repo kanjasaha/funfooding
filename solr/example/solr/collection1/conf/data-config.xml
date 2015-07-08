@@ -1,0 +1,49 @@
+<dataConfig>
+  <!--<dataSource type="JdbcDataSource" 
+              driver="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost/dbname" 
+              user="user-name" 
+              password="password"/>-->
+
+	<!--
+  <dataSource type="JdbcDataSource" 
+      driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+      url="jdbc:sqlserver://localhost:1434" instanceName="MSSQLSERVER"
+      databaseName="ThreeSixtyTwo"
+      user="solradmin"
+      password="Debanjan71"/>-->
+
+<dataSource type="JdbcDataSource" 
+      driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+      url="jdbc:sqlserver://localhost:1433" instanceName="WIN-KG8054GP1E3"
+      databaseName="ThreeSixtyTwo"
+      user="solradmin"
+      password="Debanjan71"/>
+
+
+  <document>
+    <entity name="MealAdID"
+            query="Select Telephone,FullAddress,MealAdID,MealItemName,MealType,CuisineType,Price,Description,Ingredients,Country,latlng,PriceRange,FoodAllergy,FoodType,PickUpTime,ProviderName,ProviderType,AllInfo from search.ActiveMealAds">
+
+      <field column="MealAdID" name="MealAdID" />
+      <field column="MealItemName" name="Item" />
+      <field column="MealType" name="Meal" />
+      <field column="CuisineType" name="Cuisine" />
+      <field column="Price" name="Price" />
+      <field column="Description" name="Description" />
+      <field column="Ingredients" name="Ingredients" />
+      <field column="Country" name="Country" />
+      <field column="latlng" name="latlng" />
+      <field column="PriceRange" name="PriceRange" />
+      <field column="FoodAllergy" name="Allergen" />
+      <field column="FoodType" name="Diet" />
+      <field column="PickUpTime" name="PickUpTime" />
+      <field column="AllInfo" name="AllInfo" />
+      <field column="ProviderType" name="Provider" />
+      <field column="ProviderName" name="ProviderName" />
+       <field column="FullAddress" name="FullAddress" />
+       <field column="Telephone" name="PhoneNumber" />
+
+    </entity>
+  </document>
+</dataConfig>

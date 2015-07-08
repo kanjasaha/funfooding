@@ -1,0 +1,49 @@
+﻿@model MealsToGo.ViewModels.UserAcceptanceViewModel
+
+
+@{
+    ViewBag.Title = "Accept Seller Agreement";
+   
+}
+@using (Html.BeginForm("AcceptAgreement", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary(false,"", new { @class = "error" })
+   
+    @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.AgreementID)
+    <div class="cont-main">
+        <h1>Accept Seller Agreement</h1>
+        <div class="cont">
+            <div class="cont-rit">
+                <ul class="gen-form">
+                    <li>
+                        
+                        @*@Html.DisplayFor(model => model.FirstName, new { @class = "gen-ftb" })*@
+                        @Html.TextAreaFor( model => model.UserAgreement,new { @class = "gen-ftb" , @readonly="readonly",style = "width: 300px; height: 300px;" })
+                       
+                    </li>
+                    <li>
+                        <label>
+
+                            <input type="submit" name="button2" id="button2" value="Accept Agreement" class="submit" />
+                           
+                        </label>
+                        <a href="#" class="menu-14u">@Html.ActionLink("Cancel", "Index",null,new { @class = "menu-14u" })</a></li>
+                    <div class="clr"></div>
+                </ul>
+
+
+            </div>
+            <div class="clr"></div>
+
+        </div>
+
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

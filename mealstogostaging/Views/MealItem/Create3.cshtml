@@ -1,0 +1,147 @@
+﻿@model MealsToGo.Models.MealItem
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create3</title>
+</head>
+<body>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>MealItem</legend>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.UserId)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.UserId)
+                @Html.ValidationMessageFor(model => model.UserId)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MealItemName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MealItemName)
+                @Html.ValidationMessageFor(model => model.MealItemName)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Ingredients)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Ingredients)
+                @Html.ValidationMessageFor(model => model.Ingredients)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Photo1)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Photo1)
+                @Html.ValidationMessageFor(model => model.Photo1)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Photo2)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Photo2)
+                @Html.ValidationMessageFor(model => model.Photo2)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ServingUnit)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ServingUnit)
+                @Html.ValidationMessageFor(model => model.ServingUnit)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateCreated)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DateCreated)
+                @Html.ValidationMessageFor(model => model.DateCreated)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateUpdated)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DateUpdated)
+                @Html.ValidationMessageFor(model => model.DateUpdated)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Status)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CusineTypeID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CusineTypeID)
+                @Html.ValidationMessageFor(model => model.CusineTypeID)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MealTypeID)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MealTypeID)
+                @Html.ValidationMessageFor(model => model.MealTypeID)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Price)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Price)
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Quantity)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Quantity)
+                @Html.ValidationMessageFor(model => model.Quantity)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
