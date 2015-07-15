@@ -406,9 +406,21 @@ namespace MealsToGo.Controllers
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
 
 
+
+
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                 
+                bool userexists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+
+                if (userexists)
+                {
+                    ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
+
+                    return View(viewmodel);
+                }
+                 // Attempt to register the user
+              
                 try
                 {
                     string confirmationToken =

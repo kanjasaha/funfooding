@@ -798,7 +798,8 @@
     -->
 <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
     <lst name="defaults">
-      <str name="config">C:\solr\example\solr\collection1\conf\data-config.xml</str>
+     <str name="config">C:\solr\example\solr\collection1\conf\data-config.xml</str>
+ 
     </lst>
   </requestHandler>
 
