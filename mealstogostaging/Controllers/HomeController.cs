@@ -78,7 +78,7 @@ namespace MealsToGo.Controllers
 
             List<ISolrQuery> filter = new List<ISolrQuery>();
             filter = queriesFromFacets.ToList();
-            parameters.PickUpDateSearch = Convert.ToDateTime("2015-01-10 04:33:41.040"); //to be taken out later
+        //    parameters.PickUpDateSearch = Convert.ToDateTime("2015-01-10 04:33:41.040"); //to be taken out later
             var Day1 = new SolrQueryByRange<DateTime>("PickUpTime", Common.AbsoluteStart(parameters.PickUpDateSearch), Common.AbsoluteEnd(parameters.PickUpDateSearch.AddDays(90)));
             filter.Add((ISolrQuery)Day1);
 
@@ -174,7 +174,7 @@ namespace MealsToGo.Controllers
 
 
             if (String.IsNullOrEmpty(parameters.DistanceSearch))
-                parameters.DistanceSearch = "400";
+                parameters.DistanceSearch = "100";
 
             if (parameters.PickUpDateSearch == null)
                 parameters.PickUpDateSearch = DateTime.Now;
@@ -274,9 +274,6 @@ namespace MealsToGo.Controllers
                 SolrResultSetList = (from n in ProductModel.WholeSet
                                      select n).ToList();
 
-
-
-
                 var ProductViewModel = new ResultSetViewModel();
                 ProductViewModel.Search = ProductModel.Search;
                 ProductViewModel.TotalCount = ProductModel.TotalCount;
@@ -305,10 +302,6 @@ namespace MealsToGo.Controllers
                                                      Cuisine = g.Key.Cuisine,
                                                  }).ToList();
 
-
-
-
-
                 foreach (Provider p in ProductViewModel.ProviderList)
                 {
 
@@ -333,50 +326,12 @@ namespace MealsToGo.Controllers
 
                                       }).ToList();
                 }
-                Provider provider = new Provider();
-                provider.Products = new List<Product>();
-                List<MealItem> lstMealItem = new List<MealItem>();
-                if (string.IsNullOrEmpty(parameters.FreeSearch))
-                {
-                    lstMealItem = dbmeals.MealItems.Where(x => x.Status == 1&&x.Quantity>0).ToList();
-                }
-                else
-                {
-                    lstMealItem = dbmeals.MealItems.Where(x => x.MealItemName.Contains(parameters.FreeSearch.Trim()) && x.Status == 1 && x.Quantity > 0).ToList();
-                }
-                foreach (MealItem item in lstMealItem)
-                {
-                    foreach (MealAd item1 in item.MealAds)
-                    {
-                        Product product = new Product();
-                        product.MealAdID = item1.MealAdID;
-                        product.MealItemName = item.MealItemName;
-                        product.MealType = item.LKUPMealType == null ? String.Empty : item.LKUPMealType.Name;
-                        product.Ingredients = item.Ingredients;
-                        foreach (var alleg in item.MealItems_AllergenicFoods)
-                        {
-                            product.AllergenicIngredients += alleg.LKUPAllergenicFood.AllergenicFood + ", ";
-                        }
-                        product.Price = item.Price;
-                        provider.Products.Add(product);
-                    }
-                }
-
-                ProductViewModel.ProviderList.Add(provider);
-                //ProductViewModel.ProviderList.
-
-
+                
 
                 distancemodel.SelectedDistanceLimit = parameters.DistanceSearch;
-
-
-
                 ProductViewModel.DistanceDD = distancemodel;
 
                 return View(ProductViewModel);
-
-
-
 
             }
             catch (SolrConnectionException e)
