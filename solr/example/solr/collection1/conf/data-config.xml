@@ -18,7 +18,7 @@
       url="jdbc:sqlserver://localhost:1433" instanceName="WIN-KG8054GP1E3"
       databaseName="ThreeSixtyTwo"
       user="solradmin"
-      password="Debanjan71"/>
+      password="Test1234"/>
 
 
   <document>

@@ -2,8 +2,9 @@
  Development environment setup
 
 SQL:
-1a. Run the scripts in sqlscripts folder.
-1b. Ensure SQL Login is enabled and has access to the database.
+
+1a. Create a database named ThreeSixtyTwo. 
+1b. Run the SQL scripts in sqlscripts folder(Step1 & Step2).
 
 2a. Move the Solr folder to c:\
 2b. run the run.bat file in solr/example folder. 
@@ -12,4 +13,18 @@ SQL:
 
 3a. Make Sure MealPhotos and ProfilePhotos have write permission.
 http://www.iis.net/learn/manage/configuring-security/application-pool-identities
+3b. Modify database name/username/password in \..\funfooding\web.config
 3b. Build the solution and run
+
+#github checkin
+
+cd C:/Users/../../../funfooding
+
+
+git init
+git add .
+git commit -m "message on files to be pushed"
+git push -u origin master
+
+
+http://guides.railsgirls.com/github/
