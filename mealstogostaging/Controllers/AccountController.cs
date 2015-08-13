@@ -27,7 +27,8 @@ namespace MealsToGo.Controllers
 //    [SessionState(System.Web.SessionState.SessionStateBehavior.Default)]
     public class AccountController : Controller
     {
-        //
+        private static readonly string smtpserverusername = ConfigurationManager.AppSettings["smtpserverusername"];
+        private static readonly string smtpserverpassword = ConfigurationManager.AppSettings["smtpserverpassword"];
         // GET: /Account/Login
         private UsersContext db = new UsersContext();
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();

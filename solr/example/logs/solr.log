@@ -6923,3 +6923,565 @@ INFO  - 2015-07-30 23:58:06.413; org.apache.solr.core.SolrCore; [collection1] we
 INFO  - 2015-07-30 23:58:06.451; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/admin/mbeans params={cat=QUERYHANDLER&_=1438325886449&wt=json} status=0 QTime=1 
 INFO  - 2015-07-30 23:58:06.456; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/dataimport params={indent=true&command=status&_=1438325886453&wt=json} status=0 QTime=0 
 INFO  - 2015-07-30 23:58:06.576; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/dataimport params={indent=true&command=show-config&_=1438325886450} status=0 QTime=121 
+INFO  - 2015-08-03 23:48:27.282; org.eclipse.jetty.server.Server; jetty-8.1.8.v20121106
+INFO  - 2015-08-03 23:48:27.432; org.eclipse.jetty.deploy.providers.ScanningAppProvider; Deployment monitor C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\contexts at interval 0
+INFO  - 2015-08-03 23:48:27.491; org.eclipse.jetty.deploy.DeploymentManager; Deployable added: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\contexts\solr-jetty-context.xml
+INFO  - 2015-08-03 23:48:29.717; org.eclipse.jetty.webapp.StandardDescriptorProcessor; NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+INFO  - 2015-08-03 23:48:29.837; org.eclipse.jetty.server.handler.ContextHandler; started o.e.j.w.WebAppContext{/solr,file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/example/solr-webapp/webapp/},C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example/webapps/solr.war
+INFO  - 2015-08-03 23:48:29.837; org.eclipse.jetty.server.handler.ContextHandler; started o.e.j.w.WebAppContext{/solr,file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/example/solr-webapp/webapp/},C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example/webapps/solr.war
+INFO  - 2015-08-03 23:48:29.853; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init()
+INFO  - 2015-08-03 23:48:29.908; org.apache.solr.core.SolrResourceLoader; JNDI not configured for solr (NoInitialContextEx)
+INFO  - 2015-08-03 23:48:29.908; org.apache.solr.core.SolrResourceLoader; solr home defaulted to 'solr/' (could not find system property or JNDI)
+INFO  - 2015-08-03 23:48:29.916; org.apache.solr.core.CoreContainer$Initializer; looking for solr config file: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\solr.xml
+INFO  - 2015-08-03 23:48:29.918; org.apache.solr.core.CoreContainer; New CoreContainer 13264095
+INFO  - 2015-08-03 23:48:29.926; org.apache.solr.core.CoreContainer; Loading CoreContainer using Solr Home: 'solr/'
+INFO  - 2015-08-03 23:48:29.933; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: 'solr/'
+INFO  - 2015-08-03 23:48:30.594; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting socketTimeout to: 0
+INFO  - 2015-08-03 23:48:30.595; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting urlScheme to: http://
+INFO  - 2015-08-03 23:48:30.595; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting connTimeout to: 0
+INFO  - 2015-08-03 23:48:30.596; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxConnectionsPerHost to: 20
+INFO  - 2015-08-03 23:48:30.596; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting corePoolSize to: 0
+INFO  - 2015-08-03 23:48:30.597; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maximumPoolSize to: 2147483647
+INFO  - 2015-08-03 23:48:30.597; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxThreadIdleTime to: 5
+INFO  - 2015-08-03 23:48:30.597; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting sizeOfQueue to: -1
+INFO  - 2015-08-03 23:48:30.598; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting fairnessPolicy to: false
+INFO  - 2015-08-03 23:48:30.605; org.apache.solr.client.solrj.impl.HttpClientUtil; Creating new http client, config:maxConnectionsPerHost=20&maxConnections=10000&socketTimeout=0&connTimeout=0&retry=false
+INFO  - 2015-08-03 23:48:32.333; org.apache.solr.core.CoreContainer; Registering Log Listener
+INFO  - 2015-08-03 23:48:32.375; org.apache.solr.core.CoreContainer; Creating SolrCore 'collection1' using instanceDir: solr\collection1
+INFO  - 2015-08-03 23:48:32.393; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: 'solr\collection1\'
+INFO  - 2015-08-03 23:48:32.493; org.apache.solr.core.SolrConfig; Adding specified lib dirs to ClassLoader
+INFO  - 2015-08-03 23:48:32.496; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/dataimporthandler/lib/activation-1.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.497; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/dataimporthandler/lib/mail-1.4.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.498; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-4.3.0.war' to classloader
+INFO  - 2015-08-03 23:48:32.499; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-analysis-extras-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.499; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-cell-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.500; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-clustering-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.500; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-core-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.501; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-dataimporthandler-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.502; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-dataimporthandler-extras-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.502; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-langid-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.503; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-solrj-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.503; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-test-framework-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.504; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-uima-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.504; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-velocity-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.505; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solrj-lib/' to classloader
+INFO  - 2015-08-03 23:48:32.505; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/sqljdbc4.jar' to classloader
+INFO  - 2015-08-03 23:48:32.506; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/test-framework/' to classloader
+INFO  - 2015-08-03 23:48:32.518; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/apache-mime4j-core-0.7.2.jar' to classloader
+INFO  - 2015-08-03 23:48:32.518; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/apache-mime4j-dom-0.7.2.jar' to classloader
+INFO  - 2015-08-03 23:48:32.519; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/bcmail-jdk15-1.45.jar' to classloader
+INFO  - 2015-08-03 23:48:32.519; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/bcprov-jdk15-1.45.jar' to classloader
+INFO  - 2015-08-03 23:48:32.520; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/boilerpipe-1.1.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.521; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/commons-compress-1.4.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.521; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/dom4j-1.6.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.522; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/fontbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.522; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/icu4j-49.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.523; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/isoparser-1.0-RC-1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.524; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/jdom-1.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.525; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/jempbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.526; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/juniversalchardet-1.0.3.jar' to classloader
+INFO  - 2015-08-03 23:48:32.528; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/metadata-extractor-2.6.2.jar' to classloader
+INFO  - 2015-08-03 23:48:32.529; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/netcdf-4.2-min.jar' to classloader
+INFO  - 2015-08-03 23:48:32.530; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/pdfbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.531; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-3.8.jar' to classloader
+INFO  - 2015-08-03 23:48:32.532; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-ooxml-3.8.jar' to classloader
+INFO  - 2015-08-03 23:48:32.534; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-ooxml-schemas-3.8.jar' to classloader
+INFO  - 2015-08-03 23:48:32.535; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-scratchpad-3.8.jar' to classloader
+INFO  - 2015-08-03 23:48:32.536; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/rome-0.9.jar' to classloader
+INFO  - 2015-08-03 23:48:32.537; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tagsoup-1.2.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.538; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tika-core-1.3.jar' to classloader
+INFO  - 2015-08-03 23:48:32.539; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tika-parsers-1.3.jar' to classloader
+INFO  - 2015-08-03 23:48:32.540; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/vorbis-java-core-0.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.542; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/vorbis-java-tika-0.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.543; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xercesImpl-2.9.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.545; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xmlbeans-2.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.546; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xz-1.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.550; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-cell-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.572; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/attributes-binder-1.0.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.573; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/carrot2-mini-3.6.2.jar' to classloader
+INFO  - 2015-08-03 23:48:32.575; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/hppc-0.4.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.576; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/jackson-core-asl-1.7.4.jar' to classloader
+INFO  - 2015-08-03 23:48:32.577; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/jackson-mapper-asl-1.7.4.jar' to classloader
+INFO  - 2015-08-03 23:48:32.579; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/mahout-collections-1.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.580; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/mahout-math-0.6.jar' to classloader
+INFO  - 2015-08-03 23:48:32.581; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/simple-xml-2.6.4.jar' to classloader
+INFO  - 2015-08-03 23:48:32.583; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-clustering-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.586; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/langid/lib/jsonic-1.2.7.jar' to classloader
+INFO  - 2015-08-03 23:48:32.588; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/langid/lib/langdetect-1.1-20120112.jar' to classloader
+INFO  - 2015-08-03 23:48:32.590; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-langid-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.592; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/commons-beanutils-1.7.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.594; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/commons-collections-3.2.1.jar' to classloader
+INFO  - 2015-08-03 23:48:32.595; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/velocity-1.7.jar' to classloader
+INFO  - 2015-08-03 23:48:32.596; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/velocity-tools-2.0.jar' to classloader
+INFO  - 2015-08-03 23:48:32.599; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-velocity-4.3.0.jar' to classloader
+WARN  - 2015-08-03 23:48:32.600; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: /non/existent/dir/yields/warning (resolved as: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\non\existent\dir\yields\warning).
+INFO  - 2015-08-03 23:48:34.296; org.apache.solr.core.SolrConfig; Using Lucene MatchVersion: LUCENE_43
+INFO  - 2015-08-03 23:48:34.435; org.apache.solr.core.SolrConfig; Loaded SolrConfig: solrconfig.xml
+INFO  - 2015-08-03 23:48:34.467; org.apache.solr.schema.IndexSchema; Reading Solr Schema from schema.xml
+INFO  - 2015-08-03 23:48:34.488; org.apache.solr.schema.IndexSchema; Schema name=example
+INFO  - 2015-08-03 23:48:35.208; org.apache.solr.schema.IndexSchema; default search field in schema is searchtext
+INFO  - 2015-08-03 23:48:35.209; org.apache.solr.schema.IndexSchema; query parser default operator is OR
+WARN  - 2015-08-03 23:48:35.210; org.apache.solr.schema.IndexSchema; no uniqueKey specified in schema.
+INFO  - 2015-08-03 23:48:35.749; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2015-08-03 23:48:35.783; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2015-08-03 23:48:36.694; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2015-08-03 23:48:36.705; org.apache.solr.core.SolrCore; [collection1] Opening new SolrCore at solr\collection1\, dataDir=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\
+INFO  - 2015-08-03 23:48:36.707; org.apache.solr.core.JmxMonitoredMap; JMX monitoring is enabled. Adding Solr mbeans to JMX Server: com.sun.jmx.mbeanserver.JmxMBeanServer@1a66568
+INFO  - 2015-08-03 23:48:36.732; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for newSearcher: org.apache.solr.core.QuerySenderListener{queries=[]}
+INFO  - 2015-08-03 23:48:36.732; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for firstSearcher: org.apache.solr.core.QuerySenderListener{queries=[{q=static firstSearcher warming in solrconfig.xml}]}
+INFO  - 2015-08-03 23:48:36.740; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2015-08-03 23:48:36.748; org.apache.solr.core.CachingDirectoryFactory; return new directory for C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data
+INFO  - 2015-08-03 23:48:36.749; org.apache.solr.core.SolrCore; New index directory detected: old=null new=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\index/
+INFO  - 2015-08-03 23:48:36.768; org.apache.solr.core.CachingDirectoryFactory; return new directory for C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\index
+INFO  - 2015-08-03 23:48:36.776; org.apache.solr.core.SolrCore; created json: solr.JSONResponseWriter
+INFO  - 2015-08-03 23:48:36.776; org.apache.solr.core.SolrCore; adding lazy queryResponseWriter: solr.VelocityResponseWriter
+INFO  - 2015-08-03 23:48:36.777; org.apache.solr.core.SolrCore; created velocity: solr.VelocityResponseWriter
+INFO  - 2015-08-03 23:48:36.781; org.apache.solr.core.SolrCore; created xslt: solr.XSLTResponseWriter
+INFO  - 2015-08-03 23:48:36.781; org.apache.solr.response.XSLTResponseWriter; xsltCacheLifetimeSeconds=5
+INFO  - 2015-08-03 23:48:36.890; org.apache.solr.core.RequestHandlers; created /dataimport: org.apache.solr.handler.dataimport.DataImportHandler
+INFO  - 2015-08-03 23:48:36.896; org.apache.solr.core.RequestHandlers; created /select: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.897; org.apache.solr.core.RequestHandlers; created /query: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.899; org.apache.solr.core.RequestHandlers; created /get: solr.RealTimeGetHandler
+INFO  - 2015-08-03 23:48:36.899; org.apache.solr.core.RequestHandlers; created /browse: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.902; org.apache.solr.core.RequestHandlers; created /update: solr.UpdateRequestHandler
+INFO  - 2015-08-03 23:48:36.906; org.apache.solr.core.RequestHandlers; created /update/json: solr.JsonUpdateRequestHandler
+INFO  - 2015-08-03 23:48:36.909; org.apache.solr.core.RequestHandlers; created /update/csv: solr.CSVRequestHandler
+INFO  - 2015-08-03 23:48:36.909; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.extraction.ExtractingRequestHandler
+INFO  - 2015-08-03 23:48:36.909; org.apache.solr.core.RequestHandlers; created /update/extract: solr.extraction.ExtractingRequestHandler
+INFO  - 2015-08-03 23:48:36.910; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.FieldAnalysisRequestHandler
+INFO  - 2015-08-03 23:48:36.910; org.apache.solr.core.RequestHandlers; created /analysis/field: solr.FieldAnalysisRequestHandler
+INFO  - 2015-08-03 23:48:36.910; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.DocumentAnalysisRequestHandler
+INFO  - 2015-08-03 23:48:36.911; org.apache.solr.core.RequestHandlers; created /analysis/document: solr.DocumentAnalysisRequestHandler
+INFO  - 2015-08-03 23:48:36.913; org.apache.solr.core.RequestHandlers; created /admin/: solr.admin.AdminHandlers
+INFO  - 2015-08-03 23:48:36.915; org.apache.solr.core.RequestHandlers; created /admin/ping: solr.PingRequestHandler
+INFO  - 2015-08-03 23:48:36.917; org.apache.solr.core.RequestHandlers; created /debug/dump: solr.DumpRequestHandler
+INFO  - 2015-08-03 23:48:36.925; org.apache.solr.core.RequestHandlers; created /replication: solr.ReplicationHandler
+INFO  - 2015-08-03 23:48:36.926; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.926; org.apache.solr.core.RequestHandlers; created /spell: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.926; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.927; org.apache.solr.core.RequestHandlers; created /tvrh: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.927; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.927; org.apache.solr.core.RequestHandlers; created /terms: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.927; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.928; org.apache.solr.core.RequestHandlers; created /elevate: solr.SearchHandler
+INFO  - 2015-08-03 23:48:36.955; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:48:36.957; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:48:36.957; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:48:37.181; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@c4f3ef main
+INFO  - 2015-08-03 23:48:37.250; org.apache.solr.update.CommitTracker; Hard AutoCommit: if uncommited for 15000ms; 
+INFO  - 2015-08-03 23:48:37.250; org.apache.solr.update.CommitTracker; Soft AutoCommit: disabled
+INFO  - 2015-08-03 23:48:37.251; org.apache.solr.handler.component.SpellCheckComponent; Initializing spell checkers
+INFO  - 2015-08-03 23:48:37.258; org.apache.solr.spelling.DirectSolrSpellChecker; init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+INFO  - 2015-08-03 23:48:37.264; org.apache.solr.handler.component.SpellCheckComponent; No queryConverter defined, using default converter
+INFO  - 2015-08-03 23:48:37.320; org.apache.solr.handler.ReplicationHandler; Commits will be reserved for  10000
+INFO  - 2015-08-03 23:48:37.365; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@c4f3ef main{StandardDirectoryReader(segments_q9f:136007 _q8r(4.3):C20480)}
+INFO  - 2015-08-03 23:48:37.395; org.apache.solr.core.SolrCore; [collection1] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+in+solrconfig.xml&distrib=false} hits=0 status=0 QTime=28 
+INFO  - 2015-08-03 23:48:37.396; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2015-08-03 23:48:37.396; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: default
+INFO  - 2015-08-03 23:48:37.396; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: wordbreak
+INFO  - 2015-08-03 23:48:37.398; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@c4f3ef main{StandardDirectoryReader(segments_q9f:136007 _q8r(4.3):C20480)}
+INFO  - 2015-08-03 23:48:37.400; org.apache.solr.core.CoreContainer; registering core: collection1
+INFO  - 2015-08-03 23:48:37.401; org.apache.solr.servlet.SolrDispatchFilter; user.dir=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example
+INFO  - 2015-08-03 23:48:37.402; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init() done
+INFO  - 2015-08-03 23:48:37.478; org.eclipse.jetty.server.AbstractConnector; Started SocketConnector@0.0.0.0:8983
+INFO  - 2015-08-03 23:50:52.817; org.eclipse.jetty.server.Server; jetty-8.1.8.v20121106
+INFO  - 2015-08-03 23:50:52.834; org.eclipse.jetty.deploy.providers.ScanningAppProvider; Deployment monitor C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\contexts at interval 0
+INFO  - 2015-08-03 23:50:52.841; org.eclipse.jetty.deploy.DeploymentManager; Deployable added: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\contexts\solr-jetty-context.xml
+INFO  - 2015-08-03 23:50:54.363; org.eclipse.jetty.webapp.StandardDescriptorProcessor; NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+INFO  - 2015-08-03 23:50:54.391; org.eclipse.jetty.server.handler.ContextHandler; started o.e.j.w.WebAppContext{/solr,file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/example/solr-webapp/webapp/},C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example/webapps/solr.war
+INFO  - 2015-08-03 23:50:54.392; org.eclipse.jetty.server.handler.ContextHandler; started o.e.j.w.WebAppContext{/solr,file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/example/solr-webapp/webapp/},C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example/webapps/solr.war
+INFO  - 2015-08-03 23:50:54.406; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init()
+INFO  - 2015-08-03 23:50:54.420; org.apache.solr.core.SolrResourceLoader; JNDI not configured for solr (NoInitialContextEx)
+INFO  - 2015-08-03 23:50:54.420; org.apache.solr.core.SolrResourceLoader; solr home defaulted to 'solr/' (could not find system property or JNDI)
+INFO  - 2015-08-03 23:50:54.427; org.apache.solr.core.CoreContainer$Initializer; looking for solr config file: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\solr.xml
+INFO  - 2015-08-03 23:50:54.429; org.apache.solr.core.CoreContainer; New CoreContainer 30555987
+INFO  - 2015-08-03 23:50:54.430; org.apache.solr.core.CoreContainer; Loading CoreContainer using Solr Home: 'solr/'
+INFO  - 2015-08-03 23:50:54.430; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: 'solr/'
+INFO  - 2015-08-03 23:50:54.650; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting socketTimeout to: 0
+INFO  - 2015-08-03 23:50:54.650; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting urlScheme to: http://
+INFO  - 2015-08-03 23:50:54.651; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting connTimeout to: 0
+INFO  - 2015-08-03 23:50:54.653; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxConnectionsPerHost to: 20
+INFO  - 2015-08-03 23:50:54.653; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting corePoolSize to: 0
+INFO  - 2015-08-03 23:50:54.653; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maximumPoolSize to: 2147483647
+INFO  - 2015-08-03 23:50:54.653; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting maxThreadIdleTime to: 5
+INFO  - 2015-08-03 23:50:54.654; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting sizeOfQueue to: -1
+INFO  - 2015-08-03 23:50:54.654; org.apache.solr.handler.component.HttpShardHandlerFactory; Setting fairnessPolicy to: false
+INFO  - 2015-08-03 23:50:54.661; org.apache.solr.client.solrj.impl.HttpClientUtil; Creating new http client, config:maxConnectionsPerHost=20&maxConnections=10000&socketTimeout=0&connTimeout=0&retry=false
+INFO  - 2015-08-03 23:50:54.820; org.apache.solr.core.CoreContainer; Registering Log Listener
+INFO  - 2015-08-03 23:50:54.838; org.apache.solr.core.CoreContainer; Creating SolrCore 'collection1' using instanceDir: solr\collection1
+INFO  - 2015-08-03 23:50:54.839; org.apache.solr.core.SolrResourceLoader; new SolrResourceLoader for directory: 'solr\collection1\'
+INFO  - 2015-08-03 23:50:54.890; org.apache.solr.core.SolrConfig; Adding specified lib dirs to ClassLoader
+INFO  - 2015-08-03 23:50:54.893; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/dataimporthandler/lib/activation-1.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.894; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/dataimporthandler/lib/mail-1.4.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.896; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-4.3.0.war' to classloader
+INFO  - 2015-08-03 23:50:54.897; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-analysis-extras-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.899; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-cell-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.899; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-clustering-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.900; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-core-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.901; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-dataimporthandler-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.902; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-dataimporthandler-extras-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.903; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-langid-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.904; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-solrj-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.904; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-test-framework-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.905; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-uima-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.906; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-velocity-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.906; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solrj-lib/' to classloader
+INFO  - 2015-08-03 23:50:54.907; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/sqljdbc4.jar' to classloader
+INFO  - 2015-08-03 23:50:54.908; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/test-framework/' to classloader
+INFO  - 2015-08-03 23:50:54.909; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/apache-mime4j-core-0.7.2.jar' to classloader
+INFO  - 2015-08-03 23:50:54.910; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/apache-mime4j-dom-0.7.2.jar' to classloader
+INFO  - 2015-08-03 23:50:54.910; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/bcmail-jdk15-1.45.jar' to classloader
+INFO  - 2015-08-03 23:50:54.911; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/bcprov-jdk15-1.45.jar' to classloader
+INFO  - 2015-08-03 23:50:54.911; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/boilerpipe-1.1.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.912; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/commons-compress-1.4.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.912; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/dom4j-1.6.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.913; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/fontbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.913; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/icu4j-49.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.914; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/isoparser-1.0-RC-1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.914; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/jdom-1.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.915; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/jempbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.915; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/juniversalchardet-1.0.3.jar' to classloader
+INFO  - 2015-08-03 23:50:54.916; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/metadata-extractor-2.6.2.jar' to classloader
+INFO  - 2015-08-03 23:50:54.916; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/netcdf-4.2-min.jar' to classloader
+INFO  - 2015-08-03 23:50:54.917; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/pdfbox-1.7.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.918; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-3.8.jar' to classloader
+INFO  - 2015-08-03 23:50:54.919; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-ooxml-3.8.jar' to classloader
+INFO  - 2015-08-03 23:50:54.919; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-ooxml-schemas-3.8.jar' to classloader
+INFO  - 2015-08-03 23:50:54.920; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/poi-scratchpad-3.8.jar' to classloader
+INFO  - 2015-08-03 23:50:54.920; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/rome-0.9.jar' to classloader
+INFO  - 2015-08-03 23:50:54.921; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tagsoup-1.2.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.921; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tika-core-1.3.jar' to classloader
+INFO  - 2015-08-03 23:50:54.922; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/tika-parsers-1.3.jar' to classloader
+INFO  - 2015-08-03 23:50:54.922; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/vorbis-java-core-0.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.923; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/vorbis-java-tika-0.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.924; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xercesImpl-2.9.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.924; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xmlbeans-2.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.925; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/extraction/lib/xz-1.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.927; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-cell-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.928; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/attributes-binder-1.0.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.929; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/carrot2-mini-3.6.2.jar' to classloader
+INFO  - 2015-08-03 23:50:54.929; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/hppc-0.4.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.930; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/jackson-core-asl-1.7.4.jar' to classloader
+INFO  - 2015-08-03 23:50:54.931; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/jackson-mapper-asl-1.7.4.jar' to classloader
+INFO  - 2015-08-03 23:50:54.931; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/mahout-collections-1.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.932; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/mahout-math-0.6.jar' to classloader
+INFO  - 2015-08-03 23:50:54.932; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/clustering/lib/simple-xml-2.6.4.jar' to classloader
+INFO  - 2015-08-03 23:50:54.934; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-clustering-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.935; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/langid/lib/jsonic-1.2.7.jar' to classloader
+INFO  - 2015-08-03 23:50:54.935; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/langid/lib/langdetect-1.1-20120112.jar' to classloader
+INFO  - 2015-08-03 23:50:54.936; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-langid-4.3.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.938; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/commons-beanutils-1.7.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.938; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/commons-collections-3.2.1.jar' to classloader
+INFO  - 2015-08-03 23:50:54.939; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/velocity-1.7.jar' to classloader
+INFO  - 2015-08-03 23:50:54.939; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/contrib/velocity/lib/velocity-tools-2.0.jar' to classloader
+INFO  - 2015-08-03 23:50:54.941; org.apache.solr.core.SolrResourceLoader; Adding 'file:/C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/solr/dist/solr-velocity-4.3.0.jar' to classloader
+WARN  - 2015-08-03 23:50:54.941; org.apache.solr.core.SolrResourceLoader; Can't find (or read) directory to add to classloader: /non/existent/dir/yields/warning (resolved as: C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\non\existent\dir\yields\warning).
+INFO  - 2015-08-03 23:50:55.020; org.apache.solr.core.SolrConfig; Using Lucene MatchVersion: LUCENE_43
+INFO  - 2015-08-03 23:50:55.097; org.apache.solr.core.SolrConfig; Loaded SolrConfig: solrconfig.xml
+INFO  - 2015-08-03 23:50:55.103; org.apache.solr.schema.IndexSchema; Reading Solr Schema from schema.xml
+INFO  - 2015-08-03 23:50:55.238; org.apache.solr.schema.IndexSchema; Schema name=example
+INFO  - 2015-08-03 23:50:55.771; org.apache.solr.schema.IndexSchema; default search field in schema is searchtext
+INFO  - 2015-08-03 23:50:55.772; org.apache.solr.schema.IndexSchema; query parser default operator is OR
+WARN  - 2015-08-03 23:50:55.774; org.apache.solr.schema.IndexSchema; no uniqueKey specified in schema.
+INFO  - 2015-08-03 23:50:56.014; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2015-08-03 23:50:56.025; org.apache.solr.schema.FileExchangeRateProvider; Reloading exchange rates from file currency.xml
+INFO  - 2015-08-03 23:50:56.490; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2015-08-03 23:50:56.497; org.apache.solr.core.SolrCore; [collection1] Opening new SolrCore at solr\collection1\, dataDir=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\
+INFO  - 2015-08-03 23:50:56.498; org.apache.solr.core.JmxMonitoredMap; JMX monitoring is enabled. Adding Solr mbeans to JMX Server: com.sun.jmx.mbeanserver.JmxMBeanServer@2e8c5c
+INFO  - 2015-08-03 23:50:56.518; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for newSearcher: org.apache.solr.core.QuerySenderListener{queries=[]}
+INFO  - 2015-08-03 23:50:56.519; org.apache.solr.core.SolrCore; [collection1] Added SolrEventListener for firstSearcher: org.apache.solr.core.QuerySenderListener{queries=[{q=static firstSearcher warming in solrconfig.xml}]}
+INFO  - 2015-08-03 23:50:56.527; org.apache.solr.core.SolrCore; solr.NRTCachingDirectoryFactory
+INFO  - 2015-08-03 23:50:56.535; org.apache.solr.core.CachingDirectoryFactory; return new directory for C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data
+INFO  - 2015-08-03 23:50:56.536; org.apache.solr.core.SolrCore; New index directory detected: old=null new=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\index/
+INFO  - 2015-08-03 23:50:56.537; org.apache.solr.core.CachingDirectoryFactory; return new directory for C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example\solr\collection1\data\index
+INFO  - 2015-08-03 23:50:56.545; org.apache.solr.core.SolrCore; created json: solr.JSONResponseWriter
+INFO  - 2015-08-03 23:50:56.545; org.apache.solr.core.SolrCore; adding lazy queryResponseWriter: solr.VelocityResponseWriter
+INFO  - 2015-08-03 23:50:56.546; org.apache.solr.core.SolrCore; created velocity: solr.VelocityResponseWriter
+INFO  - 2015-08-03 23:50:56.549; org.apache.solr.core.SolrCore; created xslt: solr.XSLTResponseWriter
+INFO  - 2015-08-03 23:50:56.550; org.apache.solr.response.XSLTResponseWriter; xsltCacheLifetimeSeconds=5
+INFO  - 2015-08-03 23:50:56.627; org.apache.solr.core.RequestHandlers; created /dataimport: org.apache.solr.handler.dataimport.DataImportHandler
+INFO  - 2015-08-03 23:50:56.633; org.apache.solr.core.RequestHandlers; created /select: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.634; org.apache.solr.core.RequestHandlers; created /query: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.637; org.apache.solr.core.RequestHandlers; created /get: solr.RealTimeGetHandler
+INFO  - 2015-08-03 23:50:56.638; org.apache.solr.core.RequestHandlers; created /browse: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.641; org.apache.solr.core.RequestHandlers; created /update: solr.UpdateRequestHandler
+INFO  - 2015-08-03 23:50:56.646; org.apache.solr.core.RequestHandlers; created /update/json: solr.JsonUpdateRequestHandler
+INFO  - 2015-08-03 23:50:56.649; org.apache.solr.core.RequestHandlers; created /update/csv: solr.CSVRequestHandler
+INFO  - 2015-08-03 23:50:56.649; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.extraction.ExtractingRequestHandler
+INFO  - 2015-08-03 23:50:56.650; org.apache.solr.core.RequestHandlers; created /update/extract: solr.extraction.ExtractingRequestHandler
+INFO  - 2015-08-03 23:50:56.650; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.FieldAnalysisRequestHandler
+INFO  - 2015-08-03 23:50:56.651; org.apache.solr.core.RequestHandlers; created /analysis/field: solr.FieldAnalysisRequestHandler
+INFO  - 2015-08-03 23:50:56.651; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.DocumentAnalysisRequestHandler
+INFO  - 2015-08-03 23:50:56.652; org.apache.solr.core.RequestHandlers; created /analysis/document: solr.DocumentAnalysisRequestHandler
+INFO  - 2015-08-03 23:50:56.654; org.apache.solr.core.RequestHandlers; created /admin/: solr.admin.AdminHandlers
+INFO  - 2015-08-03 23:50:56.657; org.apache.solr.core.RequestHandlers; created /admin/ping: solr.PingRequestHandler
+INFO  - 2015-08-03 23:50:56.659; org.apache.solr.core.RequestHandlers; created /debug/dump: solr.DumpRequestHandler
+INFO  - 2015-08-03 23:50:56.668; org.apache.solr.core.RequestHandlers; created /replication: solr.ReplicationHandler
+INFO  - 2015-08-03 23:50:56.668; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.669; org.apache.solr.core.RequestHandlers; created /spell: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.669; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.669; org.apache.solr.core.RequestHandlers; created /tvrh: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.669; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.670; org.apache.solr.core.RequestHandlers; created /terms: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.670; org.apache.solr.core.RequestHandlers; adding lazy requestHandler: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.670; org.apache.solr.core.RequestHandlers; created /elevate: solr.SearchHandler
+INFO  - 2015-08-03 23:50:56.682; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:50:56.685; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:50:56.686; org.apache.solr.handler.loader.XMLLoader; xsltCacheLifetimeSeconds=60
+INFO  - 2015-08-03 23:50:56.757; org.apache.solr.search.SolrIndexSearcher; Opening Searcher@1dca7b8 main
+INFO  - 2015-08-03 23:50:56.812; org.apache.solr.update.CommitTracker; Hard AutoCommit: if uncommited for 15000ms; 
+INFO  - 2015-08-03 23:50:56.813; org.apache.solr.update.CommitTracker; Soft AutoCommit: disabled
+INFO  - 2015-08-03 23:50:56.814; org.apache.solr.handler.component.SpellCheckComponent; Initializing spell checkers
+INFO  - 2015-08-03 23:50:56.821; org.apache.solr.spelling.DirectSolrSpellChecker; init: {name=default,field=text,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+INFO  - 2015-08-03 23:50:56.827; org.apache.solr.handler.component.SpellCheckComponent; No queryConverter defined, using default converter
+INFO  - 2015-08-03 23:50:56.854; org.apache.solr.handler.ReplicationHandler; Commits will be reserved for  10000
+INFO  - 2015-08-03 23:50:56.855; org.apache.solr.core.QuerySenderListener; QuerySenderListener sending requests to Searcher@1dca7b8 main{StandardDirectoryReader(segments_q9f:136007 _q8r(4.3):C20480)}
+INFO  - 2015-08-03 23:50:56.885; org.apache.solr.core.SolrCore; [collection1] webapp=null path=null params={event=firstSearcher&q=static+firstSearcher+warming+in+solrconfig.xml&distrib=false} hits=0 status=0 QTime=29 
+INFO  - 2015-08-03 23:50:56.886; org.apache.solr.core.QuerySenderListener; QuerySenderListener done.
+INFO  - 2015-08-03 23:50:56.886; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: default
+INFO  - 2015-08-03 23:50:56.886; org.apache.solr.handler.component.SpellCheckComponent$SpellCheckerListener; Loading spell index for spellchecker: wordbreak
+INFO  - 2015-08-03 23:50:56.888; org.apache.solr.core.SolrCore; [collection1] Registered new searcher Searcher@1dca7b8 main{StandardDirectoryReader(segments_q9f:136007 _q8r(4.3):C20480)}
+INFO  - 2015-08-03 23:50:56.890; org.apache.solr.core.CoreContainer; registering core: collection1
+INFO  - 2015-08-03 23:50:56.891; org.apache.solr.servlet.SolrDispatchFilter; user.dir=C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\solr\example
+INFO  - 2015-08-03 23:50:56.891; org.apache.solr.servlet.SolrDispatchFilter; SolrDispatchFilter.init() done
+INFO  - 2015-08-03 23:50:56.908; org.eclipse.jetty.server.AbstractConnector; Started SocketConnector@0.0.0.0:8983
+ERROR - 2015-08-04 00:32:02.495; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: Error parsing fieldname: Bad spatial pt:,
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:349)
+	at org.apache.solr.search.SolrReturnFields.parseFieldList(SolrReturnFields.java:112)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:98)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:74)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:96)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1816)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:656)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:359)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:155)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1307)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:453)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:560)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1072)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:382)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:193)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1006)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:255)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:154)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:365)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:485)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handleRequest(BlockingHttpConnection.java:53)
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:926)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:988)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:635)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:235)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handle(BlockingHttpConnection.java:72)
+	at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:264)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.solr.search.SyntaxError: Bad spatial pt:,
+	at org.apache.solr.search.function.distance.HaversineConstFunction.parsePoint(HaversineConstFunction.java:150)
+	at org.apache.solr.search.function.distance.HaversineConstFunction.access$100(HaversineConstFunction.java:47)
+	at org.apache.solr.search.function.distance.HaversineConstFunction$1.parse(HaversineConstFunction.java:103)
+	at org.apache.solr.search.FunctionQParser.parseValueSource(FunctionQParser.java:352)
+	at org.apache.solr.search.FunctionQParser.parse(FunctionQParser.java:68)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:285)
+	... 35 more
+
+INFO  - 2015-08-04 00:32:02.500; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={spellcheck=true&facet=true&d=100&f.PriceRange.facet.mincount=1&sfield=latlng&f.Provider.facet.mincount=1&version=2.2&rows=10&f.Diet.facet.mincount=1&fl=*,Distance:geodist()&f.Meal.facet.mincount=1&start=0&q=*:*&pt=,&f.Cuisine.facet.mincount=1&facet.field=Cuisine&facet.field=Provider&facet.field=Diet&facet.field=PriceRange&facet.field=Meal&fq=PickUpTime:[0001-01-01T00:00:00Z+TO+0001-04-01T23:59:59.999Z]&fq={!geofilt}} status=400 QTime=28 
+ERROR - 2015-08-04 00:32:08.396; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: Error parsing fieldname: Bad spatial pt:,
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:349)
+	at org.apache.solr.search.SolrReturnFields.parseFieldList(SolrReturnFields.java:112)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:98)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:74)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:96)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1816)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:656)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:359)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:155)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1307)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:453)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:560)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1072)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:382)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:193)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1006)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:255)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:154)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:365)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:485)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handleRequest(BlockingHttpConnection.java:53)
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:926)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:988)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:635)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:235)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handle(BlockingHttpConnection.java:72)
+	at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:264)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.solr.search.SyntaxError: Bad spatial pt:,
+	at org.apache.solr.search.function.distance.HaversineConstFunction.parsePoint(HaversineConstFunction.java:150)
+	at org.apache.solr.search.function.distance.HaversineConstFunction.access$100(HaversineConstFunction.java:47)
+	at org.apache.solr.search.function.distance.HaversineConstFunction$1.parse(HaversineConstFunction.java:103)
+	at org.apache.solr.search.FunctionQParser.parseValueSource(FunctionQParser.java:352)
+	at org.apache.solr.search.FunctionQParser.parse(FunctionQParser.java:68)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:285)
+	... 35 more
+
+INFO  - 2015-08-04 00:32:08.400; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={spellcheck=true&facet=true&d=100&f.PriceRange.facet.mincount=1&sfield=latlng&f.Provider.facet.mincount=1&version=2.2&rows=10&f.Diet.facet.mincount=1&fl=*,Distance:geodist()&f.Meal.facet.mincount=1&start=0&q=*:*&pt=,&f.Cuisine.facet.mincount=1&facet.field=Cuisine&facet.field=Provider&facet.field=Diet&facet.field=PriceRange&facet.field=Meal&fq=PickUpTime:[0001-01-01T00:00:00Z+TO+0001-04-01T23:59:59.999Z]&fq={!geofilt}} status=400 QTime=5 
+ERROR - 2015-08-04 00:35:25.470; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: Error parsing fieldname: Bad spatial pt:,
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:349)
+	at org.apache.solr.search.SolrReturnFields.parseFieldList(SolrReturnFields.java:112)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:98)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:74)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:96)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1816)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:656)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:359)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:155)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1307)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:453)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:560)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1072)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:382)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:193)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1006)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:255)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:154)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:365)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:485)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handleRequest(BlockingHttpConnection.java:53)
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:926)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:988)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:635)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:235)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handle(BlockingHttpConnection.java:72)
+	at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:264)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.solr.search.SyntaxError: Bad spatial pt:,
+	at org.apache.solr.search.function.distance.HaversineConstFunction.parsePoint(HaversineConstFunction.java:150)
+	at org.apache.solr.search.function.distance.HaversineConstFunction.access$100(HaversineConstFunction.java:47)
+	at org.apache.solr.search.function.distance.HaversineConstFunction$1.parse(HaversineConstFunction.java:103)
+	at org.apache.solr.search.FunctionQParser.parseValueSource(FunctionQParser.java:352)
+	at org.apache.solr.search.FunctionQParser.parse(FunctionQParser.java:68)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:285)
+	... 35 more
+
+INFO  - 2015-08-04 00:35:25.474; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={spellcheck=true&facet=true&d=100&f.PriceRange.facet.mincount=1&sfield=latlng&f.Provider.facet.mincount=1&version=2.2&rows=10&f.Diet.facet.mincount=1&fl=*,Distance:geodist()&f.Meal.facet.mincount=1&start=0&q=*:*&pt=,&f.Cuisine.facet.mincount=1&facet.field=Cuisine&facet.field=Provider&facet.field=Diet&facet.field=PriceRange&facet.field=Meal&fq=PickUpTime:[0001-01-01T00:00:00Z+TO+0001-04-01T23:59:59.999Z]&fq={!geofilt}} status=400 QTime=5 
+ERROR - 2015-08-04 00:39:39.159; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: Error parsing fieldname: Bad spatial pt:,
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:349)
+	at org.apache.solr.search.SolrReturnFields.parseFieldList(SolrReturnFields.java:112)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:98)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:74)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:96)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1816)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:656)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:359)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:155)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1307)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:453)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:560)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1072)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:382)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:193)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1006)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:255)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:154)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:365)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:485)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handleRequest(BlockingHttpConnection.java:53)
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:926)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:988)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:635)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:235)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handle(BlockingHttpConnection.java:72)
+	at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:264)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.solr.search.SyntaxError: Bad spatial pt:,
+	at org.apache.solr.search.function.distance.HaversineConstFunction.parsePoint(HaversineConstFunction.java:150)
+	at org.apache.solr.search.function.distance.HaversineConstFunction.access$100(HaversineConstFunction.java:47)
+	at org.apache.solr.search.function.distance.HaversineConstFunction$1.parse(HaversineConstFunction.java:103)
+	at org.apache.solr.search.FunctionQParser.parseValueSource(FunctionQParser.java:352)
+	at org.apache.solr.search.FunctionQParser.parse(FunctionQParser.java:68)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:285)
+	... 35 more
+
+INFO  - 2015-08-04 00:39:39.162; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={spellcheck=true&facet=true&d=100&f.PriceRange.facet.mincount=1&sfield=latlng&f.Provider.facet.mincount=1&version=2.2&rows=10&f.Diet.facet.mincount=1&fl=*,Distance:geodist()&f.Meal.facet.mincount=1&start=0&q=*:*&pt=,&f.Cuisine.facet.mincount=1&facet.field=Cuisine&facet.field=Provider&facet.field=Diet&facet.field=PriceRange&facet.field=Meal&fq=PickUpTime:[0001-01-01T00:00:00Z+TO+0001-04-01T23:59:59.999Z]&fq={!geofilt}} status=400 QTime=4 
+ERROR - 2015-08-04 00:46:47.111; org.apache.solr.common.SolrException; org.apache.solr.common.SolrException: Error parsing fieldname: Bad spatial pt:,
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:349)
+	at org.apache.solr.search.SolrReturnFields.parseFieldList(SolrReturnFields.java:112)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:98)
+	at org.apache.solr.search.SolrReturnFields.<init>(SolrReturnFields.java:74)
+	at org.apache.solr.handler.component.QueryComponent.prepare(QueryComponent.java:96)
+	at org.apache.solr.handler.component.SearchHandler.handleRequestBody(SearchHandler.java:187)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:135)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:1816)
+	at org.apache.solr.servlet.SolrDispatchFilter.execute(SolrDispatchFilter.java:656)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:359)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:155)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1307)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:453)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:137)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:560)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:231)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1072)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:382)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:193)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1006)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:135)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:255)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:154)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:116)
+	at org.eclipse.jetty.server.Server.handle(Server.java:365)
+	at org.eclipse.jetty.server.AbstractHttpConnection.handleRequest(AbstractHttpConnection.java:485)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handleRequest(BlockingHttpConnection.java:53)
+	at org.eclipse.jetty.server.AbstractHttpConnection.headerComplete(AbstractHttpConnection.java:926)
+	at org.eclipse.jetty.server.AbstractHttpConnection$RequestHandler.headerComplete(AbstractHttpConnection.java:988)
+	at org.eclipse.jetty.http.HttpParser.parseNext(HttpParser.java:635)
+	at org.eclipse.jetty.http.HttpParser.parseAvailable(HttpParser.java:235)
+	at org.eclipse.jetty.server.BlockingHttpConnection.handle(BlockingHttpConnection.java:72)
+	at org.eclipse.jetty.server.bio.SocketConnector$ConnectorEndPoint.run(SocketConnector.java:264)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:608)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$3.run(QueuedThreadPool.java:543)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: org.apache.solr.search.SyntaxError: Bad spatial pt:,
+	at org.apache.solr.search.function.distance.HaversineConstFunction.parsePoint(HaversineConstFunction.java:150)
+	at org.apache.solr.search.function.distance.HaversineConstFunction.access$100(HaversineConstFunction.java:47)
+	at org.apache.solr.search.function.distance.HaversineConstFunction$1.parse(HaversineConstFunction.java:103)
+	at org.apache.solr.search.FunctionQParser.parseValueSource(FunctionQParser.java:352)
+	at org.apache.solr.search.FunctionQParser.parse(FunctionQParser.java:68)
+	at org.apache.solr.search.QParser.getQuery(QParser.java:142)
+	at org.apache.solr.search.SolrReturnFields.add(SolrReturnFields.java:285)
+	... 35 more
+
+INFO  - 2015-08-04 00:46:47.114; org.apache.solr.core.SolrCore; [collection1] webapp=/solr path=/select params={spellcheck=true&facet=true&d=100&f.PriceRange.facet.mincount=1&sfield=latlng&f.Provider.facet.mincount=1&version=2.2&rows=10&f.Diet.facet.mincount=1&fl=*,Distance:geodist()&f.Meal.facet.mincount=1&start=0&q=*:*&pt=,&f.Cuisine.facet.mincount=1&facet.field=Cuisine&facet.field=Provider&facet.field=Diet&facet.field=PriceRange&facet.field=Meal&fq=PickUpTime:[0001-01-01T00:00:00Z+TO+0001-04-01T23:59:59.999Z]&fq={!geofilt}} status=400 QTime=3 
