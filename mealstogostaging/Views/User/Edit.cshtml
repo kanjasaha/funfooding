@@ -6,7 +6,14 @@
     Model.DateCreated = DateTime.Now;
     Model.UserStatus = 1;
 }
-
+<script language=Javascript>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
 
 @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -25,11 +32,11 @@
                         <p>Photo</p>
                         @if (!string.IsNullOrEmpty(Model.Photo))
                         {
-                            <img src="~/ProfilePhotos/@(Model.Photo)" width="200", height="150"  id="profilepic" />
+                            <img src="~/ProfilePhotos/@(Model.Photo)" width="200" height="150"  id="profilepic" />
                             <a href="#" class="RemoveProfilePhoto" name="@Model.UserId">Remove</a>
                         }
                         
-                        @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+                        @Html.TextBoxFor(model => model.Photo, new { type = "file", accept = ".png,.bmp,.jpg,.tif,.gif" })
                         @*@Html.ValidationMessageFor(model => model.Photo)*@
                             
                     </li>
@@ -77,12 +84,14 @@
                     </li>
                     <li>
                         <p>Telephone</p>
-                        @Html.EditorFor(model => model.AddressList.Telephone, new { @class = "gen-ftb" })
+                        @*<input id="Telephone" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                        @Html.EditorFor(model => model.AddressList.Telephone, new {  maxlength="16", onkeypress="return isNumberKey(event)", @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.AddressList.Telephone)
                     </li>
                     <li>
                         <p>Mobile</p>
-                        @Html.EditorFor(model => model.Mobile, new { @class = "gen-ftb" })
+                        @*<input id="Mobile" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                        @Html.EditorFor(model => model.Mobile, new {  maxlength="16", onkeypress="return isNumberKey(event)", @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Mobile)
                     </li>
                     <li>

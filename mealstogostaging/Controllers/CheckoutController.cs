@@ -85,6 +85,7 @@ namespace MealsToGo.Controllers
             }
             else
             {
+              //  ModelState.AddModelError("", "Error");
                 return View("Error");
             }
         }

@@ -31,7 +31,8 @@
 
                     <li>
                         <p>Max Order</p>
-                        @Html.EditorFor(model => model.MaxOrders, new { @class = "gen-ftb" })
+                        @*@Html.EditorFor(model => model.MaxOrders, new { @class = "gen-ftb" })*@
+                        <input id="MaxOrders" type="number" min="1" value="1" class="gen-ftb" />
                         @Html.ValidationMessageFor(model => model.MaxOrders)
                     </li>
                     <li>

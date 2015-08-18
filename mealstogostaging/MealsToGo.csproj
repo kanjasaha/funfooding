@@ -543,10 +543,13 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="ViewModels\UserAcceptanceViewModel.cs" />
     <Compile Include="ViewModels\UserDetailViewModel.cs" />
+    <Content Include="bin\MealsToGo.dll" />
+    <Content Include="bin\MealsToGo.pdb" />
     <Content Include="Content\css\fun-fooding.css" />
     <Content Include="Scripts\prototype.js" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Reset.cshtml" />
+    <Content Include="bin\MealsToGo.dll.config" />
     <None Include="Views\Contact\index1.cshtml" />
     <Compile Include="Views\GCheckout\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

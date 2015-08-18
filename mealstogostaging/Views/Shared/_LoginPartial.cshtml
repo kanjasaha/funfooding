@@ -1,28 +1,29 @@
-﻿@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+﻿
+
+@using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
 {
     @Html.AntiForgeryToken()
-            
+
 }
 @if (Request.IsAuthenticated)
 {
-  
+
     <div id="header">
         <div class="header-bl">
 
-
             @*<p class="top-rt">H! Suresh  |  <a href="#">Logout</a>  |  <a href="#"><strong>Cart(5) </strong></a></p>  @User.Identity.Name.Split('@')[0] *@
-            @*<p class="top-rt">Hi @Convert.ToString(Session["FirstName"])  |  <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a> | 
+            @*<p class="top-rt">Hi @Convert.ToString(Session["FirstName"])  |  <a href="javascript:document.getElementById('logoutForm').submit()">Logout</a> |
                 <a href="\home\cart" id="showcart"><strong>Cart(<span id="cartCount"></span>)</strong></a></p>*@
-
             <div class="user-drop" style="margin-left: 389px;">
                 <div class="dropdown">
                     <a class="account">
-                        <span>Hi @Convert.ToString(Session["FirstName"])
+                        <span>
+                            Hi @Convert.ToString(Session["FirstName"])
                             <br />
-                            <span style="font-size: 10px;">Your Account</span></span>
+                            <span style="font-size: 10px;">Your Account</span>
+                        </span>
                     </a>
                     <div class="submenu" style="display: none;">
-
                         <ul class="root">
                             <li>
                                 <a href="#signout">My Account</a>
@@ -35,50 +36,47 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
             </div>
-
 
             <a href="/home/cart" id="trigger">
                 <div class="user-drop2">
                     Cart
-                <div class="circle"><span id="cartCount"></span></div>
+                    <div class="circle"><span id="cartCount"></span></div>
                 </div>
             </a>
             @*<div class="user-drop2">Cart <div class="circle">(<span id="cartCount"></span>)</div></div>*@
             @*<div class="user-drop2">Cart <span><a href="\home\cart" id="trigger" class="menuwhite-14">(<span id="cartCount"></span>)</a></span></div>*@
             <div id="pop-up">
                 @*<table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#E8E8E8" style="border-collapse: collapse;">
-                    <tbody>
-                        <tr>
-                            <td width="96%" height="30" align="left" bgcolor="#E2E2E2" class="normal14"><strong>Product(s)</strong></td>
-                            <td width="4%" align="center" bgcolor="#E2E2E2" class="normal14"><strong>Price</strong></td>
-                        </tr>
-                        <tr>
-                            <td align="left" valign="top">
-                                <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                                    <tr>
-                                        <td width="19%"><strong>
-                                            <img src="images/prod1.jpg" width="136" height="84" /></strong></td>
-                                        <td width="81%" align="left" valign="top" class="normal14"><strong><span class="blue-14">Herve Leger One 
-            Shoulder...</span><br />
-                                            <span class="normal-12">Herve Leger One Shoulder Ombre Dress</span></strong></td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td align="center" valign="middle">&nbsp;</td>
-                        </tr>
-                       
-                        <tr>
-                            <td colspan="2" align="right" valign="middle"><strong>
-                                
-                                <a href="#"  class="submit3" >More</a>
-                            </strong></td>
-                        </tr>
-                    </tbody>
-                </table>*@
+                            <tbody>
+                                <tr>
+                                    <td width="96%" height="30" align="left" bgcolor="#E2E2E2" class="normal14"><strong>Product(s)</strong></td>
+                                    <td width="4%" align="center" bgcolor="#E2E2E2" class="normal14"><strong>Price</strong></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                            <tr>
+                                                <td width="19%"><strong>
+                                                    <img src="images/prod1.jpg" width="136" height="84" /></strong></td>
+                                                <td width="81%" align="left" valign="top" class="normal14"><strong><span class="blue-14">Herve Leger One
+                    Shoulder...</span><br />
+                                                    <span class="normal-12">Herve Leger One Shoulder Ombre Dress</span></strong></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td align="center" valign="middle">&nbsp;</td>
+                                </tr>
 
+                                <tr>
+                                    <td colspan="2" align="right" valign="middle"><strong>
+
+                                        <a href="#"  class="submit3" >More</a>
+                                    </strong></td>
+                                </tr>
+                            </tbody>
+                        </table>*@
             </div>
         </div>
     </div>
@@ -86,34 +84,45 @@
 }
 else
 {<p class="top-rt">
-    @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
 
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+     @*@Html (Html.BeginForm("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@
     </p>
     <div id="loginBox" style="display: none; top: 70px; right: 31px;">
         <form id="loginForm" action="/Account/Login" method="post">
             @Html.AntiForgeryToken()
             <fieldset id="body">
+               
                 <fieldset>
-
-                    @*@Html.TextBox("UserName", new { @class = "login-tb", placeholder = "Your Email" })*@
-                    <input type="text" name="UserName" id="UserName" class="login-tb">
+                  @Html.TextBox("UserName", null, new { type = "text", @class = "login-tb", placeholder = "User Name" })
+                    @*<input type="text" name="UserName" id="UserName" class="login-tb" placeholder="User Name">*@
                 </fieldset>
                 <fieldset>
-
-                    <input type="password" name="password" id="password" class="login-tb">
+                    @Html.Password("Password", null, new { type = "password", @class = "login-tb", placeholder = "Password" })                   
+                    @*<input type="password" name="Password" id="Password" class="login-tb" placeholder="Password">*@
                 </fieldset>
-                <input type="submit" id="login" value="Sign in">
-                <label style="width: 140px; margin-top: 8px;"><a href="#" class="menu-wh12">Reset password</a></label>
-                <label style="width: 150px;">
-                    <a href="#" class="menu-wh12">
-                        <input name="" type="checkbox" value="" style="float: left; width: 15px;">
-                        Remember me</a></label>
-            </fieldset>
+
+                @*<a href="#" class="menu-wh12" style="margin-top:10px">
+                    @Html.CheckBox("RememberMe", new { @class = "login-tb", Styles = "float: left; width: 15px;" }) Remember Me
+                </a>*@
+                @*<input type="checkbox" id="RememberMe" name="RememberMe" class="login-tb">Remember Me*@      
+                <fieldset>
+                    <label style="width: 150px;">
+                        <label style="color: #0b15c8; text-decoration: underline; cursor: pointer; ">
+                            @Html.CheckBox("RememberMe", new { @class = "login-tb", Styles = "float: left; width: 15px;margin-top:10px" })
+                            Remember me
+                        </label>
+                    </label>
+                </fieldset>
+                    <input type="submit" id="login" value="Sign in">
+
+                    <label style="width: 140px; margin-top: 8px;"><a href="#" class="menu-wh12">Reset password</a></label>
+                </fieldset>
         </form>
+        
     </div>
-    
-}
 
+}
 <script type="text/javascript">
     jQuery(document).ready(function () {
         var moveLeft = -200;
@@ -199,5 +208,16 @@ else
             }
         });
     });
+</script>
+<script type="text/javascript">
+    function ActiveCheckBox() {
+        var check = document.getElementById("RememberMe");
+        if (check.checked) {          
+            check.checked = false;           
+        }
+        else {           
+            check.checked = true;            
+        }
+    }
 
 </script>

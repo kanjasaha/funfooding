@@ -35,7 +35,7 @@ namespace MealsToGo.Controllers
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();
         private UsersContext db = new UsersContext();
         private IUserRepository userRepository;
-
+        static UserDetail userinfo;
         public UserController()
         {
             this.userRepository = new UserRepository(new ThreeSixtyTwoEntities());
@@ -47,7 +47,7 @@ namespace MealsToGo.Controllers
             if (mealItems_Photos != null)
             {
                 mealItems_Photos.Photo = string.Empty;
-                db.SaveChanges();
+              //  db.SaveChanges();
             }
             return true;
         }
@@ -108,7 +108,7 @@ namespace MealsToGo.Controllers
         public ActionResult Details(int userid = 0)
         {
             UserDetail userdetail = dbmeals.UserDetails.Find(userid);
-            
+
             if (userdetail == null)
             {
                 return RedirectToAction("Create", "User", new { userID = userid });
@@ -393,13 +393,23 @@ namespace MealsToGo.Controllers
                     // store the file inside ~/App_Data/uploads folder
                     var path = Path.Combine(Server.MapPath("~/ProfilePhotos"), fileName);
                     Photo.SaveAs(path);
+                    try
+                    {
+                        Image.FromFile(fileName);
+                    }
+                    catch (Exception e1)
+                    {
+                        ModelState.AddModelError("", "Please browse Image only.");
+
+
+                    }
                     userinfovm.Photo = fileName;
                 }
                 try
                 {
 
                     string Country = dbmeals.LKUPCountries.Where(x => x.CountryID == userinfovm.Address.CountryID).First().Country;
-                    string address = userinfovm.Address.Address1 + "," + userinfovm.Address.Address2 + "," + userinfovm.Address.City + "," + userinfovm.Address.Province + "," + userinfovm.Address.Zip + "," + Country;
+                    string address = userinfovm.Address.Address1 + "," + userinfovm.Address.Telephone + "," + userinfovm.Address.Address2 + "," + userinfovm.Address.City + "," + userinfovm.Address.Province + "," + userinfovm.Address.Zip + "," + Country;
 
                     GLatLong latlng = GetLatLng(address);
                     userinfovm.Address.Latitude = (decimal)latlng.Latitude;
@@ -410,6 +420,7 @@ namespace MealsToGo.Controllers
                     AddressList addr = Mapper.Map<AddressViewModel, AddressList>(userinfovm.Address);
                     addr.UserId = userinfovm.UserId;
                     addr.DateCreated = DateTime.Now;
+                    addr.Telephone = userinfovm.Address.Telephone;
                     dbmeals.AddressLists.Add(addr);
                     dbmeals.SaveChanges();
 
@@ -419,7 +430,9 @@ namespace MealsToGo.Controllers
                         userinfovm.IsSeller = 0;
 
                     UserDetail userinfo = Mapper.Map<UserDetailViewModel, UserDetail>(userinfovm);
-
+                    userinfo.KitchenTypeID = userinfovm.KitchenTypeID;
+                    userinfo.KitchenName = userinfovm.KitchenName;
+                    
                     int last_insert_id = addr.AddressID;
                     userinfo.AddressID = last_insert_id;
                     userinfo.DateCreated = DateTime.Now;
@@ -559,7 +572,7 @@ namespace MealsToGo.Controllers
 
         public ActionResult Edit(int userid)
         {
-            UserDetail userinfo = dbmeals.UserDetails.Find(userid);
+            userinfo = dbmeals.UserDetails.Find(userid);
             ViewBag.CountryDDList = dbmeals.LKUPCountries.ToList().Select(x => new SelectListItem
              {
                  Value = x.CountryID.ToString(),
@@ -576,12 +589,37 @@ namespace MealsToGo.Controllers
 
         //
         // POST: /UserInfo/Edit/5
+        private bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
 
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" }; // add more if u like...
+
+            foreach (var item in formats)
+            {
+                if (file.FileName.Contains(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        } 
         [HttpPost]
         public ActionResult Edit(UserDetail currentinfo, HttpPostedFileBase Photo)
         {
             if (ModelState.IsValid)
             {
+                UserDetail userdetail = dbmeals.UserDetails.Find(currentinfo.UserId);
+                string Kname = userdetail.KitchenName;
+                int  KId = Convert.ToInt32( userdetail.KitchenTypeID);
+
+                currentinfo.KitchenName = Kname;
+              //  currentinfo.KitchenTypeID = KId;
+                //currentinfo.LKUPKitchenType = userdetail.LKUPKitchenType;
                 var fileName = "";
                 // Verify that the user selected a file
                 if (Photo != null && Photo.ContentLength > 0)
@@ -597,11 +635,33 @@ namespace MealsToGo.Controllers
                 {
                     currentinfo.AddressID = currentinfo.AddressList.AddressID;
                 }
+                //var LKUPKitchenType = dbmeals.LKUPKitchenTypes.Where(x => x.KitchenTypeID == userdetail.KitchenTypeID).FirstOrDefault();
+                //currentinfo.KitchenType = (LKUPKitchenType == null ? String.Empty : LKUPKitchenType.Name.ToString());
+                //currentinfo.KitchenTypeID = currentinfo.KitchenTypeID;
+                //currentinfo.KitchenName = currentinfo.KitchenName;
+                currentinfo.AddressList.Telephone = currentinfo.AddressList.Telephone;
                 if (!String.IsNullOrEmpty(fileName))
+                {
+                    if (IsImage(Photo))
+                    {
+                    
+                    }else{
+
+                        return RedirectToAction("Edit", "User", new { userID = currentinfo.UserId });
+                    }
+                  
                     currentinfo.Photo = fileName;
+                }
+                else
+                {
+                   
+                    string str = userinfo.Photo;
+                    currentinfo.Photo = str;
+                }
                 dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
 
                 dbmeals.SaveChanges();
+            
 
                 return RedirectToAction("Details", "User", new { userID = currentinfo.UserId });
             }
@@ -712,6 +772,8 @@ namespace MealsToGo.Controllers
         {
             return View();
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -166,8 +166,7 @@ namespace MealsToGo.Controllers
                     meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
                     meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
                     mealad.MealAd_Schedules.Add(meadadschedule);
-
-
+                    break;
                 }
 
                 mealad.MealAdID = _service.AddAndReturnID(mealad);

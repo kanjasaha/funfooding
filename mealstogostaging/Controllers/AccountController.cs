@@ -18,18 +18,19 @@ using AutoMapper;
 using System.Text;
 using System.Data.SqlClient;
 using MealsToGo.Helpers;
+using System.Net;
 
 
 namespace MealsToGo.Controllers
 {
     [Authorize]
     // [InitializeSimpleMembership]
-//    [SessionState(System.Web.SessionState.SessionStateBehavior.Default)]
+    //    [SessionState(System.Web.SessionState.SessionStateBehavior.Default)]
     public class AccountController : Controller
     {
-        private static readonly string smtpserverusername = ConfigurationManager.AppSettings["smtpserverusername"];
-        private static readonly string smtpserverpassword = ConfigurationManager.AppSettings["smtpserverpassword"];
+        //
         // GET: /Account/Login
+     
         private UsersContext db = new UsersContext();
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();
         [AllowAnonymous]
@@ -99,7 +100,8 @@ namespace MealsToGo.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("UserNameOrEmailId", new Exception("This emailadress does not exist in our system. please try with valid emailaddress."));
+                    //ModelState.AddModelError("UserNameOrEmailId", new Exception("This emailadress does not exist in our system. please try with valid emailaddress."));
+                    ModelState.AddModelError("", new Exception("This emailadress does not exist in our system. please try with valid emailaddress."));
                 }
             }
             return View(objResetPasswordModel);
@@ -112,6 +114,8 @@ namespace MealsToGo.Controllers
 
 
         }
+      
+
         [AllowAnonymous]
         public ActionResult ProcessRequest(int RequestID, int RequestAccepted)
         {
@@ -162,13 +166,47 @@ namespace MealsToGo.Controllers
         public ActionResult Login(string returnUrl)
         {
 
-            ViewBag.ReturnUrl = returnUrl;
+
 
             LoginRegisterViewModel log = new LoginRegisterViewModel();
-            log.RememberMe = true;
+
+            LoginModel model = new LoginModel();
+            model = Mapper.Map<LoginRegisterViewModel, LoginModel>(log);
+
+            if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null )
+            {
+                HttpCookie cookieUser = Request.Cookies["Username"];
+                HttpCookie cookiePassword = Request.Cookies["Password"];
+            model.UserName = cookieUser.Value;
+            model.Password = cookiePassword.Value;
+            }
+
             return View(log);
 
         }
+
+        //[Authorize]
+        //public ActionResult Login(string returnUrl)
+        //{
+
+
+
+        //    LoginRegisterViewModel log = new LoginRegisterViewModel();
+
+        //    LoginModel model = new LoginModel();
+        //    model = Mapper.Map<LoginRegisterViewModel, LoginModel>(log);
+
+        //    if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null)
+        //    {
+        //        HttpCookie cookieUser = Request.Cookies["Username"];
+        //        HttpCookie cookiePassword = Request.Cookies["Password"];
+        //        model.UserName = cookieUser.Value;
+        //        model.Password = cookiePassword.Value;
+        //    }
+
+        //    return View(log);
+
+        //}
 
 
         private GLatLong GetUserLocation(int UserId)
@@ -200,32 +238,76 @@ namespace MealsToGo.Controllers
             Session[ShoppingCart.CartSessionKey] = UserName;
         }
 
-        //
-        // POST: /Account/Login
-
+        
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginRegisterViewModel viewmodel, string returnUrl)
         {
-
+           
             LoginModel model = new LoginModel();
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
 
 
-            if ((ModelState.IsValid) && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
 
                 var user = db.UserProfiles.Where(x => x.UserName.Equals(model.UserName)).First();
                 int UserID = user.UserId;
                 Session["FirstName"] = user.FirstName;
+                bool UserExists1 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                if (UserExists1)
+                {
+                    if (model.RememberMe)
+                    {
+                        var Username = new HttpCookie("Username");
+                        var Password = new HttpCookie("Password");
+                        Username.Value = model.UserName;
+                        Password.Value = model.Password;
+                        Username.Expires = DateTime.Now.AddDays(7);
+                        Password.Expires = DateTime.Now.AddDays(7);
+                       
+                        Response.Cookies.Add(Username);
+                        Response.Cookies.Add(Password);
+                      //  return View(viewmodel);
+                    }
+                    else
+                    {
+                       
+                    }
+                
+                
+                }
+
+
+
+
                 if (Url.IsLocalUrl(returnUrl))
                 {
+                    bool UserExists12 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                    if (UserExists12)
+
+                        // If we got this far, something failed, redisplay form
+                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    else
+                        ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+            
                     return Redirect(returnUrl);
                 }
                 else
+                {
+                    bool UserExists2 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                    if (UserExists2)
 
+                        // If we got this far, something failed, redisplay form
+                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    else
+                        ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+            
                     return RedirectPage(UserID);
+                }
+
+
 
             }
             bool UserExists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
@@ -234,9 +316,21 @@ namespace MealsToGo.Controllers
                 // If we got this far, something failed, redisplay form
                 ModelState.AddModelError("", "The user name or password provided is incorrect.");
             else
-                ModelState.AddModelError("", "There is no account with that UserName. Please sign up");
+                ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+            if (model.RememberMe)
+            {
+               
+                return View(viewmodel);
+            }
+            else
+            {
+                viewmodel.UserName = null;
+                viewmodel.Password = null;
+                viewmodel.RememberMe = false;
+                return View(viewmodel);
+            }
 
-            return View(viewmodel);
+            //return View(viewmodel);
 
         }
 
@@ -373,7 +467,7 @@ namespace MealsToGo.Controllers
             }
             catch (Exception ex)
             {
-                Response.Write(ex.Message);
+              //  Response.Write(ex.Message);
                 return 0;
             }
         }
@@ -381,10 +475,21 @@ namespace MealsToGo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
 
-            //return RedirectToAction("Login", "Account");
-            return RedirectToAction("LocationToSearch", "Home");
+            LoginRegisterViewModel model = new LoginRegisterViewModel();
+            HttpCookie cookieUser = Request.Cookies["Username"];
+            HttpCookie cookiePassword = Request.Cookies["Password"];
+            if (cookieUser != null || cookiePassword != null )
+            {
+               
+                model.UserName = cookieUser.Value;
+                model.Password = cookiePassword.Value;
+            }
+            Session["FirstName"] = null;
+            WebSecurity.Logout();
+            
+            return RedirectToAction("Login", "Account");
+         //   return RedirectToAction("LocationToSearch", "Home");
         }
 
         //
@@ -402,26 +507,22 @@ namespace MealsToGo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(LoginRegisterViewModel viewmodel)
         {
-
-            LoginModel model = new LoginModel();
-            model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
-
-
-
-
             if (ModelState.IsValid)
             {
-                 
+                LoginModel model = new LoginModel();
+                model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
+
+
                 bool userexists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
 
                 if (userexists)
                 {
                     ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
-
-                    return View(viewmodel);
+                    return View("Login");
+                    // return View(viewmodel);
                 }
-                 // Attempt to register the user
-              
+                // Attempt to register the user
+
                 try
                 {
                     string confirmationToken =
@@ -443,7 +544,7 @@ namespace MealsToGo.Controllers
                     EmailModel emailmodel = new EmailModel();
                     emailmodel.To = model.UserName;
                     emailmodel.Subject = "Welcome to Fun Fooding";
-                    
+
 
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
@@ -474,12 +575,12 @@ namespace MealsToGo.Controllers
                 }
                 catch (MembershipCreateUserException e)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                   // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Login", viewmodel);
         }
 
         [AllowAnonymous]
@@ -647,7 +748,7 @@ namespace MealsToGo.Controllers
                     }
                     catch (Exception e)
                     {
-                        ModelState.AddModelError("", e);
+                       // ModelState.AddModelError("", e);
                     }
                 }
             }

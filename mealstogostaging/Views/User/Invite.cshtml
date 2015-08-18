@@ -6,7 +6,7 @@
 @using (Html.BeginForm("Invite", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.UserID)
-    @Html.ValidationSummary(false,"", new { @class = "error" })
+    @*@Html.ValidationSummary(false,"", new { @class = "error" })*@
     <div class="cont-main">
         <h1>Invite</h1>
 
@@ -15,9 +15,10 @@
                 <ul class="gen-form">
                     <li>
                         <p>@Html.LabelFor(x => x.Emailaddresses) </p>
-
-                        @Html.TextAreaFor(x => x.Emailaddresses, new { placeholder = "Use comma separated emails", style = "width: 450px;height:100px" , @class = "gen-ftb"})<br />
+                        <textarea id="Emailaddresses" class="gen-ftb" style="width: 450px;height:100px" placeholder="Use comma separated emails" data-val-required="The Emailaddresses field is required." data-val="true" rows="2"  cols="20"></textarea>
+                        @*@Html.TextAreaFor(x => x.Emailaddresses, new { placeholder = "Use comma separated emails", style = "width: 450px;height:100px" , @class = "gen-ftb"})<br />*@
                         @Html.ValidationMessageFor(x => x.Emailaddresses)
+
                     </li>
                     <li>
                         <p>@Html.LabelFor(x => x.EmailMessage)</p>
