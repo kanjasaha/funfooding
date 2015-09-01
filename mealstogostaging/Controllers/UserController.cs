@@ -26,7 +26,9 @@ using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
 using MealsToGo.Mailers;
 using MealsToGo.Repository;
-
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace MealsToGo.Controllers
 {
@@ -36,6 +38,8 @@ namespace MealsToGo.Controllers
         private UsersContext db = new UsersContext();
         private IUserRepository userRepository;
         static UserDetail userinfo;
+        static string Kname = "";
+        static int KID = 0;
         public UserController()
         {
             this.userRepository = new UserRepository(new ThreeSixtyTwoEntities());
@@ -572,6 +576,9 @@ namespace MealsToGo.Controllers
 
         public ActionResult Edit(int userid)
         {
+
+          
+            
             userinfo = dbmeals.UserDetails.Find(userid);
             ViewBag.CountryDDList = dbmeals.LKUPCountries.ToList().Select(x => new SelectListItem
              {
@@ -579,6 +586,8 @@ namespace MealsToGo.Controllers
                  Text = x.Country.ToString(),
                  Selected = (userinfo != null && x.CountryID == userinfo.AddressList.CountryID)
              });
+            Kname = userinfo.KitchenName;
+            KID = Convert.ToInt32(userinfo.KitchenTypeID);
             if (userinfo == null)
             {
                 return RedirectToAction("Create", "User", new { userID = userid });
@@ -609,17 +618,14 @@ namespace MealsToGo.Controllers
             return false;
         } 
         [HttpPost]
-        public ActionResult Edit(UserDetail currentinfo, HttpPostedFileBase Photo)
+        public ActionResult Edit(UserDetail currentinfo, HttpPostedFileBase Photo,string phone)
         {
             if (ModelState.IsValid)
             {
-                UserDetail userdetail = dbmeals.UserDetails.Find(currentinfo.UserId);
-                string Kname = userdetail.KitchenName;
-                int  KId = Convert.ToInt32( userdetail.KitchenTypeID);
-
+               
+                //currentinfo.KitchenName = currentinfo.KitchenName;
                 currentinfo.KitchenName = Kname;
-              //  currentinfo.KitchenTypeID = KId;
-                //currentinfo.LKUPKitchenType = userdetail.LKUPKitchenType;
+                //currentinfo.KitchenTypeID = KID;
                 var fileName = "";
                 // Verify that the user selected a file
                 if (Photo != null && Photo.ContentLength > 0)
@@ -635,11 +641,8 @@ namespace MealsToGo.Controllers
                 {
                     currentinfo.AddressID = currentinfo.AddressList.AddressID;
                 }
-                //var LKUPKitchenType = dbmeals.LKUPKitchenTypes.Where(x => x.KitchenTypeID == userdetail.KitchenTypeID).FirstOrDefault();
-                //currentinfo.KitchenType = (LKUPKitchenType == null ? String.Empty : LKUPKitchenType.Name.ToString());
-                //currentinfo.KitchenTypeID = currentinfo.KitchenTypeID;
-                //currentinfo.KitchenName = currentinfo.KitchenName;
-                currentinfo.AddressList.Telephone = currentinfo.AddressList.Telephone;
+            
+              //  currentinfo.AddressList.Telephone = currentinfo.AddressList.Telephone;
                 if (!String.IsNullOrEmpty(fileName))
                 {
                     if (IsImage(Photo))
@@ -659,8 +662,15 @@ namespace MealsToGo.Controllers
                     currentinfo.Photo = str;
                 }
                 dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
-
                 dbmeals.SaveChanges();
+
+                string str1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(str1);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Update AddressList set Telephone='" + currentinfo.AddressList.Telephone + "' where AddressID='"+currentinfo.AddressID+"'",con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+
             
 
                 return RedirectToAction("Details", "User", new { userID = currentinfo.UserId });

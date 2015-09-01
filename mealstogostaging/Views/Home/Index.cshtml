@@ -1,5 +1,6 @@
 ﻿@model MealsToGo.ViewModels.ResultSetViewModel
 
+
 @using MealsToGo.Helpers
 @using MealsToGo.Models
 @using Trirand.Web.Mvc
@@ -106,14 +107,11 @@
          });
     }
 
-    jQuery(document).ready(function () {
-
+    jQuery(document).ready(function () {       
         jQuery('.date-tb').unbind();
         jQuery(".date-tb").datepicker({
             dateFormat: "mm/dd/yy",
-            minDate: -30, maxDate: 180
-
-
+            minDate: new Date, maxDate: 180
         });
 
         removeSubgridIcon = function () {
@@ -276,111 +274,107 @@
         </tbody>
     </table>
 </div>*@
-<div class="cont-main">
-    <div class="se-reslt">
-        @*  <h2>Current Location: @Session["UserLoc"]
-             @using (Html.MyBeginForm(null, null, FormMethod.Post))
-            {
-                @Html.ValidationSummary(false,"", new { @class = "error" })
-                @Html.TextBox("ChangeLocation", null, new { style = "width:125px;", placeholder = "Change Location" })
-                @Html.QueryAsHiddenFields()
-         
-          
-
-            }</h2>*@
-        @*  <h2>Search Results</h2>
-      *@
-        <div class="se-reslt2">
-            <h3>Filter by</h3>
-
-            @foreach (var f in Model.Search.Facets)
-            { 
-        
-                <h4>
-                    @(Html.SolrFieldPropName<SolrResultSet>(@f.Key)) </h4>
-                <ul class="filter">
-                    <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key) ">@f.Value </a></li>
-                </ul>
-                       
-            }
-
-            @foreach (var f in Model.Facets)
-            {  
-                <h4>
-                    @(Html.SolrFacetPropName<SolrResultSet>(@f.Key))</h4>
-                <ul class="filter">
-                    @foreach (var fv in f.Value)
-                    { 
-                        <li><a  href="@Url.SetFacet(f.Key, fv.Key) ">@fv.Key </a><span>(@fv.Value )</span></li>
-                    }
-                </ul>
-                       
-                   
-            }
-
-
-
-        </div>
-    </div>
-
-    <div class="cont-rit">
-        <div class="se-form">
-            @using (Html.MyBeginForm(null, null, FormMethod.Get))
-            {
-             
-                <label>
-                    @*  @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb", placeholder = "Current Date" })
-                  *@   @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb food-tb2", placeholder = "Current Date" })
-
-                </label>
-                <label>
-                    @Html.TextBoxFor(m => m.Search.FreeSearch, new { @class = "food-tb2", placeholder = "pizza,vegetarian" })
-                </label>
-                <br /><br />
-                <label>
-                    @Html.TextBox("ChangeLocation", "current loc", new { @class = "food-tb2" })
-
-                </label>
-                
-                <label>
-                    @Html.DropDownListFor(x => x.DistanceDD.SelectedDistanceLimit, Model.DistanceDD.DistanceDDList, "Within", new { @class = "dist-tb food-tb2",style="width:260px;" })
+<span class="normal14">
+    <span class="error">
+        @ViewBag.ErrorMessage
+    </span>    
+   @*@Html.Label("strz", Convert.ToString(ViewBag.ErrorMessage), new { @class = "error" })*@
+   
+    </span>
+    <div class="cont-main">
+        <div class="se-reslt">
+            @*  <h2>Current Location: @Session["UserLoc"]
+                 @using (Html.MyBeginForm(null, null, FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false,"", new { @class = "error" })
+                    @Html.TextBox("ChangeLocation", null, new { style = "width:125px;", placeholder = "Change Location" })
                     @Html.QueryAsHiddenFields()
-                </label>
-                
-                <input name="button2" type="submit" class="search2" id="button2" value="Search" />
-                if (!string.IsNullOrEmpty(Model.DidYouMean))
-                { 
-                <div>Did you mean</div>
-                <strong><em>@Html.ActionLink(@Model.DidYouMean, @Url.ForQuery(Model.DidYouMean))</em></strong>
+
+
+
+                }</h2>*@
+            @*  <h2>Search Results</h2>
+            *@
+            <div class="se-reslt2">
+                <h3>Filter by</h3>
+                @foreach (var f in Model.Search.Facets)
+                {
+
+                    <h4>
+                        @(Html.SolrFieldPropName<SolrResultSet>(@f.Key))
+                    </h4>
+                    <ul class="filter">
+                        <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key) ">@f.Value </a></li>
+                    </ul>
 
                 }
-                <br />
-                                
-            }
-            <div style="padding-top:35px;"></div>
+                @foreach (var f in Model.Facets)
+                {
+                    <h4>
+                        @(Html.SolrFacetPropName<SolrResultSet>(@f.Key))
+                    </h4>
+                    <ul class="filter">
+                        @foreach (var fv in f.Value)
+                        {
+                            <li><a href="@Url.SetFacet(f.Key, fv.Key) ">@fv.Key </a><span>(@fv.Value )</span></li>
+                        }
+                    </ul>
 
-            <div class="gride">
-                <table id="list">
-                    <tr>
-                        <td></td>
-                    </tr>
-                </table>
+
+                }
+
             </div>
-            <div id="pager"></div>
-
         </div>
 
+        <div class="cont-rit">
+            <div class="se-form">
+                @using (Html.MyBeginForm(null, null, FormMethod.Get))
+                {
+
+                    <label>
+                        @*  @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb", placeholder = "Current Date" })
+                        *@   @Html.TextBoxFor(m => m.Search.PickUpDateSearch, "{0:MM/dd/yyyy}", new { @class = "date-tb food-tb2", placeholder = "Current Date", Readonly = true })
+                    </label>
+                    <label>
+                        @Html.TextBoxFor(m => m.Search.FreeSearch, new { @class = "food-tb2", placeholder = "pizza,vegetarian" })
+                    </label>
+                    <br /><br />
+                    <label>
+                        @*@Html.TextBox("ChangeLocation", "current loc", new { @class = "food-tb2" })*@
+                        @Html.TextBox("ChangeLocation", "", new { @class = "food-tb2", placeholder = "Current Loc" })
+                    </label>
+
+                    <label>
+                        @Html.DropDownListFor(x => x.DistanceDD.SelectedDistanceLimit, Model.DistanceDD.DistanceDDList, "Within", new { @class = "dist-tb food-tb2", style = "width:260px;" })
+                        @Html.QueryAsHiddenFields()
+                    </label>
+
+                    <input name="button2" type="submit" class="search2" id="button2" value="Search" />
+                    if (!string.IsNullOrEmpty(Model.DidYouMean))
+                    {
+                        <div>Did you mean</div>
+                        <strong><em>@Html.ActionLink(@Model.DidYouMean, @Url.ForQuery(Model.DidYouMean))</em></strong>
+
+                    }
+                    <br />
+
+                }
+                <div style="padding-top:35px;"></div>
+                <div class="gride">
+                    <table id="list">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="pager"></div>
+            </div>
 
 
-
+        </div>
+        <div class="clr"></div>
     </div>
-    <div class="clr"></div>
 
-</div>
-
-
-<script type="text/javascript" src="~/Scripts/Funfooding_Order.js"></script>
-
-
+    <script type="text/javascript" src="~/Scripts/Funfooding_Order.js"></script>
 
 

@@ -33,6 +33,9 @@ namespace MealsToGo.Controllers
      
         private UsersContext db = new UsersContext();
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();
+        LoginRegisterViewModel log = new LoginRegisterViewModel();
+
+        LoginModel model = new LoginModel();
         [AllowAnonymous]
         public ActionResult Reset(string emailId)
         {
@@ -167,20 +170,25 @@ namespace MealsToGo.Controllers
         {
 
 
-
-            LoginRegisterViewModel log = new LoginRegisterViewModel();
-
-            LoginModel model = new LoginModel();
+           
+          
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(log);
-
+           
             if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null )
             {
                 HttpCookie cookieUser = Request.Cookies["Username"];
                 HttpCookie cookiePassword = Request.Cookies["Password"];
             model.UserName = cookieUser.Value;
             model.Password = cookiePassword.Value;
+            model.RememberMe = true;
+            log.UserName = cookieUser.Value;
+            log.Password = cookiePassword.Value;
+            log.RememberMe = true; 
             }
-
+            //model.UserName = "";
+            //model.Password = "";
+            //log.UserName = "";
+            //log.Password = "";
             return View(log);
 
         }
@@ -245,7 +253,7 @@ namespace MealsToGo.Controllers
         public ActionResult Login(LoginRegisterViewModel viewmodel, string returnUrl)
         {
            
-            LoginModel model = new LoginModel();
+            //LoginModel model = new LoginModel();
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
 
 
@@ -258,10 +266,11 @@ namespace MealsToGo.Controllers
                 bool UserExists1 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
                 if (UserExists1)
                 {
+                    var Username = new HttpCookie("Username");
+                    var Password = new HttpCookie("Password");
                     if (model.RememberMe)
                     {
-                        var Username = new HttpCookie("Username");
-                        var Password = new HttpCookie("Password");
+                       
                         Username.Value = model.UserName;
                         Password.Value = model.Password;
                         Username.Expires = DateTime.Now.AddDays(7);
@@ -273,12 +282,30 @@ namespace MealsToGo.Controllers
                     }
                     else
                     {
-                       
+                        Username.Value = "";
+                        Password.Value = "";
+
+                        Username.Expires = DateTime.Now.AddDays(7);
+                        Password.Expires = DateTime.Now.AddDays(7);
+
+                        Response.Cookies.Add(Username);
+                        Response.Cookies.Add(Password);
                     }
                 
                 
                 }
+                //if (model.RememberMe)
+                //{
 
+                //    return View(viewmodel);
+                //}
+                //else
+                //{
+                //    viewmodel.UserName = null;
+                //    viewmodel.Password = null;
+                //    viewmodel.RememberMe = false;
+                //    return View(viewmodel);
+                //}
 
 
 
@@ -291,7 +318,8 @@ namespace MealsToGo.Controllers
                         ModelState.AddModelError("", "The user name or password provided is incorrect.");
                     else
                         ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
-            
+                    
+
                     return Redirect(returnUrl);
                 }
                 else
@@ -476,7 +504,7 @@ namespace MealsToGo.Controllers
         public ActionResult LogOff()
         {
 
-            LoginRegisterViewModel model = new LoginRegisterViewModel();
+            //LoginRegisterViewModel model = new LoginRegisterViewModel();
             HttpCookie cookieUser = Request.Cookies["Username"];
             HttpCookie cookiePassword = Request.Cookies["Password"];
             if (cookieUser != null || cookiePassword != null )
@@ -484,7 +512,12 @@ namespace MealsToGo.Controllers
                
                 model.UserName = cookieUser.Value;
                 model.Password = cookiePassword.Value;
+                model.RememberMe = true;
+                log.UserName = cookieUser.Value;
+                log.Password = cookiePassword.Value;
+                log.RememberMe = true;
             }
+
             Session["FirstName"] = null;
             WebSecurity.Logout();
             
