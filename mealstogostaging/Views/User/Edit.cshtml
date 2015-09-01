@@ -85,8 +85,12 @@
                     <li>
                         <p>Telephone</p>
                         @*<input id="Telephone" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
-                        @Html.EditorFor(model => model.AddressList.Telephone, new {  maxlength="16", onkeypress="return isNumberKey(event)", @class = "gen-ftb" })
+                        @*@Html.EditorFor(model => model.AddressList.Telephone, new { maxlength = "16", onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.AddressList.Telephone)*@
+                     
+                        @Html.EditorFor(model => model.AddressList.Telephone, new { maxlength = "16", onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.AddressList.Telephone)
+
                     </li>
                     <li>
                         <p>Mobile</p>

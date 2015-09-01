@@ -138,8 +138,14 @@ namespace MealsToGo.Controllers
 
         public ActionResult Index(SearchParam parameters)
         {
-
-
+            if (TempData["ErrorMessage"] != null)
+            {
+                ViewBag.ErrorMessage = TempData["ErrorMessage"];
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "";
+            }
             var ChangeLocation = HttpContext.Request.QueryString["ChangeLocation"];
 
             if ((ChangeLocation != null) && (ChangeLocation != ""))
@@ -427,6 +433,27 @@ namespace MealsToGo.Controllers
                                        );
 
             return cr;
+        }
+
+
+        public ActionResult CheckUser()
+        {            
+            if (Session["FirstName"] != null)
+            {
+                return RedirectToAction("PrivacyRules", "Settings");
+               // return View("/Settings/PrivacyRules");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Please login to go for this menu");
+                //ViewBag.ErrorMessage = "Please login to go for this menu";
+               // er.PrError = "Please login to go for this menu";
+               // Session["ErrorMessage"] = "Please login to go for this menu";
+                TempData["ErrorMessage"] = "To access this menu, please login into the site";
+                return RedirectToAction("Index", "Home");
+                
+                //return View("/Home/Index");
+            }
         }
 
 
