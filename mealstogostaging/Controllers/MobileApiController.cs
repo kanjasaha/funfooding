@@ -65,7 +65,7 @@ namespace MealsToGo.Controllers
                 // Attempt to register the user
                
                     string confirmationToken =
-                        WebSecurity.CreateUserAndAccount(viewmodel.UserName, viewmodel.Password, propertyValues: new
+                        WebSecurity.CreateUserAndAccount(viewmodel.UserName, viewmodel.Password,propertyValues: new
                         {
                             FirstName = viewmodel.FirstName
                         }, requireConfirmationToken: true); //new {Email=model.Email}
@@ -341,17 +341,17 @@ namespace MealsToGo.Controllers
                 string orderingoption = availabilityType.AvailabilityType1;
                 orderingoptionnum = Convert.ToInt32(orderingoption);
             }
-            foreach (var schedules in MealAdvm.MealAdSchedules)
-            {
+            //foreach (var schedules in MealAdvm.MealAdSchedules)
+            //{
 
-                MealAd_Schedules meadadschedule = new MealAd_Schedules();
-                meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
-                meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
-                meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
-                mealad.MealAd_Schedules.Add(meadadschedule);
+            //    MealAd_Schedules meadadschedule = new MealAd_Schedules();
+            //    meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
+            //    meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
+            //    meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+            //    mealad.MealAd_Schedules.Add(meadadschedule);
 
 
-            }
+            //}
 
             mealad.MealAdID = _service.AddAndReturnID(mealad);
             return Json(true, JsonRequestBehavior.AllowGet);

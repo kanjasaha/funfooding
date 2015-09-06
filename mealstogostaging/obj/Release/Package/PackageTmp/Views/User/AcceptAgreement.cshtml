@@ -5,6 +5,17 @@
     ViewBag.Title = "Accept Seller Agreement";
    
 }
+@{
+    int UserID = 0;
+  
+    if (Request.IsAuthenticated)
+    {
+        UserID = WebSecurity.CurrentUserId;
+
+    }
+
+    string ctrName = ViewContext.RouteData.Values["controller"].ToString();
+}
 @using (Html.BeginForm("AcceptAgreement", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
@@ -20,7 +31,7 @@
                     <li>
                         
                         @*@Html.DisplayFor(model => model.FirstName, new { @class = "gen-ftb" })*@
-                        @Html.TextAreaFor( model => model.UserAgreement,new { @class = "gen-ftb" , @readonly="readonly",style = "width: 300px; height: 300px;" })
+                        @Html.TextAreaFor(model => model.UserAgreement, new { @class = "gen-ftb", @readonly = "readonly", style = "width: 300px; height: 300px; background-color:#ccc;" })
                        
                     </li>
                     <li>
@@ -29,7 +40,7 @@
                             <input type="submit" name="button2" id="button2" value="Accept Agreement" class="submit" />
                            
                         </label>
-                        <a href="#" class="menu-14u">@Html.ActionLink("Cancel", "Index",null,new { @class = "menu-14u" })</a></li>
+                        <a href="#" class="menu-14u">@Html.ActionLink("Cancel", "Index", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</a></li>
                     <div class="clr"></div>
                 </ul>
 

@@ -29,6 +29,11 @@ using MealsToGo.Repository;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace MealsToGo.Controllers
 {
@@ -38,8 +43,10 @@ namespace MealsToGo.Controllers
         private UsersContext db = new UsersContext();
         private IUserRepository userRepository;
         static UserDetail userinfo;
+        public static string strPhoto = "";
         static string Kname = "";
         static int KID = 0;
+        static string InvaliImage = "";
         public UserController()
         {
             this.userRepository = new UserRepository(new ThreeSixtyTwoEntities());
@@ -47,11 +54,13 @@ namespace MealsToGo.Controllers
         [HttpPost]
         public bool RemovePhoto(int id = 0)
         {
+            strPhoto = "Yes";
             var mealItems_Photos = dbmeals.UserDetails.FirstOrDefault(x => x.UserId == id);
             if (mealItems_Photos != null)
             {
+                
                 mealItems_Photos.Photo = string.Empty;
-              //  db.SaveChanges();
+                db.SaveChanges();
             }
             return true;
         }
@@ -157,23 +166,54 @@ namespace MealsToGo.Controllers
         [HttpPost]
         public ActionResult Invite(EmailaddressesViewModel invitedemails)
         {
+            int userid = invitedemails.UserID;
+            //if (invitedemails.Emailaddresses == null && invitedemails.EmailMessage == null)
+            //{
+            //    TempData["emailAlert"] = "Please enter email address and Emailmessage ";
+            //    TempData["PasswordBlank"] = "Please enter Emailmessage";
+            //    return RedirectToAction("Invite", "User", new { userid = userid });
+            //}
+            //if (invitedemails.Emailaddresses == null)
+            //{
+            //    TempData["emailAlert"] = "Please enter email address";
+
+            //    return RedirectToAction("Invite", "User", new { userid = userid });
+            //}
+            //if (invitedemails.EmailMessage == null)
+            //{
+            //    TempData["emailAlert"] = "Please enter Emailmessage";
+
+            //    return RedirectToAction("Invite", "User", new { userid = userid });
+            //}
             if (ModelState.IsValid)
             {
-                int userid = invitedemails.UserID;
+               
                 string invalidemails = "";
 
                 char[] delimiters = (",: ").ToCharArray();
 
                 List<string> emails = invitedemails.Emailaddresses.Split(delimiters).ToList();
                 IUserMailer mailer = new UserMailer();
-
+               
 
                 EmailModel emailmodel = new EmailModel();
                 emailmodel.From = db.UserProfiles.Where(x => x.UserId == userid).First().UserName;
 
                 foreach (var emailaddress in emails)
                 {
+                    string email = emailaddress;
+                    Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                    Match match = regex.Match(email);
+                    if (match.Success)
+                    { 
+                    
+                    }
+                    else
+                    {
+                        TempData["emailAlert"] = "Please enter valid email address";
+                        return RedirectToAction("Invite", "User", new { userid = userid });
 
+                    }
 
                     if (IsValidEmail(emailaddress))
                     {
@@ -399,7 +439,7 @@ namespace MealsToGo.Controllers
                     Photo.SaveAs(path);
                     try
                     {
-                        Image.FromFile(fileName);
+                        System.Drawing.Image.FromFile(fileName);
                     }
                     catch (Exception e1)
                     {
@@ -625,13 +665,15 @@ namespace MealsToGo.Controllers
                
                 //currentinfo.KitchenName = currentinfo.KitchenName;
                 currentinfo.KitchenName = Kname;
-                //currentinfo.KitchenTypeID = KID;
+                currentinfo.KitchenTypeID = KID;
+           
                 var fileName = "";
                 // Verify that the user selected a file
                 if (Photo != null && Photo.ContentLength > 0)
                 {
                     // extract only the fielname
                     fileName = "Profilephoto" + currentinfo.UserId + Path.GetExtension(Photo.FileName);
+                    
                     //   .GetFileName(Photo.FileName).;
                     // store the file inside ~/App_Data/uploads folder
                     var path = Path.Combine(Server.MapPath("~/ProfilePhotos"), fileName);
@@ -649,18 +691,71 @@ namespace MealsToGo.Controllers
                     {
                     
                     }else{
-
+                        TempData["userAlert"] = "Please select image file only";
+                        InvaliImage = "Yes";
+                        if (strPhoto == "Yes")
+                        {
+                           
+                                currentinfo.Photo = "";
+                                strPhoto = "";
+                           
+                        }
+                        else
+                            currentinfo.Photo = fileName;
+                        dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
+                        dbmeals.SaveChanges();
+                    
                         return RedirectToAction("Edit", "User", new { userID = currentinfo.UserId });
                     }
-                  
+                    if (strPhoto == "Yes")
+                    {
+                        if (InvaliImage == "Yes")
+                        {
+                            InvaliImage = "";
+                        }
+                        else
+                        {
+                            currentinfo.Photo = "";
+                            strPhoto = "";
+                        }
+                    }
+                    else
                     currentinfo.Photo = fileName;
                 }
                 else
                 {
-                   
-                    string str = userinfo.Photo;
-                    currentinfo.Photo = str;
+                    if (strPhoto == "Yes")
+                    {
+                        if (InvaliImage == "Yes")
+                        {
+                            InvaliImage = "";
+                        }
+                        else { 
+                        currentinfo.Photo = "";
+                        strPhoto = "";
+                        }
+                    }
+                    else
+                    {
+                        currentinfo.Photo = fileName;
+                        string str = userinfo.Photo;
+                        currentinfo.Photo = str;
+                    }
                 }
+                if (strPhoto == "Yes")
+                {
+                    if (InvaliImage == "Yes")
+                    {
+                        InvaliImage = "";
+                    }
+                    else
+                    {
+                        currentinfo.Photo = "";
+                        strPhoto = "";
+                    }
+                }
+                else
+                    currentinfo.Photo = fileName;
                 dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
                 dbmeals.SaveChanges();
 
@@ -735,7 +830,7 @@ namespace MealsToGo.Controllers
         {
             // TODO: the filename could be passed as argument of course
             var imageFile = Path.Combine(Server.MapPath("~/ProfilePhotos"), thumnailphoto);
-            using (var srcImage = Image.FromFile(imageFile))
+            using (var srcImage = System.Drawing.Image.FromFile(imageFile))
             using (var newImage = new Bitmap(width, height))
             using (var graphics = Graphics.FromImage(newImage))
             using (var stream = new MemoryStream())

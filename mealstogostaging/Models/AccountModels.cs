@@ -87,7 +87,7 @@ namespace MealsToGo.Models
     }
     public class LoginModel
     {
-        [Required]
+        //[Required]
         [Display(Name = "Your Name")]
         public string FirstName { get; set; }
 

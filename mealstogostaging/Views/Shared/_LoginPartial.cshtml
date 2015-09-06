@@ -95,10 +95,12 @@ else
                
                 <fieldset>
                   @Html.TextBox("UserName", null, new { type = "text", @class = "login-tb", placeholder = "User Name" })
+                  
                     @*<input type="text" name="UserName" id="UserName" class="login-tb" placeholder="User Name">*@
-                </fieldset>
+             
+                 </fieldset>
                 <fieldset>
-                    @Html.Password("Password", null, new { type = "password", @class = "login-tb", placeholder = "Password" })                   
+                    @Html.TextBox("Password", null, new { type = "password", @class = "login-tb", placeholder = "Password" })                   
                     @*<input type="password" name="Password" id="Password" class="login-tb" placeholder="Password">*@
                 </fieldset>
 
@@ -109,7 +111,7 @@ else
                 <fieldset>
                     <label style="width: 150px;">
                         <label style="color: #0b15c8; text-decoration: underline; cursor: pointer; ">
-                            @Html.CheckBox("RememberMe", new { @class = "login-tb", Styles = "float: left; width: 15px;margin-top:10px" })
+                            @Html.CheckBox("RememberMe", new { @class = "", Styles = "float: left; width: 15px;margin-top:10px" })
                             Remember me
                         </label>
                     </label>

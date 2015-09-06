@@ -13,12 +13,17 @@ namespace MealsToGo.ViewModels
       
         public int UserID { get; set; }
 
+        [Display(Name = "Email")]
         [Required]
+        [EmailAddress]
+
         public string Emailaddresses { get; set; }
 
-        
+
         [Required]
-        public string  EmailMessage { get; set; }
+        [Display(Name = "Message")]
+        public string EmailMessage { get; set; }
+
 
 
         public string ErrorMessage { get; set; }

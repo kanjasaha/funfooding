@@ -6,11 +6,18 @@
     Model.DateCreated = DateTime.Now;
     Model.UserStatus = 1;
 }
-
+<script language=Javascript>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
 
 @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary(false,"", new { @class = "error" })
+    @Html.ValidationSummary(false, "", new { @class = "error" })
     @Html.HiddenFor(model => model.UserId)
     @Html.HiddenFor(model => model.DateUpdated)
     @Html.HiddenFor(model => model.DateCreated)
@@ -20,18 +27,30 @@
         <h1>Update user details</h1>
         <div class="cont">
             <div class="cont-rit">
+                <label id="Label2" style="color: #ff0000 !important; width:100%; float:left;"></label>
+                @{
+                       var message1 = TempData["userAlert"] ?? string.Empty;
+                }
+                <script type="text/javascript">
+                    var message = '@message1';
+                    if (message)
+                        document.getElementById("Label2").innerHTML = message;
+
+                    //alert(message);
+                </script>
+               
                 <ul class="gen-form">
                     <li>
                         <p>Photo</p>
                         @if (!string.IsNullOrEmpty(Model.Photo))
                         {
-                            <img src="~/ProfilePhotos/@(Model.Photo)" width="200", height="150"  id="profilepic" />
+                            <img src="~/ProfilePhotos/@(Model.Photo)" width="200" height="150" id="profilepic" />
                             <a href="#" class="RemoveProfilePhoto" name="@Model.UserId">Remove</a>
                         }
-                        
-                        @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+
+                        @Html.TextBoxFor(model => model.Photo, new { type = "file", accept = ".png,.bmp,.jpg,.tif,.gif" })
                         @*@Html.ValidationMessageFor(model => model.Photo)*@
-                            
+
                     </li>
                     <li>
                         <p>First Name</p>
@@ -77,12 +96,18 @@
                     </li>
                     <li>
                         <p>Telephone</p>
-                        @Html.EditorFor(model => model.AddressList.Telephone, new { @class = "gen-ftb" })
+                        @*<input id="Telephone" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                        @*@Html.EditorFor(model => model.AddressList.Telephone, new { maxlength = "16", onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
+                            @Html.ValidationMessageFor(model => model.AddressList.Telephone)*@
+
+                        @Html.EditorFor(model => model.AddressList.Telephone, new { maxlength = "16", onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.AddressList.Telephone)
+
                     </li>
                     <li>
                         <p>Mobile</p>
-                        @Html.EditorFor(model => model.Mobile, new { @class = "gen-ftb" })
+                        @*<input id="Mobile" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                        @Html.EditorFor(model => model.Mobile, new { maxlength = "16", onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Mobile)
                     </li>
                     <li>
@@ -106,7 +131,8 @@
 
                             <input type="submit" name="button2" id="button2" value="Update Profile" class="submit" />
                         </label>
-                        <a href="#" class="menu-14u ">@Html.ActionLink("Back to List", "Index",null,new { @class = "menu-14u" })</a></li>
+                        <a href="#" class="menu-14u ">@Html.ActionLink("Back to List", "Index", null, new { @class = "menu-14u" })</a>
+                    </li>
                     <div class="clr"></div>
                 </ul>
 
@@ -117,114 +143,114 @@
         </div>
 
     </div>
-@*<fieldset>
-        <legend>UserInfo</legend>
-        @Html.DisplayFor(model => model.UserId)
-        @Html.HiddenFor(model => model.UserId)
-        @Html.HiddenFor(model => model.DateUpdated)
-        @Html.HiddenFor(model => model.DateCreated)
-        @Html.HiddenFor(model => model.UserStatus)
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Photo)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.Photo, new { type = "file" })
-            @Html.ValidationMessageFor(model => model.Photo)
+    @*<fieldset>
+            <legend>UserInfo</legend>
+            @Html.DisplayFor(model => model.UserId)
+            @Html.HiddenFor(model => model.UserId)
+            @Html.HiddenFor(model => model.DateUpdated)
+            @Html.HiddenFor(model => model.DateCreated)
+            @Html.HiddenFor(model => model.UserStatus)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Photo)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+                @Html.ValidationMessageFor(model => model.Photo)
 
-        </div>
-
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.FirstName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.FirstName)
-            @Html.ValidationMessageFor(model => model.FirstName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LastName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.Address1)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.Address1)
-            @Html.ValidationMessageFor(model => model.AddressList.Address1)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.Address2)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.Address2)
-            @Html.ValidationMessageFor(model => model.AddressList.Address2)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.City)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.City)
-            @Html.ValidationMessageFor(model => model.AddressList.City)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.Province)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.Province)
-            @Html.ValidationMessageFor(model => model.AddressList.Province)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.Zip)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.Zip)
-            @Html.ValidationMessageFor(model => model.AddressList.Zip)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.LKUPCountry.Country)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.LKUPCountry.Country)
-            @Html.ValidationMessageFor(model => model.AddressList.LKUPCountry.Country)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.AddressList.Telephone)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.AddressList.Telephone)
-            @Html.ValidationMessageFor(model => model.AddressList.Telephone)
-        </div>
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Notes)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Notes)
-            @Html.ValidationMessageFor(model => model.Notes)
-        </div>
+            </div>
 
 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FirstName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
 
-        <p>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
 
-            <input type="submit" value="Update" />
-        </p>
-    </fieldset>*@
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.Address1)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.Address1)
+                @Html.ValidationMessageFor(model => model.AddressList.Address1)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.Address2)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.Address2)
+                @Html.ValidationMessageFor(model => model.AddressList.Address2)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.City)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.City)
+                @Html.ValidationMessageFor(model => model.AddressList.City)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.Province)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.Province)
+                @Html.ValidationMessageFor(model => model.AddressList.Province)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.Zip)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.Zip)
+                @Html.ValidationMessageFor(model => model.AddressList.Zip)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.LKUPCountry.Country)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.LKUPCountry.Country)
+                @Html.ValidationMessageFor(model => model.AddressList.LKUPCountry.Country)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AddressList.Telephone)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.AddressList.Telephone)
+                @Html.ValidationMessageFor(model => model.AddressList.Telephone)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Notes)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Notes)
+                @Html.ValidationMessageFor(model => model.Notes)
+            </div>
+
+
+
+            <p>
+
+                <input type="submit" value="Update" />
+            </p>
+        </fieldset>*@
 }
 
 @*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

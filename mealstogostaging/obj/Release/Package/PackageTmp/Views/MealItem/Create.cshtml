@@ -56,8 +56,9 @@
                     </li>
                     <li>
                         <p>Quantity</p>
-                        @Html.EditorFor(model => model.Quantity, new { placeholder = "Quantity", @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.Quantity)
+                        <input id="Quantity" name="Quantity" type="number" value="1" min="1" class="gen-ftb" placeholder="Quantity" />
+                        @*@Html.EditorFor(model => model.Quantity, new { placeholder = "Quantity", @class = "gen-ftb", min = "0" })
+                        @Html.ValidationMessageFor(model => model.Quantity)*@
 
                     </li>
 

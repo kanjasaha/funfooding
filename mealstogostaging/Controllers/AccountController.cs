@@ -183,7 +183,10 @@ namespace MealsToGo.Controllers
             model.RememberMe = true;
             log.UserName = cookieUser.Value;
             log.Password = cookiePassword.Value;
-            log.RememberMe = true; 
+            if (log.UserName != "" && log.Password != "")
+            {
+                log.RememberMe = true;
+            }
             }
             //model.UserName = "";
             //model.Password = "";
@@ -256,95 +259,128 @@ namespace MealsToGo.Controllers
             //LoginModel model = new LoginModel();
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
 
-
-            if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            try
             {
-
-                var user = db.UserProfiles.Where(x => x.UserName.Equals(model.UserName)).First();
-                int UserID = user.UserId;
-                Session["FirstName"] = user.FirstName;
-                bool UserExists1 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
-                if (UserExists1)
+                if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
-                    var Username = new HttpCookie("Username");
-                    var Password = new HttpCookie("Password");
-                    if (model.RememberMe)
+                    if (model.UserName == "" && model.Password == "")
                     {
-                       
-                        Username.Value = model.UserName;
-                        Password.Value = model.Password;
-                        Username.Expires = DateTime.Now.AddDays(7);
-                        Password.Expires = DateTime.Now.AddDays(7);
-                       
-                        Response.Cookies.Add(Username);
-                        Response.Cookies.Add(Password);
-                      //  return View(viewmodel);
+                        TempData["alert1"] = "Please enter username and password";
+                        return View("Login");
+
+                    }
+                    var user = db.UserProfiles.Where(x => x.UserName.Equals(model.UserName)).First();
+                    int UserID = user.UserId;
+                    Session["FirstName"] = user.FirstName;
+                    bool UserExists1 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                    if (UserExists1)
+                    {
+                        var Username = new HttpCookie("Username");
+                        var Password = new HttpCookie("Password");
+                        if (model.RememberMe)
+                        {
+
+                            Username.Value = model.UserName;
+                            Password.Value = model.Password;
+                            Username.Expires = DateTime.Now.AddDays(7);
+                            Password.Expires = DateTime.Now.AddDays(7);
+
+                            Response.Cookies.Add(Username);
+                            Response.Cookies.Add(Password);
+                            //  return View(viewmodel);
+                        }
+                        else
+                        {
+                            Username.Value = "";
+                            Password.Value = "";
+
+                            Username.Expires = DateTime.Now.AddDays(7);
+                            Password.Expires = DateTime.Now.AddDays(7);
+
+                            Response.Cookies.Add(Username);
+                            Response.Cookies.Add(Password);
+                        }
+
+
+                    }
+                    //if (model.RememberMe)
+                    //{
+
+                    //    return View(viewmodel);
+                    //}
+                    //else
+                    //{
+                    //    viewmodel.UserName = null;
+                    //    viewmodel.Password = null;
+                    //    viewmodel.RememberMe = false;
+                    //    return View(viewmodel);
+                    //}
+
+
+
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        bool UserExists12 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                        if (UserExists12)
+                        {
+                            // If we got this far, something failed, redisplay form
+                            // ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                            //TempData["alert1"] = "The user name or password provided is incorrect.";
+                            //return View("Login");
+                        }
+                        else
+                        {
+                            TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+                            return View("Login");
+                            //ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+                        }
+
+                        return Redirect(returnUrl);
                     }
                     else
                     {
-                        Username.Value = "";
-                        Password.Value = "";
+                        bool UserExists2 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+                        if (UserExists2)
+                        {
 
-                        Username.Expires = DateTime.Now.AddDays(7);
-                        Password.Expires = DateTime.Now.AddDays(7);
-
-                        Response.Cookies.Add(Username);
-                        Response.Cookies.Add(Password);
+                            // If we got this far, something failed, redisplay form
+                            // ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                            //  TempData["alert1"] = "The user name or password provided is incorrect.";
+                            //return View("Login");
+                        }
+                        else
+                        {
+                            //  ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+                            TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+                            return View("Login");
+                        }
+                        return RedirectPage(UserID);
                     }
-                
-                
+
+
+
                 }
-                //if (model.RememberMe)
-                //{
-
-                //    return View(viewmodel);
-                //}
-                //else
-                //{
-                //    viewmodel.UserName = null;
-                //    viewmodel.Password = null;
-                //    viewmodel.RememberMe = false;
-                //    return View(viewmodel);
-                //}
-
-
-
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    bool UserExists12 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
-                    if (UserExists12)
-
-                        // If we got this far, something failed, redisplay form
-                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                    else
-                        ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
-                    
-
-                    return Redirect(returnUrl);
-                }
-                else
-                {
-                    bool UserExists2 = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
-                    if (UserExists2)
-
-                        // If we got this far, something failed, redisplay form
-                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                    else
-                        ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
-            
-                    return RedirectPage(UserID);
-                }
-
-
-
+            }
+            catch (Exception e1)
+            {
+                TempData["alert1"] = "Username and Password cannot be Empty";
+                return View("Login");
+               
             }
             bool UserExists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
             if (UserExists)
+            {
 
                 // If we got this far, something failed, redisplay form
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
-            else
-                ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+              //  ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                //TempData["alert1"] = "The user name or password provided is incorrect.";
+                //return View("Login");
+            }
+            else { 
+               // ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+                TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+                return View("Login");
+            }
             if (model.RememberMe)
             {
                
@@ -515,12 +551,15 @@ namespace MealsToGo.Controllers
                 model.RememberMe = true;
                 log.UserName = cookieUser.Value;
                 log.Password = cookiePassword.Value;
-                log.RememberMe = true;
+                if (log.UserName != "" && log.Password != "")
+                {
+                    log.RememberMe = true;
+                }
             }
 
             Session["FirstName"] = null;
             WebSecurity.Logout();
-            
+           // return View(log);
             return RedirectToAction("Login", "Account");
          //   return RedirectToAction("LocationToSearch", "Home");
         }
@@ -550,7 +589,8 @@ namespace MealsToGo.Controllers
 
                 if (userexists)
                 {
-                    ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
+                   // ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
+                    TempData["alert1"] = "There is already an account with that UserName. Please use a different username";
                     return View("Login");
                     // return View(viewmodel);
                 }
@@ -609,6 +649,7 @@ namespace MealsToGo.Controllers
                 catch (MembershipCreateUserException e)
                 {
                    // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                
                 }
             }
 

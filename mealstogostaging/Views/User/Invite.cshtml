@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Invite";
 }
+
 @using (Html.BeginForm("Invite", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.UserID)
@@ -12,11 +13,44 @@
 
         <div class="cont">
             <div class="cont-rit">
+                <label id="Label2" style="color: #ff0000 !important; width:100%; float:left;"></label>
+                @{
+                        var message1 = TempData["emailAlert"] ?? string.Empty;
+                }
+                <script type="text/javascript">
+                                    var message = '@message1';
+                                    if (message)
+                                        document.getElementById("Label2").innerHTML = message;
+
+                                    //alert(message);
+                </script>
+                @*<label id="lblEmailBlank" style="color: #ff0000 !important; width:100%; float:left;"></label>
+                @{
+    var message2 = TempData["EmailBlank"] ?? string.Empty;
+                }
+                <script type="text/javascript">
+                    var messageE = '@message2';
+                    if (messageE)
+                        document.getElementById("lblEmailBlank").innerHTML = message;
+
+                    //alert(message);
+                </script>
+                <label id="lblPasswordBlank" style="color: #ff0000 !important; width:100%; float:left;"></label>
+                @{
+    var message3 = TempData["PasswordBlank"] ?? string.Empty;
+                }
+                <script type="text/javascript">
+                    var messageP = '@message3';
+                    if (messageP)
+                        document.getElementById("lblPasswordBlank").innerHTML = message;
+
+                    //alert(message);
+                </script>*@
                 <ul class="gen-form">
                     <li>
                         <p>@Html.LabelFor(x => x.Emailaddresses) </p>
-                        <textarea id="Emailaddresses" class="gen-ftb" style="width: 450px;height:100px" placeholder="Use comma separated emails" data-val-required="The Emailaddresses field is required." data-val="true" rows="2"  cols="20"></textarea>
-                        @*@Html.TextAreaFor(x => x.Emailaddresses, new { placeholder = "Use comma separated emails", style = "width: 450px;height:100px" , @class = "gen-ftb"})<br />*@
+                        @*<textarea id="Emailaddresses" class="gen-ftb" style="width: 450px;height:100px" placeholder="Use comma separated emails" data-val-required="The Emailaddresses field is required." data-val="true" rows="2"  cols="20"></textarea>*@
+                        @Html.TextAreaFor(x => x.Emailaddresses, new { placeholder = "Use comma separated emails", style = "width: 450px;height:100px" , @class = "gen-ftb"})<br />
                         @Html.ValidationMessageFor(x => x.Emailaddresses)
 
                     </li>

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ï»¿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 @using MealsToGo.Models;
 
@@ -148,7 +148,10 @@ border-top:1px solid #dedede;
 <body>
     <div id="header">
         <div class="header-bl">
-            <img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo">
+            @*<img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo">*@
+            <a href="/Home/Index">
+                <img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo" />
+            </a>
               @Html.Partial("_LoginPartial")
             
         </div>
@@ -160,6 +163,7 @@ border-top:1px solid #dedede;
 
 <div class="menu-block">
 <div id='cssmenu'>
+   
             <ul>
                 <li  @if (ctrName == "Home")
                      {<text> class="active has-sub"</text>}
@@ -228,7 +232,10 @@ border-top:1px solid #dedede;
                      {
                     <a href="">Profile</a>
                     <ul>
+                        @*@if (Session["FirstName"]!=null)
+                        {*@ 
                         <li>@Html.ActionLink("Profile", "Details", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        @*}*@
                         <li >@Html.ActionLink("Password", "Manage", "Account", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         <li>@Html.ActionLink("Privacy Settings", "Index", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                          <li class='last'>@Html.ActionLink("Privacy Rules", "PrivacyRules", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
@@ -237,7 +244,10 @@ border-top:1px solid #dedede;
                      }
                      else
                      {
-                        <a href="/Settings/PrivacyRules">Profile</a>
+                        <a href="/Home/CheckUser">Profile</a>                       
+                         
+                        @*<a href="/Settings/PrivacyRules">Profile</a>*@                   
+                     
                      }
                 </li>
                        
@@ -292,7 +302,7 @@ border-top:1px solid #dedede;
         </div>
     </div>
     <div id="footer2">
-        Copyright © 2014 Funfooding, All Rights Reserved.
+        Copyright ï¿½ 2014 Funfooding, All Rights Reserved.
     </div>
 
 

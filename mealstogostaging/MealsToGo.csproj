@@ -20,6 +20,10 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -41,7 +45,6 @@
     <DesktopBuildPackageLocation>..\..\..\..\..\..\..\inetpub\wwwroot\funfooding\</DesktopBuildPackageLocation>
     <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <PublishDatabases>true</PublishDatabases>
-    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">
@@ -57,24 +60,24 @@
       <HintPath>packages\Google.Checkout.2.5.0.12\lib\GCheckout.dll</HintPath>
     </Reference>
     <Reference Include="GeoCoding.Core">
-      <HintPath>..\Geocoding.net-master\src\Core\bin\Debug\GeoCoding.Core.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\GeoCoding.Core.dll</HintPath>
     </Reference>
     <Reference Include="GeoCoding.Google">
-      <HintPath>..\Geocoding.net-master\src\Google\bin\Debug\GeoCoding.Google.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\GeoCoding.Google.dll</HintPath>
     </Reference>
     <Reference Include="GeoCoding.Microsoft, Version=2.1.1.0, Culture=neutral, PublicKeyToken=7c714700b88674c7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\geocoding\geocoding\bin\GeoCoding.Microsoft.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\GeoCoding.Microsoft.dll</HintPath>
     </Reference>
     <Reference Include="GeoCoding.Yahoo, Version=2.1.1.0, Culture=neutral, PublicKeyToken=7c714700b88674c7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\geocoding\geocoding\bin\GeoCoding.Yahoo.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\GeoCoding.Yahoo.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="HttpWebAdapters">
-      <HintPath>..\..\..\..\..\Desktop\SolrNet-master (5)\SolrNet-master\SolrNet\bin\Debug\HttpWebAdapters.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\HttpWebAdapters.dll</HintPath>
     </Reference>
     <Reference Include="JQueryUIHelpers">
       <HintPath>packages\jQueryUIHelpers.Mvc4.2.0.0\lib\net40\JQueryUIHelpers.dll</HintPath>
@@ -120,7 +123,7 @@
     </Reference>
     <Reference Include="Ninject.Integration.SolrNet, Version=0.4.0.2002, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Ninject.Integration.SolrNet\Ninject.Integration.SolrNet\bin\Debug\Ninject.Integration.SolrNet.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\Ninject.Integration.SolrNet.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Web.Common">
       <HintPath>packages\Ninject.Web.Common.3.0.0.7\lib\net45-full\Ninject.Web.Common.dll</HintPath>
@@ -130,7 +133,7 @@
     </Reference>
     <Reference Include="PagedList, Version=1.15.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\PagedList.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\PagedList.dll</HintPath>
     </Reference>
     <Reference Include="PayPal, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
       <HintPath>packages\PayPal.1.4.0\lib\net45\PayPal.dll</HintPath>
@@ -148,7 +151,7 @@
     </Reference>
     <Reference Include="SolrNet.DSL, Version=0.4.0.2002, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\SolrNet.DSL.dll</HintPath>
+      <HintPath>..\..\..\..\funfooding-master\mealstogostaging\bin\SolrNet.DSL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -378,6 +381,7 @@
     <Compile Include="Models\EmailSubscription.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorMessage.cs" />
     <Compile Include="Models\FunOrder.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
@@ -543,13 +547,10 @@
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
     <Compile Include="ViewModels\UserAcceptanceViewModel.cs" />
     <Compile Include="ViewModels\UserDetailViewModel.cs" />
-    <Content Include="bin\MealsToGo.dll" />
-    <Content Include="bin\MealsToGo.pdb" />
     <Content Include="Content\css\fun-fooding.css" />
     <Content Include="Scripts\prototype.js" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Reset.cshtml" />
-    <Content Include="bin\MealsToGo.dll.config" />
     <None Include="Views\Contact\index1.cshtml" />
     <Compile Include="Views\GCheckout\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

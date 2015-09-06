@@ -118,7 +118,7 @@ namespace MealsToGo.Controllers
         // POST: /MealAd/Create
 
         [HttpPost]
-        public ActionResult Create(MealAdViewModel MealAdvm)
+        public ActionResult Create(MealAdViewModel MealAdvm,string To, string From)
         {
 
 
@@ -162,8 +162,11 @@ namespace MealsToGo.Controllers
                 {
 
                     MealAd_Schedules meadadschedule = new MealAd_Schedules();
-                    meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
-                    meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
+                    //meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
+                    //meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
+                    //meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+                    meadadschedule.PickUpStartDateTime = Convert.ToDateTime( From);
+                    meadadschedule.PickUpEndDateTime = Convert.ToDateTime( To);
                     meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
                     mealad.MealAd_Schedules.Add(meadadschedule);
                     break;

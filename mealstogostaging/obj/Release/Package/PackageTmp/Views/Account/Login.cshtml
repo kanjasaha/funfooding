@@ -3,56 +3,107 @@
 @{
     //Layout = "~/Views/Shared/_IndexLayout.cshtml";
 }
+
+<script type="text/javascript">
+    function lettersOnly(evt) {
+        evt = (evt) ? evt : event;
+        var charCode = (evt.charCode) ? evt.charCode : ((evt.keyCode) ? evt.keyCode :
+      ((evt.which) ? evt.which : 0));
+        if (charCode == 32 || charCode == 46 || evt.keyCode == 37 || evt.keyCode == 39)
+            return true;
+        if (charCode > 31 && (charCode < 65 || charCode > 90) &&
+      (charCode < 97 || charCode > 122)) {
+            return false;
+        }
+        else
+            return true;
+    }
+</script>
+
+
+
 <div class="banner">
     <div class="banner-blk">
         @using (Html.BeginForm("Register", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
         {
             @Html.AntiForgeryToken()
             <span class="normal14">
-                @Html.ValidationSummary(false,"", new { @class = "error" })</span>
+                <label id="Label2" style="color: #ff0000 !important; width:100%; float:left;"></label>
+                @{
+            var message1 = TempData["alert1"] ?? string.Empty;
+                }
+                <script type="text/javascript">
+                                    var message = '@message1';
+                                    if (message)
+                                        document.getElementById("Label2").innerHTML = message;
+
+                                    //alert(message);
+                </script>
+                    @*@Html.ValidationSummary(false, "", new { @class = "error" })*@
+                </span>
             <div class="signup">
                 <h1>Sign Up <span>Its quick and its free!</span></h1>
+              
                 <ul class="sign-form">
                      <li>
                         <p>First Name</p>
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "sig-form", placeholder = "Your First Name" })
-                        @Html.ValidationMessageFor(m => m.FirstName)
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "sig-form", placeholder = "Your First Name", onkeypress = "return lettersOnly(event)" })
+                       
                         @*<input name="" type="text" class="sig-form"/>*@
 
 
                     </li>
+                   <p> @Html.ValidationMessageFor(m => m.FirstName)</p>
                     <li>
                         <p>Email Address</p>
-                       @Html.TextBoxFor(m => m.UserName, new { @class = "sig-form", placeholder = "Your Email" })
-                        @Html.ValidationMessageFor(m => m.UserName)
+                       @Html.TextBoxFor(m => m.UserName, new { @class = "sig-form", placeholder = "User Name" })
+                     
                         @*<input name="" type="text" class="sig-form"/>*@
 
 
                     </li>
+                   <p> @Html.ValidationMessageFor(m => m.UserName)</p>
                     <li>
                         <p>Password</p>
                         @*<input name="" type="password" class="sig-form" />*@
-                        @Html.PasswordFor(m => m.Password, new { @class = "sig-form", placeholder = "Enter Password" })
-                        @Html.ValidationMessageFor(m => m.Password)
+                        @Html.PasswordFor(m => m.Password, new { @class = "sig-form", placeholder = "Password" })
+                       
 
                     </li>
+                   <p> @Html.ValidationMessageFor(m => m.Password)</p>
+                    @*<li style="display:none">                        
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "sig-form"})                       
+                    </li>*@
+                    <li>
+                        
+                        <input type="Submit" name="submit" src="~/Content/images/index4_46.png" value="Sign Up" border="0" alt="Submit" class="submit" style="margin-left:136px" />
+                       
+                        
+                    </li>
+                   
                     <li>
                         <label class="agree">
-                            
-                            <span class="normal14">By clicking Sign Up, you agree to 
-our
-                            <br />
+
+                            <span class="normal14" style="font-size:13px;">
+                                By clicking Sign Up, you agree to
+                                our
+
                                 (<a href="#" class="menu-14u">Terms</a>) and (<a href="#" class="menu-14u
-">Conditions</a>).        </span>
+">Conditions</a>).
+                            </span>
                         </label>
-                    </li>
-                    <li>
-                        <input type="image" name="submit" src="~/Content/images/index4_46.png" border="0" alt="Submit" class="singup" />
+                        @*<input type="image" name="submit" src="~/Content/images/index4_46.png" border="0" alt="Submit" class="singup" />*@
+
+                       
                         
                         @*<a href="#">
                         <img src="~/Content/images/index4_46.png" border="0" class="singup" /></a>*@</li>
                 </ul>
+               
             </div>
+            
+            
+            
             <div class="see-mobi ">
                 <h2>See you on (<a href="#">Mobile</a>)</h2>
                 <img src="~/Content/images/mobile.png" width="269" height="298" />
