@@ -37,13 +37,13 @@ body {
 .banner-blk{ width:983px; margin:0 auto;}
 
 .signup{float:left; width:550px;  padding:0 53px 0 0; }
-.signup h1{font:bold 30px/35px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#dd2700; background:url(../images/sign-up.png)0 3px no-repeat; padding:0 0 0 41px; margin-bottom:44px;}
+.signup h1{font:bold 30px/35px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#dd2700; background:url(../images/sign-up.png)0 3px no-repeat; padding:0 0 0 41px; margin-bottom:14px;}
 .signup h1 span{font:normal 20px/30px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#7b4825;}
 
 ul.sign-form {list-style-type:none; }
 ul.sign-form li{ list-style-type:none; margin-bottom:15px; float:left; }
 ul.sign-form li p{float:left; width:134px;  font:normal 18px/35px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#3a3a3a; }
-.sig-form{width:240px; height:35px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 14px/30px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px; float:right;}
+.sig-form{width:240px; height:35px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 14px/30px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px; float:left;}
 .agree{width:240px;}
 
 .singup{ }
@@ -207,12 +207,12 @@ ul.gen-form li select:focus {
 
 .submit2{ height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 18px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#dd2700; cursor:pointer; border:#ca2400 solid 2px; margin-top:5px; text-decoration:none; width:80px; float:right; text-align:center; }
 
-.submit5{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#ca2400; cursor:pointer; border:#ca2400 solid 2px;  text-decoration:none; width:80%; float:left; margin:0.2em 0;  }
+.submit5{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#ca2400; cursor:pointer; border:#ca2400 solid 2px;  text-decoration:none; width:25%; float:left; margin:0.2em 0;  }
 .submit5:hover {background:#39f; border:2px solid #39f;} 
 .submit6{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#b5b5b5; cursor:pointer; border:#a8a8a8 solid 2px; margin-top:5px; text-decoration:none;  }
 
 
-
+ 
 
 
 .user-drop{ float:left; margin-top:40px;}

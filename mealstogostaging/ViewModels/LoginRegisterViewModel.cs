@@ -8,20 +8,23 @@ namespace MealsToGo.ViewModels
 {
     public class LoginRegisterViewModel
     {
-        [Required]
+
         [MaxLength(50)]
+
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Email is required")]
         [MaxLength(50)]
-        [Display(Name = "User Name")]
+        [EmailAddress(ErrorMessage = "Email is not valid")]
+        [Display(Name = "Email")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         [MaxLength(50)]
         [Display(Name = "Password")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
 
-      
+
     }
 }

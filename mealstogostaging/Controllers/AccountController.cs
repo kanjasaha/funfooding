@@ -30,7 +30,7 @@ namespace MealsToGo.Controllers
     {
         //
         // GET: /Account/Login
-     
+
         private UsersContext db = new UsersContext();
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();
         LoginRegisterViewModel log = new LoginRegisterViewModel();
@@ -117,7 +117,7 @@ namespace MealsToGo.Controllers
 
 
         }
-      
+
 
         [AllowAnonymous]
         public ActionResult ProcessRequest(int RequestID, int RequestAccepted)
@@ -170,29 +170,38 @@ namespace MealsToGo.Controllers
         {
 
 
-           
-          
+
+
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(log);
-           
-            if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null )
+
+            if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null)
             {
                 HttpCookie cookieUser = Request.Cookies["Username"];
                 HttpCookie cookiePassword = Request.Cookies["Password"];
-            model.UserName = cookieUser.Value;
-            model.Password = cookiePassword.Value;
-            model.RememberMe = true;
-            log.UserName = cookieUser.Value;
-            log.Password = cookiePassword.Value;
-            if (log.UserName != "" && log.Password != "")
-            {
-                log.RememberMe = true;
-            }
+                model.UserName = cookieUser.Value;
+                model.Password = cookiePassword.Value;
+                model.RememberMe = true;
+                log.UserName = cookieUser.Value;
+                log.Password = cookiePassword.Value;
+                if (log.UserName != "" && log.Password != "")
+                {
+                    log.RememberMe = true;
+                }
             }
             //model.UserName = "";
             //model.Password = "";
             //log.UserName = "";
             //log.Password = "";
             return View(log);
+
+        }
+
+        [AllowAnonymous]
+        public ActionResult SignUp(string returnUrl)
+        {
+
+
+            return View("SignUp");
 
         }
 
@@ -249,26 +258,26 @@ namespace MealsToGo.Controllers
             Session[ShoppingCart.CartSessionKey] = UserName;
         }
 
-        
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginRegisterViewModel viewmodel, string returnUrl)
         {
-           
+
             //LoginModel model = new LoginModel();
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
+            if (model.UserName == "" && model.Password == "")
+            {
+                TempData["alert1"] = "Please enter username and password";
+                return View("Login");
 
+            }
             try
             {
                 if (WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                 {
-                    if (model.UserName == "" && model.Password == "")
-                    {
-                        TempData["alert1"] = "Please enter username and password";
-                        return View("Login");
 
-                    }
                     var user = db.UserProfiles.Where(x => x.UserName.Equals(model.UserName)).First();
                     int UserID = user.UserId;
                     Session["FirstName"] = user.FirstName;
@@ -330,7 +339,7 @@ namespace MealsToGo.Controllers
                         }
                         else
                         {
-                            TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+                            TempData["alert1"] = "This username does not have an account with us at Funfooding. Please try again with correct username or signup.";
                             return View("Login");
                             //ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
                         }
@@ -351,7 +360,7 @@ namespace MealsToGo.Controllers
                         else
                         {
                             //  ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
-                            TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+                            TempData["alert1"] = "This username does not have an account with us at Funfooding. Please try again with correct username or signup.";
                             return View("Login");
                         }
                         return RedirectPage(UserID);
@@ -363,35 +372,36 @@ namespace MealsToGo.Controllers
             }
             catch (Exception e1)
             {
-                TempData["alert1"] = "Username and Password cannot be Empty";
+                TempData["alert1"] = "Please enter username and password";
                 return View("Login");
-               
+
             }
             bool UserExists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
             if (UserExists)
             {
 
                 // If we got this far, something failed, redisplay form
-              //  ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                //  ModelState.AddModelError("", "The user name or password provided is incorrect.");
                 //TempData["alert1"] = "The user name or password provided is incorrect.";
                 //return View("Login");
             }
-            else { 
-               // ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
-                TempData["alert1"] = "This email Address is not registered with the site. Please complete your registration.";
+            else
+            {
+                // ModelState.AddModelError("", "This email Address is not registered with the site. Please complete your registration.");
+                TempData["alert1"] = "This username does not have an account with us at Funfooding. Please try again with correct username or signup.";
                 return View("Login");
             }
             if (model.RememberMe)
             {
-               
-                return View(viewmodel);
+
+                return View("SignUp", viewmodel);
             }
             else
             {
                 viewmodel.UserName = null;
                 viewmodel.Password = null;
                 viewmodel.RememberMe = false;
-                return View(viewmodel);
+                return View("SignUp", viewmodel);
             }
 
             //return View(viewmodel);
@@ -531,7 +541,7 @@ namespace MealsToGo.Controllers
             }
             catch (Exception ex)
             {
-              //  Response.Write(ex.Message);
+                //  Response.Write(ex.Message);
                 return 0;
             }
         }
@@ -543,9 +553,9 @@ namespace MealsToGo.Controllers
             //LoginRegisterViewModel model = new LoginRegisterViewModel();
             HttpCookie cookieUser = Request.Cookies["Username"];
             HttpCookie cookiePassword = Request.Cookies["Password"];
-            if (cookieUser != null || cookiePassword != null )
+            if (cookieUser != null || cookiePassword != null)
             {
-               
+
                 model.UserName = cookieUser.Value;
                 model.Password = cookiePassword.Value;
                 model.RememberMe = true;
@@ -559,9 +569,9 @@ namespace MealsToGo.Controllers
 
             Session["FirstName"] = null;
             WebSecurity.Logout();
-           // return View(log);
+            // return View(log);
             return RedirectToAction("Login", "Account");
-         //   return RedirectToAction("LocationToSearch", "Home");
+            //   return RedirectToAction("LocationToSearch", "Home");
         }
 
         //
@@ -589,12 +599,18 @@ namespace MealsToGo.Controllers
 
                 if (userexists)
                 {
-                   // ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
-                    TempData["alert1"] = "There is already an account with that UserName. Please use a different username";
-                    return View("Login");
+                    // ModelState.AddModelError("", "There is already an account with that UserName. Please use a different username");
+                    TempData["alertemailexist"] = "There is already an account with that email. Please use a different email";
+                    return View("SignUp");
                     // return View(viewmodel);
                 }
-                // Attempt to register the user
+
+                if ((model.FirstName == "") || (model.FirstName == null))
+                {
+                    TempData["alert1"] = "First Name is required";
+                    return View("SignUp");
+
+                }
 
                 try
                 {
@@ -648,8 +664,8 @@ namespace MealsToGo.Controllers
                 }
                 catch (MembershipCreateUserException e)
                 {
-                   // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-                
+                    // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+
                 }
             }
 
@@ -822,7 +838,7 @@ namespace MealsToGo.Controllers
                     }
                     catch (Exception e)
                     {
-                       // ModelState.AddModelError("", e);
+                        // ModelState.AddModelError("", e);
                     }
                 }
             }

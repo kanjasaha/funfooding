@@ -20,19 +20,26 @@
 <script src="~/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="~/build/js/bootstrap-datetimepicker1.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker({
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker2').datetimepicker({
+   
+
+    jQuery(document).ready(function () {       
+        jQuery('.date-tb1').unbind();
+       jQuery(".date-tb1").datetimepicker({
+           minDate: new Date()
         });
     });
 </script>
 
+
+
 <style>
+
+    .checkbox1 {
+    position: relative;
+     min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
     ul.gen-form li span {
         color: #707070;
         float: left;
@@ -83,7 +90,7 @@
             <div class="cont-rit">
                 <ul class="gen-form">
                     <li>
-                        <p>Meal Item<span class="required">(required)</span></p>
+                        <p>* Meal Item</p>
                         @Html.DropDownListFor(x => x.MealItemsDD.SelectedMealItem, Model.MealItemsDD.MealItemsDDList, "Food To Advertise", new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.MealItemsDD.SelectedMealItem)
 
@@ -122,23 +129,7 @@
                             <tr>
                                 <td>
                                     @Html.EditorFor(model => model.MealAdSchedules)
-                                    <p>
-        <div id="datetimepicker1" class="input-group date">
-            @*@Html.EditorFor(model => model.From)*@
-            <input type="text" name="From" class="form-control">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-        <div id="datetimepicker2" class="input-group date">
-            @*@Html.EditorFor(model => model.From)*@
-            <input type="text" name="To" class="form-control">
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-
-    </p>
+                                
                                 </td>
                             </tr>
                         </table>

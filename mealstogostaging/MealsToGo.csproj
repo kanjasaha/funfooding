@@ -551,6 +551,7 @@
     <Content Include="Scripts\prototype.js" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Reset.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
     <None Include="Views\Contact\index1.cshtml" />
     <Compile Include="Views\GCheckout\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>

@@ -626,8 +626,8 @@ namespace MealsToGo.Controllers
                  Text = x.Country.ToString(),
                  Selected = (userinfo != null && x.CountryID == userinfo.AddressList.CountryID)
              });
-            Kname = userinfo.KitchenName;
-            KID = Convert.ToInt32(userinfo.KitchenTypeID);
+          //  Kname = userinfo.KitchenName;
+          //  KID = Convert.ToInt32(userinfo.KitchenTypeID);
             if (userinfo == null)
             {
                 return RedirectToAction("Create", "User", new { userID = userid });

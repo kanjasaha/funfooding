@@ -10,12 +10,16 @@ using MealsToGo.Helpers;
 using System.Net.Mail;
 using System.Transactions;
 using System.IO;
-
+using System.Configuration;
 
 namespace MealsToGo
 {
     public static class Common
     {
+        private static readonly string smtpserverusername = ConfigurationManager.AppSettings["smtpserverusername"];
+        private static readonly string smtpserverpassword = ConfigurationManager.AppSettings["smtpserverpassword"];
+
+
 
 
         public static bool sendeMail(EmailModel emailmodel, bool EmailExist)
@@ -24,8 +28,7 @@ namespace MealsToGo
             {
                 MailMessage mail = new MailMessage();
                 string receiver = emailmodel.To;
-                //string sender = "kanjasaha@gmail.com";
-                string sender = "qat2015team@gmail.com";
+                string sender = smtpserverusername;
                 //string verifyUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + "/Home/ValidateRequest/?id=" + 4;
                 //string Body = verifyUrl;
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
@@ -36,8 +39,7 @@ namespace MealsToGo
                 mail.Body = emailmodel.EmailBody;
                 mail.IsBodyHtml = true;
                 SmtpServer.Port = 587;
-                //SmtpServer.Credentials = new System.Net.NetworkCredential("kanjasaha@gmail.com", "Debabrata71");
-                SmtpServer.Credentials = new System.Net.NetworkCredential("qat2015team@gmail.com", "q$7@wt%j*65ba#3M@9P6");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(smtpserverusername, smtpserverpassword);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
             }

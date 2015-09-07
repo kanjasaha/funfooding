@@ -29,15 +29,15 @@ namespace MealsToGo.Controllers
             _service = service;
          }
 
-         public ActionResult Index(int userid)
+         public ActionResult Index(int userid,string referrer)
          {
 
              // IEnumerable<MealAd> mealads = db.MealAds.Where(x=>x.MealItem.UserId == userid);
            //  ViewBag.MealItemCount = db.MealItems.Where(x => x.UserId == userid).Count();
              //ViewBag.UserID = userid;
              //return View(mealads.ToList());
-
-
+             if (referrer == "sharemeal")
+                 Session[referrer] = "sharemeal";
 
              IEnumerable<UserSetting> usersetting = _service.FindByUser(userid);
              IEnumerable<UserSettingsViewModel> usvm = Mapper.Map<IEnumerable<UserSetting>, IEnumerable<UserSettingsViewModel>>(usersetting);

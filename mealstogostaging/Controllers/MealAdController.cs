@@ -162,14 +162,14 @@ namespace MealsToGo.Controllers
                 {
 
                     MealAd_Schedules meadadschedule = new MealAd_Schedules();
-                    //meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
-                    //meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
-                    //meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
-                    meadadschedule.PickUpStartDateTime = Convert.ToDateTime( From);
-                    meadadschedule.PickUpEndDateTime = Convert.ToDateTime( To);
+                    meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
+                    meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
                     meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+                   /* meadadschedule.PickUpStartDateTime = Convert.ToDateTime( From);
+                    meadadschedule.PickUpEndDateTime = Convert.ToDateTime( To);
+                    meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);*/
                     mealad.MealAd_Schedules.Add(meadadschedule);
-                    break;
+                    //break;
                 }
 
                 mealad.MealAdID = _service.AddAndReturnID(mealad);
