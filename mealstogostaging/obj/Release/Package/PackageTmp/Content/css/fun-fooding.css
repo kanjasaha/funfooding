@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 * {
@@ -119,6 +119,7 @@ ul.filter li{ font:normal 12px/25px 'LaplandDemibold' Arial, Helvetica, sans-ser
 .se-form{width:auto; margin:0 0 10px 0;}
 
 .date-tb{ width:190px; height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:2px 5px; margin-right:5px; font:normal 14px/20px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px; float:left; }
+.date-tb1{ width:190px; height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:2px 5px; margin-right:5px; font:normal 14px/20px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px; float:left; }
 
 .food-tb2{ width:250px; height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:2px 5px; margin-right:5px; font:normal 14px/20px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px; float:left; }
 

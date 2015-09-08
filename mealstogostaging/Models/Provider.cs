@@ -41,7 +41,7 @@ namespace MealsToGo.Models
 
                
 
-        public ICollection<Product> Products { get; set; }
+        public Product Product { get; set; }
 
 
     }

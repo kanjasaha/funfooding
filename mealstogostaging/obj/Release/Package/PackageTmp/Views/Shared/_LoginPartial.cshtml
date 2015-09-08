@@ -45,38 +45,8 @@
                     <div class="circle"><span id="cartCount"></span></div>
                 </div>
             </a>
-            @*<div class="user-drop2">Cart <div class="circle">(<span id="cartCount"></span>)</div></div>*@
-            @*<div class="user-drop2">Cart <span><a href="\home\cart" id="trigger" class="menuwhite-14">(<span id="cartCount"></span>)</a></span></div>*@
-            <div id="pop-up">
-                @*<table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#E8E8E8" style="border-collapse: collapse;">
-                            <tbody>
-                                <tr>
-                                    <td width="96%" height="30" align="left" bgcolor="#E2E2E2" class="normal14"><strong>Product(s)</strong></td>
-                                    <td width="4%" align="center" bgcolor="#E2E2E2" class="normal14"><strong>Price</strong></td>
-                                </tr>
-                                <tr>
-                                    <td align="left" valign="top">
-                                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
-                                            <tr>
-                                                <td width="19%"><strong>
-                                                    <img src="images/prod1.jpg" width="136" height="84" /></strong></td>
-                                                <td width="81%" align="left" valign="top" class="normal14"><strong><span class="blue-14">Herve Leger One
-                    Shoulder...</span><br />
-                                                    <span class="normal-12">Herve Leger One Shoulder Ombre Dress</span></strong></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td align="center" valign="middle">&nbsp;</td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="2" align="right" valign="middle"><strong>
-
-                                        <a href="#"  class="submit3" >More</a>
-                                    </strong></td>
-                                </tr>
-                            </tbody>
-                        </table>*@
+              <div id="pop-up">
+            
             </div>
         </div>
     </div>
@@ -85,16 +55,15 @@
 else
 {<p class="top-rt">
 
-        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-     @*@Html (Html.BeginForm("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "Login", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })*@
-    </p>
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginButton" }) | @Html.ActionLink("Sign Up", "SignUp", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+     </p>
     <div id="loginBox" style="display: none; top: 70px; right: 31px;">
         <form id="loginForm" action="/Account/Login" method="post">
             @Html.AntiForgeryToken()
             <fieldset id="body">
                
                 <fieldset>
-                  @Html.TextBox("UserName", null, new { type = "text", @class = "login-tb", placeholder = "User Name" })
+                  @Html.TextBox("UserName", null, new { type = "text", @class = "login-tb", placeholder = "Email" })
                   
                     @*<input type="text" name="UserName" id="UserName" class="login-tb" placeholder="User Name">*@
              
@@ -116,9 +85,9 @@ else
                         </label>
                     </label>
                 </fieldset>
-                    <input type="submit" id="login" value="Sign in">
+                    <input type="submit" id="login" value="Log in">
 
-                    <label style="width: 140px; margin-top: 8px;"><a href="#" class="menu-wh12">Reset password</a></label>
+                    <label style="width: 140px; margin-top: 8px;"><a href="#" class="menu-wh12">Reset password </a></label>
                 </fieldset>
         </form>
         
@@ -214,11 +183,11 @@ else
 <script type="text/javascript">
     function ActiveCheckBox() {
         var check = document.getElementById("RememberMe");
-        if (check.checked) {          
-            check.checked = false;           
+        if (check.checked) {
+            check.checked = false;
         }
-        else {           
-            check.checked = true;            
+        else {
+            check.checked = true;
         }
     }
 

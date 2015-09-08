@@ -97,7 +97,7 @@ ul.foot2 li a:hover{text-decoration:underline;}
 .se-reslt{float:left; margin-right:20px; width:210px;}
 .se-reslt h2{font:normal 20px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#4a4a4a;}
 .se-reslt2{width:auto; border:#cccccc solid 1px; -webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; margin-top:5px;}
-.se-reslt2 h3{font:bold 18px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#dd2700; padding:5px 10px;}
+.se-reslt2 h3{font:bold 14px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#dd2700; padding:5px 10px;}
 .se-reslt2 h4{font:bold 16px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#4a4a4a; padding:5px 10px; background:#e6e6e6;}
 	
 ul.filter {list-style-type:none; padding:5px 10px;}

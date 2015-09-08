@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using SolrNet.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace MealsToGo.Models {
     public class Product {
@@ -54,6 +55,7 @@ namespace MealsToGo.Models {
         [SolrField("Diet")]
         public string FoodType { get; set; }
 
+        [Display(Name = "Kitchen Name")]
         public string ProviderName { get; set; }
 
         

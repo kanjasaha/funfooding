@@ -2,8 +2,10 @@
 
 
   
-    @Html.EditorFor(model => model.PickUpStartDateTime, new { @class = "gen-ftb" })
+    @Html.TextBoxFor(model => model.PickUpStartDateTime, "{0:MM/dd/yyyy HH:MM tt }", new { @class = "date-tb1 food-tb2", placeholder = "Start Time" })
     @Html.ValidationMessageFor(model => model.PickUpStartDateTime)
 
- @Html.EditorFor(model => model.PickUpEndDateTime, new { @class = "gen-ftb" })
+ 
+
+ @Html.TextBoxFor(model => model.PickUpEndDateTime, "{0:MM/dd/yyyy HH:MM tt}", new { @class = "date-tb1 food-tb2", placeholder = "End Time" })
     @Html.ValidationMessageFor(model => model.PickUpEndDateTime)

@@ -26,5 +26,7 @@ git add .
 git commit -m "message on files to be pushed"
 git push -u origin master
 
+git reset --hard to clear local and pull fresh copy from server
 
+git pull origin master. merge server and local in local before commit.
 http://guides.railsgirls.com/github/

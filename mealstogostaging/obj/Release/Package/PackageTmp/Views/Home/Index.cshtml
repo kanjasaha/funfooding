@@ -18,23 +18,6 @@
 <link href="~/Content/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
 
 
-<!-- Page styles -->
-@*<link type='text/css' href='Content/css/demo.css' rel='stylesheet' media='screen' />*@
-
-<!-- Contact Form CSS files -->
-@*<link type='text/css' href='Content/css/basic.css' rel='stylesheet' media='screen' />*@
-
-<!-- IE6 "fix" for the close png image -->
-<!--[if lt IE 7]>
-<link type='text/css' href='Content/css/basic_ie.css' rel='stylesheet' media='screen' />
-<![endif]-->
-
-<!-- JS files are loaded at the bottom of the page -->
-
-@*<script type='text/javascript' src='~/Scripts/js/jquery.js'></script>*@
-@*<script type='text/javascript' src='~/Scripts/js/jquery.simplemodal.js'></script>*@
-
-
 
 
 <script type="text/javascript" src="~/Scripts/grid.locale-en.js"></script>
@@ -45,11 +28,8 @@
 
 <script type="text/javascript">
 
-    //function returnHyperLink(cellValue, options, rowdata, action) {
-    //    return "<a href='./test.do?custId=" + options.rowId + "' >Add To Cart</a>";
-    //}
-    function returnHyperLink(cellValue, options, rowdata, action) {
-        return "<a href='#' onclick=\"funAddtoCart('" + options.rowId + "','" + rowdata.Price + "');\">Add To Cart</a>";
+     function returnHyperLink(cellValue, options, rowdata, action) {
+         return "<a href='#' onclick=\"funAddtoCart('" + options.rowId + "','" + rowdata.Price + "');\"><div style=\"text-align: center\"><img src=\"../Content/images/cart-icon.jpg\" alt=\"Add To Cart\" /></div></a>";
     }
     function returnHyperLinkReservation(cellValue, options, rowdata, action) {
         return "<a href='./test.do?custId=" + options.rowId + "' >Make a Reservation</a>";
@@ -66,15 +46,15 @@
              success: function (data) {
                  jQuery('#cartCount').text(data);
                  funGetCount();
-                 //Add and Display no. records in cart at the header section
+           
              },
              error: function (e, s, t) {
-                 //alert(e.respon);
+               
              }
          });
     }
     function funGetCount() {
-       // var qty = 1;
+   
         jQuery.ajax("/Home/GetCount",
          {
              data: {},
@@ -83,10 +63,10 @@
              dataType: "json",
              success: function (data) {
                  jQuery('#cartCount').text(data);
-                 //Add and Display no. records in cart at the header section
+              
              },
              error: function (e, s, t) {
-                 //alert(e.respon);
+                 
              }
          });
     }
@@ -102,7 +82,7 @@
                  window.location.href = "cart";
              },
              error: function (e, s, t) {
-                 //alert(e.respon);
+               
              }
          });
     }
@@ -133,21 +113,28 @@
             return false;
         };
 
-        var myData = @Html.Raw(Json.Encode(Model.ProviderList))
+        var myData = @Html.Raw(Json.Encode(Model.FoodItems))
                myData, $grid = jQuery("#list");
 
         $grid.jqGrid({
             datatype: "local",
             data: myData,
             width: "100%",
-            colNames: ["ProviderName", "ProviderType", "Cuisine", "Distance", "Phone", "Reservation"],
+            colNames: ["Food","Price", "Cuisine", "Kitchen", "Distance", "Add To Cart"],
+            //"ProviderType",
+            //, "Reservation"
             colModel: [
-                { name: "ProviderName", width: 100, sorttype: "string", resizable: false },
-                 { name: "ProviderType", width: 100, key: true, sorttype: "string", resizable: false },
-                  { name: "Cuisine", width: 100, sorttype: "string", resizable: false },
+                  {
+                      name: "MealItemName", width: 100, key: false, resizable: false
+                  },
+               { name: "Price", width: 100, resizable: false },
+                   { name: "Cuisine", width: 100, sorttype: "string", resizable: false },
+                  { name: "ProviderName", width: 100, sorttype: "string", resizable: false },
                 { name: "Distance", width: 100, sorttype: "string", resizable: false },
-             { name: "PhoneNumber", width: 100, resizable: false },
-             { name: "Reservation", width: 100, resizable: false, formatter: returnHyperLinkReservation }
+           
+
+                        { name: "Add To Cart", width: 100, resizable: false, formatter: returnHyperLink },
+           //  { name: "Reservation", width: 100, resizable: false, formatter: returnHyperLinkReservation }
             ],
             rowNum: 10,
             rowList: [5, 10, 20],
@@ -228,75 +215,24 @@
                 jQuery(this).dialog("close");
             }
         }
-        //autoOpen: false,
-        //height: 300,
-        //width: 350,
-        //modal: true,
-        //buttons: {
-        //    "Create an account": addUser,
-        //    Cancel: function () {
-        //        dialog.dialog("close");
-        //    }
-        //},
-        //close: function () {
-
-        //}
+      
     });
     jQuery("#divAddToCart").dialog("open");
+  
 </script>
-@*<div id="divAddToCart" title="Add to cart">
-    <table width="100%" border="1" cellpadding="5" cellspacing="0" bordercolor="#E8E8E8" style="border-collapse: collapse;">
-        <tbody>
-            <tr>
 
-                <td width="30%" height="30" align="left" bgcolor="#E2E2E2" class="normal14"><strong>Product Name</strong></td>
-                <td width="30%" align="center" bgcolor="#E2E2E2" class="normal14"><strong>Price</strong></td>
-                <td width="30%" height="30" align="center" bgcolor="#E2E2E2" class="normal14"><strong>Qty.</strong></td>
-            </tr>
-            <tr>
-                <td width="30%" height="30" align="left" bgcolor="#E2E2E2" class="normal14"><span id="productName"></span></td>
-                <td width="30%" align="center" bgcolor="#E2E2E2" class="normal14"><span id="price"></span></td>
-                <td width="30%" height="30" align="center" bgcolor="#E2E2E2" class="normal14">
-                    <select id="qty">
-                        <option value="1" title="1">1</option>
-                        <option value="2" title="2">2</option>
-                        <option value="3" title="3">3</option>
-                        <option value="4" title="4">4</option>
-                        <option value="5" title="5">5</option>
-                        <option value="6" title="6">6</option>
-                        <option value="7" title="7">7</option>
-                        <option value="8" title="8">8</option>
-                        <option value="9" title="9">9</option>
-                        <option value="10" title="10">10</option>
-                    </select></td>
-            </tr>
-           
-        </tbody>
-    </table>
-</div>*@
 <span class="normal14">
     <span class="error">
         @ViewBag.ErrorMessage
     </span>    
-   @*@Html.Label("strz", Convert.ToString(ViewBag.ErrorMessage), new { @class = "error" })*@
    
     </span>
     <div class="cont-main">
         <div class="se-reslt">
-            @*  <h2>Current Location: @Session["UserLoc"]
-                 @using (Html.MyBeginForm(null, null, FormMethod.Post))
-                {
-                    @Html.ValidationSummary(false,"", new { @class = "error" })
-                    @Html.TextBox("ChangeLocation", null, new { style = "width:125px;", placeholder = "Change Location" })
-                    @Html.QueryAsHiddenFields()
-
-
-
-                }</h2>*@
-            @*  <h2>Search Results</h2>
-            *@
+        
             <div class="se-reslt2">
-                <h3>Filter by</h3>
+                <h4>Meals Shared</h4>
+                <h3>Narrow your choices</h3>
                 @foreach (var f in Model.Search.Facets)
                 {
 
@@ -304,7 +240,8 @@
                         @(Html.SolrFieldPropName<SolrResultSet>(@f.Key))
                     </h4>
                     <ul class="filter">
-                        <li><a class="removeFacet" href="@Url.RemoveFacet(f.Key) ">@f.Value </a></li>
+                        <li>  @Html.CheckBox("test", new { @class = "", Styles = "float: left; width: 15px;margin-top:10px" })
+                          <a class="removeFacet" href="@Url.RemoveFacet(f.Key) " >@f.Value </a></li>
                     </ul>
 
                 }
@@ -316,7 +253,8 @@
                     <ul class="filter">
                         @foreach (var fv in f.Value)
                         {
-                            <li><a href="@Url.SetFacet(f.Key, fv.Key) ">@fv.Key </a><span>(@fv.Value )</span></li>
+                            <li>  @Html.CheckBox("test", new { @class = "", Styles = "float: left; width: 15px;margin-top:10px" })
+                          <a href="@Url.SetFacet(f.Key, fv.Key) " style="text-decoration: none;color:black">@fv.Key </a><span>(@fv.Value )</span></li>
                         }
                     </ul>
 
@@ -340,8 +278,7 @@
                     </label>
                     <br /><br />
                     <label>
-                        @*@Html.TextBox("ChangeLocation", "current loc", new { @class = "food-tb2" })*@
-                        @Html.TextBox("ChangeLocation", "", new { @class = "food-tb2", placeholder = "Current Loc" })
+                        @Html.TextBox("ChangeLocation", "", new { @class = "food-tb2", placeholder = "Current Location" })
                     </label>
 
                     <label>

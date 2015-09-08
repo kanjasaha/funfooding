@@ -37,11 +37,10 @@ namespace MealsToGo.Controllers
 
         LoginModel model = new LoginModel();
         [AllowAnonymous]
-        public ActionResult Reset(string emailId)
+        public ActionResult Reset()
         {
             ResetModel resetModel = new ResetModel();
-            resetModel.UserName = emailId;
-            return View(resetModel);
+             return View(resetModel);
         }
         [AllowAnonymous]
         [HttpPost]

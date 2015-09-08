@@ -79,7 +79,7 @@ namespace MealsToGo.Controllers
             List<ISolrQuery> filter = new List<ISolrQuery>();
             filter = queriesFromFacets.ToList();
         //    parameters.PickUpDateSearch = Convert.ToDateTime("2015-01-10 04:33:41.040"); //to be taken out later
-            var Day1 = new SolrQueryByRange<DateTime>("PickUpTime", Common.AbsoluteStart(parameters.PickUpDateSearch), Common.AbsoluteEnd(parameters.PickUpDateSearch.AddDays(90)));
+            var Day1 = new SolrQueryByRange<DateTime>("PickUpTime", Common.AbsoluteStart(parameters.PickUpDateSearch), Common.AbsoluteEnd(parameters.PickUpDateSearch.AddDays(1)));
             filter.Add((ISolrQuery)Day1);
 
             return filter;
@@ -101,7 +101,7 @@ namespace MealsToGo.Controllers
         /// <summary>
         /// All selectable facet fields
         /// </summary>
-        private static readonly string[] AllFacetFields = new[] { "Cuisine", "Provider", "Diet", "PriceRange", "Meal" };
+        private static readonly string[] AllFacetFields = new[] { "Cuisine", "Diet", "PriceRange", "Meal" };
 
 
         /// <summary>
@@ -172,15 +172,16 @@ namespace MealsToGo.Controllers
                     parameters.FreeSearch = LocationsSearched.Keywords;
                     Session["UserLocLat"] = LocationsSearched.Latitude;
                     Session["UserLocLong"] = LocationsSearched.Longitude;
+                    if (String.IsNullOrEmpty(parameters.DistanceSearch))
                     parameters.DistanceSearch = LocationsSearched.Distance.HasValue ? LocationsSearched.Distance.Value.ToString() : string.Empty;
-                    parameters.PickUpDateSearch = Common.AbsoluteEnd(LocationsSearched.DateRangeStart.HasValue ? LocationsSearched.DateRangeStart.Value : DateTime.Now);// LocationsSearched.DateRangeStart;
+                   // parameters.PickUpDateSearch = Common.AbsoluteEnd(LocationsSearched.DateRangeStart.HasValue ? LocationsSearched.DateRangeStart.Value : DateTime.Now);// LocationsSearched.DateRangeStart;
                     //parameters.DateRangeEnd = LocationsSearched.DateRangeEnd;
                 }
             }
 
 
             if (String.IsNullOrEmpty(parameters.DistanceSearch))
-                parameters.DistanceSearch = "100";
+                parameters.DistanceSearch = "10";
 
             if (parameters.PickUpDateSearch == null)
                 parameters.PickUpDateSearch = DateTime.Now;
@@ -285,54 +286,28 @@ namespace MealsToGo.Controllers
                 ProductViewModel.TotalCount = ProductModel.TotalCount;
                 ProductViewModel.Facets = ProductModel.Facets;
                 ProductViewModel.DidYouMean = ProductModel.DidYouMean;
-                ProductViewModel.ProviderList = (from n in SolrResultSetList
-                                                 group n by new
+                ProductViewModel.FoodItems = (from g in SolrResultSetList
+                                                select new foodtoshare()
                                                  {
-                                                     n.ProviderName,
-                                                     n.ProviderType
-                                                     ,
-                                                     n.Distance,
-                                                     n.latlng,
-                                                     n.PhoneNumber,
-                                                     n.FullAddress,
-                                                     n.Cuisine
-                                                 } into g
-                                                 select new Provider()
-                                                 {
-                                                     ProviderName = g.Key.ProviderName,
-                                                     ProviderType = g.Key.ProviderType,
-                                                     Distance = g.Key.Distance,
-                                                     latlng = g.Key.latlng,
-                                                     PhoneNumber = g.Key.PhoneNumber,
-                                                     FullAddress = g.Key.FullAddress,
-                                                     Cuisine = g.Key.Cuisine,
+                                                      ProviderType = g.ProviderType,
+                                                     Distance = g.Distance,
+                                                     latlng = g.latlng,
+                                                     PhoneNumber = g.PhoneNumber,
+                                                     FullAddress = g.FullAddress,
+                                                     Cuisine = g.Cuisine,
+                                                     MealAdID = g.MealAdID,
+                                                     MealItemName = g.MealItemName,
+                                                     FoodType = g.FoodType,
+                                                     MealType = g.MealType,
+                                                     Price = g.Price,
+                                                     Ingredients = g.Ingredients,
+                                                     AllergenicIngredients = g.AllergenicIngredients,
+                                                     Timestamp = g.Timestamp,
+                                                     Description = g.Description 
+
                                                  }).ToList();
 
-                foreach (Provider p in ProductViewModel.ProviderList)
-                {
-
-
-
-                    p.Products = (from n in SolrResultSetList
-                                  where n.ProviderName == p.ProviderName
-                                  select new Product()
-
-                                      {
-                                          MealAdID = n.MealAdID,
-                                          MealItemName = n.MealItemName,
-                                          FoodType = n.FoodType,
-                                          MealType = n.MealType,
-                                          Price = n.Price,
-                                          Ingredients = n.Ingredients,
-                                          AllergenicIngredients = n.AllergenicIngredients,
-                                          Timestamp = n.Timestamp,
-                                          Description = n.Description
-
-
-
-                                      }).ToList();
-                }
-                
+                            
 
                 distancemodel.SelectedDistanceLimit = parameters.DistanceSearch;
                 ProductViewModel.DistanceDD = distancemodel;
@@ -378,10 +353,10 @@ namespace MealsToGo.Controllers
 
 
                 GLatLong loc = new GLatLong();
-                //    loc = GeoCodingHelper.GetLatLong(address);//uncomment this
+                loc = GeoCodingHelper.GetLatLong(address);//uncomment this
 
-                loc.Latitude = 41.330215; //comment this
-                loc.Longitude = -73.859004;//comment this
+               // loc.Latitude = 41.330215; //comment this
+               // loc.Longitude = -73.859004;//comment this
 
                 Session["UserLocLat"] = loc.Latitude;
                 Session["UserLocLong"] = loc.Longitude;

@@ -40,7 +40,7 @@
       <field column="PickUpTime" name="PickUpTime" />
       <field column="AllInfo" name="AllInfo" />
       <field column="ProviderType" name="Provider" />
-      <field column="ProviderName" name="ProviderName" />
+      <field column="ProviderName" name="Kitchen" />
        <field column="FullAddress" name="FullAddress" />
        <field column="Telephone" name="PhoneNumber" />
 

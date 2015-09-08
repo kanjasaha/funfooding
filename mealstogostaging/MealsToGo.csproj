@@ -382,6 +382,7 @@
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ErrorMessage.cs" />
+    <Compile Include="Models\foodtoshare.cs" />
     <Compile Include="Models\FunOrder.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>

@@ -13,11 +13,11 @@ namespace MealsToGo
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+          /*  routes.MapRoute(
                 name: "Default1",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            );*/
 
 
             routes.MapRoute(
@@ -26,13 +26,13 @@ namespace MealsToGo
                 defaults: new { controller = "Account", action = "Authenticate", id = UrlParameter.Optional }
 
             );
-
+            /*
             routes.MapRoute(
              name: "HomeRoute",
              url: "{controller}/{action}",
              defaults: new { controller = "Home", action = "Index" }
          );
-            
+            */
 
           //  @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
 

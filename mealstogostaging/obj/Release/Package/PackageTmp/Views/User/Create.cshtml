@@ -28,43 +28,43 @@
             <div class="cont-rit">
                 <ul class="gen-form">
                     <li>
-                        <p>First Name  </p>
+                        <p> &nbsp;&nbsp;First Name  </p>
                         @*@Html.DisplayFor(model => model.FirstName, new { @class = "gen-ftb" })*@
                         @Html.DisplayFor(model => model.FirstName, new { @class = "gen-ftb" })
                        
                     </li>
                     <li>
-                        <p>Last Name <span class="required">(required)</span></p>
+                        <p>* Last Name </p>
                         @Html.EditorFor(model => model.LastName, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.LastName, string.Empty,new { @class="required"})
                     </li>
                     <li>
-                        <p>Address  <span class="required">(required)</span></p>
+                        <p>* Address  </p>
                         @Html.EditorFor(model => model.Address.Address1, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.Address1,string.Empty,new { @class="required"})
                     </li>
                     <li>
-                        <p>Address 2</p>
+                        <p>&nbsp;&nbsp;Address 2</p>
                         @Html.EditorFor(model => model.Address.Address2, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.Address2)
                     </li>
                     <li>
-                        <p>City <span class="required">(required)</span></p>
+                        <p>* City </p>
                         @Html.EditorFor(model => model.Address.City, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.City,string.Empty,new { @class="required"})
                     </li>
                     <li>
-                        <p>Zip <span class="required">(required)</span></p>
+                        <p>* Zip </p>
                         @Html.EditorFor(model => model.Address.Zip, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.Zip,string.Empty,new { @class="required"})
                     </li>
                     <li>
-                        <p>State/Province <span class="required">(required)</span></p>
+                        <p>* State/Province</p>
                         @Html.EditorFor(model => model.Address.Province, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.Province,string.Empty,new { @class="required"})
                     </li>
                     <li>
-                        <p>Country <span class="required">(required)</span></p>
+                        <p>* Country </p>
                         @Html.DropDownListFor(x => x.Address.CountryID, Model.CountryDDList, "Country", new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.Address.CountryID,string.Empty,new { @class="required"})
                     </li>
@@ -87,14 +87,14 @@
                     <li>
                         <p>Telephone</p>
                         @Html.EditorFor(model => model.Address.Telephone, new { onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
-                        @*<input id="Telephone" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                       
                           @Html.ValidationMessageFor(model => model.Address.Telephone,string.Empty,new { @class="required"})
                     </li>
                     <li>
                         <p>Mobile</p>
                         @Html.EditorFor(model => model.Mobile, new { onkeypress = "return isNumberKey(event)", @class = "gen-ftb" })
 
-                        @*<input id="Mobile" type="text" maxlength="16" onkeypress="return isNumberKey(event)" class="gen-ftb" />*@
+                        
                         @Html.ValidationMessageFor(model => model.Mobile,string.Empty,new { @class="required"})
                     </li>
                     <li>
@@ -112,28 +112,7 @@
                         </label>
                         <label class="agree"></label>
                     </li>
-                   @* <li>
-                        <p>Identification Number</p>
-                        @Html.EditorFor(model => model.IdentificationNumber, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.IdentificationNumber)
-                    </li>
-                    <li>
-                        <p>Passport Number</p>
-                        @Html.EditorFor(model => model.PassportNumber, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.PassportNumber)
-                    </li>
-                    <li>
-                        <p>Country Of Issuance</p>
-                        @Html.DropDownListFor(x => x.CountryOfIssuance, Model.CountryDDList, "Country", new { @class = "gen-ftb" })
-                        @Html.EditorFor(model => model.PassportNumber, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.CountryOfIssuance)
-                    </li>
-                    <li>
-                        <p>Photo</p>
-                        @Html.TextBoxFor(model => model.Photo, new { type = "file" })
-                        @Html.EditorFor(model => model.PassportNumber, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.Photo)
-                    </li>*@
+                  
                     <li>
                         <label>
 
@@ -150,186 +129,9 @@
         </div>
 
     </div>
-@*<fieldset style="font-family: Verdana; font-size: x-small">
-        <legend>UserInfo</legend>
 
-        <table style="font-family: Verdana; font-size: x-small">
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.FirstName)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.FirstName)
-                        @Html.ValidationMessageFor(model => model.FirstName)
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-label">@Html.LabelFor(model => model.LastName)
-
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.LastName)
-                        @Html.ValidationMessageFor(model => model.LastName)
-                    </div>
-                </td>
-            </tr>
-
-
-
-            <tr>
-                <td>
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.Address1)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.Address1)
-                        @Html.ValidationMessageFor(model => model.Address.Address1)
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.Address2)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.Address2)
-                        @Html.ValidationMessageFor(model => model.Address.Address2)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.City)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.City)
-                        @Html.ValidationMessageFor(model => model.Address.City)
-                    </div>
-
-                </td>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.Zip)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.Zip)
-                        @Html.ValidationMessageFor(model => model.Address.Zip)
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.CountryID)
-                    </div>
-                    <div class="editor-field">
-
-                        @Html.DropDownListFor(x => x.Address.CountryID, Model.CountryDDList, "Country")
-                        @Html.ValidationMessageFor(model => model.Address.CountryID)
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.Province)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.Province)
-                        @Html.ValidationMessageFor(model => model.Address.Province)
-                    </div>
-
-                </td>
-
-            </tr>
-            <tr>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Address.Telephone)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Address.Telephone)
-                        @Html.ValidationMessageFor(model => model.Address.Telephone)
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Mobile)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Mobile)
-                        @Html.ValidationMessageFor(model => model.Mobile)
-                    </div>
-                    <tr>
-                        <td>
-                            <div class="editor-label">
-                                @Html.LabelFor(model => model.SkypeID)
-                            </div>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.SkypeID)
-                                @Html.ValidationMessageFor(model => model.SkypeID)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editor-label">
-                                @Html.LabelFor(model => model.IdentificationNumber)
-                            </div>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.IdentificationNumber)
-                                @Html.ValidationMessageFor(model => model.IdentificationNumber)
-                            </div>
-                        </td>
-                    </tr>
-            <tr>
-                <td>
-
-
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.PassportNumber)
-                    </div>
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.PassportNumber)
-                        @Html.ValidationMessageFor(model => model.PassportNumber)
-                    </div>
-                </td>
-                <td>
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.CountryOfIssuance)
-                    </div>
-                    <div class="editor-field">
-                        @Html.DropDownListFor(x => x.CountryOfIssuance, Model.CountryDDList, "Country")
-
-                    </div>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td colspan="2">
-                    <div class="editor-label">
-                        @Html.LabelFor(model => model.Photo)
-                    </div>
-                    <div class="editor-field">
-                        @Html.TextBoxFor(model => model.Photo, new { type = "file" })
-                        @Html.ValidationMessageFor(model => model.Photo)
-
-                    </div>
-
-        </table>
-
-
-        <p>
-
-            <input type="submit" value="Create Profile" />
-        </p>
-    </fieldset>*@
 }
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
