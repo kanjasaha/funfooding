@@ -119,10 +119,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:34:29</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>09/06/2015 23:33:46</publishTime>
+      <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>09/08/2015 01:24:47</publishTime>
+      <publishTime>09/08/2015 21:45:53</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -1046,7 +1046,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/07/2015 02:53:18</publishTime>
+      <publishTime>09/08/2015 01:38:18</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1274,7 +1274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/08/2015 01:41:10</publishTime>
+      <publishTime>09/08/2015 21:46:03</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -106,12 +106,12 @@ namespace MealsToGo.Service
                  unitOfWork.MealadDeliveryRepository.Add(deliverymethod);
              }
 
-              foreach (var schedules in mealad.MealAd_Schedules)
-              {
+              //foreach (var schedules in mealad.MealAd_Schedules)
+              //{
 
-                  schedules.MealAdID = mealadid;
-                  unitOfWork.MealScheduleRepository.Add(schedules);
-              }
+              //    schedules.MealAdID = mealadid;
+              //    unitOfWork.MealScheduleRepository.Add(schedules);
+              //}
              unitOfWork.Save();
              try
              {
