@@ -5,28 +5,29 @@
 
 <div class="cont-main">
     <h1>Reset Password</h1>
-
-
+   
     @using (Html.BeginForm("Reset", "Account"))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(false,"", new { @class = "error" })
+        @*@Html.ValidationSummary(false,"", new { @class = "error" })*@
         <div class="cont">
+
             <ul class="gen-form">
                 <li>
                     <p>User Name</p>
                     @Html.DisplayFor(m => m.UserName, new { @class = "gen-ftb" })
                    @Html.HiddenFor(m => m.UserName, new { @class = "gen-ftb" })
+                    @Html.ValidationMessageFor(m => m.UserName)
                 </li>
                <li>
                     <p>Password</p>
                     @Html.PasswordFor(m => m.Password, new { @class = "gen-ftb" })
-                   
+                   @Html.ValidationMessageFor(m => m.Password)
                 </li>
                 <li>
                     <p>Confirm Password</p>
                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "gen-ftb" })
-                   
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
                 </li>
                 <li>
                     <label>
@@ -34,7 +35,31 @@
                     </label>
                 </li>
                
-                <div class="clr"></div>
+                <div class="clr">
+                    <label id="pass" style="color:red" />
+
+                    <label id="ConPass" style="color:red" />
+                    @{
+        var message1 = TempData["BlankPassword"] ?? string.Empty;
+                    }
+                    <script type="text/javascript">
+                        var message = '@message1';
+                        if (message)
+                            document.getElementById("pass").innerHTML = message;
+
+                        //alert(message);
+                    </script>
+                    @{
+        var message2 = TempData["BlankConfirmPassword"] ?? string.Empty;
+                    }
+                    <script type="text/javascript">
+                        var message = '@message2';
+                        if (message)
+                            document.getElementById("ConPass").innerHTML = message;
+
+                        //alert(message);
+                    </script>
+                </div>
             </ul>
             <div class="clr"></div>
         </div>

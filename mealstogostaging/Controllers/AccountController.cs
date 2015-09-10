@@ -19,6 +19,9 @@ using System.Text;
 using System.Data.SqlClient;
 using MealsToGo.Helpers;
 using System.Net;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
 
 namespace MealsToGo.Controllers
@@ -36,41 +39,67 @@ namespace MealsToGo.Controllers
         LoginRegisterViewModel log = new LoginRegisterViewModel();
 
         LoginModel model = new LoginModel();
+       
+
         [AllowAnonymous]
-        public ActionResult Reset()
+        public ActionResult Reset(string emailId)
         {
             ResetModel resetModel = new ResetModel();
-             return View(resetModel);
+            emailId = emailId.Replace(" ", "+");
+            string DecryptMail = Decrypt(emailId);
+            //resetModel.UserName = emailId;
+            resetModel.UserName = DecryptMail;
+            return View(resetModel);
         }
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Reset(ResetModel resetModel)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+
+
+            if (resetModel.Password == null)
             {
-                WebSecurity.ResetPassword(WebSecurity.GeneratePasswordResetToken(resetModel.UserName), resetModel.Password);
-                EmailModel emailmodel = new EmailModel();
-                emailmodel.To = resetModel.UserName;
-                emailmodel.Subject = "Reset Password";
+                // TempData["BlankPassword"] = "Please enter password";
+                return View(resetModel);
 
-                StringBuilder sb = new StringBuilder();
-                sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
-                sb.Append("Hi User,<br />");
-                sb.Append("Your password has been changed.<br />");
-                sb.Append("regards,<br /> Funfooding Team");
-                emailmodel.EmailBody = sb.ToString();
-                Common.sendeMail(emailmodel, true);
-                //return RedirectToAction("Login", "Account");
-                if (WebSecurity.Login(resetModel.UserName, resetModel.Password, persistCookie: true))
-                {
-
-                    var user = db.UserProfiles.Where(x => x.UserName.Equals(resetModel.UserName)).First();
-                    int UserID = user.UserId;
-                    Session["FirstName"] = user.FirstName;
-
-                    return RedirectPage(UserID);
-                }
             }
+            if (resetModel.ConfirmPassword == null)
+            {
+                //  TempData["BlankConfirmPassword"] = "Please enter Confirm password";
+                return View(resetModel);
+            }
+            if (resetModel.Password.Length < 6 || resetModel.Password.Length < 6)
+                return View(resetModel);
+            if (resetModel.Password != resetModel.ConfirmPassword)
+            {
+                // TempData["BlankPassword"] = "Password and confirm password does not match";
+                return View(resetModel);
+            }
+            WebSecurity.ResetPassword(WebSecurity.GeneratePasswordResetToken(resetModel.UserName), resetModel.Password);
+            EmailModel emailmodel = new EmailModel();
+            emailmodel.To = resetModel.UserName;
+            emailmodel.Subject = "Reset Password";
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+            sb.Append("Hi User,<br />");
+            sb.Append("Your password has been changed.<br />");
+            sb.Append("regards,<br /> Funfooding Team");
+            emailmodel.EmailBody = sb.ToString();
+            Common.sendeMail(emailmodel, true);
+            //return RedirectToAction("Login", "Account");
+            if (WebSecurity.Login(resetModel.UserName, resetModel.Password, persistCookie: true))
+            {
+
+                var user = db.UserProfiles.Where(x => x.UserName.Equals(resetModel.UserName)).First();
+                int UserID = user.UserId;
+                Session["FirstName"] = user.FirstName;
+
+                return RedirectPage(UserID);
+            }
+            //}
             return View(resetModel);
         }
         [AllowAnonymous]
@@ -82,18 +111,23 @@ namespace MealsToGo.Controllers
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordModel objResetPasswordModel)
         {
+
+
             if (ModelState.IsValid)
             {
+
                 if (EmailExist(objResetPasswordModel.UserNameOrEmailId))
                 {
                     EmailModel emailmodel = new EmailModel();
+
                     emailmodel.To = objResetPasswordModel.UserNameOrEmailId;
                     emailmodel.Subject = "Reset Password";
-
+                    string EncryptMail = this.Encrypt(emailmodel.To);
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
                     sb.Append("Click the link below for resetting your password.<br />");
-                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Reset?emailId=" + emailmodel.To + " style=\"color:#0066CC\"> here</a>.<br />");
+                    // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Reset?emailId=" + emailmodel.To + " style=\"color:#0066CC\"> here</a>.<br />");
+                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Reset?emailId=" + EncryptMail + " style=\"color:#0066CC\"> here</a>.<br />");
                     sb.Append("regards,<br /> Funfooding Team");
                     emailmodel.EmailBody = sb.ToString();
                     Common.sendeMail(emailmodel, true);
@@ -103,11 +137,54 @@ namespace MealsToGo.Controllers
                 else
                 {
                     //ModelState.AddModelError("UserNameOrEmailId", new Exception("This emailadress does not exist in our system. please try with valid emailaddress."));
-                    ModelState.AddModelError("", new Exception("This emailadress does not exist in our system. please try with valid emailaddress."));
+                    ViewBag.Message = "This emailadress does not exist in our system. please try with valid emailaddress.";
                 }
             }
             return View(objResetPasswordModel);
         }
+        private string Encrypt(string clearText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(clearBytes, 0, clearBytes.Length);
+                        cs.Close();
+                    }
+                    clearText = Convert.ToBase64String(ms.ToArray());
+                }
+            }
+            return clearText;
+        }
+        private string Decrypt(string cipherText)
+        {
+            string EncryptionKey = "MAKV2SPBNI99212";
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+            using (Aes encryptor = Aes.Create())
+            {
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                encryptor.Key = pdb.GetBytes(32);
+                encryptor.IV = pdb.GetBytes(16);
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(cipherBytes, 0, cipherBytes.Length);
+                        cs.Close();
+                    }
+                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
+                }
+            }
+            return cipherText;
+        }
+
         private bool EmailExist(string email)
         {
 

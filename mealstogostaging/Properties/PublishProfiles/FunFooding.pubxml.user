@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>09/08/2015 21:45:53</publishTime>
+      <publishTime>09/09/2015 21:30:43</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -965,10 +965,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:26</publishTime>
     </File>
     <File Include="Views/Account/Reset.cshtml">
-      <publishTime>09/06/2015 23:33:26</publishTime>
+      <publishTime>09/09/2015 20:57:01</publishTime>
     </File>
     <File Include="Views/Account/ResetPassword.cshtml">
-      <publishTime>09/06/2015 23:33:26</publishTime>
+      <publishTime>09/09/2015 20:58:59</publishTime>
     </File>
     <File Include="Views/Account/SignUp.cshtml">
       <publishTime>09/07/2015 00:30:42</publishTime>
@@ -1211,7 +1211,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
-      <publishTime>09/06/2015 23:55:07</publishTime>
+      <publishTime>09/09/2015 20:54:36</publishTime>
     </File>
     <File Include="Views/Shared/_ViewSwitcher.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1274,7 +1274,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/08/2015 21:46:03</publishTime>
+      <publishTime>09/09/2015 22:41:02</publishTime>
     </File>
   </ItemGroup>
 </Project>
