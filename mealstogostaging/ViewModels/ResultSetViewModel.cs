@@ -35,7 +35,7 @@ namespace MealsToGo.ViewModels
         public IDictionary<string, ICollection<KeyValuePair<string, int>>> Facets { get; set; }
         //public IDictionary<string, int> PickUpTimeFacet { get; set; }
         // public IDictionary<string, int> DistanceFacet { get; set; }
-
+        
         public DistanceViewModel DistanceDD { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]

@@ -221,12 +221,8 @@
   
 </script>
 
-<span class="normal14">
-    <span class="error">
-        @ViewBag.ErrorMessage
-    </span>    
+ 
    
-    </span>
     <div class="cont-main">
         <div class="se-reslt">
         
@@ -278,7 +274,8 @@
                     </label>
                     <br /><br />
                     <label>
-                        @Html.TextBox("ChangeLocation", "", new { @class = "food-tb2", placeholder = "Current Location" })
+                          @Html.TextBoxFor(m => m.Search.UserLocation, new { @class = "food-tb2", placeholder = "10547 or 123 elk str, CA" })
+                       
                     </label>
 
                     <label>

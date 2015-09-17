@@ -16,8 +16,10 @@ namespace MealsToGo.ViewModels
         public string MealItemName { get; set; }
         [Required]
         public int PlacedOrder { get; set; }
-        [Required] 
-        public int MaxOrders { get; set; }
+
+        [Range(1, 10, ErrorMessage = "Max Order must be between 1 and 10")]
+        [Required]
+        public uint MaxOrders { get; set; }
         [Required]
         
       
@@ -40,8 +42,8 @@ namespace MealsToGo.ViewModels
             MealItemsDD = new MealItemsViewModel();
             AvailabilityTypeDD = new AvailabilityTypeViewModel();
             List<MealAdSchedule> MealAdSchedules = new List<MealAdSchedule>();
-           
-            
+
+            MaxOrders = 1;
            
         }
     }

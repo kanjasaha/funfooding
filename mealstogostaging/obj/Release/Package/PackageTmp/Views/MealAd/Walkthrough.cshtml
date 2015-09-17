@@ -3,3 +3,38 @@
 }
 
 <h2>Walkthrough</h2>
+
+@{
+    if (Request.IsAuthenticated)
+    {
+     Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    
+    else
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+}
+
+<div class="cont-main">
+  <h1>How To</h1>
+  <div class="cont">
+    <p>
+        Funfooding.com is online and mobile food sharing website website that connects diners with local people sharing home cooked food.
+  The idea is to provide diners with unlimited varied options available from our diverse cuisine in their local area.<br />
+ 
+        So, You want to share your home cooked meal but you have many questions.
+
+        Why?
+
+        How?
+      
+       
+          <br /><br />
+        <b>We aspire to make your fooding experience fun!</b>
+        Have new ideas? @Html.ActionLink("Talk", "Contact", "Company") to us. We are all ears!
+         
+  </div>
+
+</div>
+

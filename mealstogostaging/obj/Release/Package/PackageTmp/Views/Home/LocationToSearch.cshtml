@@ -14,19 +14,22 @@
 <ul class="gen-form">
       <li>
         @Html.TextBox("address",null,new { @class = "gen-ftb"  , placeholder = "10011 or 123 Baker St,Elkhorn,MA  "})
-        @*<input name="" type="text" class="gen-ftb"/>*@<span>Enter your location, zipcode will do but full address will be awesome!</span></li>
+        @*<input name="" type="text" class="gen-ftb"/>*@<span>Enter your full address or just zipcode.</span></li>
       <li>
         
-        @*<input name="" type="text" class="gen-ftb"/>*@
-          @Html.TextBox("food",null,new {placeholder = "Pizza,burrito etc ", @class = "gen-ftb" })
-          <span>Have something definite in mind? ask away! Not sure? Leave as is!</span></li>
-
       
       <li>
         <label>
         <input type="submit" name="button2" id="button2" value="Go" class="submit" /> 
         </label>
       </li>
+
+    <li>
+
+    <span>Interested in sharing your home cooked meal? Click  @Html.ActionLink("here", "Help", "Company")
+    to learn more.</span>
+
+    </li>
       <div class="clr"></div>
     </ul>
     

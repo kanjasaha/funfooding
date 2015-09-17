@@ -146,24 +146,30 @@ namespace MealsToGo.Controllers
             {
                 ViewBag.ErrorMessage = "";
             }
-            var ChangeLocation = HttpContext.Request.QueryString["ChangeLocation"];
 
-            if ((ChangeLocation != null) && (ChangeLocation != ""))
+            if ((parameters.UserLocation != Session["UserLoc"]) || ((parameters.UserLocation == null) && (Session["UserLoc"] != null)))
             {
+              parameters.UserLocation = Session["UserLoc"].ToString(); //the user has changed the zipcode, so 
 
 
-                GLatLong loc = new GLatLong();
-                loc = GeoCodingHelper.GetLatLong(ChangeLocation.ToString());
+                  GLatLong loc = new GLatLong();
+                  loc = GeoCodingHelper.GetLatLong(parameters.UserLocation);
 
 
                 if (loc != null)
                 {
                     Session["UserLocLat"] = loc.Latitude;
                     Session["UserLocLong"] = loc.Longitude;
+                    Session["UserLoc"] = parameters.UserLocation;
+
                 }
-                Session["UserLoc"] = ChangeLocation;
+
+                else
+                    return RedirectToAction("LocationToSearch", "Home");
+
+                
             }
-            else
+            else if ((Session["UserLoc"] == null) && (WebSecurity.CurrentUserId != null))
             {
                 var LocationsSearched = dbmeals.LocationsSearcheds.Where(x => x.UserID == WebSecurity.CurrentUserId).OrderByDescending(x => x.DateCreated).ToList().FirstOrDefault();
                 if (LocationsSearched != null)
@@ -177,7 +183,15 @@ namespace MealsToGo.Controllers
                    // parameters.PickUpDateSearch = Common.AbsoluteEnd(LocationsSearched.DateRangeStart.HasValue ? LocationsSearched.DateRangeStart.Value : DateTime.Now);// LocationsSearched.DateRangeStart;
                     //parameters.DateRangeEnd = LocationsSearched.DateRangeEnd;
                 }
+
+                else
+
+                    return RedirectToAction("LocationToSearch", "Home");
+
+
             }
+
+            
 
 
             if (String.IsNullOrEmpty(parameters.DistanceSearch))
@@ -375,6 +389,7 @@ namespace MealsToGo.Controllers
 
 
                 SearchParam searchparam = new SearchParam();
+               
                 return RedirectToAction("Index", "Home", new RouteValueDictionary(searchparam));
 
             }
@@ -415,8 +430,10 @@ namespace MealsToGo.Controllers
         {            
             if (Session["FirstName"] != null)
             {
-                return RedirectToAction("PrivacyRules", "Settings");
+               // return RedirectToAction("PrivacyRules", "Settings");
                // return View("/Settings/PrivacyRules");
+                return Redirect(Request.ServerVariables["http_referer"]);
+                
             }
             else
             {
@@ -424,10 +441,11 @@ namespace MealsToGo.Controllers
                 //ViewBag.ErrorMessage = "Please login to go for this menu";
                // er.PrError = "Please login to go for this menu";
                // Session["ErrorMessage"] = "Please login to go for this menu";
-                TempData["ErrorMessage"] = "To access this menu, please login into the site";
-                return RedirectToAction("Index", "Home");
-                
-                //return View("/Home/Index");
+                TempData["ErrorMessage"] = "To access this page, please Log In or Sign Up";
+               // return RedirectToAction("Index", "Home");
+                //return Redirect(Request.ServerVariables["http_referer"]);
+                return RedirectToAction("SignUp", "Account");
+              
             }
         }
 

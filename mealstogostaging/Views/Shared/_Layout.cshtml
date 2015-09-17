@@ -219,7 +219,8 @@ border-top:1px solid #dedede;
                      }
                      else
                      {
-                        <a href="/User/Suggestion">Connect</a>
+                        <a href="/Home/CheckUser">Connect</a>
+                        
                      }
                     
                 </li>    
@@ -255,7 +256,7 @@ border-top:1px solid #dedede;
                   <li  @if (ctrName == "Company")
                        {<text> class="active has-sub" </text>}
                        else
-                       {<text>class='has-sub'</text>}><a href="">About</a>
+                       {<text>class='has-sub'</text>}><a href="/Company/About">About</a>
                     <ul>
                         <li>@Html.ActionLink("About", "About", "Company")</li>
                         <li>@Html.ActionLink("Help", "Help", "Company")</li>
@@ -278,6 +279,7 @@ border-top:1px solid #dedede;
     
 
     </div>
+
     @RenderBody()
 
     <div id="footer">

@@ -17,13 +17,23 @@
     }
 </script>
 
-
+ 
 <div class="banner">
     <div class="banner-blk">
         @using (Html.BeginForm("Register", "Account", new { ReturnUrl = Request.QueryString["ReturnUrl"] }))
         {
             @Html.AntiForgeryToken()
-           
+           if (ViewBag.ErrorMessage != "")
+           {
+        
+    <p class="error">
+        @ViewBag.ErrorMessage
+        <br /><br />
+        </p>
+       
+           }
+            
+            
             <div class="signup">
                 <h1>Sign Up <span>Its quick and its free!</span>
 
@@ -31,7 +41,7 @@
                
                <label id="alertemailexist" class="field-validation-error"  ></label><br /><br />
                 @{
-            var message_alertemailexist = TempData["alertemailexist"] ?? string.Empty;
+           var message_alertemailexist = TempData["alertemailexist"] ?? string.Empty;
                 }
                 <script type="text/javascript">
                     var message = '@message_alertemailexist';
@@ -48,7 +58,7 @@
                         <p>* First Name</p>
                           <label id="Label2" class="field-validation-error"  ></label>
                 @{
-            var message1 = TempData["alert1"] ?? string.Empty;
+           var message1 = TempData["alert1"] ?? string.Empty;
                 }
                 <script type="text/javascript">
                     var message = '@message1';

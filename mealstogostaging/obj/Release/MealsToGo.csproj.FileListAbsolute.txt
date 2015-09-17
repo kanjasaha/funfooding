@@ -82,8 +82,6 @@ D:\SohamV\FFM\MealsToGo.root\MealsToGo\bin\zh-Hans\System.Spatial.resources.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\bin\zh-Hant\System.Spatial.resources.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\obj\Release\MealsToGo.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\obj\Release\MealsToGo.pdb
-C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\log4net.dll
-C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\log4net.xml
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\MealsToGo.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\MealsToGo.pdb
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\AutoMapper.dll
@@ -108,6 +106,7 @@ C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\RazorEn
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\System.Spatial.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\Trirand.Web.Mvc.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\WebActivator.dll
+C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\log4net.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\AutoMapper.xml
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\GCheckout.xml
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\HtmlAgilityPack.pdb
@@ -128,6 +127,7 @@ C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\PayPal.
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\RazorEngine.pdb
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\RazorEngine.xml
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\System.Spatial.xml
+C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\log4net.xml
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\de\Microsoft.Data.Edm.resources.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\es\Microsoft.Data.Edm.resources.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -155,6 +155,6 @@ C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\ko\Syst
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\ru\System.Spatial.resources.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.csprojResolveAssemblyReference.cache
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.pdb
-C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.csprojResolveAssemblyReference.cache

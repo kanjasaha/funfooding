@@ -275,7 +275,7 @@ namespace MealsToGo.Controllers
         [AllowAnonymous]
         public ActionResult SignUp(string returnUrl)
         {
-
+            ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
             return View("SignUp");
 

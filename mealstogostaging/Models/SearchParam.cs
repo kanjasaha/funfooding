@@ -21,6 +21,7 @@ namespace MealsToGo.Models
             PageSize = DefaultPageSize;
             PageIndex = 1;
             PickUpDateSearch = DateTime.Now.Date;
+            
            // UserID = -1;
           
            
@@ -29,6 +30,7 @@ namespace MealsToGo.Models
         //  public int UserID { get; set; }
         //public GLatLong UserLoc { get; set; }
        // public string CurrLoc { get; set; }
+         public string UserLocation { get; set; }
         public string FreeSearch { get; set; }
         public string DistanceSearch { get; set; }
         public DateTime PickUpDateSearch { get; set; }

@@ -105,7 +105,10 @@ namespace MealsToGo.Controllers
             MealAdViewModel mealadvm = Mapper.Map<MealAd, MealAdViewModel>(mealad);
 
             mealadvm = PopulateDropDown(mealadvm, mealad, userid);
-
+            var list = new List<SelectListItem>();
+            for (var i = 2; i < 10; i++)
+                list.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+            ViewBag.list = list;
 
             return View(mealadvm);
 
@@ -278,7 +281,7 @@ namespace MealsToGo.Controllers
             {
                 MealAd existingMealAd = db.MealAds.Find(MealAdvm.MealAdID);
 
-                existingMealAd.MaxOrders = MealAdvm.MaxOrders;
+                existingMealAd.MaxOrders = Convert.ToInt32(MealAdvm.MaxOrders);
 
                 List<MealAd_Schedules> lstMealAd_Schedules = new List<MealAd_Schedules>();
                 foreach (var allergenic in existingMealAd.MealAd_Schedules)
