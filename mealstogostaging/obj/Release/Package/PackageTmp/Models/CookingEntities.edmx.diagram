@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3355a899d94c403f986611d7cf06856d" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="3355a899d94c403f986611d7cf06856d" Name="Diagram1" ZoomLevel="54">
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_OrderDetails_Orders" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.AddressList" Width="1.5" PointX="6" PointY="27.5" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.AllEmail" Width="1.5" PointX="11.375" PointY="7.875" />
@@ -36,10 +36,10 @@
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_MealItems_AllergenicFoods_LKUPAllergenicFood" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_MealItems_CuisineTypeLKUP" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_MealItems_LKUPDietType" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="5.6547768538714394" />
+          <ConnectorPoint PointX="2.25" PointY="5.8328809179641077" />
           <ConnectorPoint PointX="3.75" PointY="7.400126953125" />
-          <ConnectorPoint PointX="6.385416666666667" PointY="7.4001269531249987" />
-          <ConnectorPoint PointX="6.552083333333333" PointY="7.400126953125" />
+          <ConnectorPoint PointX="7.1879166666666672" PointY="7.4001269531249987" />
+          <ConnectorPoint PointX="7.3545833333333333" PointY="7.400126953125" />
           <ConnectorPoint PointX="10.416666666666666" PointY="7.4001269531249987" />
           <ConnectorPoint PointX="10.583333333333334" PointY="7.400126953125" />
           <ConnectorPoint PointX="14.233739719501022" PointY="7.400126953125" />
@@ -58,7 +58,6 @@
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.FunOrder" Width="1.5" PointX="11.313435248710883" PointY="0.95904621526554512" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_FunOrderDetails_FunOrders" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.SendEmail" Width="1.5" PointX="0.625" PointY="7.625" />
-        <EntityTypeShape EntityType="ThreeSixtyTwoModel.ActiveMealAd" Width="1.5" PointX="13.75" PointY="10.875" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.LKUPKitchenType" Width="1.5" PointX="14.25" PointY="1.25" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.UserDetail" Width="1.5" PointX="0.9216557112157604" PointY="18.055076592627483" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_UserDetails_AddressList" />
@@ -83,6 +82,11 @@
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.MealAd_Schedules" Width="1.5" PointX="10.775244265224433" PointY="22.478186707235029" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds" />
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.ContactList" Width="1.5" PointX="2.6766591345317008" PointY="3.161683680099288" />
+        <EntityTypeShape EntityType="ThreeSixtyTwoModel.UserSetting" Width="1.5" PointX="0.012691995134899391" PointY="12.273414706938628" />
+        <AssociationConnector Association="ThreeSixtyTwoModel.FK_UserSettings_LKUPPrivacySettings" />
+        <AssociationConnector Association="ThreeSixtyTwoModel.FK_UserSettings_NotificationFrequency" />
+        <AssociationConnector Association="ThreeSixtyTwoModel.FK_UserSettings_NotificationFrequency1" />
+        <EntityTypeShape EntityType="ThreeSixtyTwoModel.ActiveMealAd" Width="1.5" PointX="7.8198754842485663" PointY="26.955425230299785" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

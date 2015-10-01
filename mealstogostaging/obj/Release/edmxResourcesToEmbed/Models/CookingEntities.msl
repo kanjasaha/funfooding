@@ -234,21 +234,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserSettings">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserSetting">
-        <MappingFragment StoreEntitySet="UserSettings">
-          <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
-          <ScalarProperty Name="Verified" ColumnName="Verified" />
-          <ScalarProperty Name="NotificationFrequencyID" ColumnName="NotificationFrequencyID" />
-          <ScalarProperty Name="ReceiveMobileTextNotification" ColumnName="ReceiveMobileTextNotification" />
-          <ScalarProperty Name="ReceiveEmailNotification" ColumnName="ReceiveEmailNotification" />
-          <ScalarProperty Name="PrivacySettingsID" ColumnName="PrivacySettingsID" />
-          <ScalarProperty Name="ActivityTypeID" ColumnName="ActivityTypeID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="UserSettingsID" ColumnName="UserSettingsID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LocationsSearcheds">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LocationsSearched">
         <MappingFragment StoreEntitySet="LocationsSearched">
@@ -400,46 +385,6 @@
           <ScalarProperty Name="RecipientEmailAddress" ColumnName="RecipientEmailAddress" />
           <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
           <ScalarProperty Name="SendEmailID" ColumnName="SendEmailID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ActiveMealAds">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.ActiveMealAd">
-        <MappingFragment StoreEntitySet="ActiveMealAds">
-          <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-          <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
-          <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
-          <ScalarProperty Name="AllInfo" ColumnName="AllInfo" />
-          <ScalarProperty Name="PriceRange" ColumnName="PriceRange" />
-          <ScalarProperty Name="latlng" ColumnName="latlng" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="FoodType" ColumnName="FoodType" />
-          <ScalarProperty Name="FoodAllergy" ColumnName="FoodAllergy" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-          <ScalarProperty Name="Country" ColumnName="Country" />
-          <ScalarProperty Name="Zip" ColumnName="Zip" />
-          <ScalarProperty Name="Province" ColumnName="Province" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Address2" ColumnName="Address2" />
-          <ScalarProperty Name="Address1" ColumnName="Address1" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Currency" ColumnName="Currency" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Photo" ColumnName="Photo" />
-          <ScalarProperty Name="Ingredients" ColumnName="Ingredients" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="MealType" ColumnName="MealType" />
-          <ScalarProperty Name="CuisineType" ColumnName="CuisineType" />
-          <ScalarProperty Name="LastOrderTime" ColumnName="LastOrderTime" />
-          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
-          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
-          <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
-          <ScalarProperty Name="MealItemName" ColumnName="MealItemName" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -600,6 +545,60 @@
           <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ContactListID" ColumnName="ContactListID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserSettings">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserSetting">
+        <MappingFragment StoreEntitySet="UserSettings">
+          <ScalarProperty Name="VerificationDate" ColumnName="VerificationDate" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="ReceiveMobileTextNotificationID" ColumnName="ReceiveMobileTextNotificationID" />
+          <ScalarProperty Name="ReceiveEmailNotificationID" ColumnName="ReceiveEmailNotificationID" />
+          <ScalarProperty Name="PrivacySettingsID" ColumnName="PrivacySettingsID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserSettingsID" ColumnName="UserSettingsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActiveMealAds">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.ActiveMealAd">
+        <MappingFragment StoreEntitySet="ActiveMealAds">
+          <ScalarProperty Name="ActiveMealAdID" ColumnName="ActiveMealAdID" />
+          <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+          <ScalarProperty Name="ProviderName" ColumnName="ProviderName" />
+          <ScalarProperty Name="ProviderType" ColumnName="ProviderType" />
+          <ScalarProperty Name="AllInfo" ColumnName="AllInfo" />
+          <ScalarProperty Name="PriceRange" ColumnName="PriceRange" />
+          <ScalarProperty Name="latlng" ColumnName="latlng" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+          <ScalarProperty Name="FoodAllergy" ColumnName="FoodAllergy" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Ingredients" ColumnName="Ingredients" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MealType" ColumnName="MealType" />
+          <ScalarProperty Name="CuisineType" ColumnName="CuisineType" />
+          <ScalarProperty Name="LastOrderTime" ColumnName="LastOrderTime" />
+          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
+          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
+          <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
+          <ScalarProperty Name="MealItemName" ColumnName="MealItemName" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

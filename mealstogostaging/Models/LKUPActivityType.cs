@@ -14,14 +14,7 @@ namespace MealsToGo.Models
     
     public partial class LKUPActivityType
     {
-        public LKUPActivityType()
-        {
-            this.UserSettings = new HashSet<UserSetting>();
-        }
-    
         public int ActivityTypeLKUPID { get; set; }
         public string ActivityType { get; set; }
-    
-        public virtual ICollection<UserSetting> UserSettings { get; set; }
     }
 }

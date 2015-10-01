@@ -11,7 +11,7 @@ smaller than 980
 @media screen and (max-width: 980px) {
 
 .header-bl{ height:104px; width: auto;}
-.banner{background: url(../images/bg2.jpg) repeat-x top center; padding:20px 0; border-top:#dd2700 solid 8px; }
+.banner{padding:20px 0; border-top:#dd2700 solid 8px; }
 
 .banner-blk{ width: auto; margin:0 auto;}
 
@@ -167,7 +167,7 @@ smaller than 650
 
 #header{  height:140px; }
 
-.banner{background: url(../images/bg2.jpg) repeat-x top center; padding:20px 0; border-top:#dd2700 solid 8px; }
+.banner{ padding:20px 0; border-top:#dd2700 solid 8px; }
 .signup{float:left; width:386px;  padding:0 23px; border-right:none;}
 .signup h1{font:bold 30px/35px Arial, Helvetica, sans-serif; color:#dd2500; background:url(../images/sign-up.png)0 3px no-repeat; padding:0 0 0 41px; margin-bottom:10px;}
 .signup h1 span{font:normal 20px/30px Arial, Helvetica, sans-serif; color:#7b4825;}

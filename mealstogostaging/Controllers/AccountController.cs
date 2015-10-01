@@ -223,6 +223,13 @@ namespace MealsToGo.Controllers
             if (Request.IsAuthenticated)
             {
                 int UserID = WebSecurity.CurrentUserId;
+
+                if (UserID == -1)
+                {
+                    FormsAuthentication.SignOut();
+                    return RedirectToAction("Authenticate", "Account", null);
+
+                }
                 Session["FirstName"] = db.UserProfiles.Where(x => x.UserId.Equals(UserID)).First().FirstName;
                 if (Url.IsLocalUrl(returnUrl))
                 {
@@ -273,11 +280,24 @@ namespace MealsToGo.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult SignUp(string returnUrl)
+        public ActionResult SignUp(string id)
         {
+            
+            LoginRegisterViewModel lrvm = new LoginRegisterViewModel();
+            //if (id != "")
+            //{ 
+
+            //   if  (WebSecurity.ConfirmAccount(id))
+            //   {
+
+            //          int UserID = dbmeals.webpages_Membership.Where(x => x.ConfirmationToken == id).FirstOrDefault().UserId;
+            //          lrvm.UserName = db.UserProfiles.Where(x => x.UserId == UserID).FirstOrDefault().UserName;
+            //   }
+            //}
+
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
-            return View("SignUp");
+            return View();
 
         }
 
@@ -456,10 +476,10 @@ namespace MealsToGo.Controllers
             if (UserExists)
             {
 
-                // If we got this far, something failed, redisplay form
-                //  ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                //TempData["alert1"] = "The user name or password provided is incorrect.";
-                //return View("Login");
+               //  If we got this far, something failed, redisplay form
+                  ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                TempData["alert1"] = "The user name or password provided is not correct.";
+                return View("Login");
             }
             else
             {
@@ -688,61 +708,61 @@ namespace MealsToGo.Controllers
 
                 }
 
-                try
-                {
-                    string confirmationToken =
-                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
+
+                    try
+                    {
+                        string confirmationToken =
+                            WebSecurity.CreateUserAndAccount(model.UserName, model.Password, propertyValues: new
+                            {
+                                FirstName = model.FirstName
+                            }, requireConfirmationToken: true); //new {Email=model.Email}
+
+                       bool userinvited = dbmeals.ContactLists.Any(x =>x.RecipientEmailAddress.Equals(model.UserName));
+                         if (!userinvited)
                         {
-                            FirstName = model.FirstName
-                        }, requireConfirmationToken: true); //new {Email=model.Email}
 
-                    //var email = new StandardEmail();
-                    //email.To = model.UserName;
-                    //email.Name = model.FirstName;
-                    //// email.ConfirmationToken = confirmationToken;
-                    //email.ConfirmationToken = ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/EmailConfirmation/" + confirmationToken;
+                        EmailModel emailmodel = new EmailModel();
+                        emailmodel.To = model.UserName;
+                        emailmodel.Subject = "Welcome to Fun Fooding";
 
 
-                    //email.Send();
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                        sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                        sb.Append("<head>");
+                        sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                        sb.Append("</head>");
+                        sb.Append("<body>");
+                        sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                        sb.Append("Hi " + model.FirstName + ",<br />");
+                        sb.Append("Thank you for signing up!<br />");
+                        sb.Append("<br />");
+                        sb.Append("To complete the sign up process click ");
+                        sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/EmailConfirmation/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                        sb.Append("<br />");
+                        sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@gmail.com</a>.<br />");
+                        sb.Append("<br /> ");
+                        sb.Append("Best regards,<br />");
+                        sb.Append("Support Team<br />");
+                        sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                        sb.Append("</body>");
+                        sb.Append("</html>");
+                        emailmodel.EmailBody = sb.ToString();
+                        Common.sendeMail(emailmodel, true);
+                        return RedirectToAction("ConfirmEmail", "Account", new { Name = model.FirstName });
+                    }
+                         else
 
+                         {
+                           return RedirectToAction("EmailConfirmation", "Account", new { id = confirmationToken });
+                         }
+                    }
+                    catch (MembershipCreateUserException e)
+                    {
+                        // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
 
-                    EmailModel emailmodel = new EmailModel();
-                    emailmodel.To = model.UserName;
-                    emailmodel.Subject = "Welcome to Fun Fooding";
-
-
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-                    sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-                    sb.Append("<head>");
-                    sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
-                    sb.Append("</head>");
-                    sb.Append("<body>");
-                    sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
-                    sb.Append("Hi " + model.FirstName + ",<br />");
-                    sb.Append("Thank you for signing up!<br />");
-                    sb.Append("<br />");
-                    sb.Append("To complete the sign up process click ");
-                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/EmailConfirmation/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
-                    sb.Append("<br />");
-                    sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@gmail.com</a>.<br />");
-                    sb.Append("<br /> ");
-                    sb.Append("Best regards,<br />");
-                    sb.Append("Support Team<br />");
-                    sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
-                    sb.Append("</body>");
-                    sb.Append("</html>");
-                    emailmodel.EmailBody = sb.ToString();
-                    Common.sendeMail(emailmodel, true);
-
-
-                    return RedirectToAction("ConfirmEmail", "Account", new { Name = model.FirstName });
-                }
-                catch (MembershipCreateUserException e)
-                {
-                    // ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-
-                }
+                    }
+                
             }
 
             // If we got this far, something failed, redisplay form
@@ -766,28 +786,18 @@ namespace MealsToGo.Controllers
                 //then get the username or emailaddress for this account
                 //update contactlist with this userid for this emailaddress/username
                 UserSetting us = new UserSetting();
-                us.ReceiveEmailNotification = 1;
-                us.ReceiveMobileTextNotification = 0;
-                us.NotificationFrequencyID = 3;
+                us.ReceiveEmailNotificationID = 3;
+                us.ReceiveMobileTextNotificationID = 1;
+              
                 us.PrivacySettingsID = 3;
-                us.ActivityTypeID = 1;
+                
                 us.UserID = dbmeals.webpages_Membership.Where(x => x.ConfirmationToken == id).FirstOrDefault().UserId;
 
                 dbmeals.UserSettings.Add(us);
 
                 dbmeals.SaveChanges();
-                us.ActivityTypeID = 2;
-                dbmeals.UserSettings.Add(us);
-
-                dbmeals.SaveChanges();
-                us.ActivityTypeID = 3;
-                dbmeals.UserSettings.Add(us);
-
-                dbmeals.SaveChanges();
-                us.ActivityTypeID = 4;
-                dbmeals.UserSettings.Add(us);
-
-                dbmeals.SaveChanges();
+              
+                
 
                 string userName = db.UserProfiles.Where(x => x.UserId == us.UserID).FirstOrDefault().UserName;
 

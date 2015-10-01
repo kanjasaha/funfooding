@@ -11,7 +11,7 @@ padding: 0;
 
 #header{ width:100%; }
 .header-bl{ height:104px; width:983px; margin:0 auto; }
-
+.under-logo{float:left; font:normal 14px/30px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; }
 .logo{float:left; margin-top:31px;} 
 
 .login{float:right; width:377px; margin-top:25px;}
@@ -25,7 +25,7 @@ padding: 0;
 .rmbr a{ text-decoration:underline; color:#686868;}
 .rmbr a:hover{color:#dd2700;}
 
-.banner{background: url(../images/bg2.jpg) repeat-x top center; padding:50px 0; border-top:#dd2700 solid 8px; }
+.banner{ padding:50px 0; border-top:#dd2700 solid 8px; }
 
 .banner-blk{ width:983px; margin:0 auto;}
 

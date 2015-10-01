@@ -34,6 +34,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace MealsToGo.Controllers
 {
@@ -167,24 +168,7 @@ namespace MealsToGo.Controllers
         public ActionResult Invite(EmailaddressesViewModel invitedemails)
         {
             int userid = invitedemails.UserID;
-            //if (invitedemails.Emailaddresses == null && invitedemails.EmailMessage == null)
-            //{
-            //    TempData["emailAlert"] = "Please enter email address and Emailmessage ";
-            //    TempData["PasswordBlank"] = "Please enter Emailmessage";
-            //    return RedirectToAction("Invite", "User", new { userid = userid });
-            //}
-            //if (invitedemails.Emailaddresses == null)
-            //{
-            //    TempData["emailAlert"] = "Please enter email address";
-
-            //    return RedirectToAction("Invite", "User", new { userid = userid });
-            //}
-            //if (invitedemails.EmailMessage == null)
-            //{
-            //    TempData["emailAlert"] = "Please enter Emailmessage";
-
-            //    return RedirectToAction("Invite", "User", new { userid = userid });
-            //}
+            
             if (ModelState.IsValid)
             {
                
@@ -218,9 +202,40 @@ namespace MealsToGo.Controllers
                     if (IsValidEmail(emailaddress))
                     {
 
+                        //string confirmationToken =
+                        //   WebSecurity.CreateUserAndAccount(emailaddress, "Test12345", propertyValues: new
+                        //   {
+                        //       FirstName = "FirstName"
+                        //   }, requireConfirmationToken: true); //new {Email=model.Email}
                         emailmodel.To = emailaddress;
+                        emailmodel.Subject = "Join me at Funfooding";
 
-                        Common.sendMail(emailmodel, EmailExist(emailaddress));
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                        sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                        sb.Append("<head>");
+                        sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                        sb.Append("</head>");
+                        sb.Append("<body>");
+                        sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                        sb.Append("Hi there,<br />");
+                        sb.Append("Join Funfooding to find and share food in and around your neighorhood!<br />");
+                        sb.Append("<br />");
+                        sb.Append("To sign up click ");
+                        sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" +  " style=\"color:#0066CC\"> here</a>.<br />");
+                      
+                       // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                         sb.Append("<br />");
+                        sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@funfooding.com</a>.<br />");
+                        sb.Append("<br /> ");
+                        sb.Append("Best regards,<br />");
+                        sb.Append("Support Team<br />");
+                        sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                        sb.Append("</body>");
+                        sb.Append("</html>");
+                        emailmodel.EmailBody = sb.ToString();
+
+                        Common.sendeMail(emailmodel, EmailExist(emailaddress));
                         InsertRequestInfo(userid, emailmodel.From, emailmodel.To);
                     }
                     else

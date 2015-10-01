@@ -342,7 +342,11 @@ namespace MealsToGo.Controllers
 
         }
 
-
+        public ActionResult SomeTips()
+        {
+            return View();
+      
+        }
 
         public ActionResult LocationToSearch()
         {

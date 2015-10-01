@@ -8,7 +8,7 @@
 
 
 <div class="cont-main">
-    <h1>Your Existing Food Advertisements</h1>
+    <h1>Foods you shared so far</h1>
 
 
 
@@ -21,12 +21,12 @@
 
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="normal-14">You have not shared any meal yet.</td>
+                        <td class="normal-14">You have not shared any food yet</td>
                     </tr>
                     @if (Session["ReadyToAdvertise"] == "0")
                     {
                         <tr>
-                            <td class="normal-14">To share your meal, please complete these steps:</td>
+                            <td class="normal-14">To share your food, please complete these steps:</td>
                         </tr>
                         <tr>
                             <td>&nbsp;</td>
@@ -39,9 +39,9 @@
                                         <td width="53%">
                                             <label>
                                                 @if (ViewBag.MealItemCount == 0)
-                                                {<span class="submit5"><a href="~/MealItem/Create?referrer=sharemeal&userid=@userid " style="text-decoration: none;color:white" >Incomplete</a></span>}
+                                                {<span class="submit5"><a href="~/MealItem/Create?referrer=sharemeal&userid=@userid " style="text-decoration: none;color:white" >TO DO</a></span>}
                                                 else
-                                                {<span class="submit5">Complete</span>}
+                                                {<span class="submit5">Done</span>}
                                             </label>
                                         </td>
                                     </tr>
@@ -50,9 +50,9 @@
                                         <td>
                                             <label>
                                                 @if (ViewBag.AddressPresent)
-                                                {<span class="submit5">Complete</span>}
+                                                {<span class="submit5">Done</span>}
                                                 else
-                                                {<span class="submit5"><a href="~/User/Edit?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >Incomplete</a></span>}
+                                                {<span class="submit5"><a href="~/User/Edit?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >TO DO</a></span>}
                                             </label>
                                         </td>
                                     </tr>
@@ -61,9 +61,9 @@
                                         <td>
                                             <label>
                                                 @if (ViewBag.PrivacySettingConfirmed)
-                                                {<span class="submit5">Complete</span>}
+                                                {<span class="submit5">Done</span>}
                                                 else
-                                                {<span class="submit5"><a href="~/Settings/Index?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >Incomplete</a></span>}
+                                                {<span class="submit5"><a href="~/Settings/Index?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >TO DO</a></span>}
                                             </label>
                                         </td>
                                     </tr>
@@ -72,9 +72,9 @@
                                         <td>
                                             <label>
                                                 @if (ViewBag.SellerTermsandSettingAccepted)
-                                                {<span class="submit5">Complete</span>}
+                                                {<span class="submit5">Done</span>}
                                                 else
-                                                {<span class="submit5"><a href="~/User/AcceptAgreement?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >Incomplete</a></span>}
+                                                {<span class="submit5"><a href="~/User/AcceptAgreement?referrer=sharemeal&userid=@userid" style="text-decoration: none;color:white" >TO DO</a></span>}
                                             </label>
                                         </td>
                                     </tr>
@@ -85,8 +85,8 @@
                     else
                     {
                         <p>
-                            @Html.ActionLink("Advertise", "Create", "MealAd", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
-                            @Html.ActionLink("Add a Food", "Create", "MealItem", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
+                            @Html.ActionLink("Share Food", "Create", "MealAd", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
+                            @Html.ActionLink("Add Food", "Create", "MealItem", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
                         </p>
                     }
                 </table>
@@ -100,8 +100,8 @@
     else
     {
          <p>
-                            @Html.ActionLink("Advertise", "Create", "MealAd", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
-                            @Html.ActionLink("Add a Food", "Create", "MealItem", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
+                            @Html.ActionLink("Share Food", "Create", "MealAd", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
+                            @Html.ActionLink("Add Food", "Create", "MealItem", routeValues: new { userid = userid }, htmlAttributes: new { @class = "menu-14u" })
                         </p>
         <div class="cont">
 

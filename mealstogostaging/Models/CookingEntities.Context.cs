@@ -45,7 +45,6 @@ namespace MealsToGo.Models
         public DbSet<state> states { get; set; }
         public DbSet<UserPaymentOption> UserPaymentOptions { get; set; }
         public DbSet<NotificationFrequency> NotificationFrequencies { get; set; }
-        public DbSet<UserSetting> UserSettings { get; set; }
         public DbSet<LocationsSearched> LocationsSearcheds { get; set; }
         public DbSet<MealItems_Photos> MealItems_Photos { get; set; }
         public DbSet<LKUPAllergenicFood> LKUPAllergenicFoods { get; set; }
@@ -57,7 +56,6 @@ namespace MealsToGo.Models
         public DbSet<FunOrderDetail> FunOrderDetails { get; set; }
         public DbSet<FunOrder> FunOrders { get; set; }
         public DbSet<SendEmail> SendEmails { get; set; }
-        public DbSet<ActiveMealAd> ActiveMealAds { get; set; }
         public DbSet<LKUPKitchenType> LKUPKitchenTypes { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<SellerDefaultSetting> SellerDefaultSettings { get; set; }
@@ -71,5 +69,7 @@ namespace MealsToGo.Models
         public DbSet<MealAd> MealAds { get; set; }
         public DbSet<MealAd_Schedules> MealAd_Schedules { get; set; }
         public DbSet<ContactList> ContactLists { get; set; }
+        public DbSet<UserSetting> UserSettings { get; set; }
+        public DbSet<ActiveMealAd> ActiveMealAds { get; set; }
     }
 }

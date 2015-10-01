@@ -26,11 +26,11 @@ namespace MealsToGo
             // .ForMember(d => d.Status, m => m.MapFrom(p => p.Status == 1 ? true : false));
             Mapper.CreateMap<MealAd, MealAdViewModel>();
 
-            Mapper.CreateMap<UserSetting, UserSettingsViewModel>().ForMember(d => d.ActivityType, m => m.MapFrom(p => p.LKUPActivityType.ActivityType))
-                                                                  .ForMember(d => d.PrivacySetting, m => m.MapFrom(p => p.LKUPPrivacySetting.PrivacySettings))
-                                                                  .ForMember(d => d.NotificationFrequency, m => m.MapFrom(p => p.NotificationFrequency.Description))
-                                                                   .ForMember(d => d.ReceiveEmailNotification, m => m.AddFormatter<VipFormatter>())
-                                                                     .ForMember(d => d.ReceiveMobileTextNotification, m => m.AddFormatter<VipFormatter>());
+            Mapper.CreateMap<UserSetting, UserSettingsViewModel>().ForMember(d => d.PrivacySetting, m => m.MapFrom(p => p.LKUPPrivacySetting.PrivacySettings))
+                                                                  .ForMember(d => d.ReceiveEmailNotification, m => m.MapFrom(p => p.NotificationFrequency.Description))
+                                                                   .ForMember(d => d.ReceiveMobileTextNotification, m => m.MapFrom(p => p.NotificationFrequency.Description));
+                                                                  // .ForMember(d => d.ReceiveEmailNotification, m => m.AddFormatter<VipFormatter>())
+                                                                 //    .ForMember(d => d.ReceiveMobileTextNotification, m => m.AddFormatter<VipFormatter>());
             Mapper.CreateMap<UserSettingsViewModel, UserSetting>();
 
             Mapper.CreateMap<MealItems_AllergenicFoods, Allergen>()

@@ -118,7 +118,17 @@ border-top:1px solid #dedede;
 }
 
 </style>
+    <style type="text/css">
+.picture {
+}
+.picture img { 
+vertical-align:middle; margin-bottom: 3px; }
 
+.left { float:left; font-family: sans-serif,'LaplandDemibold' Arial, Helvetica,;
+font-size:13px;
+font-style: italic; 
+color: #713f1d;}
+</style>
 
 <style type="text/css">
    
@@ -148,10 +158,13 @@ border-top:1px solid #dedede;
 <body>
     <div id="header">
         <div class="header-bl">
-            @*<img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo">*@
-            <a href="/Home/Index">
+            <div class="picture left" >
+             <a href="/Home/Index">
                 <img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo" />
+                
             </a>
+          <br />Find and share food in your neck of the woods. </div>
+
               @Html.Partial("_LoginPartial")
             
         </div>
@@ -173,8 +186,7 @@ border-top:1px solid #dedede;
                   
                     <ul>
                         <li>   @Html.ActionLink("Search Food", "Index", "Home", new RouteValueDictionary(searchparam), htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Hire a Cook", "Index", "Home", new RouteValueDictionary(searchparam), htmlAttributes: null)</li>
-                        <li class='last'>@Html.ActionLink("Search Tips", "Index", "Home", new RouteValueDictionary(searchparam), htmlAttributes: null)</li>
+                         <li class='last'>@Html.ActionLink("Some Tips", "SomeTips", "Home")</li>
 
                     </ul>
 
@@ -186,18 +198,21 @@ border-top:1px solid #dedede;
                       {<text> class='has-sub'</text>} >
                      @if (Request.IsAuthenticated)
                      {
-                     <a href="">Share Food/Meal</a>
+                     <a href="">Share Food</a>
+                         
                   
                     <ul>
-                        <li> @Html.ActionLink("Advertise", "Index", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li> @Html.ActionLink("Share", "Index", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         <li>@Html.ActionLink("Food List", "Index", "MealItem", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                        <li class='last'>@Html.ActionLink("Walk Through", "WalkThrough", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li class='last'>@Html.ActionLink("How To", "HowTo", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
 
                     </ul>
                      }
                      else
                      {
-                         <a href="/MealAd/WalkThrough">Share Food/Meal</a>
+                         <a href="/MealAd/WalkThrough">Share Food</a>
+                         <ul>   <li class='last'>@Html.ActionLink("How To", "HowTo", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+</ul>
                      }
                 </li>
                 
@@ -212,8 +227,8 @@ border-top:1px solid #dedede;
                    
                     <ul>
                         <li> @Html.ActionLink("Invite", "Invite", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Your People", "Index", "Contact", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                       <li class='last'>@Html.ActionLink("We Suggest", "Suggestions", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Your Network", "Index", "Contact", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                       <li class='last'>@Html.ActionLink("FAQ", "Suggestions", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
 
                     </ul>
                      }
@@ -238,7 +253,8 @@ border-top:1px solid #dedede;
                         <li>@Html.ActionLink("Profile", "Details", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         @*}*@
                         <li >@Html.ActionLink("Password", "Manage", "Account", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Privacy Settings", "Index", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li>@Html.ActionLink("Account Settings", "Index", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        
                          <li class='last'>@Html.ActionLink("Privacy Rules", "PrivacyRules", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         
                     </ul>

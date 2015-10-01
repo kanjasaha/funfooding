@@ -31,7 +31,6 @@ namespace MealsToGo.Models
         public System.DateTime DateCreated { get; set; }
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public int CountryID { get; set; }
-        public string CountryName { get; set; }
         public int IsBillingAddress { get; set; }
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }

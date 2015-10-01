@@ -30,7 +30,10 @@ namespace MealsToGo.Controllers
         {
             _service = service;
         }
-
+        public ActionResult HowTo()
+        {
+            return View();
+        }
 
         public ActionResult Index(int userid)
         {
@@ -171,6 +174,22 @@ namespace MealsToGo.Controllers
                      mealad.MealAd_Schedules.Add(meadadschedule);
                     //break;
                 }*/
+
+                foreach (var schedules in MealAdvm.MealAdSchedules)
+                {
+
+                    MealAd_Schedules meadadschedule = new MealAd_Schedules();
+                    meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
+                    meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
+                    meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+                    //meadadschedule.PickUpStartDateTime = Convert.ToDateTime(From);
+                    //meadadschedule.PickUpEndDateTime = Convert.ToDateTime(To);
+                    //meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+                    mealad.MealAd_Schedules.Add(meadadschedule);
+
+
+                    // break;
+                }
 
                 mealad.MealAdID = _service.AddAndReturnID(mealad);
 

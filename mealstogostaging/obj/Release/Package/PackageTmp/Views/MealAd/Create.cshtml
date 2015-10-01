@@ -8,7 +8,6 @@
 
 
 }
-@*<link href="~/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />*@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="~/build/js/moment.js"></script>
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -19,6 +18,19 @@
 
 <script src="~/build/js/bootstrap-datetimepicker.min.js"></script>
 <script src="~/build/js/bootstrap-datetimepicker1.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+        });
+    });
+</script>
 <script type="text/javascript">
    
 
@@ -52,7 +64,9 @@
         margin-left: 0px;
         width: 50px;
     }
-
+    visibleFalse {
+       display:none;
+    }
     ul.gen-form li input[type="text"] {
         background-color: #fff;
         background-image: none;
@@ -77,6 +91,36 @@
         border-bottom: 5px solid #dd2700 !important;
         height: 45px;
         width: auto;
+    }
+
+       input[type="checkbox"], input[type="radio"] {
+        box-sizing: border-box;
+        float: left !important;
+        height: 33px !important;
+         line-height: 0;
+        padding: 0;
+    }
+    label {
+        display: inline-block;
+        float: left !important;
+        font-weight: 700;
+        margin-bottom: 5px;
+        max-width: 20% !important;
+        width: 80% !important;
+    }
+    input, button, select, textarea {
+        float: left;
+        font-family: inherit;
+        font-size: inherit;
+        height: 28px;
+        line-height: inherit;
+        padding: 0 6px;
+    }
+    .menu-14u {
+        color: #4a4a4a;
+        float: right;
+        margin: 1em 0 0;
+        padding: 0 5px;
     }
 </style>
 
@@ -137,42 +181,37 @@
                         <table id="tblMealAdSchedules">
                             <tr>
                                 <td>
-                                    @Html.EditorFor(model => model.MealAdSchedules)
-                                
+                                    @Html.EditorFor(model => model.MealAdSchedules, new { hidden="true"})
+                                  
+                                 <p></p>
                                 </td>
                             </tr>
+                             <tr><td>
+                                  <div id="content">
+                                      <input class="datepicker_recurring_start" hidden="hidden" />
+                                  </div>
+                                  <button id="cmd" onclick="return false">Add another schedule</button>
+                              </td></tr>
                         </table>
-                        @* @Html.Partial("SchedulePartial", Model.MealAdSchedules)
-                            @foreach (var category in Model.MealAdSchedules)
-                               {
-                                   @Html.Partial("SchedulePartial", Model.MealAdSchedules)
-                               }*@
-                        @*@Html.EditorFor(x => x.MealAdSchedules, "~/Views/MealAd/SchedulePartial.cshtml")*@
+                      
 
                     </li>
-                    @*@Html.ActionLink("Add category...", "AddCategory", null, new { id = "addCategoryItem" })*@
-                    <a href="#" id="aMealAdSchedules">Add another schedule</a>
-                    @*
-                        When a user clicks this link, display another set of model.MealAdSchedules[0].PickUpStartDateTime,model.MealAdSchedules[0].PickUpEndDateTime
-                        User shoudl be able to add as many schedules as they want.
-
-                    *@
+                  
 
                     <li>
                         <p>Status</p>
-                        @*@Html.CheckBoxFor(model=>model.Status)*@
-                        @*@Html.EditorFor(model => model.Status)*@
+                     
                         @{
     SelectListItem[] list = {
-                                            new SelectListItem{Value="1",Text="Active"},
-                                            new SelectListItem{Value="0",Text="Inactive"}};
+                                            new SelectListItem{Value="0",Text="Active"},
+                                            new SelectListItem{Value="1",Text="Inactive"}};
                                             @Html.DropDownListFor(x => x.Status, list, new { @class = "gen-ftb" })
                         }
                     </li>
 
                     <li>
                         <label>
-                            <input type="submit" name="button2" id="button2" value="Advertise" class="submit" />
+                            <input type="submit" name="button2" id="button2" value="Share" class="submit" />
                         </label>
 
                         @Html.ActionLink("Back to List", "Index", new { userID = WebSecurity.CurrentUserId }, new { @class = "menu-14u" })

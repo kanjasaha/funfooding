@@ -586,6 +586,8 @@
     <Content Include="Views\Paypal\SuccessView.cshtml" />
     <Content Include="Views\Paypal\FailureView.cshtml" />
     <Content Include="Views\Paypal\Success.cshtml" />
+    <Content Include="Views\MealAd\HowTo.cshtml" />
+    <Content Include="Views\Home\SomeTips.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\DotNetOpenAuth.AspNet.dll" />
@@ -872,7 +874,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />

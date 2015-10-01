@@ -3,7 +3,65 @@
 @{
     ViewBag.Title = "Edit";
 }
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="~/build/js/moment.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+        });
+    });
+</script>
+
+<style>
+    ul.gen-form li span {
+        color: #707070;
+        float: left;
+        margin-left: 0px;
+        width: 50px;
+    }
+
+    visibleFalse {
+        display: none;
+    }
+
+    ul.gen-form li input[type="text"] {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        font-size: 14px;
+        height: 28px;
+        line-height: 1.22857;
+        padding: 6px 12px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        width: 80%;
+    }
+
+    .glyphicon {
+        width: auto !important;
+    }
+
+    .menu-ma {
+        border-bottom: 5px solid #dd2700 !important;
+        height: 45px;
+        width: auto;
+    }
+</style>
 @using (Html.BeginForm("Edit", "MealAd", FormMethod.Post))
 {
     @Html.ValidationSummary(false, "", new { @class = "error" })
@@ -47,101 +105,108 @@
                                 @Html.EditorFor(model => cat, null, "");
                             }*@
                         <table id="tblMealAdSchedules">
-                            @* @foreach (var cat in Model.MealAdSchedules) *@
-                            @*@for (int i = 0; i < Model.MealAdSchedules.Count; i++)*@
-                            @for (int i = 0; i <1; i++)
-                            {
-                                <tr>
-                                    <td>
-                                        @* @Html.EditorFor(model => model.MealAdSchedules)*@
-                                        @Html.EditorFor(model => model.MealAdSchedules[i])
-                                    </td>
-                                </tr>
-                            }
+
+                            @*@for (int i = 0; i <1; i++)*@
+                            @*@foreach (var cat in Model.MealAdSchedules)*@
+                                @for (int i = 0; i < (Model.MealAdSchedules.Count/2); i++)
+                                {
+                                    <tr>
+                                        <td>
+                                            @* @Html.EditorFor(model => model.MealAdSchedules)*@
+                                            @Html.EditorFor(model => model.MealAdSchedules[i])
+                                        </td>
+                                    </tr>
+                                }
+                            <tr><td>
+                            <div id="content">
+                                <input class="datepicker_recurring_start" hidden="hidden" />
+                            </div>
+                            <button id="cmd" onclick="return false">Add another schedule</button>
+                                </td></tr>
+                            </table>
+                            @* @Html.Partial("SchedulePartial", Model.MealAdSchedules)
+                                @foreach (var category in Model.MealAdSchedules)
+                                   {
+                                       @Html.Partial("SchedulePartial", Model.MealAdSchedules)
+                                   }*@
+                            @*@Html.EditorFor(x => x.MealAdSchedules, "~/Views/MealAd/SchedulePartial.cshtml")*@
+                    
 
 
-                        </table>
-                        @* @Html.Partial("SchedulePartial", Model.MealAdSchedules)
-                            @foreach (var category in Model.MealAdSchedules)
-                               {
-                                   @Html.Partial("SchedulePartial", Model.MealAdSchedules)
-                               }*@
-                        @*@Html.EditorFor(x => x.MealAdSchedules, "~/Views/MealAd/SchedulePartial.cshtml")*@
+                        </li>
+                        @*@Html.ActionLink("Add category...", "AddCategory", null, new { id = "addCategoryItem" })*@
+                        @*<a href="#" id="aMealAdSchedules" class="menu-14u">Add another schedule</a>*@
+                  
+                        @*<li>
+                                <p>Delivery Methods</p>
+                                @Html.DropDownListFor(x => x.DeliveryMethodID, Model.DeliveryMethodDDList, "Delivery Methods", new { @class = "gen-ftb" })
+                                @Html.ValidationMessageFor(model => model.DeliveryMethodID)
+                            </li>*@
+                        <li>
+                            <label>
+                                <input type="submit" name="button2" id="button2" value="Save" class="submit" />
+                            </label>
 
-                    </li>
-                    @*@Html.ActionLink("Add category...", "AddCategory", null, new { id = "addCategoryItem" })*@
-                    <a href="#" id="aMealAdSchedules" class="menu-14u">Add another schedule</a>
-                    @*<li>
-                            <p>Delivery Methods</p>
-                            @Html.DropDownListFor(x => x.DeliveryMethodID, Model.DeliveryMethodDDList, "Delivery Methods", new { @class = "gen-ftb" })
-                            @Html.ValidationMessageFor(model => model.DeliveryMethodID)
-                        </li>*@
-                    <li>
-                        <label>
-                            <input type="submit" name="button2" id="button2" value="Save" class="submit" />
-                        </label>
-
-                        @Html.ActionLink("Back to List", "Index", new { userID = WebSecurity.CurrentUserId }, new { @class = "menu-14u" })
-                    </li>
-                    <div class="clr"></div>
-                </ul>
-
+                            @Html.ActionLink("Back to List", "Index", new { userID = WebSecurity.CurrentUserId }, new { @class = "menu-14u" })
+                        </li>
+                        <div class="clr"></div>
+                    </ul>
+              
+                </div>
+                <div class="clr"></div>
 
             </div>
-            <div class="clr"></div>
 
         </div>
+        @*<fieldset>
+                <legend>MealAd</legend>
 
-    </div>
-    @*<fieldset>
-            <legend>MealAd</legend>
+                @Html.HiddenFor(model => model.MealAdID)
 
-            @Html.HiddenFor(model => model.MealAdID)
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MealItemID)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MealItemID)
+                    @Html.ValidationMessageFor(model => model.MealItemID)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.MealItemID)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.MealItemID)
-                @Html.ValidationMessageFor(model => model.MealItemID)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PickUpTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PickUpTime)
+                    @Html.ValidationMessageFor(model => model.PickUpTime)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.PickUpTime)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.PickUpTime)
-                @Html.ValidationMessageFor(model => model.PickUpTime)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.MaxOrders)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.MaxOrders)
+                    @Html.ValidationMessageFor(model => model.MaxOrders)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.MaxOrders)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.MaxOrders)
-                @Html.ValidationMessageFor(model => model.MaxOrders)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PlacedOrder)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PlacedOrder)
+                    @Html.ValidationMessageFor(model => model.PlacedOrder)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.PlacedOrder)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.PlacedOrder)
-                @Html.ValidationMessageFor(model => model.PlacedOrder)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.LastOrderTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.LastOrderTime)
+                    @Html.ValidationMessageFor(model => model.LastOrderTime)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.LastOrderTime)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.LastOrderTime)
-                @Html.ValidationMessageFor(model => model.LastOrderTime)
-            </div>
-
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>*@
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>*@
 }
 
 @*<div>
@@ -152,3 +217,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 <script type="text/javascript" src="~/Scripts/Funfooding_Order.js"></script>
+
+<script src="~/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/build/js/bootstrap-datetimepicker1.js"></script>
+

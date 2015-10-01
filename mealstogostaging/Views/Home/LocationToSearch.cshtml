@@ -12,22 +12,24 @@
   <div class="cont">
     <div class="cont-rit">
 <ul class="gen-form">
-      <li>
-        @Html.TextBox("address",null,new { @class = "gen-ftb"  , placeholder = "10011 or 123 Baker St,Elkhorn,MA  "})
-        @*<input name="" type="text" class="gen-ftb"/>*@<span>Enter your full address or just zipcode.</span></li>
-      <li>
+      <li><span    style="font: normal 14px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif;color: #7b4825;">Please enter your full address or just zipcode.</span>
+        @Html.TextBox("address",null,new { @class = "gen-ftb"  , placeholder = "10011 or 123 Baker St,Elkhorn,CA  "})<input type="submit" name="button2" value="Go" class="submit1" /> 
         
-      
-      <li>
-        <label>
-        <input type="submit" name="button2" id="button2" value="Go" class="submit" /> 
-        </label>
+          <br />
+          <br />
+            <br />
+       
       </li>
+      
+        
+   
+    
+    <li style="border-bottom: #f3f3f3 solid 0px;font: normal 14px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif;    color: #7b4825;">
+        <br />
+        
 
-    <li>
-
-    <span>Interested in sharing your home cooked meal? Click  @Html.ActionLink("here", "Help", "Company")
-    to learn more.</span>
+    Want to share your culinary skills? Learn  @Html.ActionLink("more", "HowTo", "MealAd")
+    ...
 
     </li>
       <div class="clr"></div>
@@ -41,29 +43,7 @@
 
 </div>
 
-    @*<div class="cont-main">
-  <h1>Find Food Near You</h1>
-  <div class="cont">
-      @Html.TextBox("address",null,new { style="width:150px" , placeholder = "10011 or 123 Baker St,Elkhorn,MA  ", @class = "zip-code" })
-      @Html.Label("Enter your location, zipcode will do but full address will be awesome!")
-      <br />
-     
-      @Html.TextBox("food",null,new { style="width:150px" , placeholder = "Pizza,burrito etc ", @class = "food-tb" })
-        @Html.Label("Have something definite in mind? ask away! Not sure? Leave it as it is! ")
-     
-      <br />
-    
-       <input name="button" type="submit" class="go" id="button" value="GO" />
-    
    
-      
-        
-      
-   
-         
-  </div>
-
-</div>*@
 }
 
  @section Scripts {

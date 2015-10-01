@@ -48,5 +48,6 @@ namespace MealsToGo.Models
         public string ProviderType { get; set; }
         public string ProviderName { get; set; }
         public string FullAddress { get; set; }
+        public int ActiveMealAdID { get; set; }
     }
 }

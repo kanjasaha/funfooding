@@ -11,6 +11,8 @@ namespace MealsToGo.Repository
     {
 
         IQueryable<UserSetting> FindByUser(long userid);
+
+        UserSetting GetById(long userid);
       
     }
 }

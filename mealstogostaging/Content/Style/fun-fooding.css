@@ -12,15 +12,16 @@ body {
     font-size:14px;
 }
 
+
 .clr{clear:both;}
 .left{float:left;}
 .right{float:right;}
 
 #header{ width:100%; }
-.header-bl{ height:104px; width:983px; margin:0 auto; }
+.header-bl{ height:104px; width:983px; margin:0 auto;font-size:80%;text-align:left; }
 
-.logo{float:left; margin-top:31px;} 
-
+.logo{float:left; margin-top:31px;}
+.logo-span {float:left}
 .login{float:right; width:377px; margin-top:25px;}
 
 .login-tb{ width:127px; height:31px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px; margin-right:10px; font:normal 14px/30px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#686868; border:#a8a8a8 solid 1px;}
@@ -32,7 +33,7 @@ body {
 .rmbr a{ text-decoration:underline; color:#686868;}
 .rmbr a:hover{color:#dd2700;}
 
-.banner{background: url(../images/bg2.jpg) repeat-x top center; padding:50px 0; border-top:#dd2700 solid 8px; }
+.banner{ padding:50px 0; border-top:#dd2700 solid 8px; }
 
 .banner-blk{ width:983px; margin:0 auto;}
 
@@ -122,7 +123,7 @@ ul.filter li{ font:normal 12px/25px 'LaplandDemibold' Arial, Helvetica, sans-ser
 .dist-tb{ width:170px; height:30px;  -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:2px 5px; margin-right:5px; font:normal 14px/25px "Open Sans",sans-serif !important; color:#686868; border:#a8a8a8 solid 1px; float:left; }
 
 .search2{ height:34px;  border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 10px;  font:normal 16px/33px "Open Sans",sans-serif !important; color:#fff; background:#dd2700; cursor:pointer; float:left; }
-.search2:hover {background:#39f;}
+.search2:hover {background:#dd2700;}
 input[]type="submit"] {line-height: 22px;}
 .gride{width:auto;}
 .normal-16{ font:normal 16px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#4a4a4a; padding:0 5px; }
@@ -180,10 +181,11 @@ ul.gen-form li select:focus {
 .gen-fta{width:280px; height:80px; border:none; -webkit-border-radius:3px 3px 3px 3px; -moz-border-radius:3px 3px 3px 3px; border-radius:3px 3px 3px 3px; padding:0 5px;  font:normal 14px/30px "Open Sans",sans-serif !important; color:#cfd0d0; border:#a8a8a8 solid 1px; float:left;}
 
 .submit{ height:40px; line-height:37px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 20px; font-size:16px;  font-family:"Open Sans",sans-serif !important; color:#fff; background:#dd2700; cursor:pointer; margin-left:220px; border:#ca2400 solid 2PX; margin-top:10px;}
-.submit:hover {background:#39f; border: 2px solid #39f;}
+.submit:hover {background:#dd2700; border: 2px solid #fcb600;}
 .submit3{ height:35px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 20px;  font:normal 20px/35px "Open Sans",sans-serif !important; color:#fff; background:#dd2700; cursor:pointer;  border:#ca2400 solid 2PX; }
 
 .submit4{ height:35px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 20px;  font:normal 20px/35px "Open Sans",sans-serif !important; color:#fff; background:#fbb400; cursor:pointer;  border:#db9d00 solid 2PX; }
+.submit1{ height:37px; line-height:37px; border:none; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 10px; font-size:16px;  font-family:"Open Sans",sans-serif !important; color:#fff; background:#dd2700; cursor:pointer; border:#ca2400 solid 2PX; margin-top:22px;margin-left:30px;}
 
 .cont2{ height:104px; width:983px; margin:0 auto; }
 
@@ -208,7 +210,7 @@ ul.gen-form li select:focus {
 .submit2{ height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 18px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#dd2700; cursor:pointer; border:#ca2400 solid 2px; margin-top:5px; text-decoration:none; width:80px; float:right; text-align:center; }
 
 .submit5{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#ca2400; cursor:pointer; border:#ca2400 solid 2px;  text-decoration:none; width:25%; float:left; margin:0.2em 0;  }
-.submit5:hover {background:#39f; border:2px solid #39f;} 
+.submit5:hover {background:#dd2700; border:2px solid #fcb600;} 
 .submit6{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#b5b5b5; cursor:pointer; border:#a8a8a8 solid 2px; margin-top:5px; text-decoration:none;  }
 
 
@@ -404,7 +406,7 @@ fieldset#body {
 }
 
 #loginForm span a:hover {
-    color:#fff;
+    color:#dd2700;
     font-size:14px;
 }
 

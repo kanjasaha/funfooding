@@ -235,6 +235,8 @@ namespace MealsToGo.Controllers
         [HttpPost]
         public JsonResult CreateMealItem(MealItemViewModel mtvms)
         {
+     
+        
             IMealItemService _service = new MealItemService();
             MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
             foreach (var mealaller in mtvms.AllergenDD)

@@ -91,44 +91,7 @@
     <EntitySet Name="UserProfile" EntityType="ThreeSixtyTwoModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserSettings" EntityType="ThreeSixtyTwoModel.Store.UserSettings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webpages_Membership" EntityType="ThreeSixtyTwoModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ActiveMealAds" EntityType="ThreeSixtyTwoModel.Store.ActiveMealAds" store:Type="Tables" store:Schema="search" store:Name="ActiveMealAds">
-      <DefiningQuery>SELECT 
-      [ActiveMealAds].[MealAdID] AS [MealAdID], 
-      [ActiveMealAds].[MealItemName] AS [MealItemName], 
-      [ActiveMealAds].[PickUpTime] AS [PickUpTime], 
-      [ActiveMealAds].[MaxOrders] AS [MaxOrders], 
-      [ActiveMealAds].[PlacedOrder] AS [PlacedOrder], 
-      [ActiveMealAds].[LastOrderTime] AS [LastOrderTime], 
-      [ActiveMealAds].[CuisineType] AS [CuisineType], 
-      [ActiveMealAds].[MealType] AS [MealType], 
-      [ActiveMealAds].[Description] AS [Description], 
-      [ActiveMealAds].[Ingredients] AS [Ingredients], 
-      [ActiveMealAds].[Photo] AS [Photo], 
-      [ActiveMealAds].[Quantity] AS [Quantity], 
-      [ActiveMealAds].[Price] AS [Price], 
-      [ActiveMealAds].[Currency] AS [Currency], 
-      [ActiveMealAds].[FirstName] AS [FirstName], 
-      [ActiveMealAds].[LastName] AS [LastName], 
-      [ActiveMealAds].[Address1] AS [Address1], 
-      [ActiveMealAds].[Address2] AS [Address2], 
-      [ActiveMealAds].[City] AS [City], 
-      [ActiveMealAds].[Province] AS [Province], 
-      [ActiveMealAds].[Zip] AS [Zip], 
-      [ActiveMealAds].[Country] AS [Country], 
-      [ActiveMealAds].[Telephone] AS [Telephone], 
-      [ActiveMealAds].[Email] AS [Email], 
-      [ActiveMealAds].[FoodAllergy] AS [FoodAllergy], 
-      [ActiveMealAds].[FoodType] AS [FoodType], 
-      [ActiveMealAds].[Latitude] AS [Latitude], 
-      [ActiveMealAds].[Longitude] AS [Longitude], 
-      [ActiveMealAds].[latlng] AS [latlng], 
-      [ActiveMealAds].[PriceRange] AS [PriceRange], 
-      [ActiveMealAds].[AllInfo] AS [AllInfo], 
-      [ActiveMealAds].[ProviderType] AS [ProviderType], 
-      [ActiveMealAds].[ProviderName] AS [ProviderName], 
-      [ActiveMealAds].[FullAddress] AS [FullAddress]
-      FROM [search].[ActiveMealAds] AS [ActiveMealAds]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="ActiveMealAds" EntityType="ThreeSixtyTwoModel.Store.ActiveMealAds" store:Type="Tables" Schema="search" />
     <AssociationSet Name="FK_Cart_MealAds" Association="ThreeSixtyTwoModel.Store.FK_Cart_MealAds">
       <End Role="MealAds" EntitySet="MealAds" />
       <End Role="Cart" EntitySet="Cart" />
@@ -221,15 +184,15 @@
       <End Role="LKUPKitchenType" EntitySet="LKUPKitchenType" />
       <End Role="UserDetails" EntitySet="UserDetails" />
     </AssociationSet>
-    <AssociationSet Name="FK_UserSettings_LKUPActivityType" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_LKUPActivityType">
-      <End Role="LKUPActivityType" EntitySet="LKUPActivityType" />
-      <End Role="UserSettings" EntitySet="UserSettings" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserSettings_LKUPPrivacySettings" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_LKUPPrivacySettings">
       <End Role="LKUPPrivacySettings" EntitySet="LKUPPrivacySettings" />
       <End Role="UserSettings" EntitySet="UserSettings" />
     </AssociationSet>
     <AssociationSet Name="FK_UserSettings_NotificationFrequency" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_NotificationFrequency">
+      <End Role="NotificationFrequency" EntitySet="NotificationFrequency" />
+      <End Role="UserSettings" EntitySet="UserSettings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSettings_NotificationFrequency1" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_NotificationFrequency1">
       <End Role="NotificationFrequency" EntitySet="NotificationFrequency" />
       <End Role="UserSettings" EntitySet="UserSettings" />
     </AssociationSet>
@@ -772,11 +735,9 @@
     </Key>
     <Property Name="UserSettingsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="ActivityTypeID" Type="int" Nullable="false" />
     <Property Name="PrivacySettingsID" Type="int" Nullable="false" />
-    <Property Name="ReceiveEmailNotification" Type="int" Nullable="false" />
-    <Property Name="ReceiveMobileTextNotification" Type="int" Nullable="false" />
-    <Property Name="NotificationFrequencyID" Type="int" Nullable="false" />
+    <Property Name="ReceiveEmailNotificationID" Type="int" Nullable="false" />
+    <Property Name="ReceiveMobileTextNotificationID" Type="int" Nullable="false" />
     <Property Name="Verified" Type="int" />
     <Property Name="VerificationDate" Type="datetime" />
   </EntityType>
@@ -796,14 +757,11 @@
     <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
     <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'ThreeSixtyTwo.search.ActiveMealAds' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="ActiveMealAds">
     <Key>
-      <PropertyRef Name="MealAdID" />
+      <PropertyRef Name="ActiveMealAdID" />
     </Key>
-    <Property Name="MealAdID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MealAdID" Type="int" Nullable="false" />
     <Property Name="MealItemName" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="PickUpTime" Type="datetime" Nullable="false" />
     <Property Name="MaxOrders" Type="int" Nullable="false" />
@@ -837,6 +795,7 @@
     <Property Name="ProviderType" Type="varchar" MaxLength="30" />
     <Property Name="ProviderName" Type="varchar" MaxLength="30" />
     <Property Name="FullAddress" Type="varchar" MaxLength="100" />
+    <Property Name="ActiveMealAdID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <Association Name="FK_Cart_MealAds">
     <End Role="MealAds" Type="ThreeSixtyTwoModel.Store.MealAds" Multiplicity="1" />
@@ -1114,18 +1073,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserSettings_LKUPActivityType">
-    <End Role="LKUPActivityType" Type="ThreeSixtyTwoModel.Store.LKUPActivityType" Multiplicity="1" />
-    <End Role="UserSettings" Type="ThreeSixtyTwoModel.Store.UserSettings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LKUPActivityType">
-        <PropertyRef Name="ActivityTypeLKUPID" />
-      </Principal>
-      <Dependent Role="UserSettings">
-        <PropertyRef Name="ActivityTypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserSettings_LKUPPrivacySettings">
     <End Role="LKUPPrivacySettings" Type="ThreeSixtyTwoModel.Store.LKUPPrivacySettings" Multiplicity="1" />
     <End Role="UserSettings" Type="ThreeSixtyTwoModel.Store.UserSettings" Multiplicity="*" />
@@ -1146,7 +1093,19 @@
         <PropertyRef Name="NotificationFrequencyID" />
       </Principal>
       <Dependent Role="UserSettings">
+        <PropertyRef Name="ReceiveEmailNotificationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSettings_NotificationFrequency1">
+    <End Role="NotificationFrequency" Type="ThreeSixtyTwoModel.Store.NotificationFrequency" Multiplicity="1" />
+    <End Role="UserSettings" Type="ThreeSixtyTwoModel.Store.UserSettings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotificationFrequency">
         <PropertyRef Name="NotificationFrequencyID" />
+      </Principal>
+      <Dependent Role="UserSettings">
+        <PropertyRef Name="ReceiveMobileTextNotificationID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

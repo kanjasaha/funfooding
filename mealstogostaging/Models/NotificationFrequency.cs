@@ -17,11 +17,13 @@ namespace MealsToGo.Models
         public NotificationFrequency()
         {
             this.UserSettings = new HashSet<UserSetting>();
+            this.UserSettings1 = new HashSet<UserSetting>();
         }
     
         public int NotificationFrequencyID { get; set; }
         public string Description { get; set; }
     
         public virtual ICollection<UserSetting> UserSettings { get; set; }
+        public virtual ICollection<UserSetting> UserSettings1 { get; set; }
     }
 }

@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>09/17/2015 01:21:18</publishTime>
+      <publishTime>10/01/2015 00:25:23</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -278,7 +278,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:32:58</publishTime>
     </File>
     <File Include="Content/css/fun-fooding.css">
-      <publishTime>09/07/2015 03:31:28</publishTime>
+      <publishTime>09/29/2015 04:08:24</publishTime>
     </File>
     <File Include="Content/images/ajax-loader.gif">
       <publishTime>09/06/2015 23:32:58</publishTime>
@@ -401,10 +401,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:32:58</publishTime>
     </File>
     <File Include="Content/Style/fun-fooding.css">
-      <publishTime>09/14/2015 22:45:18</publishTime>
+      <publishTime>09/29/2015 04:08:37</publishTime>
     </File>
     <File Include="Content/Style/media-queries.css">
-      <publishTime>09/06/2015 23:32:58</publishTime>
+      <publishTime>09/29/2015 04:09:00</publishTime>
     </File>
     <File Include="Content/Style/menu.css">
       <publishTime>09/06/2015 23:32:58</publishTime>
@@ -764,13 +764,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:07</publishTime>
     </File>
     <File Include="Models/CookingEntities.Context.tt">
-      <publishTime>09/06/2015 23:33:07</publishTime>
+      <publishTime>05/23/2014 14:28:06</publishTime>
     </File>
     <File Include="Models/CookingEntities.edmx.diagram">
-      <publishTime>09/06/2015 23:33:07</publishTime>
+      <publishTime>09/29/2015 02:33:02</publishTime>
     </File>
     <File Include="Models/CookingEntities.tt">
-      <publishTime>09/06/2015 23:33:07</publishTime>
+      <publishTime>01/12/2015 00:19:13</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>09/06/2015 23:33:57</publishTime>
@@ -839,7 +839,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:09</publishTime>
     </File>
     <File Include="Scripts/Funfooding_Order.js">
-      <publishTime>09/06/2015 23:33:24</publishTime>
+      <publishTime>09/30/2015 22:31:08</publishTime>
     </File>
     <File Include="Scripts/grid.locale-en.js">
       <publishTime>09/06/2015 23:33:24</publishTime>
@@ -971,7 +971,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/09/2015 20:58:59</publishTime>
     </File>
     <File Include="Views/Account/SignUp.cshtml">
-      <publishTime>09/15/2015 00:06:55</publishTime>
+      <publishTime>09/29/2015 03:41:03</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
       <publishTime>09/06/2015 23:33:26</publishTime>
@@ -992,7 +992,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Company/About.cshtml">
-      <publishTime>09/06/2015 23:33:27</publishTime>
+      <publishTime>09/30/2015 23:29:47</publishTime>
     </File>
     <File Include="Views/Company/Contact.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1016,7 +1016,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>09/06/2015 23:33:27</publishTime>
+      <publishTime>09/29/2015 03:53:06</publishTime>
     </File>
     <File Include="Views/Emails/Standard.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1052,7 +1052,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/Home/LocationToSearch.cshtml">
-      <publishTime>09/14/2015 21:50:45</publishTime>
+      <publishTime>09/23/2015 21:05:52</publishTime>
     </File>
     <File Include="Views/Home/Map.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1066,6 +1066,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Home/ShowMap.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
+    <File Include="Views/Home/SomeTips.cshtml">
+      <publishTime>09/28/2015 21:10:13</publishTime>
+    </File>
     <File Include="Views/Home/Success.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
@@ -1076,28 +1079,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/MealAd/Create.cshtml">
-      <publishTime>09/17/2015 01:10:05</publishTime>
+      <publishTime>09/30/2015 23:25:06</publishTime>
     </File>
     <File Include="Views/MealAd/Delete.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/MealAd/Details.cshtml">
-      <publishTime>09/06/2015 23:33:28</publishTime>
+      <publishTime>09/28/2015 22:44:22</publishTime>
     </File>
     <File Include="Views/MealAd/Edit.cshtml">
-      <publishTime>09/06/2015 23:33:28</publishTime>
+      <publishTime>09/28/2015 22:56:24</publishTime>
     </File>
     <File Include="Views/MealAd/EditorTemplates/DeliveryMethodViewModel.cshtml">
       <publishTime>09/07/2015 02:08:42</publishTime>
     </File>
     <File Include="Views/MealAd/EditorTemplates/MealAdSchedule.cshtml">
-      <publishTime>09/17/2015 00:50:11</publishTime>
+      <publishTime>09/30/2015 23:07:59</publishTime>
     </File>
     <File Include="Views/MealAd/EditorTemplates/PaymentMethodViewModel.cshtml">
       <publishTime>09/07/2015 02:08:01</publishTime>
     </File>
+    <File Include="Views/MealAd/HowTo.cshtml">
+      <publishTime>09/24/2015 22:51:23</publishTime>
+    </File>
     <File Include="Views/MealAd/Index.cshtml">
-      <publishTime>09/07/2015 01:43:35</publishTime>
+      <publishTime>09/28/2015 22:36:27</publishTime>
     </File>
     <File Include="Views/MealAd/Index.Mobile.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1193,7 +1199,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Settings/Index.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>09/29/2015 03:42:25</publishTime>
     </File>
     <File Include="Views/Settings/PrivacyRules.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1205,7 +1211,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/15/2015 00:11:07</publishTime>
+      <publishTime>09/28/2015 23:55:59</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.Mobile.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1274,7 +1280,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/17/2015 01:24:44</publishTime>
+      <publishTime>10/01/2015 00:29:13</publishTime>
     </File>
   </ItemGroup>
 </Project>

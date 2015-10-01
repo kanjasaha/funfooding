@@ -16,16 +16,14 @@ namespace MealsToGo.Models
     {
         public int UserSettingsID { get; set; }
         public int UserID { get; set; }
-        public int ActivityTypeID { get; set; }
         public int PrivacySettingsID { get; set; }
-        public int ReceiveEmailNotification { get; set; }
-        public int ReceiveMobileTextNotification { get; set; }
-        public int NotificationFrequencyID { get; set; }
+        public int ReceiveEmailNotificationID { get; set; }
+        public int ReceiveMobileTextNotificationID { get; set; }
         public Nullable<int> Verified { get; set; }
         public Nullable<System.DateTime> VerificationDate { get; set; }
     
-        public virtual LKUPActivityType LKUPActivityType { get; set; }
         public virtual LKUPPrivacySetting LKUPPrivacySetting { get; set; }
         public virtual NotificationFrequency NotificationFrequency { get; set; }
+        public virtual NotificationFrequency NotificationFrequency1 { get; set; }
     }
 }

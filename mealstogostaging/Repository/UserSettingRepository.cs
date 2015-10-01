@@ -26,6 +26,11 @@ namespace MealsToGo.Repository
             return _dbset.Where(x => x.UserID==userid);
         }
 
+        public UserSetting GetById(long userid)
+        {
+            return _dbset.Where(x => x.UserID == userid).First();
+        }
+
      
 
         //protected override void Dispose(bool disposing)

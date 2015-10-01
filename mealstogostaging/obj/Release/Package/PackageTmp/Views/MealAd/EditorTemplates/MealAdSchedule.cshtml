@@ -1,11 +1,130 @@
 ﻿@model MealsToGo.ViewModels.MealAdSchedule
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="~/build/js/moment.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+        });
+        $('body').on('focus', ".datepicker_recurring_start", function () {
+            $(this).datetimepicker();
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker2').datetimepicker({
+        });
+        $('body').on('focus', ".datepicker_recurring_start", function () {
+            $(this).datetimepicker();
+        });
+    });
+</script>
 
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+        });
+        $('body').on('focus', ".datepicker_recurring_start", function () {
+            $(this).datetimepicker();
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker4').datetimepicker({
+        });
+        $('body').on('focus', ".datepicker_recurring_start", function () {
+            $(this).datetimepicker();
+        });
+    });
+    $('body').on('focus', ".datepicker_recurring_start", function () {
+        $(this).datetimepicker();
+    });
+</script>
+<style>
+    ul.gen-form li span {
+        color: #707070;
+        float: left;
+        margin-left: 0px;
+        width: 50px;
+    }
+
+    visibleFalse {
+        display: none;
+    }
+
+    ul.gen-form li input[type="text"] {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        font-size: 14px;
+        height: 28px;
+        line-height: 1.22857;
+        padding: 6px 12px;
+        transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        width: 80%;
+    }
+
+    .glyphicon {
+        width: auto !important;
+    }
+
+    .menu-ma {
+        border-bottom: 5px solid #dd2700 !important;
+        height: 45px;
+        width: auto;
+    }
+    .cont-rit {
+        float: left;
+        width: 800px;
+    }
+</style>
+
+<div style="float:left;">
+    <div id="datetimepicker1" class="input-group date" style="float:left;">
+        @*@Html.EditorFor(model => model.From)*@
+        @*<input type="text" name="From" class="form-control">*@
+        @*@Html.EditorFor(model => model.PickUpStartDateTime, new { @class = "gen-ftb", required = "required" })*@
+        @Html.EditorFor(model => model.PickUpStartDateTime, new { @class = "datepicker_recurring_start", required = "required" })
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+           
+           
+        </span>
+
+    </div>
+
+    @Html.ValidationMessageFor(model => model.PickUpStartDateTime)
+    <div style="float:left; margin:0 1em;">To</div>
+        <div id="datetimepicker2" class="input-group date" style="float:left;">
+            @*@Html.EditorFor(model => model.From)*@
+            @*<input type="text" name="To" class="form-control">*@
+
+            @Html.EditorFor(model => model.PickUpEndDateTime, new { @class = "gen-ftb", required = "required" })
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+ 
+@Html.ValidationMessageFor(model => model.PickUpEndDateTime)
   
-    @Html.TextBoxFor(model => model.PickUpStartDateTime, "{0:MM/dd/yyyy HH:MM tt }", new { @class = "date-tb1 food-tb2", placeholder = "Start Time" })
+    @*@Html.EditorFor(model => model.PickUpStartDateTime, new { @class = "gen-ftb" })
     @Html.ValidationMessageFor(model => model.PickUpStartDateTime)
 
- 
+ @Html.EditorFor(model => model.PickUpEndDateTime, new { @class = "gen-ftb" })
+    @Html.ValidationMessageFor(model => model.PickUpEndDateTime)*@
 
- @Html.TextBoxFor(model => model.PickUpEndDateTime, "{0:MM/dd/yyyy HH:MM tt}", new { @class = "date-tb1 food-tb2", placeholder = "End Time" })
-    @Html.ValidationMessageFor(model => model.PickUpEndDateTime)
+<script type="text/javascript" src="~/Scripts/Funfooding_Order.js"></script>
+<script src="~/build/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/build/js/bootstrap-datetimepicker1.js"></script>

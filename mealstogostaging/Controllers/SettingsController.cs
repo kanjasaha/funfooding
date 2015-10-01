@@ -32,32 +32,19 @@ namespace MealsToGo.Controllers
          public ActionResult Index(int userid,string referrer)
          {
 
-             // IEnumerable<MealAd> mealads = db.MealAds.Where(x=>x.MealItem.UserId == userid);
-           //  ViewBag.MealItemCount = db.MealItems.Where(x => x.UserId == userid).Count();
-             //ViewBag.UserID = userid;
-             //return View(mealads.ToList());
-             if (referrer == "sharemeal")
+                 if (referrer == "sharemeal")
                  Session[referrer] = "sharemeal";
 
-             IEnumerable<UserSetting> usersetting = _service.FindByUser(userid);
-             IEnumerable<UserSettingsViewModel> usvm = Mapper.Map<IEnumerable<UserSetting>, IEnumerable<UserSettingsViewModel>>(usersetting);
+             UserSetting usersetting = _service.GetById(userid);
+             UserSettingsViewModel usvm = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
              
-             //IEnumerable<LKUPDeliveryMethod> DeliveryMethodList = DeliveryMethods.ToList();
-             //mo.DeliveryMethodDDList =
-             //    DeliveryMethodList.Select(x => new SelectListItem
-             //    {
-             //        Value = x.DeliveryMethodID.ToString(),
-             //        Text = x.DeliveryMethod
-             //    });
-             //return View(mo);
+              
 
-             //UserSettingsViewModel usvm = new UserSettingsViewModel();
-             //usvm = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
-
-             
 
              return View(usvm);
          }
+
+        
         //
         // GET: /Settings/Details/5
 
@@ -165,9 +152,8 @@ namespace MealsToGo.Controllers
             if (ModelState.IsValid)
             {
                 UserSetting usersetting = db.UserSettings.Find(usvm.UserSettingsID);
-                usersetting.ReceiveEmailNotification = usvm.ReceiveEmailNotificationID;
-                usersetting.ReceiveMobileTextNotification = usvm.ReceiveMobileTextNotificationID;
-                usersetting.NotificationFrequencyID = (String.IsNullOrEmpty(usvm.NotificationFrequencyID) ? 0 : Convert.ToInt32(usvm.NotificationFrequencyID));
+                usersetting.ReceiveEmailNotificationID = usvm.ReceiveEmailNotificationID;
+                usersetting.ReceiveMobileTextNotificationID = usvm.ReceiveMobileTextNotificationID;
                 usersetting.PrivacySettingsID = usvm.PrivacySettingID;
 
                 UserSetting us = Mapper.Map<UserSettingsViewModel, UserSetting>(usvm);
@@ -180,7 +166,7 @@ namespace MealsToGo.Controllers
                 UserSetting usersetting = db.UserSettings.Find(usvm.UserSettingsID);
 
                 UserSettingsViewModel usvm1 = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
-                usvm.ActivityType = usvm1.ActivityType;
+               
 
                 var PrivacySettingOptions = from b in db.LKUPPrivacySettings select b;
 
