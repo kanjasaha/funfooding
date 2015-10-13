@@ -31,16 +31,9 @@ namespace MealsToGo.Models
         public Nullable<int> AmazonPayID { get; set; }
         public string SkypeID { get; set; }
         public string Mobile { get; set; }
-        public string IdentificationNumber { get; set; }
-        public string PassportNumber { get; set; }
-        public string CountryOfIssuance { get; set; }
-        public Nullable<int> IsSeller { get; set; }
         public string KitchenName { get; set; }
-        public Nullable<int> KitchenTypeID { get; set; }
-        public int SellersTermsAndConditionAccepted { get; set; }
     
         public virtual AddressList AddressList { get; set; }
         public virtual AddressList AddressList1 { get; set; }
-        public virtual LKUPKitchenType LKUPKitchenType { get; set; }
     }
 }

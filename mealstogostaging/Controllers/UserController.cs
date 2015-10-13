@@ -135,8 +135,7 @@ namespace MealsToGo.Controllers
             if (userinfovm.Address != null && dbmeals.LKUPCountries.FirstOrDefault(x => x.CountryID == userinfovm.Address.CountryID) != null)
                 userinfovm.Address.CountryName = dbmeals.LKUPCountries.FirstOrDefault(x => x.CountryID == userinfovm.Address.CountryID).Country;
 
-            var LKUPKitchenType = dbmeals.LKUPKitchenTypes.Where(x => x.KitchenTypeID == userdetail.KitchenTypeID).FirstOrDefault();
-            userinfovm.KitchenType = (LKUPKitchenType == null ? String.Empty : LKUPKitchenType.Name.ToString());
+           
             return View(userinfovm);
         }
 
@@ -182,31 +181,17 @@ namespace MealsToGo.Controllers
 
                 EmailModel emailmodel = new EmailModel();
                 emailmodel.From = db.UserProfiles.Where(x => x.UserId == userid).First().UserName;
+                string SenderFirstName = db.UserProfiles.Where(x => x.UserId == userid).First().FirstName;
 
                 foreach (var emailaddress in emails)
                 {
                     string email = emailaddress;
-                    Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-                    Match match = regex.Match(email);
-                    if (match.Success)
-                    { 
-                    
-                    }
-                    else
-                    {
-                        TempData["emailAlert"] = "Please enter valid email address";
-                        return RedirectToAction("Invite", "User", new { userid = userid });
 
-                    }
-
-                    if (IsValidEmail(emailaddress))
+                    bool EmailExists = db.UserProfiles.Any(x => x.UserName == email);
+                    if (EmailExists)
                     {
 
-                        //string confirmationToken =
-                        //   WebSecurity.CreateUserAndAccount(emailaddress, "Test12345", propertyValues: new
-                        //   {
-                        //       FirstName = "FirstName"
-                        //   }, requireConfirmationToken: true); //new {Email=model.Email}
+                        var Recipient = db.UserProfiles.Where(x => x.UserName == email).First();
                         emailmodel.To = emailaddress;
                         emailmodel.Subject = "Join me at Funfooding";
 
@@ -218,14 +203,14 @@ namespace MealsToGo.Controllers
                         sb.Append("</head>");
                         sb.Append("<body>");
                         sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
-                        sb.Append("Hi there,<br />");
-                        sb.Append("Join Funfooding to find and share food in and around your neighorhood!<br />");
+                        sb.Append("Hi " + Recipient.FirstName.ToString() + ",<br />");
+                        sb.Append("Connect with " + SenderFirstName + " at Funfooding!<br />");
                         sb.Append("<br />");
-                        sb.Append("To sign up click ");
-                        sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" +  " style=\"color:#0066CC\"> here</a>.<br />");
-                      
-                       // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
-                         sb.Append("<br />");
+                        sb.Append("To Sign In click ");
+                        sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Login/" + " style=\"color:#0066CC\"> here</a>.<br />");
+
+                        // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                        sb.Append("<br />");
                         sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@funfooding.com</a>.<br />");
                         sb.Append("<br /> ");
                         sb.Append("Best regards,<br />");
@@ -234,18 +219,71 @@ namespace MealsToGo.Controllers
                         sb.Append("</body>");
                         sb.Append("</html>");
                         emailmodel.EmailBody = sb.ToString();
-
                         Common.sendeMail(emailmodel, EmailExist(emailaddress));
-                        InsertRequestInfo(userid, emailmodel.From, emailmodel.To);
+                        InsertRequestInfo(userid, emailmodel.From, emailmodel.To, Recipient.UserId);
                     }
                     else
                     {
-                        invalidemails = invalidemails + "," + emailaddress;
+                        Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                        Match match = regex.Match(email);
+                        if (match.Success)
+                        {
 
+                        }
+                        else
+                        {
+                            TempData["emailAlert"] = "Please enter valid email address";
+                            return RedirectToAction("Invite", "User", new { userid = userid });
+
+                        }
+
+                        if (IsValidEmail(emailaddress))
+                        {
+
+                            //string confirmationToken =
+                            //   WebSecurity.CreateUserAndAccount(emailaddress, "Test12345", propertyValues: new
+                            //   {
+                            //       FirstName = "FirstName"
+                            //   }, requireConfirmationToken: true); //new {Email=model.Email}
+                            emailmodel.To = emailaddress;
+                            emailmodel.Subject = "Join me at Funfooding";
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                            sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                            sb.Append("<head>");
+                            sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                            sb.Append("</head>");
+                            sb.Append("<body>");
+                            sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                            sb.Append("Hi there,<br />");
+                            sb.Append("Join Funfooding to find and share food in and around your neighorhood!<br />");
+                            sb.Append("<br />");
+                            sb.Append("To sign up click ");
+                            sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + " style=\"color:#0066CC\"> here</a>.<br />");
+
+                            // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                            sb.Append("<br />");
+                            sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@funfooding.com</a>.<br />");
+                            sb.Append("<br /> ");
+                            sb.Append("Best regards,<br />");
+                            sb.Append("Support Team<br />");
+                            sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                            sb.Append("</body>");
+                            sb.Append("</html>");
+                            emailmodel.EmailBody = sb.ToString();
+
+                            Common.sendeMail(emailmodel, EmailExist(emailaddress));
+                            InsertRequestInfo(userid, emailmodel.From, emailmodel.To,null);
+                        }
+                        else
+                        {
+                            invalidemails = invalidemails + "," + emailaddress;
+
+
+                        }
 
                     }
-
-
 
                 }
                 if (invalidemails == "")
@@ -253,6 +291,7 @@ namespace MealsToGo.Controllers
 
                     //AccountController acc = new AccountController();
                     return RedirectPage(userid);
+                    return RedirectToAction("Index", "Contact", new { userID = userid });
 
                 }
 
@@ -266,7 +305,7 @@ namespace MealsToGo.Controllers
             else { return View(); }
         }
 
-        private void InsertRequestInfo(int userid, string SenderEmailAddress, string EmailTo)
+        private void InsertRequestInfo(int userid, string SenderEmailAddress, string EmailTo, int? recipientuserid)
         {
             try
             {
@@ -274,6 +313,7 @@ namespace MealsToGo.Controllers
                 ct.UserID = userid;
                 ct.SenderEmailAddress = SenderEmailAddress;
                 ct.RecipientEmailAddress = EmailTo;
+                ct.RecipientUserID = recipientuserid;
                 dbmeals.ContactLists.Add(ct);
                 dbmeals.SaveChanges();
             }
@@ -283,10 +323,7 @@ namespace MealsToGo.Controllers
             }
         }
 
-        public void AcceptRequest(string RequestedBy, string RequestedTo)
-        {
-
-        }
+       
         public int CheckFriend(ContactList cls)
         {
 
@@ -483,13 +520,9 @@ namespace MealsToGo.Controllers
                     dbmeals.AddressLists.Add(addr);
                     dbmeals.SaveChanges();
 
-                    if (userinfovm.CheckIfSeller)
-                        userinfovm.IsSeller = 1;
-                    else
-                        userinfovm.IsSeller = 0;
-
+                   
                     UserDetail userinfo = Mapper.Map<UserDetailViewModel, UserDetail>(userinfovm);
-                    userinfo.KitchenTypeID = userinfovm.KitchenTypeID;
+                   
                     userinfo.KitchenName = userinfovm.KitchenName;
                     
                     int last_insert_id = addr.AddressID;
@@ -680,7 +713,7 @@ namespace MealsToGo.Controllers
                
                 //currentinfo.KitchenName = currentinfo.KitchenName;
                 currentinfo.KitchenName = Kname;
-                currentinfo.KitchenTypeID = KID;
+               
            
                 var fileName = "";
                 // Verify that the user selected a file

@@ -48,6 +48,36 @@ namespace MealsToGo.Controllers
         //
         // GET: /Settings/Details/5
 
+         private UserSettingsViewModel PopulateDropDown(UserSettingsViewModel usvm, UserSetting ust)
+         {
+             if (usvm == null)
+                 usvm = new UserSettingsViewModel();
+             usvm.PrivacySettingDD.PrivacySettingDDList = db.LKUPPrivacySettings.ToList().Select(x => new SelectListItem
+             {
+                 Value = x.PrivacySettingsID.ToString(),
+                 Text = x.PrivacySettings,
+                 Selected = (ust != null && ust.PrivacySettingsID == x.PrivacySettingsID)
+             });
+
+             usvm.EmailNotificationFrequencyDD.FrequencyDDList = db.NotificationFrequencies.ToList().Select(x => new SelectListItem
+             {
+                 Value = x.NotificationFrequencyID.ToString(),
+                 Text = x.Description,
+                 Selected = (ust != null && ust.ReceiveEmailNotificationID == x.NotificationFrequencyID)
+             });
+
+             usvm.TextNotificationFrequencyDD.FrequencyDDList = db.NotificationFrequencies.ToList().Select(x => new SelectListItem
+             {
+                 Value = x.NotificationFrequencyID.ToString(),
+                 Text = x.Description,
+                 Selected = (ust != null && ust.ReceiveEmailNotificationID == x.NotificationFrequencyID)
+             });
+
+
+
+             return usvm;
+         }
+
         public ActionResult Details(int id = 0)
         {
             UserSetting usersetting = db.UserSettings.Find(id);
@@ -63,6 +93,12 @@ namespace MealsToGo.Controllers
 
         public ActionResult Create()
         {
+            UserSetting ut = new UserSetting();
+            ut.UserID = WebSecurity.CurrentUserId;
+
+            UserSettingsViewModel usvm = Mapper.Map<UserSetting, UserSettingsViewModel>(ut);
+
+            usvm = PopulateDropDown(usvm, ut);
             return View();
         }
 
@@ -107,36 +143,21 @@ namespace MealsToGo.Controllers
         //
         // GET: /Settings/Edit/5
 
-        public ActionResult Edit(int usersettingsid)
+        public ActionResult Edit(int userid)
         {
-            UserSetting usersetting = db.UserSettings.Find(usersettingsid);
+           
+            UserSetting usersetting = _service.GetById(userid);
+             
             if (usersetting == null)
             {
                 return HttpNotFound();
             }
 
-            UserSettingsViewModel usvm  = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
+            UserSettingsViewModel usvm = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
+
+            usvm = PopulateDropDown(usvm, usersetting);
             
-           
-            var PrivacySettingOptions = from b in db.LKUPPrivacySettings select b;
-
-            IEnumerable<LKUPPrivacySetting> PrivacySettings = PrivacySettingOptions.ToList();
-            usvm.PrivacySettingList = PrivacySettings.Select(x => new SelectListItem
-                                         {
-                                        Value = x.PrivacySettingsID.ToString(),
-                                        Text = x.PrivacySettings.ToString()
-                                        });
-
-            var Notification = from b in db.NotificationFrequencies select b;
-
-            IEnumerable<NotificationFrequency> NotificationFrequencyOptions = Notification.ToList();
-            usvm.NotificationFrequencyList = NotificationFrequencyOptions.Select(x => new SelectListItem
-            {
-                Value = x.NotificationFrequencyID.ToString(),
-                Text = x.Description.ToString()
-            });
-
-            
+                        
             return View(usvm);
             
            
@@ -152,9 +173,9 @@ namespace MealsToGo.Controllers
             if (ModelState.IsValid)
             {
                 UserSetting usersetting = db.UserSettings.Find(usvm.UserSettingsID);
-                usersetting.ReceiveEmailNotificationID = usvm.ReceiveEmailNotificationID;
-                usersetting.ReceiveMobileTextNotificationID = usvm.ReceiveMobileTextNotificationID;
-                usersetting.PrivacySettingsID = usvm.PrivacySettingID;
+                usersetting.ReceiveEmailNotificationID = Convert.ToInt32(usvm.EmailNotificationFrequencyDD.SelectedFrequency);
+                usersetting.ReceiveMobileTextNotificationID = Convert.ToInt32(usvm.TextNotificationFrequencyDD.SelectedFrequency);
+                usersetting.PrivacySettingsID = Convert.ToInt32(usvm.PrivacySettingDD.SelectedPrivacySetting);
 
                 UserSetting us = Mapper.Map<UserSettingsViewModel, UserSetting>(usvm);
                 db.Entry(usersetting).State = EntityState.Modified;
@@ -163,34 +184,13 @@ namespace MealsToGo.Controllers
             }
             else
             {
-                UserSetting usersetting = db.UserSettings.Find(usvm.UserSettingsID);
-
-                UserSettingsViewModel usvm1 = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
+                usvm = PopulateDropDown(usvm, null);
                
-
-                var PrivacySettingOptions = from b in db.LKUPPrivacySettings select b;
-
-                IEnumerable<LKUPPrivacySetting> PrivacySettings = PrivacySettingOptions.ToList();
-                usvm.PrivacySettingList = PrivacySettings.Select(x => new SelectListItem
-                {
-                    Value = x.PrivacySettingsID.ToString(),
-                    Text = x.PrivacySettings.ToString()
-                });
-
-                var Notification = from b in db.NotificationFrequencies select b;
-
-                IEnumerable<NotificationFrequency> NotificationFrequencyOptions = Notification.ToList();
-                usvm.NotificationFrequencyList = NotificationFrequencyOptions.Select(x => new SelectListItem
-                {
-                    Value = x.NotificationFrequencyID.ToString(),
-                    Text = x.Description.ToString()
-                });
-
 
                 return View(usvm);
             }
 
-            return View(usvm);
+           
         }
 
         //

@@ -23,13 +23,30 @@ namespace MealsToGo.ViewModels
                 
         public string ReceiveEmailNotification { get; set; }
         public string ReceiveMobileTextNotification { get; set; }
-       
-       
-        public IEnumerable<SelectListItem> NotificationFrequencyList { get; set; }
-        public IEnumerable<SelectListItem> PrivacySettingList { get; set; }
-       
-        
 
+        public NotificationFrequencyViewModel EmailNotificationFrequencyDD { get; set; }
+        public NotificationFrequencyViewModel TextNotificationFrequencyDD { get; set; }
+        public PrivacySettingViewModel PrivacySettingDD { get; set; }
+
+        public UserSettingsViewModel()
+        {
+            EmailNotificationFrequencyDD = new NotificationFrequencyViewModel(); 
+            TextNotificationFrequencyDD = new NotificationFrequencyViewModel();
+            PrivacySettingDD = new PrivacySettingViewModel();
+           
+        }
+
+        public class NotificationFrequencyViewModel
+        {
+            public string SelectedFrequency { get; set; }
+            public IEnumerable<SelectListItem> FrequencyDDList { get; set; }
+        }
+
+        public class PrivacySettingViewModel
+        {
+            public string SelectedPrivacySetting { get; set; }
+            public IEnumerable<SelectListItem> PrivacySettingDDList { get; set; }
+        }
     }
 }
 

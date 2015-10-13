@@ -506,6 +506,12 @@ namespace MealsToGo.Controllers
 
         public RedirectToRouteResult RedirectPage(int userid)
         {
+            
+            bool userinvited = dbmeals.ContactLists.Any(x =>x.RecipientUserID==userid);
+            if (userinvited)
+            {
+                return RedirectToAction("Index", "Contact", new { userid = userid });
+            }
             string ipaddress = Request.ServerVariables["REMOTE_ADDR"];
             ipaddress = ipaddress == null ? String.Empty : ipaddress;
             ipaddress = ipaddress.Replace("\r\n", ",");

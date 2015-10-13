@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>10/01/2015 00:25:23</publishTime>
+      <publishTime>10/13/2015 02:12:37</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -401,7 +401,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:32:58</publishTime>
     </File>
     <File Include="Content/Style/fun-fooding.css">
-      <publishTime>09/29/2015 04:08:37</publishTime>
+      <publishTime>10/08/2015 01:54:24</publishTime>
     </File>
     <File Include="Content/Style/media-queries.css">
       <publishTime>09/29/2015 04:09:00</publishTime>
@@ -767,7 +767,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2014 14:28:06</publishTime>
     </File>
     <File Include="Models/CookingEntities.edmx.diagram">
-      <publishTime>09/29/2015 02:33:02</publishTime>
+      <publishTime>10/12/2015 22:18:13</publishTime>
     </File>
     <File Include="Models/CookingEntities.tt">
       <publishTime>01/12/2015 00:19:13</publishTime>
@@ -1016,7 +1016,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>09/29/2015 03:53:06</publishTime>
+      <publishTime>10/08/2015 02:29:14</publishTime>
     </File>
     <File Include="Views/Emails/Standard.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1124,7 +1124,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/MealItem/Edit.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>10/13/2015 00:02:17</publishTime>
     </File>
     <File Include="Views/MealItem/EditorTemplates/Allergen.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1187,7 +1187,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Settings/Create.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>10/12/2015 23:07:01</publishTime>
     </File>
     <File Include="Views/Settings/Delete.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1196,10 +1196,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Settings/Edit.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>10/13/2015 01:00:02</publishTime>
     </File>
     <File Include="Views/Settings/Index.cshtml">
-      <publishTime>09/29/2015 03:42:25</publishTime>
+      <publishTime>10/12/2015 22:48:48</publishTime>
     </File>
     <File Include="Views/Settings/PrivacyRules.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1207,11 +1207,47 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
+    <File Include="Views/Shared/User/AcceptAgreement.cshtml">
+      <publishTime>09/06/2015 23:33:29</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Create.cshtml">
+      <publishTime>10/12/2015 21:33:07</publishTime>
+    </File>
+    <File Include="Views/Shared/User/DeactivateUser.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Delete.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Details.cshtml">
+      <publishTime>10/12/2015 21:34:28</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Edit.cshtml">
+      <publishTime>10/12/2015 21:34:28</publishTime>
+    </File>
+    <File Include="Views/Shared/User/GoogleMap.html">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Index.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Invite.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Locate.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/ShowDemo.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/Shared/User/Suggestions.cshtml">
+      <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
     <File Include="Views/Shared/_IndexLayout.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/28/2015 23:55:59</publishTime>
+      <publishTime>10/13/2015 01:45:42</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.Mobile.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1241,7 +1277,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Views/User/Details.cshtml">
-      <publishTime>09/06/2015 23:33:30</publishTime>
+      <publishTime>10/13/2015 02:11:10</publishTime>
     </File>
     <File Include="Views/User/Edit.cshtml">
       <publishTime>09/06/2015 23:33:30</publishTime>
@@ -1255,8 +1291,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/User/Invite.cshtml">
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
+    <File Include="Views/User/InviteYourTribe.cshtml">
+      <publishTime>05/05/2014 18:22:11</publishTime>
+    </File>
     <File Include="Views/User/Locate.cshtml">
       <publishTime>09/06/2015 23:33:30</publishTime>
+    </File>
+    <File Include="Views/User/LocationToSearch.cshtml">
+      <publishTime>05/21/2014 19:48:08</publishTime>
     </File>
     <File Include="Views/User/ShowDemo.cshtml">
       <publishTime>09/06/2015 23:33:30</publishTime>
@@ -1280,7 +1322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/01/2015 00:29:13</publishTime>
+      <publishTime>10/13/2015 02:14:09</publishTime>
     </File>
   </ItemGroup>
 </Project>

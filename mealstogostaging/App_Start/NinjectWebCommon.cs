@@ -50,13 +50,13 @@ namespace MealsToGo.App_Start
         {
 
 
-            var kernel = new StandardKernel(new MealItemModule(), new MealAdModule(),new SettingsModule(),new ContactModule(), new SolrNetModule(solrURL));
+            var kernel = new StandardKernel(new MealItemModule(), new MealAdModule(),new SettingsModule(), new SolrNetModule(solrURL));
             kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             kernel.Get<IMealAdService>();
             kernel.Get<IUserSettingService>();
             kernel.Get<IMealItemService>();
-            kernel.Get<IContactService>();
+           
             kernel.Get<ISolrOperations<Product>>();
 
 

@@ -14,11 +14,6 @@ namespace MealsToGo.Models
     
     public partial class LKUPKitchenType
     {
-        public LKUPKitchenType()
-        {
-            this.UserDetails = new HashSet<UserDetail>();
-        }
-    
         public int KitchenTypeID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -26,7 +21,5 @@ namespace MealsToGo.Models
         public Nullable<System.DateTime> DateUpdated { get; set; }
         public Nullable<int> CreatedById { get; set; }
         public Nullable<int> UpdatedById { get; set; }
-    
-        public virtual ICollection<UserDetail> UserDetails { get; set; }
     }
 }

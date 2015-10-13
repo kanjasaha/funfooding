@@ -28,6 +28,20 @@ namespace MealsToGo.Repository
          private Repository<PaymentOption> paymentmethodrepos;
          private Repository<MealAds_PaymentOptions> mealpaymentrepos;
          private Repository<MealAd_Schedules> mealschedulesrepos;
+         private Repository<ContactList> contactrepos;
+
+         public Repository<ContactList> ContactRepository
+         {
+             get
+             {
+
+                 if (this.contactrepos == null)
+                 {
+                     this.contactrepos = new Repository<ContactList>(context);
+                 }
+                 return contactrepos;
+             }
+         }
 
          public Repository<MealAd_Schedules> MealScheduleRepository
          {

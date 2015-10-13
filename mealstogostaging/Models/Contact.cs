@@ -14,7 +14,8 @@ namespace MealsToGo.Models
         public string FavoriteDish { get; set; }
         public string EmailContact { get; set; }
         //public string CuisineType { get; set; }
-        public string GetNotified { get; set; }
+        public int? Accepted { get; set; }
+        public int Sender { get; set; }
        
 
     }

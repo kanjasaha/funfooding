@@ -105,13 +105,7 @@ namespace MealsToGo.App_Start
            Bind<IUserSettingService>().To<UserSettingService>();
        }
    }
-   public class ContactModule : NinjectModule
-   {
-       public override void Load()
-       {
-           Bind<IContactService>().To<ContactService>();
-       }
-   }
+  
   
 }
 

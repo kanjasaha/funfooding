@@ -1,0 +1,39 @@
+﻿@model MealsToGo.ViewModels.EmailaddressesViewModel
+
+@{
+    ViewBag.Title = "InviteYourConnections";
+}
+
+<h2>InviteYourConnections</h2>
+
+
+
+@using (Html.BeginForm("InviteYourTribe", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Invite Your Tribe</legend>
+
+        Use comma separated emails<br />
+        
+               
+         @Html.HiddenFor(x => x.UserID)
+
+        @Html.LabelFor(x=>x.Emailaddresses)
+         @Html.TextAreaFor(x => x.Emailaddresses, new{style="width: 450px;height:100px"})
+         @Html.ValidationMessageFor(x => x.Emailaddresses)
+        <br />
+         @Html.LabelFor(x=>x.EmailMessage)
+         @Html.TextAreaFor(x => x.EmailMessage, new {placeholder = "Please join my tribe at FunFooding.com" ,style="width: 400px;height:100px"})
+             
+            <input type="submit" value="Invite" />
+      
+    </fieldset>
+}
+
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+ 

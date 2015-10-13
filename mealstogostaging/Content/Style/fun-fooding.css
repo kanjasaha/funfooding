@@ -213,6 +213,7 @@ ul.gen-form li select:focus {
 .submit5:hover {background:#dd2700; border:2px solid #fcb600;} 
 .submit6{ height:22px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 16px/17px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#b5b5b5; cursor:pointer; border:#a8a8a8 solid 2px; margin-top:5px; text-decoration:none;  }
 
+.submit7{ height:25px; -webkit-border-radius:5px 5px 5px 5px;-moz-border-radius:5px 5px 5px 5px; border-radius:5px 5px 5px 5px; padding:0 5px;  font:normal 18px/25px 'LaplandDemibold' Arial, Helvetica, sans-serif; color:#fff; background:#dd2700; cursor:pointer; border:#ca2400 solid 2px; margin-top:5px; text-decoration:none; width:80px; float:left; text-align:center; }
 
  
 

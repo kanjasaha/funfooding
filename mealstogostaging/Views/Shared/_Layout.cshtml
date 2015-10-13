@@ -253,10 +253,9 @@ color: #713f1d;}
                         <li>@Html.ActionLink("Profile", "Details", "User", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         @*}*@
                         <li >@Html.ActionLink("Password", "Manage", "Account", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                        <li>@Html.ActionLink("Account Settings", "Index", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li class='last'>@Html.ActionLink("Account Settings", "Index", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         
-                         <li class='last'>@Html.ActionLink("Privacy Rules", "PrivacyRules", "Settings", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
-                        
+                          
                     </ul>
                      }
                      else

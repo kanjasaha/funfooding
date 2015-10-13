@@ -36,6 +36,8 @@ namespace MealsToGo.Models
         public string Description { get; set; }
         public int Quantity { get; set; }
         public Nullable<int> DietTypeID { get; set; }
+        public Nullable<int> ApprovalStatus { get; set; }
+        public Nullable<System.DateTime> ApprovalStatusDate { get; set; }
     
         public virtual LKUPCuisineType LKUPCuisineType { get; set; }
         public virtual LKUPDietType LKUPDietType { get; set; }

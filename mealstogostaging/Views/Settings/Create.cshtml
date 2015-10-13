@@ -1,4 +1,4 @@
-﻿@model MealsToGo.Models.UserSetting
+﻿@model MealsToGo.ViewModels.UserSettingsViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -25,25 +25,16 @@
                         @Html.EditorFor(model => model.UserID, new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.UserID)
                     </li>
-                    <li>
-                        <p>@Html.LabelFor(model => model.ActivityTypeID)</p>
-                        @Html.EditorFor(model => model.ActivityTypeID, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.ActivityTypeID)
-                    </li>
-                    <li>
+                    
+                     <li>
                         <p>@Html.LabelFor(model => model.ReceiveEmailNotification)</p>
-                        @Html.EditorFor(model => model.ReceiveEmailNotification, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.ReceiveEmailNotification)
+                        @Html.DropDownListFor(x => x.ReceiveEmailNotification, Model.NotificationFrequencyList, "Choose Options", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.ReceiveEmailNotificationID)
                     </li>
                     <li>
                         <p>@Html.LabelFor(model => model.ReceiveMobileTextNotification)</p>
-                        @Html.EditorFor(model => model.ReceiveMobileTextNotification, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.ReceiveMobileTextNotification)
-                    </li>
-                    <li>
-                        <p>@Html.LabelFor(model => model.NotificationFrequency)</p>
-                        @Html.EditorFor(model => model.NotificationFrequency, new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.NotificationFrequency)
+                        @Html.DropDownListFor(x => x.ReceiveMobileTextNotification, Model.NotificationFrequencyList, "Choose Options", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.ReceiveMobileTextNotificationID)
                     </li>
                     <li>
                         <label>

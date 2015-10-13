@@ -23,6 +23,13 @@
       [EmailSubscriptions].[ActivityTypeID] AS [ActivityTypeID]
       FROM [dbo].[EmailSubscriptions] AS [EmailSubscriptions]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="FoodReview" EntityType="ThreeSixtyTwoModel.Store.FoodReview" store:Type="Tables" store:Schema="dbo" store:Name="FoodReview">
+      <DefiningQuery>SELECT 
+      [FoodReview].[ReviewID] AS [ReviewID], 
+      [FoodReview].[MealAdID] AS [MealAdID], 
+      [FoodReview].[ReviewerUserID] AS [ReviewerUserID]
+      FROM [dbo].[FoodReview] AS [FoodReview]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="FunOrderDetails" EntityType="ThreeSixtyTwoModel.Store.FunOrderDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FunOrders" EntityType="ThreeSixtyTwoModel.Store.FunOrders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPActivityType" EntityType="ThreeSixtyTwoModel.Store.LKUPActivityType" store:Type="Tables" Schema="dbo" />
@@ -48,6 +55,15 @@
     <EntitySet Name="OrderDetails" EntityType="ThreeSixtyTwoModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Orders" EntityType="ThreeSixtyTwoModel.Store.Orders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PaymentOptions" EntityType="ThreeSixtyTwoModel.Store.PaymentOptions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reviews" EntityType="ThreeSixtyTwoModel.Store.Reviews" store:Type="Tables" store:Schema="dbo" store:Name="Reviews">
+      <DefiningQuery>SELECT 
+      [Reviews].[ReviewID] AS [ReviewID], 
+      [Reviews].[Rating] AS [Rating], 
+      [Reviews].[Review] AS [Review], 
+      [Reviews].[Approved] AS [Approved], 
+      [Reviews].[DateUpdated] AS [DateUpdated]
+      FROM [dbo].[Reviews] AS [Reviews]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="SellerDefaultSetting" EntityType="ThreeSixtyTwoModel.Store.SellerDefaultSetting" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SendEmail" EntityType="ThreeSixtyTwoModel.Store.SendEmail" store:Type="Tables" store:Schema="dbo" store:Name="SendEmail">
       <DefiningQuery>SELECT 
@@ -89,6 +105,13 @@
     <EntitySet Name="UserDetails" EntityType="ThreeSixtyTwoModel.Store.UserDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserPaymentOptions" EntityType="ThreeSixtyTwoModel.Store.UserPaymentOptions" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserProfile" EntityType="ThreeSixtyTwoModel.Store.UserProfile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserReview" EntityType="ThreeSixtyTwoModel.Store.UserReview" store:Type="Tables" store:Schema="dbo" store:Name="UserReview">
+      <DefiningQuery>SELECT 
+      [UserReview].[ReviewID] AS [ReviewID], 
+      [UserReview].[Userid] AS [Userid], 
+      [UserReview].[ReviewerUserID] AS [ReviewerUserID]
+      FROM [dbo].[UserReview] AS [UserReview]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="UserSettings" EntityType="ThreeSixtyTwoModel.Store.UserSettings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webpages_Membership" EntityType="ThreeSixtyTwoModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ActiveMealAds" EntityType="ThreeSixtyTwoModel.Store.ActiveMealAds" store:Type="Tables" Schema="search" />
@@ -178,10 +201,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_UserDetails_AddressList1" Association="ThreeSixtyTwoModel.Store.FK_UserDetails_AddressList1">
       <End Role="AddressList" EntitySet="AddressList" />
-      <End Role="UserDetails" EntitySet="UserDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserDetails_KitchenType" Association="ThreeSixtyTwoModel.Store.FK_UserDetails_KitchenType">
-      <End Role="LKUPKitchenType" EntitySet="LKUPKitchenType" />
       <End Role="UserDetails" EntitySet="UserDetails" />
     </AssociationSet>
     <AssociationSet Name="FK_UserSettings_LKUPPrivacySettings" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_LKUPPrivacySettings">
@@ -274,6 +293,8 @@
     <Property Name="RecipientUserID" Type="int" />
     <Property Name="RecipientEmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="RequestAccepted" Type="int" />
+    <Property Name="DateCreated" Type="date" Nullable="false" />
+    <Property Name="DateUpdated" Type="date" />
   </EntityType>
   <EntityType Name="country">
     <Key>
@@ -297,6 +318,19 @@
     <Property Name="Sender" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="Recipient" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="ActivityTypeID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ThreeSixtyTwo.dbo.FoodReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="FoodReview">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+      <PropertyRef Name="MealAdID" />
+      <PropertyRef Name="ReviewerUserID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" Nullable="false" />
+    <Property Name="MealAdID" Type="int" Nullable="false" />
+    <Property Name="ReviewerUserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FunOrderDetails">
     <Key>
@@ -501,6 +535,8 @@
     <Property Name="Description" Type="varchar" MaxLength="500" />
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="DietTypeID" Type="int" />
+    <Property Name="ApprovalStatus" Type="int" />
+    <Property Name="ApprovalStatusDate" Type="date" />
   </EntityType>
   <EntityType Name="MealItems_AllergenicFoods">
     <Key>
@@ -560,6 +596,21 @@
     </Key>
     <Property Name="PaymentOptionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="PaymentOption" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ThreeSixtyTwo.dbo.Reviews' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="Reviews">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+      <PropertyRef Name="Rating" />
+      <PropertyRef Name="Review" />
+    </Key>
+    <Property Name="ReviewID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Review" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="Approved" Type="int" />
+    <Property Name="DateUpdated" Type="datetime" />
   </EntityType>
   <EntityType Name="SellerDefaultSetting">
     <Key>
@@ -704,13 +755,7 @@
     <Property Name="AmazonPayID" Type="int" />
     <Property Name="SkypeID" Type="varchar" MaxLength="20" />
     <Property Name="Mobile" Type="varchar" MaxLength="20" />
-    <Property Name="IdentificationNumber" Type="nvarchar" MaxLength="100" />
-    <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
-    <Property Name="CountryOfIssuance" Type="nvarchar" MaxLength="100" />
-    <Property Name="IsSeller" Type="int" />
     <Property Name="KitchenName" Type="varchar" MaxLength="56" />
-    <Property Name="KitchenTypeID" Type="int" />
-    <Property Name="SellersTermsAndConditionAccepted" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserPaymentOptions">
     <Key>
@@ -728,6 +773,19 @@
     <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="56" />
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="56" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ThreeSixtyTwo.dbo.UserReview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="UserReview">
+    <Key>
+      <PropertyRef Name="ReviewID" />
+      <PropertyRef Name="Userid" />
+      <PropertyRef Name="ReviewerUserID" />
+    </Key>
+    <Property Name="ReviewID" Type="int" Nullable="false" />
+    <Property Name="Userid" Type="int" Nullable="false" />
+    <Property Name="ReviewerUserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="UserSettings">
     <Key>
@@ -1058,18 +1116,6 @@
       </Principal>
       <Dependent Role="UserDetails">
         <PropertyRef Name="AddressID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserDetails_KitchenType">
-    <End Role="LKUPKitchenType" Type="ThreeSixtyTwoModel.Store.LKUPKitchenType" Multiplicity="0..1" />
-    <End Role="UserDetails" Type="ThreeSixtyTwoModel.Store.UserDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LKUPKitchenType">
-        <PropertyRef Name="KitchenTypeID" />
-      </Principal>
-      <Dependent Role="UserDetails">
-        <PropertyRef Name="KitchenTypeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -11,36 +11,27 @@
         <h1>Edit</h1>
         @Html.HiddenFor(model => model.UserSettingsID)
         @Html.HiddenFor(model => model.UserID)
-        @Html.HiddenFor(model => model.ActivityTypeID)
+       
         <div class="cont">
             <div class="cont-rit">
                 <ul class="gen-form">
-                    <li>
-                        <p>@Html.LabelFor(model => model.ActivityType)</p>
-                        @*<label style="margin-top:10px">@Model.ActivityType</label>*@
-                        @Html.DisplayName(Model.ActivityType)
-
-                    </li>
+                    
                     <li>
                         <p>@Html.LabelFor(model => model.PrivacySetting)</p>
-                        @Html.DropDownListFor(x => x.PrivacySettingID, Model.PrivacySettingList, "Privacy Options", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.PrivacySettingID)
+                        @Html.DropDownListFor(x => x.PrivacySettingDD.SelectedPrivacySetting, Model.PrivacySettingDD.PrivacySettingDDList, "Privacy Options", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.PrivacySettingDD.SelectedPrivacySetting)
                     </li>
                     <li>
                         <p>@Html.LabelFor(model => model.ReceiveEmailNotification)</p>
-                        @Html.DropDownListFor(x => x.ReceiveEmailNotificationID, Model.YesNo, "Choose Options", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.ReceiveEmailNotificationID)
+                        @Html.DropDownListFor(x => x.EmailNotificationFrequencyDD.SelectedFrequency, Model.EmailNotificationFrequencyDD.FrequencyDDList, "Choose Options", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.EmailNotificationFrequencyDD.SelectedFrequency)
                     </li>
                     <li>
                         <p>@Html.LabelFor(model => model.ReceiveMobileTextNotification)</p>
-                        @Html.DropDownListFor(x => x.ReceiveMobileTextNotificationID, Model.YesNo, "Choose Options", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.ReceiveMobileTextNotificationID)
+                        @Html.DropDownListFor(x => x.TextNotificationFrequencyDD.SelectedFrequency, Model.TextNotificationFrequencyDD.FrequencyDDList, "Choose Options", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.TextNotificationFrequencyDD.SelectedFrequency)
                     </li>
-                    <li>
-                        <p>@Html.LabelFor(model => model.NotificationFrequency)</p>
-                        @Html.DropDownListFor(x => x.NotificationFrequencyID, Model.NotificationFrequencyList, "Privacy Options", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.NotificationFrequencyID)
-                    </li>
+                    
 
                     <li>
                         <label>

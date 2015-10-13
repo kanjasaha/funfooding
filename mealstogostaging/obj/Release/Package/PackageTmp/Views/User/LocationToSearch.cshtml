@@ -1,0 +1,27 @@
+﻿@model MealsToGo.Models.SearchParam
+
+
+<h2>LocationToSearch</h2>
+
+@using (Html.BeginForm("LocationToSearch", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+        @Html.ValidationSummary(true)
+
+    <fieldset>
+          <legend>LocationToSearch</legend>
+        
+              @* @Html.HiddenFor(model => model.UserID)
+         @Html.HiddenFor(model => model.UserLoc.Latitude)
+          @Html.HiddenFor(model => model.UserLoc.Longitude)*@
+    @Html.TextBox("address",null,new { style="width:150px" })
+    <input type="submit" value="Search" />
+         </fieldset>
+}
+
+
+
+
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+ 

@@ -20,5 +20,7 @@ namespace MealsToGo.Models
         public Nullable<int> RecipientUserID { get; set; }
         public string RecipientEmailAddress { get; set; }
         public Nullable<int> RequestAccepted { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public Nullable<System.DateTime> DateUpdated { get; set; }
     }
 }
