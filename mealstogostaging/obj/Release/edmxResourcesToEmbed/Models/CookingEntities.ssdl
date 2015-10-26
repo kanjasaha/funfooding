@@ -5,14 +5,7 @@
     <EntitySet Name="AllEmails" EntityType="ThreeSixtyTwoModel.Store.AllEmails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AvailabilityTypes" EntityType="ThreeSixtyTwoModel.Store.AvailabilityTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Cart" EntityType="ThreeSixtyTwoModel.Store.Cart" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Store.Connections" store:Type="Tables" store:Schema="dbo" store:Name="Connections">
-      <DefiningQuery>SELECT 
-      [Connections].[UserId] AS [UserId], 
-      [Connections].[ContactID] AS [ContactID], 
-      [Connections].[ContactEmail] AS [ContactEmail], 
-      [Connections].[ContactStrength] AS [ContactStrength]
-      FROM [dbo].[Connections] AS [Connections]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Store.Connections" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContactList" EntityType="ThreeSixtyTwoModel.Store.ContactList" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="country" EntityType="ThreeSixtyTwoModel.Store.country" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EmailSubscriptions" EntityType="ThreeSixtyTwoModel.Store.EmailSubscriptions" store:Type="Tables" store:Schema="dbo" store:Name="EmailSubscriptions">
@@ -270,18 +263,19 @@
     <Property Name="Count" Type="int" Nullable="false" />
     <Property Name="DateCreated" Type="datetime" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6002: The table/view 'ThreeSixtyTwo.dbo.Connections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
   <EntityType Name="Connections">
     <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="ContactEmail" />
+      <PropertyRef Name="ConnectionID" />
     </Key>
+    <Property Name="ConnectionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="ContactID" Type="int" />
+    <Property Name="ContactID" Type="int" Nullable="false" />
     <Property Name="ContactEmail" Type="varchar" Nullable="false" MaxLength="100" />
-    <Property Name="ContactStrength" Type="int" />
+    <Property Name="ContactStrength" Type="int" Nullable="false" />
+    <Property Name="DegreeOfSeparation" Type="int" Nullable="false" />
+    <Property Name="SharesFood" Type="int" Nullable="false" />
+    <Property Name="BoughtFoodFromUser" Type="int" Nullable="false" />
+    <Property Name="SoldFoodToUser" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ContactList">
     <Key>

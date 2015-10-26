@@ -60,18 +60,55 @@ namespace MealsToGo.Controllers
 
         public ActionResult Index(int UserID)
         {
+            NetworkViewModel nvm = new NetworkViewModel();
 
-            List<Contact> contacts = (from p in dbmeals.ContactLists
+
+            List<ContactsWaiting> contacts = (from p in dbmeals.ContactLists
                                             where p.UserID == UserID
-                                            select new Contact{ Name=p.RecipientEmailAddress,Accepted=p.RequestAccepted,Sender=1 }).ToList();
+                                      select new ContactsWaiting { EmailAddress = p.RecipientEmailAddress, Accepted = p.RequestAccepted, Sender = 1 }).ToList();
 
-            List<Contact> contacts1 = (from p in dbmeals.ContactLists
-                                      where p.RecipientUserID == UserID
-                                      select new Contact { Name = p.SenderEmailAddress, Accepted = p.RequestAccepted,Sender=0 }).ToList();
-                
-            
+
+           List<ContactsWaiting> contacts1 = (from p in dbmeals.ContactLists
+                                              where p.RecipientUserID == UserID
+                                      select new ContactsWaiting { EmailAddress = p.RecipientEmailAddress, Accepted = p.RequestAccepted, Sender = 0 }).ToList();
+
+            List<InnerCircle> InnerCircle = (from s in dbmeals.UserDetails
+                                                    join sa in dbmeals.Connections on s.UserId equals sa.UserId
+                                                where sa.UserId == UserID && sa.DegreeOfSeparation==1
+                                             select new InnerCircle { Name = s.FirstName + " " + s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            List<InnerCircle> InnerCircle1 = (from s in dbmeals.UserDetails
+                                              join sa in dbmeals.Connections on s.UserId equals sa.ContactID
+                                             where sa.ContactID == UserID && sa.DegreeOfSeparation==1
+                                             select new InnerCircle { Name = s.FirstName + " " + s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            List<OuterCircle> OuterCircle = (from s in dbmeals.UserDetails
+                                             join sa in dbmeals.Connections on s.UserId equals sa.UserId
+                                             where sa.UserId == UserID && sa.DegreeOfSeparation>1
+                                             select new OuterCircle { Name = s.FirstName + " " + s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            List<OuterCircle> OuterCircle1 = (from s in dbmeals.UserDetails
+                                              join sa in dbmeals.Connections on s.UserId equals sa.ContactID
+                                              where sa.ContactID == UserID && sa.DegreeOfSeparation > 1
+                                              select new OuterCircle { Name = s.FirstName + " "+ s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            List<Business> Business = (from s in dbmeals.UserDetails
+                                             join sa in dbmeals.Connections on s.UserId equals sa.UserId
+                                             where sa.UserId == UserID
+                                       select new Business { Name = s.FirstName + " " + s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            List<Business> Business1 = (from s in dbmeals.UserDetails
+                                              join sa in dbmeals.Connections on s.UserId equals sa.ContactID
+                                              where sa.ContactID == UserID
+                                        select new Business { Name = s.FirstName + " " + s.LastName, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+                                         
+               
             contacts.Concat(contacts1);
-            return View(contacts);
+            InnerCircle.Concat(InnerCircle1);
+            OuterCircle.Concat(OuterCircle1);
+            Business.Concat(Business1);
+
+            nvm.Contacts = contacts;
+            nvm.InnerCircleContacts = InnerCircle;
+            nvm.OuterCircleContacts = OuterCircle;
+            nvm.BusinessContacts = Business;
+
+            return View(nvm);
         }
 
         //

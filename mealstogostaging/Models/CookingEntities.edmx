@@ -10,14 +10,7 @@
           <EntitySet Name="AllEmails" EntityType="ThreeSixtyTwoModel.Store.AllEmails" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AvailabilityTypes" EntityType="ThreeSixtyTwoModel.Store.AvailabilityTypes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cart" EntityType="ThreeSixtyTwoModel.Store.Cart" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Store.Connections" store:Type="Tables" store:Schema="dbo" store:Name="Connections">
-            <DefiningQuery>SELECT 
-      [Connections].[UserId] AS [UserId], 
-      [Connections].[ContactID] AS [ContactID], 
-      [Connections].[ContactEmail] AS [ContactEmail], 
-      [Connections].[ContactStrength] AS [ContactStrength]
-      FROM [dbo].[Connections] AS [Connections]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Store.Connections" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ContactList" EntityType="ThreeSixtyTwoModel.Store.ContactList" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="country" EntityType="ThreeSixtyTwoModel.Store.country" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EmailSubscriptions" EntityType="ThreeSixtyTwoModel.Store.EmailSubscriptions" store:Type="Tables" store:Schema="dbo" store:Name="EmailSubscriptions">
@@ -275,18 +268,19 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'ThreeSixtyTwo.dbo.Connections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="Connections">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="ContactEmail" />
+            <PropertyRef Name="ConnectionID" />
           </Key>
+          <Property Name="ConnectionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="ContactID" Type="int" />
+          <Property Name="ContactID" Type="int" Nullable="false" />
           <Property Name="ContactEmail" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="ContactStrength" Type="int" />
+          <Property Name="ContactStrength" Type="int" Nullable="false" />
+          <Property Name="DegreeOfSeparation" Type="int" Nullable="false" />
+          <Property Name="SharesFood" Type="int" Nullable="false" />
+          <Property Name="BoughtFoodFromUser" Type="int" Nullable="false" />
+          <Property Name="SoldFoodToUser" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactList">
           <Key>
@@ -1168,7 +1162,6 @@
           <EntitySet Name="AddressLists" EntityType="ThreeSixtyTwoModel.AddressList" />
           <EntitySet Name="AllEmails" EntityType="ThreeSixtyTwoModel.AllEmail" />
           <EntitySet Name="Carts" EntityType="ThreeSixtyTwoModel.Cart" />
-          <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Connection" />
           <EntitySet Name="countries" EntityType="ThreeSixtyTwoModel.country" />
           <EntitySet Name="EmailSubscriptions" EntityType="ThreeSixtyTwoModel.EmailSubscription" />
           <EntitySet Name="LKUPActivityTypes" EntityType="ThreeSixtyTwoModel.LKUPActivityType" />
@@ -1314,6 +1307,7 @@
             <End Role="AddressList" EntitySet="AddressLists" />
             <End Role="UserDetail" EntitySet="UserDetails" />
           </AssociationSet>
+          <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Connection" />
           </EntityContainer>
         <EntityType Name="AddressList">
           <Key>
@@ -1364,16 +1358,6 @@
           <Property Type="Int32" Name="Count" Nullable="false" />
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
           <NavigationProperty Name="MealAd" Relationship="ThreeSixtyTwoModel.FK_Cart_MealAds" FromRole="Cart" ToRole="MealAd" />
-        </EntityType>
-        <EntityType Name="Connection">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="ContactEmail" />
-          </Key>
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-          <Property Type="Int32" Name="ContactID" />
-          <Property Type="String" Name="ContactEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ContactStrength" />
         </EntityType>
         <EntityType Name="country">
           <Key>
@@ -2273,6 +2257,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Connection">
+          <Key>
+            <PropertyRef Name="ConnectionID" />
+          </Key>
+          <Property Type="Int32" Name="ConnectionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="ContactID" Nullable="false" />
+          <Property Type="String" Name="ContactEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ContactStrength" Nullable="false" />
+          <Property Type="Int32" Name="DegreeOfSeparation" Nullable="false" />
+          <Property Type="Int32" Name="SharesFood" Nullable="false" />
+          <Property Type="Int32" Name="BoughtFoodFromUser" Nullable="false" />
+          <Property Type="Int32" Name="SoldFoodToUser" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2325,16 +2323,6 @@
                 <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="RecordID" ColumnName="RecordID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Connections">
-            <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Connection">
-              <MappingFragment StoreEntitySet="Connections">
-                <ScalarProperty Name="ContactStrength" ColumnName="ContactStrength" />
-                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2904,6 +2892,21 @@
                 <ScalarProperty Name="ReviewerUserID" ColumnName="ReviewerUserID" />
                 <ScalarProperty Name="Userid" ColumnName="Userid" />
                 <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Connections">
+            <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Connection">
+              <MappingFragment StoreEntitySet="Connections">
+                <ScalarProperty Name="SoldFoodToUser" ColumnName="SoldFoodToUser" />
+                <ScalarProperty Name="BoughtFoodFromUser" ColumnName="BoughtFoodFromUser" />
+                <ScalarProperty Name="SharesFood" ColumnName="SharesFood" />
+                <ScalarProperty Name="DegreeOfSeparation" ColumnName="DegreeOfSeparation" />
+                <ScalarProperty Name="ContactStrength" ColumnName="ContactStrength" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

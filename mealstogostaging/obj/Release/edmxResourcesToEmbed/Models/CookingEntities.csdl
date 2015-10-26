@@ -4,7 +4,6 @@
     <EntitySet Name="AddressLists" EntityType="ThreeSixtyTwoModel.AddressList" />
     <EntitySet Name="AllEmails" EntityType="ThreeSixtyTwoModel.AllEmail" />
     <EntitySet Name="Carts" EntityType="ThreeSixtyTwoModel.Cart" />
-    <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Connection" />
     <EntitySet Name="countries" EntityType="ThreeSixtyTwoModel.country" />
     <EntitySet Name="EmailSubscriptions" EntityType="ThreeSixtyTwoModel.EmailSubscription" />
     <EntitySet Name="LKUPActivityTypes" EntityType="ThreeSixtyTwoModel.LKUPActivityType" />
@@ -150,6 +149,7 @@
       <End Role="AddressList" EntitySet="AddressLists" />
       <End Role="UserDetail" EntitySet="UserDetails" />
     </AssociationSet>
+    <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Connection" />
   </EntityContainer>
   <EntityType Name="AddressList">
     <Key>
@@ -200,16 +200,6 @@
     <Property Type="Int32" Name="Count" Nullable="false" />
     <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
     <NavigationProperty Name="MealAd" Relationship="ThreeSixtyTwoModel.FK_Cart_MealAds" FromRole="Cart" ToRole="MealAd" />
-  </EntityType>
-  <EntityType Name="Connection">
-    <Key>
-      <PropertyRef Name="UserId" />
-      <PropertyRef Name="ContactEmail" />
-    </Key>
-    <Property Type="Int32" Name="UserId" Nullable="false" />
-    <Property Type="Int32" Name="ContactID" />
-    <Property Type="String" Name="ContactEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="Int32" Name="ContactStrength" />
   </EntityType>
   <EntityType Name="country">
     <Key>
@@ -1108,4 +1098,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Connection">
+    <Key>
+      <PropertyRef Name="ConnectionID" />
+    </Key>
+    <Property Type="Int32" Name="ConnectionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="ContactID" Nullable="false" />
+    <Property Type="String" Name="ContactEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ContactStrength" Nullable="false" />
+    <Property Type="Int32" Name="DegreeOfSeparation" Nullable="false" />
+    <Property Type="Int32" Name="SharesFood" Nullable="false" />
+    <Property Type="Int32" Name="BoughtFoodFromUser" Nullable="false" />
+    <Property Type="Int32" Name="SoldFoodToUser" Nullable="false" />
+  </EntityType>
 </Schema>

@@ -12,7 +12,7 @@ namespace MealsToGo.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class ThreeSixtyTwoEntities : DbContext
     {
         public ThreeSixtyTwoEntities()
@@ -28,7 +28,6 @@ namespace MealsToGo.Models
         public DbSet<AddressList> AddressLists { get; set; }
         public DbSet<AllEmail> AllEmails { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Connection> Connections { get; set; }
         public DbSet<country> countries { get; set; }
         public DbSet<EmailSubscription> EmailSubscriptions { get; set; }
         public DbSet<LKUPActivityType> LKUPActivityTypes { get; set; }
@@ -74,5 +73,6 @@ namespace MealsToGo.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<UserReview> UserReviews { get; set; }
+        public DbSet<Connection> Connections { get; set; }
     }
 }

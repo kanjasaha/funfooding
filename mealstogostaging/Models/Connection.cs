@@ -14,9 +14,14 @@ namespace MealsToGo.Models
     
     public partial class Connection
     {
+        public int ConnectionID { get; set; }
         public int UserId { get; set; }
-        public Nullable<int> ContactID { get; set; }
+        public int ContactID { get; set; }
         public string ContactEmail { get; set; }
-        public Nullable<int> ContactStrength { get; set; }
+        public int ContactStrength { get; set; }
+        public int DegreeOfSeparation { get; set; }
+        public int SharesFood { get; set; }
+        public int BoughtFoodFromUser { get; set; }
+        public int SoldFoodToUser { get; set; }
     }
 }

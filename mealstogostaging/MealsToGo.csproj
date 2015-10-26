@@ -551,6 +551,7 @@
     <Compile Include="ViewModels\LoginRegisterViewModel.cs" />
     <Compile Include="ViewModels\MealAdViewModel.cs" />
     <Compile Include="ViewModels\MealItemViewModel.cs" />
+    <Compile Include="ViewModels\NetworkViewModel.cs" />
     <Compile Include="ViewModels\ResultSetViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\ShoppingCartRemoveViewModel .cs" />
