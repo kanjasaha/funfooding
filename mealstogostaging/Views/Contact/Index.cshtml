@@ -35,9 +35,9 @@
                                     <td height="35" class="normal-14">
 
                                      
-                                         @if ((item.Accepted == 0) && (item.Sender == 0))
+                                         @if ((item.Accepted == null) && (item.Sender == 0))
                                         { @Html.ActionLink("Accept","AcceptRequest", "Contact", new { /* id=item.PrimaryKey */ }, new { @class = "submit7" })}
-                                          @if ((item.Accepted == 0) && (item.Sender == 1))
+                                          @if ((item.Accepted == null) && (item.Sender == 1))
                                           { <strong>Request Sent</strong>}
                                                                                                                                                              
                                        

@@ -1,8 +1,8 @@
-﻿@model IEnumerable<MealsToGo.Models.Contact>
+﻿@model MealsToGo.ViewModels.NetworkViewModel
 
 @{
     ViewBag.Title = "Index";
-    int mealadCount = Model.Count();
+    
 }
 <div class="cont-main">
     <h1>Your Network</h1>
@@ -15,31 +15,29 @@
             
             <tr>
                 <td>
-                    @if (mealadCount == 0)
+                    @if (Model.Contacts.Count() == 0)
                     {  <p>Invite your family and friends to your inner circle</p>}
                     else
                     {
-                        <p>You Inner Circle</p>
+                        <p>Request Waiting</p>
                         <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
                             
                             <tr>
                                 <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>EmailAddress</strong></td>
                                  <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Status</strong></td>
                                          </tr>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Contacts)
                             {
                                 <tr>
                                      
-                                    <td class="normal-14">@Html.DisplayFor(modelItem => item.Name)</td>
+                                    <td class="normal-14">@Html.DisplayFor(modelItem => item.EmailAddress)</td>
                                     
                                     <td height="35" class="normal-14">
 
-                                        @if (item.Accepted == 1) 
-                                        { @Html.ActionLink("Remove", "Contact", new { /* id=item.PrimaryKey */ }, new { @class = "submit7" })}
-
-                                         @if ((item.Accepted == 0) && (item.Sender == 0))
+                                     
+                                         @if ((item.Accepted == null) && (item.Sender == 0))
                                         { @Html.ActionLink("Accept","AcceptRequest", "Contact", new { /* id=item.PrimaryKey */ }, new { @class = "submit7" })}
-                                          @if ((item.Accepted == 0) && (item.Sender == 1))
+                                          @if ((item.Accepted == null) && (item.Sender == 1))
                                           { <strong>Request Sent</strong>}
                                                                                                                                                              
                                        
@@ -56,11 +54,42 @@
 
               <tr>
                 <td>
-                    @if (mealadCount == 0)
-                    {  }
+                    @if (Model.InnerCircleContacts.Count() == 0)
+                    {   <p>Invite your family and friends to your inner circle</p>}
                     else
                    {
-                        <p>People in your Outer Circle that shares food</p>
+                        <p>People in your Inner Circle </p>
+                        
+                         <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
+                            
+                            <tr>
+                                <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>EmailAddress</strong></td>
+                                 <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Status</strong></td>
+                                         </tr>
+                            @foreach (var item in Model.InnerCircleContacts)
+                            {
+                                <tr>
+                                     
+                                    <td class="normal-14">@Html.DisplayFor(modelItem => item.Name)</td>
+                                    
+                                    <td height="35" class="normal-14">
+
+                                     
+                                         @if (item.SharesFood == 1)
+                                         { <span>Shares Food</span> }
+                                         @if (item.BoughtFoodFromUser == 1)
+                                         {<span>Bought Food From User</span> }
+                                         @if (item.SoldFoodToUser == 1)
+                                         {<span>Sold Food To User</span> }
+                                                                                                                                                             
+                                       
+                                      
+                                     
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
                         
                     }
                 </td>
@@ -68,23 +97,76 @@
 
               <tr>
                 <td>
-                    @if (mealadCount == 0)
-                    { }
+                    @if (Model.OuterCircleContacts.Count() == 0)
+                    { <p>Reach our to your friends Connections</p>}
                     else
                   {
                         <p>People in your Outer Circle that shares food</p>
-                       
+                        <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
+                            
+                            <tr>
+                                <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>EmailAddress</strong></td>
+                                 <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Status</strong></td>
+                                         </tr>
+                            @foreach (var item in Model.OuterCircleContacts)
+                            {
+                                <tr>
+                                     
+                                    <td class="normal-14">@Html.DisplayFor(modelItem => item.Name)</td>
+                                    
+                                    <td height="35" class="normal-14">
+
+                                     
+                                         @if (item.BoughtFoodFromUser == 1)
+                                         {<span>Bought Food From User</span> }
+                                         @if (item.SoldFoodToUser == 1)
+                                         {<span>Sold Food To User</span> }
+                                                                                                                                                             
+                                       
+                                      
+                                     
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
                     }
                 </td>
             </tr>
 
             <tr>
                 <td>
-                    @if (mealadCount == 0)
-                    { }
+                    @if (Model.BusinessContacts.Count() == 0)
+                    { <p>Find the most popular dishes in your neighorhood</p>}
                     else
                   {
                         <p>List of People outside your circle that you have bought food from.</p>
+                         <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
+                            
+                            <tr>
+                                <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>EmailAddress</strong></td>
+                                 <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Status</strong></td>
+                                         </tr>
+                            @foreach (var item in Model.BusinessContacts)
+                            {
+                                <tr>
+                                     
+                                    <td class="normal-14">@Html.DisplayFor(modelItem => item.Name)</td>
+                                    
+                                    <td height="35" class="normal-14">
+
+                                      @if (item.BoughtFoodFromUser == 1)
+                                         {<span>Bought Food From User</span> }
+                                         @if (item.SoldFoodToUser == 1)
+                                         {<span>Sold Food To User</span> }                                                                         
+                                       
+                                      
+                                     
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
                        
                     }
                 </td>

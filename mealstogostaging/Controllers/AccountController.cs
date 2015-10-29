@@ -22,6 +22,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Security.Cryptography;
+using System.Data;
 
 
 namespace MealsToGo.Controllers
@@ -723,6 +724,7 @@ namespace MealsToGo.Controllers
                                 FirstName = model.FirstName
                             }, requireConfirmationToken: true); //new {Email=model.Email}
 
+
                        bool userinvited = dbmeals.ContactLists.Any(x =>x.RecipientEmailAddress.Equals(model.UserName));
                          if (!userinvited)
                         {
@@ -798,6 +800,11 @@ namespace MealsToGo.Controllers
                 us.PrivacySettingsID = 3;
                 
                 us.UserID = dbmeals.webpages_Membership.Where(x => x.ConfirmationToken == id).FirstOrDefault().UserId;
+                string username = db.UserProfiles.Where(n => n.UserId == us.UserID).FirstOrDefault().UserName;
+                ContactList contact = dbmeals.ContactLists.Where(x => x.RecipientEmailAddress == username).FirstOrDefault();
+                contact.RecipientUserID = us.UserID;
+                dbmeals.Entry(contact).State = EntityState.Modified;
+
 
                 dbmeals.UserSettings.Add(us);
 
@@ -846,7 +853,7 @@ namespace MealsToGo.Controllers
             if (ownerAccount == User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable }))
                 {
                     bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
                     if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)

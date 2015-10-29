@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>10/13/2015 02:24:21</publishTime>
+      <publishTime>10/29/2015 00:35:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -767,7 +767,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2014 14:28:06</publishTime>
     </File>
     <File Include="Models/CookingEntities.edmx.diagram">
-      <publishTime>10/12/2015 22:18:13</publishTime>
+      <publishTime>10/25/2015 23:08:11</publishTime>
     </File>
     <File Include="Models/CookingEntities.tt">
       <publishTime>01/12/2015 00:19:13</publishTime>
@@ -1016,7 +1016,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>10/08/2015 02:29:14</publishTime>
+      <publishTime>10/28/2015 23:51:22</publishTime>
     </File>
     <File Include="Views/Emails/Standard.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1046,7 +1046,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/14/2015 23:40:12</publishTime>
+      <publishTime>10/25/2015 19:33:41</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1322,7 +1322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/15/2015 22:14:19</publishTime>
+      <publishTime>10/29/2015 00:37:42</publishTime>
     </File>
   </ItemGroup>
 </Project>
