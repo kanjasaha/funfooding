@@ -20,11 +20,6 @@ namespace MealsToGo.ViewModels
         public string Emailaddresses { get; set; }
 
 
-        [Required]
-        [Display(Name = "Message")]
-        public string EmailMessage { get; set; }
-
-
 
         public string ErrorMessage { get; set; }
 

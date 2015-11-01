@@ -81,13 +81,15 @@ namespace MealsToGo.Controllers
 
 
             List<ContactsWaiting> contacts = (from p in dbmeals.ContactLists
-                                            where p.UserID == UserID && p.RequestAccepted ==null
-                                      select new ContactsWaiting { EmailAddress = p.RecipientEmailAddress, Accepted = p.RequestAccepted, Sender = 1 }).ToList();
+                           where p.UserID == UserID && p.RequestAccepted == null
+                                              group p by new { p.RecipientEmailAddress, p.RequestAccepted, p.UserID ,p.RecipientUserID} into g
+                                              select new ContactsWaiting { EmailAddress = g.Key.RecipientEmailAddress, Accepted = g.Key.RequestAccepted, SenderUserID = g.Key.UserID, RecipientUserID = g.Key.RecipientUserID, Sender = 1 }).ToList(); ;
 
-
+            
            List<ContactsWaiting> contacts1 = (from p in dbmeals.ContactLists
                                               where p.RecipientUserID == UserID && p.RequestAccepted == null
-                                      select new ContactsWaiting { EmailAddress = p.RecipientEmailAddress, Accepted = p.RequestAccepted, Sender = 0 }).ToList();
+                                              group p by new { p.SenderEmailAddress, p.RequestAccepted, p.UserID, p.RecipientUserID } into g
+                                              select new ContactsWaiting { EmailAddress = g.Key.SenderEmailAddress, Accepted = g.Key.RequestAccepted, SenderUserID = g.Key.UserID, RecipientUserID = g.Key.RecipientUserID, Sender = 0 }).ToList(); ;
 
             List<InnerCircle> InnerCircle = (from s in dbmeals.UserDetails
                                                     join sa in dbmeals.Connections on s.UserId equals sa.UserId

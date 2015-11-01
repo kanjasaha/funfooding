@@ -172,6 +172,8 @@ namespace MealsToGo.Controllers
             {
                
                 string invalidemails = "";
+                string repeatrequests = "";
+               
 
                 char[] delimiters = (",: ").ToCharArray();
 
@@ -188,11 +190,23 @@ namespace MealsToGo.Controllers
                     string email = emailaddress;
 
                     bool EmailExists = db.UserProfiles.Any(x => x.UserName == email);
-                    if (EmailExists)
+                    bool self = db.UserProfiles.Any(x => x.UserName == email && x.UserId == userid);
+                    int RequestSentCount = dbmeals.ContactLists.Where(x => x.UserID == userid && x.RecipientEmailAddress == emailaddress).Count();
+
+                    if (self)
+                    {
+                        
+                    }
+                    else if (RequestSentCount >= 2)
+                    {
+                        repeatrequests = repeatrequests + "," + emailaddress;
+                    }
+                    else if (EmailExists)
                     {
 
                         var Recipient = db.UserProfiles.Where(x => x.UserName == email).First();
                         emailmodel.To = emailaddress;
+                        emailmodel.BCC = "kanjasaha@gmail.com";
                         emailmodel.Subject = "Join me at Funfooding";
 
                         StringBuilder sb = new StringBuilder();
@@ -226,18 +240,16 @@ namespace MealsToGo.Controllers
                     {
                         Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                         Match match = regex.Match(email);
-                        if (match.Success)
-                        {
-
-                        }
-                        else
+                        if (!match.Success)
+                      
                         {
                             TempData["emailAlert"] = "Please enter valid email address";
                             return RedirectToAction("Invite", "User", new { userid = userid });
 
                         }
 
-                        if (IsValidEmail(emailaddress))
+                      
+                        if (IsValidEmail(emailaddress) )
                         {
 
                             //string confirmationToken =
@@ -246,7 +258,9 @@ namespace MealsToGo.Controllers
                             //       FirstName = "FirstName"
                             //   }, requireConfirmationToken: true); //new {Email=model.Email}
                             emailmodel.To = emailaddress;
+                            emailmodel.BCC = "kanjasaha@gmail.com";
                             emailmodel.Subject = "Join me at Funfooding";
+                            
 
                             StringBuilder sb = new StringBuilder();
                             sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
@@ -286,20 +300,31 @@ namespace MealsToGo.Controllers
                     }
 
                 }
-                if (invalidemails == "")
+
+                if (invalidemails == "" && repeatrequests=="")
                 {
 
                     //AccountController acc = new AccountController();
-                    return RedirectPage(userid);
+                    //return RedirectPage(userid);
                     return RedirectToAction("Index", "Contact", new { userID = userid });
 
                 }
+                if (repeatrequests != "")
 
-                else
+                    invitedemails.ErrorMessage = "Sorry, you cannot send another request.you have already requested these email address twice. " + repeatrequests;
+
+
+
+                if (invalidemails != "")
+                {
                     invitedemails.Emailaddresses = invalidemails;
 
 
-                invitedemails.ErrorMessage = "Please correct these emailaddresses";
+                    invitedemails.ErrorMessage = invitedemails.ErrorMessage + "<br><br>Please correct these emailaddresses" + invalidemails;
+                }
+
+
+                TempData["emailAlert"] = invitedemails.ErrorMessage;
                 return View(invitedemails);
             }
             else { return View(); }
@@ -402,7 +427,7 @@ namespace MealsToGo.Controllers
         {
             EmailaddressesViewModel invitedemails = new EmailaddressesViewModel();
             invitedemails.UserID = userID;
-
+           
 
             return View(invitedemails);
         }

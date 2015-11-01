@@ -22,9 +22,9 @@ namespace MealsToGo.ViewModels
     public string EmailAddress { get; set; }
     public int? Accepted { get; set; }
     public int Sender { get; set; }
-      
-
-     public ContactsWaiting() {
+    public int? RecipientUserID { get; set; }
+    public int SenderUserID { get; set; }
+    public ContactsWaiting() {
 }
 }
 

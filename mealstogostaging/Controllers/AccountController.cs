@@ -802,9 +802,12 @@ namespace MealsToGo.Controllers
                 us.UserID = dbmeals.webpages_Membership.Where(x => x.ConfirmationToken == id).FirstOrDefault().UserId;
                 string username = db.UserProfiles.Where(n => n.UserId == us.UserID).FirstOrDefault().UserName;
                 ContactList contact = dbmeals.ContactLists.Where(x => x.RecipientEmailAddress == username).FirstOrDefault();
-                contact.RecipientUserID = us.UserID;
-                dbmeals.Entry(contact).State = EntityState.Modified;
 
+                if (contact != null)
+                {
+                    contact.RecipientUserID = us.UserID;
+                    dbmeals.Entry(contact).State = EntityState.Modified;
+                }
 
                 dbmeals.UserSettings.Add(us);
 

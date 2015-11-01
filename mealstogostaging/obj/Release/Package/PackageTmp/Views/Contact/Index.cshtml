@@ -19,7 +19,7 @@
                     {  <p>Invite your family and friends to your inner circle</p>}
                     else
                     {
-                        <p>Request Waiting</p>
+                        <h3>Requests Pending</h3>
                         <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
                             
                             <tr>
@@ -36,7 +36,7 @@
 
                                      
                                          @if ((item.Accepted == null) && (item.Sender == 0))
-                                        { @Html.ActionLink("Accept","AcceptRequest", "Contact", new { /* id=item.PrimaryKey */ }, new { @class = "submit7" })}
+                                        { @Html.ActionLink("Accept","AcceptRequest", "Contact", new { Sender=item.SenderUserID , Recipient=item.RecipientUserID }, new { @class = "submit7" })}
                                           @if ((item.Accepted == null) && (item.Sender == 1))
                                           { <strong>Request Sent</strong>}
                                                                                                                                                              
@@ -54,11 +54,13 @@
 
               <tr>
                 <td>
+                    <h3>Your Inner Circle </h3>
+                    <p> You have invited them to join you at Funfooding or they have invited you.</p>
                     @if (Model.InnerCircleContacts.Count() == 0)
-                    {   <p>Invite your family and friends to your inner circle</p>}
+                    {  }
                     else
                    {
-                        <p>People in your Inner Circle </p>
+                        
                         
                          <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
                             
@@ -96,12 +98,13 @@
             </tr>
 
               <tr>
-                <td>
+                <td><h3>Your Outer Circle </h3>
+                    <p>Find your friends connections who shares food</p>
                     @if (Model.OuterCircleContacts.Count() == 0)
-                    { <p>Reach our to your friends Connections</p>}
+                    { }
                     else
                   {
-                        <p>People in your Outer Circle that shares food</p>
+                        
                         <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
                             
                             <tr>
@@ -135,12 +138,13 @@
             </tr>
 
             <tr>
-                <td>
+                <td> <h3>Your Food Circle</h3>
+                    <p>Here you find people with you have exchanged food</p>
                     @if (Model.BusinessContacts.Count() == 0)
-                    { <p>Find the most popular dishes in your neighorhood</p>}
+                    { }
                     else
                   {
-                        <p>List of People outside your circle that you have bought food from.</p>
+                       
                          <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#c6c3c3" style="border-collapse: collapse;">
                             
                             <tr>
