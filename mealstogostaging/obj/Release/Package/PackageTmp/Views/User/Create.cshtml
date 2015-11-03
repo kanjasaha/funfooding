@@ -69,16 +69,7 @@
                         @Html.ValidationMessageFor(model => model.Address.CountryID,string.Empty,new { @class="required"})
                     </li>
                      
-                     <li>
-                        <p>Check if you wish to Advertise Food?</p>
-                         @Html.CheckBoxFor(model => model.CheckIfSeller)
-
-                    <li>
-                    <li>
-                        <p>Kitchen Type</p>
-                        @Html.DropDownListFor(x => x.KitchenTypeID, Model.KitchenTypeDDList, "KitchenType", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.KitchenTypeID,string.Empty,new { @class="required"})
-                    </li>
+               
                     <li>
                         <p>Kitchen Name</p>
                         @Html.EditorFor(model => model.KitchenName, new { @class = "gen-ftb" })
