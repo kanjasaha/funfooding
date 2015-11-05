@@ -36,7 +36,7 @@
 
                                      
                                          @if ((item.Accepted == null) && (item.Sender == 0))
-                                        { @Html.ActionLink("Accept","AcceptRequest", "Contact", new { Sender=item.SenderUserID , Recipient=item.RecipientUserID }, new { @class = "submit7" })}
+                                        { @Html.ActionLink("Accept","AcceptRequest", "Contact", new {  RecipientUserID=item.RecipientUserID,SenderUserID=item.SenderUserID  }, new { @class = "submit7" })}
                                           @if ((item.Accepted == null) && (item.Sender == 1))
                                           { <strong>Request Sent</strong>}
                                                                                                                                                              
@@ -140,7 +140,7 @@
             <tr>
                 <td> <h3>Your Food Circle</h3>
                     <p>Here you find people with you have exchanged food</p>
-                    @if (Model.BusinessContacts.Count() == 0)
+                    @if (Model.FoodCircleContacts.Count() == 0)
                     { }
                     else
                   {
@@ -151,7 +151,7 @@
                                 <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>EmailAddress</strong></td>
                                  <td width="15%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Status</strong></td>
                                          </tr>
-                            @foreach (var item in Model.BusinessContacts)
+                            @foreach (var item in Model.FoodCircleContacts)
                             {
                                 <tr>
                                      

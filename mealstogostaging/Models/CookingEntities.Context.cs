@@ -55,7 +55,6 @@ namespace MealsToGo.Models
         public DbSet<FunOrderDetail> FunOrderDetails { get; set; }
         public DbSet<FunOrder> FunOrders { get; set; }
         public DbSet<SendEmail> SendEmails { get; set; }
-        public DbSet<LKUPKitchenType> LKUPKitchenTypes { get; set; }
         public DbSet<SellerDefaultSetting> SellerDefaultSettings { get; set; }
         public DbSet<UserAgreement> UserAgreements { get; set; }
         public DbSet<UserAgreementsAcceptanceDetail> UserAgreementsAcceptanceDetails { get; set; }
@@ -64,7 +63,6 @@ namespace MealsToGo.Models
         public DbSet<PaymentOption> PaymentOptions { get; set; }
         public DbSet<LKUPDeliveryMethod> LKUPDeliveryMethods { get; set; }
         public DbSet<MealAds_DeliveryMethods> MealAds_DeliveryMethods { get; set; }
-        public DbSet<MealAd> MealAds { get; set; }
         public DbSet<MealAd_Schedules> MealAd_Schedules { get; set; }
         public DbSet<ContactList> ContactLists { get; set; }
         public DbSet<UserSetting> UserSettings { get; set; }
@@ -74,5 +72,6 @@ namespace MealsToGo.Models
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<UserReview> UserReviews { get; set; }
         public DbSet<Connection> Connections { get; set; }
+        public DbSet<MealAd> MealAds { get; set; }
     }
 }

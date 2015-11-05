@@ -17,10 +17,10 @@ namespace MealsToGo.Models
         public MealAd()
         {
             this.Carts = new HashSet<Cart>();
+            this.MealAd_Schedules = new HashSet<MealAd_Schedules>();
             this.MealAds_DeliveryMethods = new HashSet<MealAds_DeliveryMethods>();
             this.MealAds_PaymentOptions = new HashSet<MealAds_PaymentOptions>();
             this.OrderDetails = new HashSet<OrderDetail>();
-            this.MealAd_Schedules = new HashSet<MealAd_Schedules>();
         }
     
         public int MealAdID { get; set; }
@@ -29,14 +29,15 @@ namespace MealsToGo.Models
         public int PlacedOrder { get; set; }
         public int AvailabilityTypeID { get; set; }
         public int Status { get; set; }
+        public int UserId { get; set; }
     
         public virtual AvailabilityType AvailabilityType { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<MealAd_Schedules> MealAd_Schedules { get; set; }
         public virtual ICollection<MealAds_DeliveryMethods> MealAds_DeliveryMethods { get; set; }
         public virtual MealItem MealItem { get; set; }
         public virtual MealItem MealItem1 { get; set; }
         public virtual ICollection<MealAds_PaymentOptions> MealAds_PaymentOptions { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual ICollection<MealAd_Schedules> MealAd_Schedules { get; set; }
     }
 }

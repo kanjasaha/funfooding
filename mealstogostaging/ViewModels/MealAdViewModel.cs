@@ -21,9 +21,9 @@ namespace MealsToGo.ViewModels
         [Required]
         public uint MaxOrders { get; set; }
         [Required]
-        
-      
-       
+
+        public int UserId { get; set; }
+        [Required]
         
         public int Status { get; set; }
         [Required]

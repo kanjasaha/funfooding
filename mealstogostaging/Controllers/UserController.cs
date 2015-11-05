@@ -583,11 +583,7 @@ namespace MealsToGo.Controllers
                     Text = x.Country.ToString()
                 });
 
-                userinfovm.KitchenTypeDDList = dbmeals.LKUPKitchenTypes.ToList().Select(x => new SelectListItem
-                {
-                    Value = x.KitchenTypeID.ToString(),
-                    Text = x.Name.ToString()
-                });
+               
 
                 return View(userinfovm);
             }

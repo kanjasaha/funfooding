@@ -71,7 +71,6 @@
       <End Role="FunOrderDetail" EntitySet="FunOrderDetails" />
     </AssociationSet>
     <EntitySet Name="SendEmails" EntityType="ThreeSixtyTwoModel.SendEmail" />
-    <EntitySet Name="LKUPKitchenTypes" EntityType="ThreeSixtyTwoModel.LKUPKitchenType" />
     <EntitySet Name="SellerDefaultSettings" EntityType="ThreeSixtyTwoModel.SellerDefaultSetting" />
     <EntitySet Name="UserAgreements" EntityType="ThreeSixtyTwoModel.UserAgreement" />
     <EntitySet Name="UserAgreementsAcceptanceDetails" EntityType="ThreeSixtyTwoModel.UserAgreementsAcceptanceDetail" />
@@ -88,40 +87,7 @@
       <End Role="LKUPDeliveryMethod" EntitySet="LKUPDeliveryMethods" />
       <End Role="MealAds_DeliveryMethods" EntitySet="MealAds_DeliveryMethods" />
     </AssociationSet>
-    <EntitySet Name="MealAds" EntityType="ThreeSixtyTwoModel.MealAd" />
-    <AssociationSet Name="FK_MealAds_AvailabilityTypes" Association="ThreeSixtyTwoModel.FK_MealAds_AvailabilityTypes">
-      <End Role="AvailabilityType" EntitySet="AvailabilityTypes" />
-      <End Role="MealAd" EntitySet="MealAds" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Cart_MealAds" Association="ThreeSixtyTwoModel.FK_Cart_MealAds">
-      <End Role="MealAd" EntitySet="MealAds" />
-      <End Role="Cart" EntitySet="Carts" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MealAds_DeliveryMethods_MealAds" Association="ThreeSixtyTwoModel.FK_MealAds_DeliveryMethods_MealAds">
-      <End Role="MealAd" EntitySet="MealAds" />
-      <End Role="MealAds_DeliveryMethods" EntitySet="MealAds_DeliveryMethods" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MealAds_MealItems" Association="ThreeSixtyTwoModel.FK_MealAds_MealItems">
-      <End Role="MealItem" EntitySet="MealItems" />
-      <End Role="MealAd" EntitySet="MealAds" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MealAds_MealItems1" Association="ThreeSixtyTwoModel.FK_MealAds_MealItems1">
-      <End Role="MealItem" EntitySet="MealItems" />
-      <End Role="MealAd" EntitySet="MealAds" />
-    </AssociationSet>
-    <AssociationSet Name="FK_MealAds_PaymentOptions_MealAds" Association="ThreeSixtyTwoModel.FK_MealAds_PaymentOptions_MealAds">
-      <End Role="MealAd" EntitySet="MealAds" />
-      <End Role="MealAds_PaymentOptions" EntitySet="MealAds_PaymentOptions" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderDetails_MealAds" Association="ThreeSixtyTwoModel.FK_OrderDetails_MealAds">
-      <End Role="MealAd" EntitySet="MealAds" />
-      <End Role="OrderDetail" EntitySet="OrderDetails" />
-    </AssociationSet>
     <EntitySet Name="MealAd_Schedules" EntityType="ThreeSixtyTwoModel.MealAd_Schedules" />
-    <AssociationSet Name="FK_MealAd_Schedules_MealAds" Association="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds">
-      <End Role="MealAd" EntitySet="MealAds" />
-      <End Role="MealAd_Schedules" EntitySet="MealAd_Schedules" />
-    </AssociationSet>
     <EntitySet Name="ContactLists" EntityType="ThreeSixtyTwoModel.ContactList" />
     <EntitySet Name="UserSettings" EntityType="ThreeSixtyTwoModel.UserSetting" />
     <AssociationSet Name="FK_UserSettings_LKUPPrivacySettings" Association="ThreeSixtyTwoModel.FK_UserSettings_LKUPPrivacySettings">
@@ -150,6 +116,39 @@
       <End Role="UserDetail" EntitySet="UserDetails" />
     </AssociationSet>
     <EntitySet Name="Connections" EntityType="ThreeSixtyTwoModel.Connection" />
+    <EntitySet Name="MealAds" EntityType="ThreeSixtyTwoModel.MealAd" />
+    <AssociationSet Name="FK_MealAds_AvailabilityTypes" Association="ThreeSixtyTwoModel.FK_MealAds_AvailabilityTypes">
+      <End Role="AvailabilityType" EntitySet="AvailabilityTypes" />
+      <End Role="MealAd" EntitySet="MealAds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cart_MealAds" Association="ThreeSixtyTwoModel.FK_Cart_MealAds">
+      <End Role="MealAd" EntitySet="MealAds" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MealAd_Schedules_MealAds" Association="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds">
+      <End Role="MealAd" EntitySet="MealAds" />
+      <End Role="MealAd_Schedules" EntitySet="MealAd_Schedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MealAds_DeliveryMethods_MealAds" Association="ThreeSixtyTwoModel.FK_MealAds_DeliveryMethods_MealAds">
+      <End Role="MealAd" EntitySet="MealAds" />
+      <End Role="MealAds_DeliveryMethods" EntitySet="MealAds_DeliveryMethods" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MealAds_MealItems" Association="ThreeSixtyTwoModel.FK_MealAds_MealItems">
+      <End Role="MealItem" EntitySet="MealItems" />
+      <End Role="MealAd" EntitySet="MealAds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MealAds_MealItems1" Association="ThreeSixtyTwoModel.FK_MealAds_MealItems1">
+      <End Role="MealItem" EntitySet="MealItems" />
+      <End Role="MealAd" EntitySet="MealAds" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MealAds_PaymentOptions_MealAds" Association="ThreeSixtyTwoModel.FK_MealAds_PaymentOptions_MealAds">
+      <End Role="MealAd" EntitySet="MealAds" />
+      <End Role="MealAds_PaymentOptions" EntitySet="MealAds_PaymentOptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_MealAds" Association="ThreeSixtyTwoModel.FK_OrderDetails_MealAds">
+      <End Role="MealAd" EntitySet="MealAds" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="AddressList">
     <Key>
@@ -463,10 +462,10 @@
     <NavigationProperty Name="LKUPServingUnit" Relationship="ThreeSixtyTwoModel.FK_MealItems_LKUPServingUnit" FromRole="MealItem" ToRole="LKUPServingUnit" />
     <NavigationProperty Name="MealItems_AllergenicFoods" Relationship="ThreeSixtyTwoModel.FK_MealItems_AllergenicFoods_MealItems" FromRole="MealItem" ToRole="MealItems_AllergenicFoods" />
     <NavigationProperty Name="MealItems_Photos" Relationship="ThreeSixtyTwoModel.FK_MealItems_Photos_MealItems" FromRole="MealItem" ToRole="MealItems_Photos" />
-    <NavigationProperty Name="MealAds" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems" FromRole="MealItem" ToRole="MealAd" />
-    <NavigationProperty Name="MealAds1" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems1" FromRole="MealItem" ToRole="MealAd" />
     <Property Type="Int32" Name="ApprovalStatus" />
     <Property Type="DateTime" Name="ApprovalStatusDate" Precision="0" />
+    <NavigationProperty Name="MealAds" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems" FromRole="MealItem" ToRole="MealAd" />
+    <NavigationProperty Name="MealAds1" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems1" FromRole="MealItem" ToRole="MealAd" />
   </EntityType>
   <EntityType Name="MealItems_AllergenicFoods">
     <Key>
@@ -667,18 +666,6 @@
     <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="DateTime" Name="SendDate" Nullable="false" Precision="3" />
   </EntityType>
-  <EntityType Name="LKUPKitchenType">
-    <Key>
-      <PropertyRef Name="KitchenTypeID" />
-    </Key>
-    <Property Type="Int32" Name="KitchenTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="Name" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="DateCreated" Precision="3" />
-    <Property Type="DateTime" Name="DateUpdated" Precision="3" />
-    <Property Type="Int32" Name="CreatedById" />
-    <Property Type="Int32" Name="UpdatedById" />
-  </EntityType>
   <EntityType Name="SellerDefaultSetting">
     <Key>
       <PropertyRef Name="SellerSettingID" />
@@ -787,109 +774,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="MealAd">
-    <Key>
-      <PropertyRef Name="MealAdID" />
-    </Key>
-    <Property Type="Int32" Name="MealAdID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="MealItemID" Nullable="false" />
-    <Property Type="Int32" Name="MaxOrders" Nullable="false" />
-    <Property Type="Int32" Name="PlacedOrder" Nullable="false" />
-    <Property Type="Int32" Name="AvailabilityTypeID" Nullable="false" />
-    <Property Type="Int32" Name="Status" Nullable="false" />
-    <NavigationProperty Name="AvailabilityType" Relationship="ThreeSixtyTwoModel.FK_MealAds_AvailabilityTypes" FromRole="MealAd" ToRole="AvailabilityType" />
-    <NavigationProperty Name="Carts" Relationship="ThreeSixtyTwoModel.FK_Cart_MealAds" FromRole="MealAd" ToRole="Cart" />
-    <NavigationProperty Name="MealAds_DeliveryMethods" Relationship="ThreeSixtyTwoModel.FK_MealAds_DeliveryMethods_MealAds" FromRole="MealAd" ToRole="MealAds_DeliveryMethods" />
-    <NavigationProperty Name="MealItem" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems" FromRole="MealAd" ToRole="MealItem" />
-    <NavigationProperty Name="MealItem1" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems1" FromRole="MealAd" ToRole="MealItem" />
-    <NavigationProperty Name="MealAds_PaymentOptions" Relationship="ThreeSixtyTwoModel.FK_MealAds_PaymentOptions_MealAds" FromRole="MealAd" ToRole="MealAds_PaymentOptions" />
-    <NavigationProperty Name="OrderDetails" Relationship="ThreeSixtyTwoModel.FK_OrderDetails_MealAds" FromRole="MealAd" ToRole="OrderDetail" />
-    <NavigationProperty Name="MealAd_Schedules" Relationship="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds" FromRole="MealAd" ToRole="MealAd_Schedules" />
-  </EntityType>
-  <Association Name="FK_MealAds_AvailabilityTypes">
-    <End Type="ThreeSixtyTwoModel.AvailabilityType" Role="AvailabilityType" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="AvailabilityType">
-        <PropertyRef Name="AvaiilabilityTypeID" />
-      </Principal>
-      <Dependent Role="MealAd">
-        <PropertyRef Name="AvailabilityTypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Cart_MealAds">
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.Cart" Role="Cart" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealAd">
-        <PropertyRef Name="MealAdID" />
-      </Principal>
-      <Dependent Role="Cart">
-        <PropertyRef Name="MealAdID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MealAds_DeliveryMethods_MealAds">
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAds_DeliveryMethods" Role="MealAds_DeliveryMethods" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealAd">
-        <PropertyRef Name="MealAdID" />
-      </Principal>
-      <Dependent Role="MealAds_DeliveryMethods">
-        <PropertyRef Name="MealAdID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MealAds_MealItems">
-    <End Type="ThreeSixtyTwoModel.MealItem" Role="MealItem" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealItem">
-        <PropertyRef Name="MealItemId" />
-      </Principal>
-      <Dependent Role="MealAd">
-        <PropertyRef Name="MealItemID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MealAds_MealItems1">
-    <End Type="ThreeSixtyTwoModel.MealItem" Role="MealItem" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealItem">
-        <PropertyRef Name="MealItemId" />
-      </Principal>
-      <Dependent Role="MealAd">
-        <PropertyRef Name="MealItemID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_MealAds_PaymentOptions_MealAds">
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAds_PaymentOptions" Role="MealAds_PaymentOptions" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealAd">
-        <PropertyRef Name="MealAdID" />
-      </Principal>
-      <Dependent Role="MealAds_PaymentOptions">
-        <PropertyRef Name="MealAdID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderDetails_MealAds">
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealAd">
-        <PropertyRef Name="MealAdID" />
-      </Principal>
-      <Dependent Role="OrderDetail">
-        <PropertyRef Name="MealAdID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="MealAd_Schedules">
     <Key>
       <PropertyRef Name="MealAdScheduleID" />
@@ -901,18 +785,6 @@
     <Property Type="DateTime" Name="LastOrderDateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="MealAd" Relationship="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds" FromRole="MealAd_Schedules" ToRole="MealAd" />
   </EntityType>
-  <Association Name="FK_MealAd_Schedules_MealAds">
-    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
-    <End Type="ThreeSixtyTwoModel.MealAd_Schedules" Role="MealAd_Schedules" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MealAd">
-        <PropertyRef Name="MealAdID" />
-      </Principal>
-      <Dependent Role="MealAd_Schedules">
-        <PropertyRef Name="MealAdID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="ContactList">
     <Key>
       <PropertyRef Name="ContactListID" />
@@ -1112,4 +984,120 @@
     <Property Type="Int32" Name="BoughtFoodFromUser" Nullable="false" />
     <Property Type="Int32" Name="SoldFoodToUser" Nullable="false" />
   </EntityType>
+  <EntityType Name="MealAd">
+    <Key>
+      <PropertyRef Name="MealAdID" />
+    </Key>
+    <Property Type="Int32" Name="MealAdID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="MealItemID" Nullable="false" />
+    <Property Type="Int32" Name="MaxOrders" Nullable="false" />
+    <Property Type="Int32" Name="PlacedOrder" Nullable="false" />
+    <Property Type="Int32" Name="AvailabilityTypeID" Nullable="false" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <NavigationProperty Name="AvailabilityType" Relationship="ThreeSixtyTwoModel.FK_MealAds_AvailabilityTypes" FromRole="MealAd" ToRole="AvailabilityType" />
+    <NavigationProperty Name="Carts" Relationship="ThreeSixtyTwoModel.FK_Cart_MealAds" FromRole="MealAd" ToRole="Cart" />
+    <NavigationProperty Name="MealAd_Schedules" Relationship="ThreeSixtyTwoModel.FK_MealAd_Schedules_MealAds" FromRole="MealAd" ToRole="MealAd_Schedules" />
+    <NavigationProperty Name="MealAds_DeliveryMethods" Relationship="ThreeSixtyTwoModel.FK_MealAds_DeliveryMethods_MealAds" FromRole="MealAd" ToRole="MealAds_DeliveryMethods" />
+    <NavigationProperty Name="MealItem" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems" FromRole="MealAd" ToRole="MealItem" />
+    <NavigationProperty Name="MealItem1" Relationship="ThreeSixtyTwoModel.FK_MealAds_MealItems1" FromRole="MealAd" ToRole="MealItem" />
+    <NavigationProperty Name="MealAds_PaymentOptions" Relationship="ThreeSixtyTwoModel.FK_MealAds_PaymentOptions_MealAds" FromRole="MealAd" ToRole="MealAds_PaymentOptions" />
+    <NavigationProperty Name="OrderDetails" Relationship="ThreeSixtyTwoModel.FK_OrderDetails_MealAds" FromRole="MealAd" ToRole="OrderDetail" />
+  </EntityType>
+  <Association Name="FK_MealAds_AvailabilityTypes">
+    <End Type="ThreeSixtyTwoModel.AvailabilityType" Role="AvailabilityType" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AvailabilityType">
+        <PropertyRef Name="AvaiilabilityTypeID" />
+      </Principal>
+      <Dependent Role="MealAd">
+        <PropertyRef Name="AvailabilityTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cart_MealAds">
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealAd">
+        <PropertyRef Name="MealAdID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="MealAdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MealAd_Schedules_MealAds">
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAd_Schedules" Role="MealAd_Schedules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealAd">
+        <PropertyRef Name="MealAdID" />
+      </Principal>
+      <Dependent Role="MealAd_Schedules">
+        <PropertyRef Name="MealAdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MealAds_DeliveryMethods_MealAds">
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAds_DeliveryMethods" Role="MealAds_DeliveryMethods" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealAd">
+        <PropertyRef Name="MealAdID" />
+      </Principal>
+      <Dependent Role="MealAds_DeliveryMethods">
+        <PropertyRef Name="MealAdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MealAds_MealItems">
+    <End Type="ThreeSixtyTwoModel.MealItem" Role="MealItem" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealItem">
+        <PropertyRef Name="MealItemId" />
+      </Principal>
+      <Dependent Role="MealAd">
+        <PropertyRef Name="MealItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MealAds_MealItems1">
+    <End Type="ThreeSixtyTwoModel.MealItem" Role="MealItem" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealItem">
+        <PropertyRef Name="MealItemId" />
+      </Principal>
+      <Dependent Role="MealAd">
+        <PropertyRef Name="MealItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MealAds_PaymentOptions_MealAds">
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.MealAds_PaymentOptions" Role="MealAds_PaymentOptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealAd">
+        <PropertyRef Name="MealAdID" />
+      </Principal>
+      <Dependent Role="MealAds_PaymentOptions">
+        <PropertyRef Name="MealAdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_MealAds">
+    <End Type="ThreeSixtyTwoModel.MealAd" Role="MealAd" Multiplicity="1" />
+    <End Type="ThreeSixtyTwoModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MealAd">
+        <PropertyRef Name="MealAdID" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="MealAdID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

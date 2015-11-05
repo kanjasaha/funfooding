@@ -26,6 +26,12 @@ namespace MealsToGo
                 defaults: new { controller = "Account", action = "Authenticate", id = UrlParameter.Optional }
 
             );
+            routes.MapRoute(
+               name: "ContactRoute",
+               url: "{controller}/{action}/{RecipientUserID}/{SenderUserID}",
+               defaults: new { controller = "Contact", action = "AcceptRequest", RecipientUserID = @"\d+", SenderUserID = @"\d+" }
+
+           );
             /*
             routes.MapRoute(
              name: "HomeRoute",

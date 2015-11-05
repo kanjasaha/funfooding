@@ -32,7 +32,6 @@
     <EntitySet Name="LKUPCuisineType" EntityType="ThreeSixtyTwoModel.Store.LKUPCuisineType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPDeliveryMethod" EntityType="ThreeSixtyTwoModel.Store.LKUPDeliveryMethod" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPDietType" EntityType="ThreeSixtyTwoModel.Store.LKUPDietType" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="LKUPKitchenType" EntityType="ThreeSixtyTwoModel.Store.LKUPKitchenType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPMealType" EntityType="ThreeSixtyTwoModel.Store.LKUPMealType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPPrivacySettings" EntityType="ThreeSixtyTwoModel.Store.LKUPPrivacySettings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPServingUnit" EntityType="ThreeSixtyTwoModel.Store.LKUPServingUnit" store:Type="Tables" Schema="dbo" />
@@ -419,18 +418,6 @@
     <Property Name="CreatedById" Type="int" />
     <Property Name="UpdatedById" Type="int" />
   </EntityType>
-  <EntityType Name="LKUPKitchenType">
-    <Key>
-      <PropertyRef Name="KitchenTypeID" />
-    </Key>
-    <Property Name="KitchenTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="varchar" MaxLength="100" />
-    <Property Name="Description" Type="varchar" MaxLength="100" />
-    <Property Name="DateCreated" Type="datetime" />
-    <Property Name="DateUpdated" Type="datetime" />
-    <Property Name="CreatedById" Type="int" />
-    <Property Name="UpdatedById" Type="int" />
-  </EntityType>
   <EntityType Name="LKUPMealType">
     <Key>
       <PropertyRef Name="MealTypeID" />
@@ -494,6 +481,7 @@
     <Property Name="PlacedOrder" Type="int" Nullable="false" />
     <Property Name="AvailabilityTypeID" Type="int" Nullable="false" />
     <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MealAds_DeliveryMethods">
     <Key>

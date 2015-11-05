@@ -413,9 +413,6 @@
     <Compile Include="Models\LKUPDietType.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LKUPKitchenType.cs">
-      <DependentUpon>CookingEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LKUPMealType.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>

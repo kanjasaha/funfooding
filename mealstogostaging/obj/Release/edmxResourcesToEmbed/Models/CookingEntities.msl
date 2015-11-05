@@ -380,19 +380,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LKUPKitchenTypes">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPKitchenType">
-        <MappingFragment StoreEntitySet="LKUPKitchenType">
-          <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
-          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="KitchenTypeID" ColumnName="KitchenTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SellerDefaultSettings">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SellerDefaultSetting">
         <MappingFragment StoreEntitySet="SellerDefaultSetting">
@@ -472,18 +459,6 @@
           <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
           <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
           <ScalarProperty Name="MealAd_DeliveryMethodID" ColumnName="MealAd_DeliveryMethodID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MealAds">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd">
-        <MappingFragment StoreEntitySet="MealAds">
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="AvailabilityTypeID" ColumnName="AvailabilityTypeID" />
-          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
-          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
-          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -631,6 +606,19 @@
           <ScalarProperty Name="ContactID" ColumnName="ContactID" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MealAds">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd">
+        <MappingFragment StoreEntitySet="MealAds">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AvailabilityTypeID" ColumnName="AvailabilityTypeID" />
+          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
+          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
+          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

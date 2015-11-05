@@ -10,7 +10,7 @@ namespace MealsToGo.ViewModels
         public List<ContactsWaiting> Contacts { get; set; }
         public List<InnerCircle> InnerCircleContacts { get; set; }
         public List<OuterCircle> OuterCircleContacts { get; set; }
-        public List<Business> BusinessContacts { get; set; }
+        public List<FoodCircle> FoodCircleContacts { get; set; }
         public  NetworkViewModel()
         {}
     }
@@ -31,6 +31,7 @@ namespace MealsToGo.ViewModels
   public class InnerCircle
   {
       public string Name { get; set; }
+      public string Email { get; set; }
       public int SharesFood { get; set; }
       public int BoughtFoodFromUser { get; set; }
       public int SoldFoodToUser { get; set; }
@@ -43,6 +44,7 @@ namespace MealsToGo.ViewModels
   public class OuterCircle
   {
       public string Name { get; set; }
+      public string Email { get; set; }
       public int SharesFood { get; set; }
       public int BoughtFoodFromUser { get; set; }
       public int SoldFoodToUser { get; set; }
@@ -52,14 +54,15 @@ namespace MealsToGo.ViewModels
       }
   }
 
-  public class Business
+  public class FoodCircle
   {
       public string Name { get; set; }
+      public string Email { get; set; }
       public int SharesFood { get; set; }
       public int BoughtFoodFromUser { get; set; }
       public int SoldFoodToUser { get; set; }
 
-      public Business()
+      public FoodCircle()
       {
       }
   }
