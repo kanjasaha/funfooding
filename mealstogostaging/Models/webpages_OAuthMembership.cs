@@ -12,13 +12,10 @@ namespace MealsToGo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MealAds_PaymentOptions
+    public partial class webpages_OAuthMembership
     {
-        public int PaymentOptionID { get; set; }
-        public int MealAdID { get; set; }
-        public int MealAdPaymentOptionID { get; set; }
-    
-        public virtual MealAd MealAd { get; set; }
-        public virtual PaymentOption PaymentOption { get; set; }
+        public string Provider { get; set; }
+        public string ProviderUserId { get; set; }
+        public int UserId { get; set; }
     }
 }

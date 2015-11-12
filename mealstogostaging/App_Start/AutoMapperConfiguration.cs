@@ -35,11 +35,16 @@ namespace MealsToGo
 
             Mapper.CreateMap<MealItems_AllergenicFoods, Allergen>()
                   .ForMember(d => d.AllergenID, opt => opt.MapFrom(s => s.AllergenicFoodID));
+            Mapper.CreateMap<MealItems_Photos, MealItemsPhoto>()
+                 .ForMember(d => d.MealItemPhotoID, opt => opt.MapFrom(s => s.MealItemPhotoID))
+             .ForMember(d => d.MealItemID, opt => opt.MapFrom(s => s.MealItemID))
+              .ForMember(d => d.IsCover, opt => opt.MapFrom(s => s.IsCover))
+             .ForMember(d => d.Photo, opt => opt.MapFrom(s => s.Photo));
 
 
-            Mapper.CreateMap<MealItemViewModel, MealItem>().ForMember(d => d.MealTypeID, m => m.MapFrom(p => p.MealTypeDD.SelectedMealType))
-                                                             .ForMember(d => d.CusineTypeID, m => m.MapFrom(p => p.CusineTypeDD.SelectedCuisine))
-                                                             .ForMember(d => d.DietTypeID, m => m.MapFrom(p => p.DietTypeDD.SelectedDietType))
+            Mapper.CreateMap<MealItemViewModel, MealItem>().ForMember(d => d.MealTypeID, m => m.MapFrom(p => p.MealTypeDD.SelectedId))
+                                                             .ForMember(d => d.CusineTypeID, m => m.MapFrom(p => p.CusineTypeDD.SelectedId))
+                                                             .ForMember(d => d.DietTypeID, m => m.MapFrom(p => p.DietTypeDD.SelectedId))
                 //.ForMember(d => d.Status, m => m.MapFrom(p => p.Status ? 1 : 0))
                                                               .AfterMap((s, d) =>
                                                                           {
@@ -48,7 +53,16 @@ namespace MealsToGo
                                                                                   mealaller.MealItemID = s.MealItemId;
 
 
-                                                                          });
+                                                                          })
+
+                                                                 .AfterMap((s, d) =>
+                                                                 {
+                                                                     foreach (var ph in d.MealItems_Photos)
+
+                                                                         ph.MealItemID = s.MealItemId;
+
+
+                                                                 });
 
             Mapper.CreateMap<MealAdViewModel, MealAd>().ForMember(d => d.MealItemID, m => m.MapFrom(p => p.MealItemsDD.SelectedMealItem))
                                                             .ForMember(d => d.AvailabilityTypeID, m => m.MapFrom(p => p.AvailabilityTypeDD.SelectedAvailabilityType))
@@ -81,7 +95,11 @@ namespace MealsToGo
 
             Mapper.CreateMap<Allergen, MealItems_AllergenicFoods>()
                   .ForMember(d => d.AllergenicFoodID, opt => opt.MapFrom(s => s.AllergenID));
-
+            Mapper.CreateMap<MealItemsPhoto, MealItems_Photos>()
+                 .ForMember(d => d.MealItemPhotoID, opt => opt.MapFrom(s => s.MealItemPhotoID))
+             .ForMember(d => d.MealItemID, opt => opt.MapFrom(s => s.MealItemID))
+              .ForMember(d => d.IsCover, opt => opt.MapFrom(s => s.IsCover))
+             .ForMember(d => d.Photo, opt => opt.MapFrom(s => s.Photo) );
         }
 
 

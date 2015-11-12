@@ -52,13 +52,37 @@ namespace MealsToGo.Controllers
             }
 
             MealItemViewModel mtvm = Mapper.Map<MealItem, MealItemViewModel>(mealitem);
+
+
+            
+            List<MealItemsPhoto> phl = new List<MealItemsPhoto>();
+            foreach (var p in mealitem.MealItems_Photos)
+            {
+                MealItemsPhoto ph = new MealItemsPhoto();
+                ph = Mapper.Map<MealItems_Photos, MealItemsPhoto>(p);
+                
+                phl.Add(ph);
+            }
+            mtvm.Images = phl;
+            if (mealitem.ServingUnit != null)
+
+                mtvm.ServingUnitDD.SelectedId = _service.ServingUnitDDList().ToList().Where(x => x.ServingUnitID == mealitem.ServingUnit).FirstOrDefault().ServingUnit;
+            if (mealitem.MealTypeID != null)
+                mtvm.MealTypeDD.SelectedId = _service.MealTypeDDList().ToList().Where(x => x.MealTypeID == mealitem.MealTypeID).FirstOrDefault().Name;
+            if (mealitem.CusineTypeID != null)
+                mtvm.CusineTypeDD.SelectedId = _service.CuisineTypeDDList().ToList().Where(x => x.CuisineTypeID == mealitem.CusineTypeID).FirstOrDefault().Name; 
+            if (mealitem.DietTypeID != null)
+                mtvm.DietTypeDD.SelectedId = _service.DietTypeDDList().ToList().Where(x => x.DietTypeID == mealitem.DietTypeID).FirstOrDefault().Name; ;
+            
             mtvm = PopulateDropDown(mtvm, mealitem);
+
+          
             ViewData["MealItemViewModel"] = mtvm;
             //MealItemViewModel mtvm = Mapper.Map<MealItem, MealItemViewModel>(mealitem);
             //if (mtvm.MealTypeDD == null)
             //    mtvm.MealTypeDD = new MealTypeDDListViewModel();
             //mtvm.MealTypeDD.SelectedMealType = _service.MealTypeDDList().Where(x=>x.MealTypeID==mtvm.MealTypeDD.;
-            return View(mealitem);
+            return View(mtvm);
         }
 
         //
@@ -68,10 +92,10 @@ namespace MealsToGo.Controllers
         {
 
             MealItem mt = new MealItem();
-            mt.UserId = WebSecurity.CurrentUserId;
+         //   mt.UserId = WebSecurity.CurrentUserId;
 
-            MealItemViewModel mtvm = Mapper.Map<MealItem, MealItemViewModel>(mt);
-
+            MealItemViewModel mtvm = new MealItemViewModel();
+            mtvm.UserId=WebSecurity.CurrentUserId;
             mtvm = PopulateDropDown(mtvm, mt);
 
             return View(mtvm);
@@ -79,34 +103,42 @@ namespace MealsToGo.Controllers
 
         private MealItemViewModel PopulateDropDown(MealItemViewModel mtvm, MealItem mealitem)
         {
-            if (mtvm == null)
-                mtvm = new MealItemViewModel();
-            mtvm.ServingUnitDDList = _service.GetServingUnitDDList().Select(x => new SelectListItem
-            {
-                Value = x.ServingUnitID.ToString(),
-                Text = x.ServingUnit,
-                Selected = (mealitem != null && mealitem.ServingUnit == x.ServingUnitID)
+           
+             
+           
+             mtvm.ServingUnitDD.Items = _service.ServingUnitDDList().ToList().Select(x => new SelectListItem
+        
+             {
+                 Value=x.ServingUnitID.ToString(),
+                 Text=x.ServingUnit,
+                  Selected = (mealitem != null &&  x.ServingUnitID==mealitem.ServingUnit )
             });
 
-            mtvm.MealTypeDD.MealTypeDDList = _service.MealTypeDDList().Select(x => new SelectListItem
-            {
-                Value = x.MealTypeID.ToString(),
-                Text = x.Name,
-                Selected = (mealitem != null && mealitem.MealTypeID == x.MealTypeID)
-            });
-            mtvm.CusineTypeDD.CuisineDDList = _service.CuisineTypeDDList().Select(x => new SelectListItem
-            {
-                Value = x.CuisineTypeID.ToString(),
-                Text = x.Name,
-                Selected = (mealitem != null && mealitem.CusineTypeID == x.CuisineTypeID)
-            });
+             mtvm.MealTypeDD.Items = _service.MealTypeDDList().ToList().Select(x => new SelectListItem
 
-            mtvm.DietTypeDD.DietTypeDDList = _service.DietTypeDDList().Select(x => new SelectListItem
-            {
-                Value = x.DietTypeID.ToString(),
-                Text = x.Name,
-                Selected = (mealitem != null && mealitem.DietTypeID == x.DietTypeID)
-            });
+             {
+                 Value = x.MealTypeID.ToString(),
+                 Text = x.Name,
+                 Selected = (mealitem != null && x.MealTypeID == mealitem.MealTypeID)
+             });
+
+             mtvm.CusineTypeDD.Items = _service.CuisineTypeDDList().ToList().Select(x => new SelectListItem
+
+             {
+                 Value = x.CuisineTypeID.ToString(),
+                 Text = x.Name,
+                 Selected = (mealitem != null && x.CuisineTypeID == mealitem.CusineTypeID)
+             });
+
+              mtvm.DietTypeDD.Items = _service.DietTypeDDList().ToList().Select(x => new SelectListItem
+
+             {
+                 Value = x.DietTypeID.ToString(),
+                 Text = x.Name,
+                 Selected = (mealitem != null && x.DietTypeID == mealitem.DietTypeID)
+             });
+
+           
             mtvm.AllergenDD = _service.AllergenicFoodsDDList().Select(x => new Allergen
             {
                 AllergenName = x.AllergenicFood,
@@ -120,33 +152,49 @@ namespace MealsToGo.Controllers
         // POST: /MealItem/Create
 
         [HttpPost]
-        public ActionResult Create(MealItemViewModel mtvms, HttpPostedFileBase[] Photos)
+        public ActionResult Create(MealItemViewModel mtvms)
         {
-
+            
             try
             {
                 if (ModelState.IsValid)
                 {
                     MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
 
-                    foreach (var fileBase in Photos)
+                    if (mtvms.Imagelist != null)
                     {
-                        if (fileBase != null)
+                        foreach (var fileBase in mtvms.Imagelist)
                         {
-
-                            if (fileBase.ContentLength > 0)
+                            if (fileBase != null)
                             {
-                                var path = Path.Combine(Server.MapPath("~/MealPhotos"), WebSecurity.CurrentUserId + '-' + Path.GetRandomFileName().Replace(".", "").Substring(0, 8) + '-' + Path.GetFileName(fileBase.FileName));
+                                List<MealItems_Photos> lstMealItems_Photos = new List<MealItems_Photos>();
+                                foreach (var photo in mealitem.MealItems_Photos)
+                                {
+                                    lstMealItems_Photos.Add(photo);
+                                }
+                                //foreach (var photo in lstMealItems_Photos)
+                                //{
+                                //    db.MealItems_Photos.Remove(photo);
+
+                                //    db.Entry(mealitem).State = EntityState.Modified;
+                                //    db.SaveChanges();
+                                //}
+                                if (fileBase.ContentLength > 0)
+                                {
+                                    var path = Path.Combine(Server.MapPath("~/MealPhotos"), WebSecurity.CurrentUserId + '-' + Path.GetRandomFileName().Replace(".", "").Substring(0, 8) + '-' + Path.GetFileName(fileBase.FileName));
 
 
-                                fileBase.SaveAs(path);
-                                MealItems_Photos mp = new MealItems_Photos();
-                                mp.Photo = path;
-                                mealitem.MealItems_Photos.Add(mp);
+                                    fileBase.SaveAs(path);
+                                    MealItems_Photos mp = new MealItems_Photos();
+                                    mp.Photo = path;
+                                    mealitem.MealItems_Photos.Add(mp);
+                                }
                             }
-                        }
 
+                        }
                     }
+
+                  
 
 
                     foreach (var mealaller in mtvms.AllergenDD)
@@ -162,7 +210,7 @@ namespace MealsToGo.Controllers
                     }
 
 
-
+                    mealitem.ApprovalStatus = 0;
 
 
                     mealitem.MealItemId = _service.AddAndReturnID(mealitem);
@@ -170,6 +218,8 @@ namespace MealsToGo.Controllers
                     return RedirectToAction("Details", "MealItem", new { id = mealitem.MealItemId });
 
                 }
+
+                
             }
             catch (Exception ex)
             {
@@ -195,13 +245,33 @@ namespace MealsToGo.Controllers
         //
         // GET: /MealItem/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(int id )
         {
             MealItem mealitem = _service.GetById(id);
             MealItemViewModel mtvm = Mapper.Map<MealItem, MealItemViewModel>(mealitem);
+            if (mealitem.ServingUnit != null)
 
+                mtvm.ServingUnitDD.SelectedId = mealitem.ServingUnit.ToString();
+            if (mealitem.MealTypeID != null)
+                mtvm.MealTypeDD.SelectedId =  mealitem.MealTypeID.ToString();
+            if (mealitem.CusineTypeID != null)
+                mtvm.CusineTypeDD.SelectedId = mealitem.CusineTypeID.ToString();
+            if (mealitem.DietTypeID != null)
+                mtvm.DietTypeDD.SelectedId = mealitem.DietTypeID.ToString();
+            mtvm.ApprovalStatus = mealitem.ApprovalStatus;
+            mtvm.ApprovalStatusDate = mealitem.ApprovalStatusDate;
+
+            List<MealItemsPhoto> phl = new List<MealItemsPhoto>();
+            foreach (var p in mealitem.MealItems_Photos)
+            {
+                MealItemsPhoto ph = new MealItemsPhoto();
+                ph = Mapper.Map<MealItems_Photos, MealItemsPhoto>(p);
+
+                phl.Add(ph);
+            }
+            mtvm.Images = phl;
             mtvm = PopulateDropDown(mtvm, mealitem);
-            ViewData["MealItemViewModel"] = mealitem;
+          //  ViewData["MealItemViewModel"] = mtvm;
             return View(mtvm);
           
             //if (mealitem == null)
@@ -218,9 +288,22 @@ namespace MealsToGo.Controllers
         // POST: /MealItem/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(MealItemViewModel mtvms, HttpPostedFileBase[] Photos)
+        public ActionResult Edit(MealItemViewModel mtvms)
         {
+            string msg = "";
+            foreach (var modelStateValue in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelStateValue.Errors)
+                {
+                    // Do something useful with these properties
+                    var errorMessage = error.ErrorMessage;
+                    var exception = error.Exception;
+                     msg = msg +errorMessage.ToString() + exception.ToString();
+                }
+            }
+            
             if (ModelState.IsValid)
+            //if(1 == 1)
             {
                 MealItem mealitem132 = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
                 MealItem mealitem = db.MealItems.Where(x => x.MealItemId == mtvms.MealItemId).FirstOrDefault();
@@ -254,9 +337,9 @@ namespace MealsToGo.Controllers
 
                 }
 
-                if (Photos != null)
+                if (mtvms.Imagelist != null)
                 {
-                    foreach (var fileBase in Photos)
+                    foreach (var fileBase in mtvms.Imagelist)
                     {
                         if (fileBase != null)
                         {

@@ -392,6 +392,9 @@
     <Compile Include="Models\FunOrderDetail.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ip2location_db3_ipv6.cs">
+      <DependentUpon>CookingEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LKUPActivityType.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
@@ -514,6 +517,12 @@
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>CookingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>CookingEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
       <DependentUpon>CookingEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="NinjectDependencyScope.cs">

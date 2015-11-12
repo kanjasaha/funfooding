@@ -20,7 +20,7 @@ namespace MealsToGo.Models
         public Nullable<int> FeedbackOnPrice { get; set; }
         public int OrderID { get; set; }
     
-        public virtual Order Order { get; set; }
         public virtual MealAd MealAd { get; set; }
+        public virtual Order Order { get; set; }
     }
 }

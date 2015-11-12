@@ -4,10 +4,12 @@
     ViewBag.Title = "Meal Item - Edit";
 }
 @using (Html.BeginForm("Edit", "MealItem", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
 {
     @Html.ValidationSummary(false,"", new { @class = "error" })
     @Html.HiddenFor(model => model.DateUpdated)
     @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.ApprovalStatusDate)
     
     @Html.HiddenFor(model => model.MealItemId)
     <div class="cont-main">
@@ -30,24 +32,24 @@
                     </li>
                     <li>
                         <p>Diet Type</p>
-                        @Html.DropDownListFor(x => x.DietTypeDD.SelectedDietType, Model.DietTypeDD.DietTypeDDList, "Diet Type", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.DietTypeDD.SelectedDietType)
+                        @Html.DropDownListFor(x => x.DietTypeDD.SelectedId, Model.DietTypeDD.Items, "Diet Type", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.DietTypeDD.SelectedId)
                     </li>
                     <li>
                         <p>Meal Type</p>
-                        @Html.DropDownListFor(x => x.MealTypeDD.SelectedMealType, Model.MealTypeDD.MealTypeDDList, "Meal Type", new { @class = "gen-ftb" })
+                        @Html.DropDownListFor(x => x.MealTypeDD.SelectedId, Model.MealTypeDD.Items, "Meal Type", new { @class = "gen-ftb" })
 
-                        @Html.ValidationMessageFor(model => model.MealTypeDD.SelectedMealType)
+                        @Html.ValidationMessageFor(model => model.MealTypeDD.SelectedId)
 
                     </li>
                     <li>
                         <p>Cuisine Type</p>
-                        @Html.DropDownListFor(x => x.CusineTypeDD.SelectedCuisine, Model.CusineTypeDD.CuisineDDList, "Cuisine Type", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.CusineTypeDD.SelectedCuisine)
+                        @Html.DropDownListFor(x => x.CusineTypeDD.SelectedId, Model.CusineTypeDD.Items, "Cuisine Type", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.CusineTypeDD.SelectedId)
                     </li>
                     <li>
                         <p>Serving Unit</p>
-                        @Html.DropDownListFor(x => x.ServingUnit, Model.ServingUnitDDList, "Serving Unit", new { @class = "gen-ftb" })
+                        @Html.DropDownListFor(x => x.ServingUnit, Model.ServingUnitDD.Items, "Serving Unit", new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.ServingUnit)
 
                     </li>
@@ -63,10 +65,9 @@
                         @Html.EditorFor(model => model.AllergenDD)
                     </li>
 
-                    @if (ViewData["MealItemViewModel"] != null)
-                    {
-                        var mealItem123 = ViewData["MealItemViewModel"] as MealsToGo.Models.MealItem;
-                        if (mealItem123.MealItems_Photos.Count > 0)
+                    
+                        
+                        @if (Model.Images.Count > 0)
                         {
                         <li id="photos">
                             <p>Photo(s)</p>
@@ -75,7 +76,7 @@
                                     <td width="70%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Photo </strong></td>
                                     <td width="30%" height="30" bgcolor="#EFEFEF" class="normal-12"><strong>Action </strong></td>
                                 </tr>
-                                @foreach (var photo in mealItem123.MealItems_Photos)
+                                @foreach (var photo in Model.Images)
                                 {
                                     var arrayfileName = photo.Photo.Split('\\');
                                     var fileName = arrayfileName[arrayfileName.Length - 1];
@@ -93,14 +94,14 @@
                             </table>
                         </li>
                         }
-                    }
+                    
                     <li>
                         <p>Photo Upload :</p>
 
 
                         <label>
-                            @Html.TextBoxFor(model => model.Photos, new { type = "file", multiple = "multiple" })
-                            @Html.ValidationMessageFor(model => model.Photos)
+                            @Html.TextBoxFor(model => model.Imagelist, new { type = "file", multiple = "multiple",accept = ".png,.bmp,.jpeg,.tif,.gif" })
+                            @Html.ValidationMessageFor(model => model.Imagelist)
 
                         </label>
                         <label class="agree"></label>

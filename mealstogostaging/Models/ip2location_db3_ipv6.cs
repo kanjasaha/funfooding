@@ -12,13 +12,13 @@ namespace MealsToGo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MealAds_PaymentOptions
+    public partial class ip2location_db3_ipv6
     {
-        public int PaymentOptionID { get; set; }
-        public int MealAdID { get; set; }
-        public int MealAdPaymentOptionID { get; set; }
-    
-        public virtual MealAd MealAd { get; set; }
-        public virtual PaymentOption PaymentOption { get; set; }
+        public string ip_from { get; set; }
+        public string ip_to { get; set; }
+        public string country_code { get; set; }
+        public string country_name { get; set; }
+        public string region_name { get; set; }
+        public string city_name { get; set; }
     }
 }

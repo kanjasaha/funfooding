@@ -1,6 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ThreeSixtyTwoModelStoreContainer" CdmEntityContainer="ThreeSixtyTwoEntities">
+    <EntitySetMapping Name="LKUPDietTypes">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPDietType">
+        <MappingFragment StoreEntitySet="LKUPDietType">
+          <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DietTypeID" ColumnName="DietTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LKUPDeliveryMethods">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPDeliveryMethod">
+        <MappingFragment StoreEntitySet="LKUPDeliveryMethod">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
+          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="AddressLists">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.AddressList">
         <MappingFragment StoreEntitySet="AddressList">
@@ -39,6 +61,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AvailabilityTypes">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.AvailabilityType">
+        <MappingFragment StoreEntitySet="AvailabilityTypes">
+          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
+          <ScalarProperty Name="AvailabilityType1" ColumnName="AvailabilityType" />
+          <ScalarProperty Name="AvaiilabilityTypeID" ColumnName="AvaiilabilityTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Carts">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Cart">
         <MappingFragment StoreEntitySet="Cart">
@@ -47,6 +78,35 @@
           <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
           <ScalarProperty Name="CartID" ColumnName="CartID" />
           <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Connections">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Connection">
+        <MappingFragment StoreEntitySet="Connections">
+          <ScalarProperty Name="SoldFoodToUser" ColumnName="SoldFoodToUser" />
+          <ScalarProperty Name="BoughtFoodFromUser" ColumnName="BoughtFoodFromUser" />
+          <ScalarProperty Name="SharesFood" ColumnName="SharesFood" />
+          <ScalarProperty Name="DegreeOfSeparation" ColumnName="DegreeOfSeparation" />
+          <ScalarProperty Name="ContactStrength" ColumnName="ContactStrength" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactLists">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.ContactList">
+        <MappingFragment StoreEntitySet="ContactList">
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="RequestAccepted" ColumnName="RequestAccepted" />
+          <ScalarProperty Name="RecipientEmailAddress" ColumnName="RecipientEmailAddress" />
+          <ScalarProperty Name="RecipientUserID" ColumnName="RecipientUserID" />
+          <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ContactListID" ColumnName="ContactListID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -69,11 +129,71 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FoodReviews">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FoodReview">
+        <MappingFragment StoreEntitySet="FoodReview">
+          <ScalarProperty Name="ReviewerUserID" ColumnName="ReviewerUserID" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FunOrderDetails">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FunOrderDetail">
+        <MappingFragment StoreEntitySet="FunOrderDetails">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="FeedbackOnPrice" ColumnName="FeedbackOnPrice" />
+          <ScalarProperty Name="FeedbackOnQuality" ColumnName="FeedbackOnQuality" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FunOrders">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FunOrder">
+        <MappingFragment StoreEntitySet="FunOrders">
+          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="GeneralFeedback" ColumnName="GeneralFeedback" />
+          <ScalarProperty Name="FeedbackOnTime" ColumnName="FeedbackOnTime" />
+          <ScalarProperty Name="ActualPickUpTime" ColumnName="ActualPickUpTime" />
+          <ScalarProperty Name="EstimatedPickupTime" ColumnName="EstimatedPickupTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ip2location_db3_ipv6">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.ip2location_db3_ipv6">
+        <MappingFragment StoreEntitySet="ip2location_db3_ipv6">
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+          <ScalarProperty Name="region_name" ColumnName="region_name" />
+          <ScalarProperty Name="country_name" ColumnName="country_name" />
+          <ScalarProperty Name="country_code" ColumnName="country_code" />
+          <ScalarProperty Name="ip_to" ColumnName="ip_to" />
+          <ScalarProperty Name="ip_from" ColumnName="ip_from" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LKUPActivityTypes">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPActivityType">
         <MappingFragment StoreEntitySet="LKUPActivityType">
           <ScalarProperty Name="ActivityType" ColumnName="ActivityType" />
           <ScalarProperty Name="ActivityTypeLKUPID" ColumnName="ActivityTypeLKUPID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LKUPAllergenicFoods">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPAllergenicFood">
+        <MappingFragment StoreEntitySet="LKUPAllergenicFood">
+          <ScalarProperty Name="AllergenicFood" ColumnName="AllergenicFood" />
+          <ScalarProperty Name="AllergenicFoodID" ColumnName="AllergenicFoodID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -110,19 +230,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LKUPDietTypes">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPDietType">
-        <MappingFragment StoreEntitySet="LKUPDietType">
-          <ScalarProperty Name="UpdatedById" ColumnName="UpdatedById" />
-          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="DietTypeID" ColumnName="DietTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LKUPMealTypes">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPMealType">
         <MappingFragment StoreEntitySet="LKUPMealType">
@@ -153,77 +260,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.OrderDetail">
-        <MappingFragment StoreEntitySet="OrderDetails">
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="FeedbackOnPrice" ColumnName="FeedbackOnPrice" />
-          <ScalarProperty Name="FeedbackOnQuality" ColumnName="FeedbackOnQuality" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Orders">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Order">
-        <MappingFragment StoreEntitySet="Orders">
-          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
-          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="GeneralFeedback" ColumnName="GeneralFeedback" />
-          <ScalarProperty Name="FeedbackOnTime" ColumnName="FeedbackOnTime" />
-          <ScalarProperty Name="ActualPickUpTime" ColumnName="ActualPickUpTime" />
-          <ScalarProperty Name="EstimatedPickupTime" ColumnName="EstimatedPickupTime" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SendTexts">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SendText">
-        <MappingFragment StoreEntitySet="SendText">
-          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
-          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
-          <ScalarProperty Name="RecipientPhone" ColumnName="RecipientPhone" />
-          <ScalarProperty Name="SenderPhone" ColumnName="SenderPhone" />
-          <ScalarProperty Name="SendTextID" ColumnName="SendTextID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="states">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.state">
-        <MappingFragment StoreEntitySet="state">
-          <ScalarProperty Name="countryid" ColumnName="countryid" />
-          <ScalarProperty Name="state_abbrev" ColumnName="state_abbrev" />
-          <ScalarProperty Name="state_name" ColumnName="state_name" />
-          <ScalarProperty Name="state_id" ColumnName="state_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserPaymentOptions">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserPaymentOption">
-        <MappingFragment StoreEntitySet="UserPaymentOptions">
-          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="NotificationFrequencies">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.NotificationFrequency">
-        <MappingFragment StoreEntitySet="NotificationFrequency">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="NotificationFrequencyID" ColumnName="NotificationFrequencyID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LocationsSearcheds">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LocationsSearched">
         <MappingFragment StoreEntitySet="LocationsSearched">
@@ -241,21 +277,45 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MealItems_Photos">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealItems_Photos">
-        <MappingFragment StoreEntitySet="MealItems_Photos">
-          <ScalarProperty Name="IsCover" ColumnName="IsCover" />
-          <ScalarProperty Name="Photo" ColumnName="Photo" />
-          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
-          <ScalarProperty Name="MealItemPhotoID" ColumnName="MealItemPhotoID" />
+    <EntitySetMapping Name="MealAd_Schedules">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd_Schedules">
+        <MappingFragment StoreEntitySet="MealAd_Schedules">
+          <ScalarProperty Name="LastOrderDateTime" ColumnName="LastOrderDateTime" />
+          <ScalarProperty Name="PickUpEndDateTime" ColumnName="PickUpEndDateTime" />
+          <ScalarProperty Name="PickUpStartDateTime" ColumnName="PickUpStartDateTime" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+          <ScalarProperty Name="MealAdScheduleID" ColumnName="MealAdScheduleID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LKUPAllergenicFoods">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPAllergenicFood">
-        <MappingFragment StoreEntitySet="LKUPAllergenicFood">
-          <ScalarProperty Name="AllergenicFood" ColumnName="AllergenicFood" />
-          <ScalarProperty Name="AllergenicFoodID" ColumnName="AllergenicFoodID" />
+    <EntitySetMapping Name="MealAds">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd">
+        <MappingFragment StoreEntitySet="MealAds">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="AvailabilityTypeID" ColumnName="AvailabilityTypeID" />
+          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
+          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
+          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MealAds_DeliveryMethods">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAds_DeliveryMethods">
+        <MappingFragment StoreEntitySet="MealAds_DeliveryMethods">
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
+          <ScalarProperty Name="MealAd_DeliveryMethodID" ColumnName="MealAd_DeliveryMethodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MealAds_PaymentOptions">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAds_PaymentOptions">
+        <MappingFragment StoreEntitySet="MealAds_PaymentOptions">
+          <ScalarProperty Name="MealAdPaymentOptionID" ColumnName="MealAdPaymentOptionID" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -290,20 +350,126 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="webpages_Membership">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.webpages_Membership">
-        <MappingFragment StoreEntitySet="webpages_Membership">
-          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
-          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
-          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
-          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
-          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
-          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
-          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+    <EntitySetMapping Name="MealItems_Photos">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealItems_Photos">
+        <MappingFragment StoreEntitySet="MealItems_Photos">
+          <ScalarProperty Name="IsCover" ColumnName="IsCover" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
+          <ScalarProperty Name="MealItemPhotoID" ColumnName="MealItemPhotoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationFrequencies">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.NotificationFrequency">
+        <MappingFragment StoreEntitySet="NotificationFrequency">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NotificationFrequencyID" ColumnName="NotificationFrequencyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="FeedbackOnPrice" ColumnName="FeedbackOnPrice" />
+          <ScalarProperty Name="FeedbackOnQuality" ColumnName="FeedbackOnQuality" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="GeneralFeedback" ColumnName="GeneralFeedback" />
+          <ScalarProperty Name="FeedbackOnTime" ColumnName="FeedbackOnTime" />
+          <ScalarProperty Name="ActualPickUpTime" ColumnName="ActualPickUpTime" />
+          <ScalarProperty Name="EstimatedPickupTime" ColumnName="EstimatedPickupTime" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentOptions">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.PaymentOption">
+        <MappingFragment StoreEntitySet="PaymentOptions">
+          <ScalarProperty Name="PaymentOption1" ColumnName="PaymentOption" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Review">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="Review1" ColumnName="Review" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SellerDefaultSettings">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SellerDefaultSetting">
+        <MappingFragment StoreEntitySet="SellerDefaultSetting">
+          <ScalarProperty Name="PermitImage" ColumnName="PermitImage" />
+          <ScalarProperty Name="Permit" ColumnName="Permit" />
+          <ScalarProperty Name="HasPermit" ColumnName="HasPermit" />
+          <ScalarProperty Name="AcceptCashOnDelivery" ColumnName="AcceptCashOnDelivery" />
+          <ScalarProperty Name="AcceptCard" ColumnName="AcceptCard" />
+          <ScalarProperty Name="PickUp" ColumnName="PickUp" />
+          <ScalarProperty Name="Shipping" ColumnName="Shipping" />
+          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
+          <ScalarProperty Name="UnitOfTime" ColumnName="UnitOfTime" />
+          <ScalarProperty Name="OrderFulfillmentTime" ColumnName="OrderFulfillmentTime" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="SellerSettingID" ColumnName="SellerSettingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendEmails">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SendEmail">
+        <MappingFragment StoreEntitySet="SendEmail">
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
+          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="RecipientEmailAddress" ColumnName="RecipientEmailAddress" />
+          <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
+          <ScalarProperty Name="SendEmailID" ColumnName="SendEmailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SendTexts">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SendText">
+        <MappingFragment StoreEntitySet="SendText">
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
+          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="RecipientPhone" ColumnName="RecipientPhone" />
+          <ScalarProperty Name="SenderPhone" ColumnName="SenderPhone" />
+          <ScalarProperty Name="SendTextID" ColumnName="SendTextID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="countryid" ColumnName="countryid" />
+          <ScalarProperty Name="state_abbrev" ColumnName="state_abbrev" />
+          <ScalarProperty Name="state_name" ColumnName="state_name" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -334,70 +500,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FunOrderDetails">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FunOrderDetail">
-        <MappingFragment StoreEntitySet="FunOrderDetails">
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="FeedbackOnPrice" ColumnName="FeedbackOnPrice" />
-          <ScalarProperty Name="FeedbackOnQuality" ColumnName="FeedbackOnQuality" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FunOrders">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FunOrder">
-        <MappingFragment StoreEntitySet="FunOrders">
-          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
-          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
-          <ScalarProperty Name="Total" ColumnName="Total" />
-          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="GeneralFeedback" ColumnName="GeneralFeedback" />
-          <ScalarProperty Name="FeedbackOnTime" ColumnName="FeedbackOnTime" />
-          <ScalarProperty Name="ActualPickUpTime" ColumnName="ActualPickUpTime" />
-          <ScalarProperty Name="EstimatedPickupTime" ColumnName="EstimatedPickupTime" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SendEmails">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SendEmail">
-        <MappingFragment StoreEntitySet="SendEmail">
-          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
-          <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
-          <ScalarProperty Name="RecipientEmailAddress" ColumnName="RecipientEmailAddress" />
-          <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
-          <ScalarProperty Name="SendEmailID" ColumnName="SendEmailID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SellerDefaultSettings">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.SellerDefaultSetting">
-        <MappingFragment StoreEntitySet="SellerDefaultSetting">
-          <ScalarProperty Name="PermitImage" ColumnName="PermitImage" />
-          <ScalarProperty Name="Permit" ColumnName="Permit" />
-          <ScalarProperty Name="HasPermit" ColumnName="HasPermit" />
-          <ScalarProperty Name="AcceptCashOnDelivery" ColumnName="AcceptCashOnDelivery" />
-          <ScalarProperty Name="AcceptCard" ColumnName="AcceptCard" />
-          <ScalarProperty Name="PickUp" ColumnName="PickUp" />
-          <ScalarProperty Name="Shipping" ColumnName="Shipping" />
-          <ScalarProperty Name="Delivery" ColumnName="Delivery" />
-          <ScalarProperty Name="UnitOfTime" ColumnName="UnitOfTime" />
-          <ScalarProperty Name="OrderFulfillmentTime" ColumnName="OrderFulfillmentTime" />
-          <ScalarProperty Name="userid" ColumnName="userid" />
-          <ScalarProperty Name="SellerSettingID" ColumnName="SellerSettingID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="UserAgreements">
       <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserAgreement">
         <MappingFragment StoreEntitySet="UserAgreements">
@@ -418,72 +520,46 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AvailabilityTypes">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.AvailabilityType">
-        <MappingFragment StoreEntitySet="AvailabilityTypes">
-          <ScalarProperty Name="Descriptions" ColumnName="Descriptions" />
-          <ScalarProperty Name="AvailabilityType1" ColumnName="AvailabilityType" />
-          <ScalarProperty Name="AvaiilabilityTypeID" ColumnName="AvaiilabilityTypeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MealAds_PaymentOptions">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAds_PaymentOptions">
-        <MappingFragment StoreEntitySet="MealAds_PaymentOptions">
-          <ScalarProperty Name="MealAdPaymentOptionID" ColumnName="MealAdPaymentOptionID" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PaymentOptions">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.PaymentOption">
-        <MappingFragment StoreEntitySet="PaymentOptions">
-          <ScalarProperty Name="PaymentOption1" ColumnName="PaymentOption" />
-          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="LKUPDeliveryMethods">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.LKUPDeliveryMethod">
-        <MappingFragment StoreEntitySet="LKUPDeliveryMethod">
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="DeliveryMethod" ColumnName="DeliveryMethod" />
-          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MealAds_DeliveryMethods">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAds_DeliveryMethods">
-        <MappingFragment StoreEntitySet="MealAds_DeliveryMethods">
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-          <ScalarProperty Name="DeliveryMethodID" ColumnName="DeliveryMethodID" />
-          <ScalarProperty Name="MealAd_DeliveryMethodID" ColumnName="MealAd_DeliveryMethodID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MealAd_Schedules">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd_Schedules">
-        <MappingFragment StoreEntitySet="MealAd_Schedules">
-          <ScalarProperty Name="LastOrderDateTime" ColumnName="LastOrderDateTime" />
-          <ScalarProperty Name="PickUpEndDateTime" ColumnName="PickUpEndDateTime" />
-          <ScalarProperty Name="PickUpStartDateTime" ColumnName="PickUpStartDateTime" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-          <ScalarProperty Name="MealAdScheduleID" ColumnName="MealAdScheduleID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ContactLists">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.ContactList">
-        <MappingFragment StoreEntitySet="ContactList">
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserDetail">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="KitchenName" ColumnName="KitchenName" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="SkypeID" ColumnName="SkypeID" />
+          <ScalarProperty Name="AmazonPayID" ColumnName="AmazonPayID" />
+          <ScalarProperty Name="PayPalID" ColumnName="PayPalID" />
+          <ScalarProperty Name="GoogleCheckoutID" ColumnName="GoogleCheckoutID" />
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="AllInfo" ColumnName="AllInfo" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
           <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
           <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="RequestAccepted" ColumnName="RequestAccepted" />
-          <ScalarProperty Name="RecipientEmailAddress" ColumnName="RecipientEmailAddress" />
-          <ScalarProperty Name="RecipientUserID" ColumnName="RecipientUserID" />
-          <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ContactListID" ColumnName="ContactListID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserPaymentOptions">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserPaymentOption">
+        <MappingFragment StoreEntitySet="UserPaymentOptions">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserReviews">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserReview">
+        <MappingFragment StoreEntitySet="UserReview">
+          <ScalarProperty Name="ReviewerUserID" ColumnName="ReviewerUserID" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -497,6 +573,32 @@
           <ScalarProperty Name="PrivacySettingsID" ColumnName="PrivacySettingsID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="UserSettingsID" ColumnName="UserSettingsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Membership">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.webpages_Membership">
+        <MappingFragment StoreEntitySet="webpages_Membership">
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.webpages_OAuthMembership">
+        <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -537,87 +639,6 @@
           <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
           <ScalarProperty Name="PickUpTime" ColumnName="PickUpTime" />
           <ScalarProperty Name="MealItemName" ColumnName="MealItemName" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FoodReviews">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.FoodReview">
-        <MappingFragment StoreEntitySet="FoodReview">
-          <ScalarProperty Name="ReviewerUserID" ColumnName="ReviewerUserID" />
-          <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
-          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Reviews">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Review">
-        <MappingFragment StoreEntitySet="Reviews">
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="Approved" ColumnName="Approved" />
-          <ScalarProperty Name="Review1" ColumnName="Review" />
-          <ScalarProperty Name="Rating" ColumnName="Rating" />
-          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserDetails">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserDetail">
-        <MappingFragment StoreEntitySet="UserDetails">
-          <ScalarProperty Name="KitchenName" ColumnName="KitchenName" />
-          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="SkypeID" ColumnName="SkypeID" />
-          <ScalarProperty Name="AmazonPayID" ColumnName="AmazonPayID" />
-          <ScalarProperty Name="PayPalID" ColumnName="PayPalID" />
-          <ScalarProperty Name="GoogleCheckoutID" ColumnName="GoogleCheckoutID" />
-          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
-          <ScalarProperty Name="AllInfo" ColumnName="AllInfo" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="Photo" ColumnName="Photo" />
-          <ScalarProperty Name="Notes" ColumnName="Notes" />
-          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
-          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
-          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserReviews">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.UserReview">
-        <MappingFragment StoreEntitySet="UserReview">
-          <ScalarProperty Name="ReviewerUserID" ColumnName="ReviewerUserID" />
-          <ScalarProperty Name="Userid" ColumnName="Userid" />
-          <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Connections">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.Connection">
-        <MappingFragment StoreEntitySet="Connections">
-          <ScalarProperty Name="SoldFoodToUser" ColumnName="SoldFoodToUser" />
-          <ScalarProperty Name="BoughtFoodFromUser" ColumnName="BoughtFoodFromUser" />
-          <ScalarProperty Name="SharesFood" ColumnName="SharesFood" />
-          <ScalarProperty Name="DegreeOfSeparation" ColumnName="DegreeOfSeparation" />
-          <ScalarProperty Name="ContactStrength" ColumnName="ContactStrength" />
-          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
-          <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ConnectionID" ColumnName="ConnectionID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="MealAds">
-      <EntityTypeMapping TypeName="ThreeSixtyTwoModel.MealAd">
-        <MappingFragment StoreEntitySet="MealAds">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="AvailabilityTypeID" ColumnName="AvailabilityTypeID" />
-          <ScalarProperty Name="PlacedOrder" ColumnName="PlacedOrder" />
-          <ScalarProperty Name="MaxOrders" ColumnName="MaxOrders" />
-          <ScalarProperty Name="MealItemID" ColumnName="MealItemID" />
           <ScalarProperty Name="MealAdID" ColumnName="MealAdID" />
         </MappingFragment>
       </EntityTypeMapping>

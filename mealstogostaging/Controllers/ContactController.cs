@@ -145,24 +145,41 @@ namespace MealsToGo.Controllers
                                               group p by new { p.SenderEmailAddress, p.RequestAccepted, p.UserID, p.RecipientUserID } into g
                                               select new ContactsWaiting { EmailAddress = g.Key.SenderEmailAddress, Accepted = g.Key.RequestAccepted, SenderUserID = g.Key.UserID, RecipientUserID = g.Key.RecipientUserID, Sender = 0 }).ToList(); ;
 
-            List<InnerCircle> InnerCircle = (from s in db.UserProfiles
-                                             join sa in dbmeals.Connections on s.UserId equals sa.ContactID
-                                                where sa.UserId == UserID && sa.DegreeOfSeparation==1
-                                             select new InnerCircle { Name = s.FirstName , Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToList();
-            List<OuterCircle> OuterCircle = (from s in db.UserProfiles
-                                             join sa in dbmeals.Connections on s.UserId equals sa.ContactID
-                                             where sa.UserId == UserID && sa.DegreeOfSeparation>1
-                                             select new OuterCircle { Name = s.FirstName , Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToList();
-            List<FoodCircle> FoodCircle = (from s in db.UserProfiles
-                                             join sa in dbmeals.Connections on s.UserId equals sa.ContactID
-                                             where sa.UserId == UserID
-                                           select new FoodCircle { Name = s.FirstName, Email = sa.ContactEmail,SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+            var cninner =  (from sa in dbmeals.Connections
+            where sa.UserId == UserID && sa.DegreeOfSeparation==1
+                        select new {ContactID = sa.ContactID,Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+
+            var prf = (from s in db.UserProfiles
+                       select new { Name = s.FirstName, UserId = s.UserId }).ToArray();
+
+
+            var InnerCircle = (from s in prf
+                                             join sa in cninner on s.UserId equals sa.ContactID
+                               select new InnerCircle { Name = s.Name, Email = sa.Email, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+            var cnouter = (from sa in dbmeals.Connections
+                           where sa.UserId == UserID && sa.DegreeOfSeparation ==2
+                           select new { ContactID = sa.ContactID, Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+
+            List<OuterCircle> OuterCircle = (from s in prf
+                                             join sa in cnouter on s.UserId equals sa.ContactID
+                                             select new OuterCircle { Name = s.Name, Email = sa.Email, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToList();
+
+            var cnfood = (from sa in dbmeals.Connections
+                           where sa.UserId == UserID && sa.DegreeOfSeparation > 2
+                           select new { ContactID = sa.ContactID, Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+            List<FoodCircle> FoodCircle = (from s in prf
+                                           join sa in cnfood on s.UserId equals sa.ContactID
+                                           select new FoodCircle { Name = s.Name, Email = sa.Email, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
                                        
                
             contacts.AddRange(contacts1);
            
             nvm.Contacts = contacts;
-            nvm.InnerCircleContacts = InnerCircle;
+            nvm.InnerCircleContacts = InnerCircle.ToList();
             nvm.OuterCircleContacts = OuterCircle;
             nvm.FoodCircleContacts = FoodCircle;
 

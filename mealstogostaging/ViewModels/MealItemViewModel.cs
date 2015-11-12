@@ -17,16 +17,20 @@ namespace MealsToGo.ViewModels
         public string Ingredients { get; set; }
         [Required]
         public string ServingUnit { get; set; }
-        public IEnumerable<SelectListItem> ServingUnitDDList { get; set; }
+        public ItemViewModel ServingUnitDD { get; set; }
         public System.DateTime DateCreated { get; set; }
         public System.DateTime DateUpdated { get; set; }
         [Required]
         public int Status { get; set; }
-        public CuisineTypeDDListViewModel CusineTypeDD { get; set; }
-        public MealTypeDDListViewModel MealTypeDD { get; set; }
-        public DietTypeDDListViewModel DietTypeDD { get; set; }
+        public int ApprovalStatus { get; set; }
+        public Nullable<System.DateTime> ApprovalStatusDate { get; set; }
+        public ItemViewModel CusineTypeDD { get; set; }
+        public ItemViewModel MealTypeDD { get; set; }
+        public ItemViewModel DietTypeDD { get; set; }
         public List<Allergen> AllergenDD { get; set; }
-        public List<string> Photos { get; set; }
+        public List<MealItemsPhoto> Images { get; set; }
+        public IEnumerable<HttpPostedFileBase> Imagelist { get; set; }
+        
 
 
         public decimal Price { get; set; }
@@ -38,17 +42,30 @@ namespace MealsToGo.ViewModels
 
         public MealItemViewModel()
         {
-            CusineTypeDD = new CuisineTypeDDListViewModel();
-            MealTypeDD = new MealTypeDDListViewModel();
-            DietTypeDD = new DietTypeDDListViewModel();
+            CusineTypeDD = new ItemViewModel();
+            MealTypeDD = new ItemViewModel();
+            DietTypeDD = new ItemViewModel();
+            ServingUnitDD = new ItemViewModel();
         }
     }
+    public partial class MealItemsPhoto
+    {
+        public int MealItemPhotoID { get; set; }
+        public int MealItemID { get; set; }
+        public string Photo { get; set; }
+        public int IsCover { get; set; }
 
+       
+    }
     //public class AllergenDDListViewModel
     //{
     //    public List<Allergens> AllergenDDList { get; set; }
     //}
-
+    public class ItemViewModel
+    {
+        public string SelectedId { get; set; }
+        public IEnumerable<SelectListItem> Items { get; set; }
+    }
     public class Photos
     {
         public string Photo { get; set; }
@@ -60,21 +77,7 @@ namespace MealsToGo.ViewModels
         public int AllergenID { get; set; }
         public bool Selected { get; set; }
     }
-    public class DietTypeDDListViewModel
-    {
-        public string SelectedDietType { get; set; }
-        public IEnumerable<SelectListItem>DietTypeDDList { get; set; }
-    }
-    public class MealTypeDDListViewModel
-    {
-        public string SelectedMealType { get; set; }
-        public IEnumerable<SelectListItem> MealTypeDDList { get; set; }
-    }
-    public class CuisineTypeDDListViewModel
-    {
-        public string SelectedCuisine { get; set; }
-        public IEnumerable<SelectListItem> CuisineDDList { get; set; }
-
+   
         //public CuisineTypeDDListViewModel()
         //{
         //    CuisineDDList = new[]
@@ -89,7 +92,7 @@ namespace MealsToGo.ViewModels
         //            new SelectListItem { Value = "50", Text = "within 50 miles" }
         //        };
         //}
-    }
+    
 
     //public class CuisineTypeDDListViewModel
     //{

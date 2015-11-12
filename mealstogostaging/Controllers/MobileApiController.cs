@@ -188,27 +188,30 @@ namespace MealsToGo.Controllers
             IMealItemService _service = new MealItemService();
             if (mtvm == null)
                 mtvm = new MealItemViewModel();
-            mtvm.ServingUnitDDList = _service.GetServingUnitDDList().Select(x => new SelectListItem
+            mtvm.ServingUnitDD.SelectedId = mealitem.ServingUnit.ToString();
+            mtvm.ServingUnitDD.Items = _service.ServingUnitDDList().ToList().Select(x => new SelectListItem
             {
                 Value = x.ServingUnitID.ToString(),
                 Text = x.ServingUnit,
                 Selected = (mealitem != null && mealitem.ServingUnit == x.ServingUnitID)
             });
-
-            mtvm.MealTypeDD.MealTypeDDList = _service.MealTypeDDList().Select(x => new SelectListItem
+            mtvm.MealTypeDD.SelectedId = mealitem.MealTypeID.ToString();
+            mtvm.MealTypeDD.Items = _service.MealTypeDDList().ToList().Select(x => new SelectListItem
             {
                 Value = x.MealTypeID.ToString(),
                 Text = x.Name,
                 Selected = (mealitem != null && mealitem.MealTypeID == x.MealTypeID)
             });
-            mtvm.CusineTypeDD.CuisineDDList = _service.CuisineTypeDDList().Select(x => new SelectListItem
+            mtvm.CusineTypeDD.SelectedId = mealitem.CusineTypeID.ToString();
+            
+            mtvm.CusineTypeDD.Items = _service.CuisineTypeDDList().ToList().Select(x => new SelectListItem
             {
                 Value = x.CuisineTypeID.ToString(),
                 Text = x.Name,
                 Selected = (mealitem != null && mealitem.CusineTypeID == x.CuisineTypeID)
             });
-
-            mtvm.DietTypeDD.DietTypeDDList = _service.DietTypeDDList().Select(x => new SelectListItem
+            mtvm.DietTypeDD.SelectedId = mealitem.DietTypeID.ToString();
+            mtvm.DietTypeDD.Items = _service.DietTypeDDList().ToList().Select(x => new SelectListItem
             {
                 Value = x.DietTypeID.ToString(),
                 Text = x.Name,

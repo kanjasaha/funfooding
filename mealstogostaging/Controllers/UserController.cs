@@ -497,7 +497,7 @@ namespace MealsToGo.Controllers
         {
             if (!userinfovm.CheckIfSeller)
             {
-                ModelState.Remove("KitchenTypeID");
+                
                 ModelState.Remove("KitchenName");
             }
             if (ModelState.IsValid)
@@ -520,7 +520,7 @@ namespace MealsToGo.Controllers
                     }
                     catch (Exception e1)
                     {
-                        ModelState.AddModelError("", "Please browse Image only.");
+                        ModelState.AddModelError("", "Please upload Image only. " + e1.Message.ToString());
 
 
                     }

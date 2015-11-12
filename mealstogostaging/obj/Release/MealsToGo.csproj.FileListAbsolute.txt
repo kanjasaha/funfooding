@@ -82,6 +82,7 @@ D:\SohamV\FFM\MealsToGo.root\MealsToGo\bin\zh-Hans\System.Spatial.resources.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\bin\zh-Hant\System.Spatial.resources.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\obj\Release\MealsToGo.dll
 D:\SohamV\FFM\MealsToGo.root\MealsToGo\obj\Release\MealsToGo.pdb
+C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.csprojResolveAssemblyReference.cache
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\MealsToGo.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\MealsToGo.pdb
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\AutoMapper.dll
@@ -157,4 +158,3 @@ C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\zh-Hans
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.dll
 C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.pdb
-C:\Users\kanja-1\Desktop\1FunfoodingCode\funfooding\mealstogostaging\obj\Release\MealsToGo.csprojResolveAssemblyReference.cache

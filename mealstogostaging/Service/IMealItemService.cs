@@ -12,7 +12,7 @@ namespace MealsToGo.Service
     public interface IMealItemService:IService<MealItem> 
     {
         int AddAndReturnID(MealItem entity);
-        IEnumerable<LKUPServingUnit> GetServingUnitDDList();
+        IEnumerable<LKUPServingUnit> ServingUnitDDList();
         IEnumerable<LKUPMealType> MealTypeDDList();
         IEnumerable<LKUPDietType> DietTypeDDList();
         IEnumerable<LKUPCuisineType> CuisineTypeDDList();

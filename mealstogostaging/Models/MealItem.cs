@@ -16,10 +16,10 @@ namespace MealsToGo.Models
     {
         public MealItem()
         {
-            this.MealItems_AllergenicFoods = new HashSet<MealItems_AllergenicFoods>();
-            this.MealItems_Photos = new HashSet<MealItems_Photos>();
             this.MealAds = new HashSet<MealAd>();
             this.MealAds1 = new HashSet<MealAd>();
+            this.MealItems_AllergenicFoods = new HashSet<MealItems_AllergenicFoods>();
+            this.MealItems_Photos = new HashSet<MealItems_Photos>();
         }
     
         public int MealItemId { get; set; }
@@ -35,17 +35,17 @@ namespace MealsToGo.Models
         public decimal Price { get; set; }
         public string Description { get; set; }
         public int Quantity { get; set; }
-        public Nullable<int> DietTypeID { get; set; }
-        public Nullable<int> ApprovalStatus { get; set; }
+        public int DietTypeID { get; set; }
+        public int ApprovalStatus { get; set; }
         public Nullable<System.DateTime> ApprovalStatusDate { get; set; }
     
         public virtual LKUPCuisineType LKUPCuisineType { get; set; }
         public virtual LKUPDietType LKUPDietType { get; set; }
         public virtual LKUPMealType LKUPMealType { get; set; }
         public virtual LKUPServingUnit LKUPServingUnit { get; set; }
-        public virtual ICollection<MealItems_AllergenicFoods> MealItems_AllergenicFoods { get; set; }
-        public virtual ICollection<MealItems_Photos> MealItems_Photos { get; set; }
         public virtual ICollection<MealAd> MealAds { get; set; }
         public virtual ICollection<MealAd> MealAds1 { get; set; }
+        public virtual ICollection<MealItems_AllergenicFoods> MealItems_AllergenicFoods { get; set; }
+        public virtual ICollection<MealItems_Photos> MealItems_Photos { get; set; }
     }
 }

@@ -25,6 +25,16 @@
     </EntitySet>
     <EntitySet Name="FunOrderDetails" EntityType="ThreeSixtyTwoModel.Store.FunOrderDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FunOrders" EntityType="ThreeSixtyTwoModel.Store.FunOrders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ip2location_db3_ipv6" EntityType="ThreeSixtyTwoModel.Store.ip2location_db3_ipv6" store:Type="Tables" store:Schema="dbo" store:Name="ip2location_db3_ipv6">
+      <DefiningQuery>SELECT 
+      [ip2location_db3_ipv6].[ip_from] AS [ip_from], 
+      [ip2location_db3_ipv6].[ip_to] AS [ip_to], 
+      [ip2location_db3_ipv6].[country_code] AS [country_code], 
+      [ip2location_db3_ipv6].[country_name] AS [country_name], 
+      [ip2location_db3_ipv6].[region_name] AS [region_name], 
+      [ip2location_db3_ipv6].[city_name] AS [city_name]
+      FROM [dbo].[ip2location_db3_ipv6] AS [ip2location_db3_ipv6]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="LKUPActivityType" EntityType="ThreeSixtyTwoModel.Store.LKUPActivityType" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPAllergenicFood" EntityType="ThreeSixtyTwoModel.Store.LKUPAllergenicFood" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="LKUPAssociationType" EntityType="ThreeSixtyTwoModel.Store.LKUPAssociationType" store:Type="Tables" Schema="dbo" />
@@ -106,6 +116,8 @@
     </EntitySet>
     <EntitySet Name="UserSettings" EntityType="ThreeSixtyTwoModel.Store.UserSettings" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="webpages_Membership" EntityType="ThreeSixtyTwoModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="ThreeSixtyTwoModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="ThreeSixtyTwoModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ActiveMealAds" EntityType="ThreeSixtyTwoModel.Store.ActiveMealAds" store:Type="Tables" Schema="search" />
     <AssociationSet Name="FK_Cart_MealAds" Association="ThreeSixtyTwoModel.Store.FK_Cart_MealAds">
       <End Role="MealAds" EntitySet="MealAds" />
@@ -194,6 +206,10 @@
     <AssociationSet Name="FK_UserDetails_AddressList1" Association="ThreeSixtyTwoModel.Store.FK_UserDetails_AddressList1">
       <End Role="AddressList" EntitySet="AddressList" />
       <End Role="UserDetails" EntitySet="UserDetails" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserId" Association="ThreeSixtyTwoModel.Store.fk_UserId">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
     </AssociationSet>
     <AssociationSet Name="FK_UserSettings_LKUPPrivacySettings" Association="ThreeSixtyTwoModel.Store.FK_UserSettings_LKUPPrivacySettings">
       <End Role="LKUPPrivacySettings" EntitySet="LKUPPrivacySettings" />
@@ -353,6 +369,25 @@
     <Property Name="Total" Type="decimal" Nullable="false" Scale="2" />
     <Property Name="PaymentOptionID" Type="int" Nullable="false" />
     <Property Name="DeliveryMethodID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'ThreeSixtyTwo.dbo.ip2location_db3_ipv6' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="ip2location_db3_ipv6">
+    <Key>
+      <PropertyRef Name="ip_from" />
+      <PropertyRef Name="ip_to" />
+      <PropertyRef Name="country_code" />
+      <PropertyRef Name="country_name" />
+      <PropertyRef Name="region_name" />
+      <PropertyRef Name="city_name" />
+    </Key>
+    <Property Name="ip_from" Type="char" Nullable="false" MaxLength="39" />
+    <Property Name="ip_to" Type="char" Nullable="false" MaxLength="39" />
+    <Property Name="country_code" Type="nvarchar" Nullable="false" MaxLength="2" />
+    <Property Name="country_name" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="region_name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="city_name" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <EntityType Name="LKUPActivityType">
     <Key>
@@ -516,8 +551,8 @@
     <Property Name="Price" Type="decimal" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="500" />
     <Property Name="Quantity" Type="int" Nullable="false" />
-    <Property Name="DietTypeID" Type="int" />
-    <Property Name="ApprovalStatus" Type="int" />
+    <Property Name="DietTypeID" Type="int" Nullable="false" />
+    <Property Name="ApprovalStatus" Type="int" Nullable="false" />
     <Property Name="ApprovalStatusDate" Type="date" />
   </EntityType>
   <EntityType Name="MealItems_AllergenicFoods">
@@ -797,6 +832,23 @@
     <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
     <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="ActiveMealAds">
     <Key>
       <PropertyRef Name="ActiveMealAdID" />
@@ -994,7 +1046,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_MealItems_LKUPDietType">
-    <End Role="LKUPDietType" Type="ThreeSixtyTwoModel.Store.LKUPDietType" Multiplicity="0..1" />
+    <End Role="LKUPDietType" Type="ThreeSixtyTwoModel.Store.LKUPDietType" Multiplicity="1" />
     <End Role="MealItems" Type="ThreeSixtyTwoModel.Store.MealItems" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="LKUPDietType">
@@ -1098,6 +1150,18 @@
       </Principal>
       <Dependent Role="UserDetails">
         <PropertyRef Name="AddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserId">
+    <End Role="UserProfile" Type="ThreeSixtyTwoModel.Store.UserProfile" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="ThreeSixtyTwoModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -44,7 +44,7 @@ namespace MealsToGo.Service
                 
         }
 
-        public IEnumerable<LKUPServingUnit> GetServingUnitDDList()
+        public IEnumerable<LKUPServingUnit> ServingUnitDDList()
         {
             return unitOfWork.ServUnitRepos.GetAll();
 
