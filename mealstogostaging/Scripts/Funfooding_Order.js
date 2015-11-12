@@ -60,6 +60,25 @@
          });
     });
 
+    jQuery('.RemoveMealPhoto').click(function () {
+        var id = jQuery(this).attr('name');
+        jQuery.ajax("/MealItem/RemovePhoto",
+         {
+             data: { id: id },
+             type: "POST",
+             success: function (data) {
+                 jQuery('#Photo').show();
+                // jQuery('.RemoveMealPhoto').hide();
+                 jQuery('#' + id).hide();
+
+                 //Remove and Display no. records in cart at the header section
+             },
+             error: function (e, s, t) {
+                 alert(e);
+             }
+         });
+    });
+
     jQuery('.DeleteMealItem').click(function () {
         var id = jQuery(this).attr('name');
         if (confirm('Are you sure you want to delete this record?')) {
@@ -82,6 +101,20 @@
         }
     });
     ///
+    $(document).on('click', '.delete', function() {
+        if (confirm('Are you sure?')) {
+            $.ajax({
+                url: this.href,
+                type: 'POST',
+                context: this,
+                success: function(result) {
+                    $(this).closest('div').remove();
+                }
+            });
+        }
+        return false;
+    })
+
 
     jQuery('.RemovePhoto').click(function () {
         var id = jQuery(this).attr('name');

@@ -87,7 +87,9 @@
 
                                         <td height="35" class="normal-14" style="vertical-align: middle; text-align: center;">
                                             @*@Html.ActionLink("Remove", "RemovePhoto", new { id = photo.MealItemPhotoID })*@
-                                            <a href="#" class="RemovePhoto" name="@photo.MealItemPhotoID">Remove</a>
+                                             @*@Html.ActionLink("Delete", "DeletePicture", new { documentImageID = photo.MealItemPhotoID }, new { @class = "delete" })*@
+     
+                                            <a href="#" class="RemoveMealPhoto" name="@photo.MealItemPhotoID">Remove</a>
                                         </td>
                                     </tr>
                                 }
