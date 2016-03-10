@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3355a899d94c403f986611d7cf06856d" Name="Diagram1" ZoomLevel="100">
+      <Diagram DiagramId="3355a899d94c403f986611d7cf06856d" Name="Diagram1" ZoomLevel="95">
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_OrderDetails_Orders" />
         <AssociationConnector Association="ThreeSixtyTwoModel.FK_MealAds_UserProfile"/>
         <EntityTypeShape EntityType="ThreeSixtyTwoModel.AddressList" Width="1.5" PointX="5.2054735502253635" PointY="25.744378951259133" />

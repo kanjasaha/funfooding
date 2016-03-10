@@ -33,24 +33,24 @@
                     </li>
                     <li>
                         <p>Diet Type</p>
-                        @Html.DropDownListFor(x => x.DietTypeDD.SelectedDietType, Model.DietTypeDD.DietTypeDDList, "Diet Type", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.DietTypeDD.SelectedDietType)
+                        @Html.DropDownListFor(x => x.DietTypeDD.SelectedId, Model.DietTypeDD.Items, "Diet Type", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.DietTypeDD.SelectedId)
                     </li>
                     <li>
                         <p>Meal Type</p>
-                        @Html.DropDownListFor(x => x.MealTypeDD.SelectedMealType, Model.MealTypeDD.MealTypeDDList, "Meal Type", new { @class = "gen-ftb" })
+                        @Html.DropDownListFor(x => x.MealTypeDD.SelectedId, Model.MealTypeDD.Items, "Meal Type", new { @class = "gen-ftb" })
 
-                        @Html.ValidationMessageFor(model => model.MealTypeDD.SelectedMealType)
+                        @Html.ValidationMessageFor(model => model.MealTypeDD.SelectedId)
 
                     </li>
                     <li>
                         <p>Cuisine Type</p>
-                        @Html.DropDownListFor(x => x.CusineTypeDD.SelectedCuisine, Model.CusineTypeDD.CuisineDDList, "Cuisine Type", new { @class = "gen-ftb" })
-                        @Html.ValidationMessageFor(model => model.CusineTypeDD.SelectedCuisine)
+                        @Html.DropDownListFor(x => x.CusineTypeDD.SelectedId, Model.CusineTypeDD.Items, "Cuisine Type", new { @class = "gen-ftb" })
+                        @Html.ValidationMessageFor(model => model.CusineTypeDD.SelectedId)
                     </li>
                     <li>
                         <p>Serving Unit</p>
-                        @Html.DropDownListFor(x => x.ServingUnit, Model.ServingUnitDDList, "Serving Unit", new { @class = "gen-ftb" })
+                        @Html.DropDownListFor(x => x.ServingUnit, Model.ServingUnitDD.Items, "Serving Unit", new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.ServingUnit)
 
                     </li>
@@ -71,8 +71,10 @@
 
 
                         <label>
-                            @Html.TextBoxFor(model => model.Photos, new { type = "file", multiple = "multiple" })
-                            @Html.ValidationMessageFor(model => model.Photos)
+                            @Html.TextBoxFor(model => model.Imagelist, new { type = "file", multiple = "multiple",accept = ".png,.bmp,.jpg,.tif,.gif"})
+                            @Html.ValidationMessageFor(model => model.Imagelist)
+
+                            
                         </label>
                         <label class="agree"></label>
                     </li>

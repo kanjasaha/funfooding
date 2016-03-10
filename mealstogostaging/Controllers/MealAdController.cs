@@ -132,6 +132,7 @@ namespace MealsToGo.Controllers
             {
 
                 MealAd mealad = Mapper.Map<MealAdViewModel, MealAd>(MealAdvm);
+                mealad.UserId = WebSecurity.CurrentUserId;
 
                 foreach (var payment in MealAdvm.PaymentMethods)
                 {

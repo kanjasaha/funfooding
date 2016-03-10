@@ -34,18 +34,32 @@ namespace MealsToGo.Controllers
 
         private int HasSoldFoodToUser(int UserId, int ContactID)
         {
-            bool SoldFood = dbmeals.OrderDetails.Any(x => x.OrderID == (dbmeals.Orders.Where(n => n.UserId == UserId)).FirstOrDefault().OrderID && x.MealAdID == (dbmeals.MealAds.Where(n => n.UserId == ContactID)).FirstOrDefault().MealAdID);
-            if (SoldFood)
-                return 1;
-            else return 0;
+            int SoldFood = (from a in dbmeals.OrderDetails
+                            join b in dbmeals.Orders
+                                  on a.OrderID equals b.OrderID
+                                  join c in dbmeals.MealAds
+                                  on a.MealAdID equals c.MealAdID
+                            where b.UserId == ContactID
+                            && b.UserId == UserId
+                            select a.MealAdID).Count();
+                
+                
+                       if (SoldFood==0)
+                return 0;
+            else return 1;
         }
 
         private int SharesFood(int ContactID)
         {
-            bool SharedFood = dbmeals.MealAds.Any(x => x.MealItemID == (dbmeals.MealItems.Where(n => n.UserId == ContactID)).FirstOrDefault().MealItemId);
-            if (SharedFood)
-            return 1;
-            else return 0;
+            int SharedFood = (from a in dbmeals.MealAds join b in dbmeals.MealItems
+                                                            on a.MealItemID equals b.MealItemId
+                                  where b.UserId == ContactID
+                                  select a.MealAdID).Count();
+                
+              
+            if (SharedFood ==0)
+            return 0;
+            else return 1;
         }
        
         public ActionResult AcceptRequest(int RecipientUserID, int SenderUserID)

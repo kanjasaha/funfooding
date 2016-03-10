@@ -30,3 +30,7 @@ git reset --hard to clear local and pull fresh copy from server
 
 git pull origin master. merge server and local in local before commit.
 http://guides.railsgirls.com/github/
+
+git rm -r one-of-the-directories
+git commit -m "Remove duplicated directory"
+git push origin master

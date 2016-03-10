@@ -94,6 +94,7 @@ namespace MealsToGo.Controllers
             MealItem mt = new MealItem();
          //   mt.UserId = WebSecurity.CurrentUserId;
 
+            
             MealItemViewModel mtvm = new MealItemViewModel();
             mtvm.UserId=WebSecurity.CurrentUserId;
             mtvm = PopulateDropDown(mtvm, mt);
@@ -103,49 +104,65 @@ namespace MealsToGo.Controllers
 
         private MealItemViewModel PopulateDropDown(MealItemViewModel mtvm, MealItem mealitem)
         {
-           
-             
-           
-             mtvm.ServingUnitDD.Items = _service.ServingUnitDDList().ToList().Select(x => new SelectListItem
-        
-             {
-                 Value=x.ServingUnitID.ToString(),
-                 Text=x.ServingUnit,
-                  Selected = (mealitem != null &&  x.ServingUnitID==mealitem.ServingUnit )
-            });
-
-             mtvm.MealTypeDD.Items = _service.MealTypeDDList().ToList().Select(x => new SelectListItem
-
-             {
-                 Value = x.MealTypeID.ToString(),
-                 Text = x.Name,
-                 Selected = (mealitem != null && x.MealTypeID == mealitem.MealTypeID)
-             });
-
-             mtvm.CusineTypeDD.Items = _service.CuisineTypeDDList().ToList().Select(x => new SelectListItem
-
-             {
-                 Value = x.CuisineTypeID.ToString(),
-                 Text = x.Name,
-                 Selected = (mealitem != null && x.CuisineTypeID == mealitem.CusineTypeID)
-             });
-
-              mtvm.DietTypeDD.Items = _service.DietTypeDDList().ToList().Select(x => new SelectListItem
-
-             {
-                 Value = x.DietTypeID.ToString(),
-                 Text = x.Name,
-                 Selected = (mealitem != null && x.DietTypeID == mealitem.DietTypeID)
-             });
-
-           
-            mtvm.AllergenDD = _service.AllergenicFoodsDDList().Select(x => new Allergen
+            string err = "";
+            EmailModel em = new EmailModel();
+            try
             {
-                AllergenName = x.AllergenicFood,
-                AllergenID = x.AllergenicFoodID,
-                Selected = (mealitem != null && mealitem.MealItems_AllergenicFoods.Where(y => y.AllergenicFoodID == x.AllergenicFoodID ).Count() > 0)
-            }).ToList();
 
+                mtvm.ServingUnitDD.Items = _service.ServingUnitDDList().ToList().Select(x => new SelectListItem
+
+                {
+                    Value = x.ServingUnitID.ToString(),
+                    Text = x.ServingUnit,
+                    Selected = (mealitem != null && x.ServingUnitID == mealitem.ServingUnit)
+                });
+
+                mtvm.MealTypeDD.Items = _service.MealTypeDDList().ToList().Select(x => new SelectListItem
+
+                {
+                    Value = x.MealTypeID.ToString(),
+                    Text = x.Name,
+                    Selected = (mealitem != null && x.MealTypeID == mealitem.MealTypeID)
+                });
+
+                mtvm.CusineTypeDD.Items = _service.CuisineTypeDDList().ToList().Select(x => new SelectListItem
+
+                {
+                    Value = x.CuisineTypeID.ToString(),
+                    Text = x.Name,
+                    Selected = (mealitem != null && x.CuisineTypeID == mealitem.CusineTypeID)
+                });
+
+                mtvm.DietTypeDD.Items = _service.DietTypeDDList().ToList().Select(x => new SelectListItem
+
+               {
+                   Value = x.DietTypeID.ToString(),
+                   Text = x.Name,
+                   Selected = (mealitem != null && x.DietTypeID == mealitem.DietTypeID)
+               });
+
+
+                mtvm.AllergenDD = _service.AllergenicFoodsDDList().Select(x => new Allergen
+                {
+                    AllergenName = x.AllergenicFood,
+                    AllergenID = x.AllergenicFoodID,
+                    Selected = (mealitem != null && mealitem.MealItems_AllergenicFoods.Where(y => y.AllergenicFoodID == x.AllergenicFoodID).Count() > 0)
+                }).ToList();
+            }
+            catch (Exception e)
+            {
+                 err = e.Message.ToString();
+            }
+
+
+            if (err != "")
+            {
+                em.To = "kanjasaha@gmail.com";
+                em.From = "kanjasaha@gmail.com";
+                em.EmailBody = err;
+                Common.sendeMail(em, true);
+
+            }
             return mtvm;
         }
         //

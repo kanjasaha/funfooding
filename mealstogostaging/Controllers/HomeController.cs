@@ -549,6 +549,7 @@ namespace MealsToGo.Controllers
 
             TempOrderList tempOrder = new TempOrderList();
             tempOrder.MealItemId = mealItemId;
+            tempOrder.itemName = itemName;
             tempOrder.qty = qty;
             tempOrder.userid = WebSecurity.CurrentUserId;
             tempOrder.sessionId = Session.SessionID;

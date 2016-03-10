@@ -122,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:48</publishTime>
     </File>
     <File Include="bin/MealsToGo.dll">
-      <publishTime>11/05/2015 03:12:24</publishTime>
+      <publishTime>03/04/2016 00:00:26</publishTime>
     </File>
     <File Include="bin/Microsoft.Data.Edm.dll">
       <publishTime>09/06/2015 23:34:18</publishTime>
@@ -767,7 +767,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2014 14:28:06</publishTime>
     </File>
     <File Include="Models/CookingEntities.edmx.diagram">
-      <publishTime>11/05/2015 01:37:35</publishTime>
+      <publishTime>11/23/2015 20:45:34</publishTime>
     </File>
     <File Include="Models/CookingEntities.tt">
       <publishTime>01/12/2015 00:19:13</publishTime>
@@ -839,7 +839,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:09</publishTime>
     </File>
     <File Include="Scripts/Funfooding_Order.js">
-      <publishTime>09/30/2015 22:31:08</publishTime>
+      <publishTime>11/11/2015 21:52:30</publishTime>
     </File>
     <File Include="Scripts/grid.locale-en.js">
       <publishTime>09/06/2015 23:33:24</publishTime>
@@ -992,7 +992,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Company/About.cshtml">
-      <publishTime>09/30/2015 23:29:47</publishTime>
+      <publishTime>01/19/2016 22:48:20</publishTime>
     </File>
     <File Include="Views/Company/Contact.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1016,7 +1016,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Contact/Index.cshtml">
-      <publishTime>11/05/2015 03:11:16</publishTime>
+      <publishTime>01/20/2016 03:18:45</publishTime>
     </File>
     <File Include="Views/Emails/Standard.cshtml">
       <publishTime>09/06/2015 23:33:27</publishTime>
@@ -1046,13 +1046,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:27</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/25/2015 19:33:41</publishTime>
+      <publishTime>03/03/2016 23:58:18</publishTime>
     </File>
     <File Include="Views/Home/Index2.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/Home/LocationToSearch.cshtml">
-      <publishTime>09/23/2015 21:05:52</publishTime>
+      <publishTime>01/20/2016 01:12:18</publishTime>
     </File>
     <File Include="Views/Home/Map.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1079,13 +1079,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/MealAd/Create.cshtml">
-      <publishTime>09/30/2015 23:25:06</publishTime>
+      <publishTime>03/03/2016 22:41:05</publishTime>
     </File>
     <File Include="Views/MealAd/Delete.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
     </File>
     <File Include="Views/MealAd/Details.cshtml">
-      <publishTime>09/28/2015 22:44:22</publishTime>
+      <publishTime>11/09/2015 01:26:53</publishTime>
     </File>
     <File Include="Views/MealAd/Edit.cshtml">
       <publishTime>09/28/2015 22:56:24</publishTime>
@@ -1100,13 +1100,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/07/2015 02:08:01</publishTime>
     </File>
     <File Include="Views/MealAd/HowTo.cshtml">
-      <publishTime>09/24/2015 22:51:23</publishTime>
+      <publishTime>01/23/2016 21:21:07</publishTime>
     </File>
     <File Include="Views/MealAd/Index.cshtml">
-      <publishTime>09/28/2015 22:36:27</publishTime>
+      <publishTime>03/03/2016 22:45:59</publishTime>
     </File>
     <File Include="Views/MealAd/Index.Mobile.cshtml">
-      <publishTime>09/06/2015 23:33:28</publishTime>
+      <publishTime>11/10/2015 20:28:13</publishTime>
     </File>
     <File Include="Views/MealAd/SchedulePartial.cshtml">
       <publishTime>09/06/2015 23:33:28</publishTime>
@@ -1115,16 +1115,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/14/2015 22:58:46</publishTime>
     </File>
     <File Include="Views/MealItem/Create.cshtml">
-      <publishTime>09/06/2015 23:33:28</publishTime>
+      <publishTime>11/11/2015 19:17:55</publishTime>
     </File>
     <File Include="Views/MealItem/Delete.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
     </File>
     <File Include="Views/MealItem/Details.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>11/11/2015 01:53:21</publishTime>
     </File>
     <File Include="Views/MealItem/Edit.cshtml">
-      <publishTime>10/13/2015 00:02:17</publishTime>
+      <publishTime>11/11/2015 21:43:30</publishTime>
     </File>
     <File Include="Views/MealItem/EditorTemplates/Allergen.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1244,10 +1244,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Views/Shared/_IndexLayout.cshtml">
-      <publishTime>09/06/2015 23:33:29</publishTime>
+      <publishTime>01/20/2016 01:21:38</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/13/2015 01:45:42</publishTime>
+      <publishTime>03/03/2016 21:41:24</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.Mobile.cshtml">
       <publishTime>09/06/2015 23:33:29</publishTime>
@@ -1322,7 +1322,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/06/2015 23:33:30</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/05/2015 03:12:33</publishTime>
+      <publishTime>03/04/2016 00:47:33</publishTime>
     </File>
   </ItemGroup>
 </Project>

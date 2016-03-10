@@ -29,17 +29,17 @@
 <script type="text/javascript">
 
      function returnHyperLink(cellValue, options, rowdata, action) {
-         return "<a href='#' onclick=\"funAddtoCart('" + options.rowId + "','" + rowdata.Price + "');\"><div style=\"text-align: center\"><img src=\"../Content/images/cart-icon.jpg\" alt=\"Add To Cart\" /></div></a>";
+         return "<a href='#' onclick=\"funAddtoCart('" + options.rowId + "','"  + rowdata.MealItemName + "','" + rowdata.Price + "');\"><div style=\"text-align: center\"><img src=\"../Content/images/cart-icon.jpg\" alt=\"Add To Cart\" /></div></a>";
     }
     function returnHyperLinkReservation(cellValue, options, rowdata, action) {
         return "<a href='./test.do?custId=" + options.rowId + "' >Make a Reservation</a>";
     }
-
-    function funAddtoCart(MealItemId, Price) {
+    
+    function funAddtoCart(MealItemId,ItemName,Price) {
         var qty = 1;
         jQuery.ajax("/Home/AddtoCart",
          {
-             data: { mealItemId: MealItemId, qty: qty, itemName: MealItemId, price: Price },
+             data: { mealItemId: MealItemId, qty: qty, itemName: ItemName, price: Price },
              type: "GET",
              contentType: "application/json",
              dataType: "json",

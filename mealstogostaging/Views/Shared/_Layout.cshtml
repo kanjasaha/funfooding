@@ -163,14 +163,12 @@ color: #713f1d;}
                 <img src="~/Content/images/funfooding.jpg" alt="Funfooding" class="logo" />
                 
             </a>
-          <br />Find and share food in your neck of the woods. </div>
+          <br />Find and Share food in your neck of the woods. </div>
 
               @Html.Partial("_LoginPartial")
             
         </div>
     </div>
-
-   
 
         <div class="menu-ma">
 
@@ -198,11 +196,11 @@ color: #713f1d;}
                       {<text> class='has-sub'</text>} >
                      @if (Request.IsAuthenticated)
                      {
-                     <a href="">Share Food</a>
+                     <a href="">List Food</a>
                          
                   
                     <ul>
-                        <li> @Html.ActionLink("Share", "Index", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
+                        <li> @Html.ActionLink("List", "Index", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         <li>@Html.ActionLink("Food List", "Index", "MealItem", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
                         <li class='last'>@Html.ActionLink("How To", "HowTo", "MealAd", routeValues: new { userID = UserID }, htmlAttributes: null)</li>
 
@@ -319,13 +317,26 @@ color: #713f1d;}
         </div>
     </div>
     <div id="footer2">
-        Copyright � 2014 Funfooding, All Rights Reserved.
+      
     </div>
 
 
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-57516749-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript" >

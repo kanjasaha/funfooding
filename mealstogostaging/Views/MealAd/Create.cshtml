@@ -141,7 +141,7 @@
                 <ul class="gen-form">
                     <li>
                         <p>* Meal Item</p>
-                        @Html.DropDownListFor(x => x.MealItemsDD.SelectedMealItem, Model.MealItemsDD.MealItemsDDList, "Food To Advertise", new { @class = "gen-ftb" })
+                        @Html.DropDownListFor(x => x.MealItemsDD.SelectedMealItem, Model.MealItemsDD.MealItemsDDList, "Food To Share", new { @class = "gen-ftb" })
                         @Html.ValidationMessageFor(model => model.MealItemsDD.SelectedMealItem)
 
 
@@ -211,7 +211,7 @@
 
                     <li>
                         <label>
-                            <input type="submit" name="button2" id="button2" value="Share" class="submit" />
+                            <input type="submit" name="button2" id="button2" value="List" class="submit" />
                         </label>
 
                         @Html.ActionLink("Back to List", "Index", new { userID = WebSecurity.CurrentUserId }, new { @class = "menu-14u" })
