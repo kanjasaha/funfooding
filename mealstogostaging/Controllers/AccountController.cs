@@ -20,7 +20,6 @@ using System.Data.SqlClient;
 using MealsToGo.Helpers;
 using System.Net;
 using System.IO;
-using System.Text;
 using System.Security.Cryptography;
 using System.Data;
 
@@ -47,7 +46,7 @@ namespace MealsToGo.Controllers
         {
             ResetModel resetModel = new ResetModel();
             emailId = emailId.Replace(" ", "+");
-            string DecryptMail = Decrypt(emailId);
+            string DecryptMail = Common.Decrypt(emailId);
             //resetModel.UserName = emailId;
             resetModel.UserName = DecryptMail;
             return View(resetModel);
@@ -56,13 +55,8 @@ namespace MealsToGo.Controllers
         [HttpPost]
         public ActionResult Reset(ResetModel resetModel)
         {
-            //if (ModelState.IsValid)
-            //{
-
-
-            if (resetModel.Password == null)
+           if (resetModel.Password == null)
             {
-                // TempData["BlankPassword"] = "Please enter password";
                 return View(resetModel);
 
             }
@@ -113,7 +107,6 @@ namespace MealsToGo.Controllers
         public ActionResult ResetPassword(ResetPasswordModel objResetPasswordModel)
         {
 
-
             if (ModelState.IsValid)
             {
 
@@ -123,7 +116,7 @@ namespace MealsToGo.Controllers
 
                     emailmodel.To = objResetPasswordModel.UserNameOrEmailId;
                     emailmodel.Subject = "Reset Password";
-                    string EncryptMail = this.Encrypt(emailmodel.To);
+                    string EncryptMail = Common.Encrypt(emailmodel.To);
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
                     sb.Append("Click the link below for resetting your password.<br />");
@@ -143,48 +136,8 @@ namespace MealsToGo.Controllers
             }
             return View(objResetPasswordModel);
         }
-        private string Encrypt(string clearText)
-        {
-            string EncryptionKey = "MAKV2SPBNI99212";
-            byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(clearBytes, 0, clearBytes.Length);
-                        cs.Close();
-                    }
-                    clearText = Convert.ToBase64String(ms.ToArray());
-                }
-            }
-            return clearText;
-        }
-        private string Decrypt(string cipherText)
-        {
-            string EncryptionKey = "MAKV2SPBNI99212";
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            using (Aes encryptor = Aes.Create())
-            {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
-                    {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
-                    }
-                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
-                }
-            }
-            return cipherText;
-        }
+       
+     
 
         private bool EmailExist(string email)
         {
@@ -272,10 +225,7 @@ namespace MealsToGo.Controllers
                     log.RememberMe = true;
                 }
             }
-            //model.UserName = "";
-            //model.Password = "";
-            //log.UserName = "";
-            //log.Password = "";
+         
             return View(log);
 
         }
@@ -285,16 +235,7 @@ namespace MealsToGo.Controllers
         {
             
             LoginRegisterViewModel lrvm = new LoginRegisterViewModel();
-            //if (id != "")
-            //{ 
-
-            //   if  (WebSecurity.ConfirmAccount(id))
-            //   {
-
-            //          int UserID = dbmeals.webpages_Membership.Where(x => x.ConfirmationToken == id).FirstOrDefault().UserId;
-            //          lrvm.UserName = db.UserProfiles.Where(x => x.UserId == UserID).FirstOrDefault().UserName;
-            //   }
-            //}
+          
 
             ViewBag.ErrorMessage = TempData["ErrorMessage"];
 
@@ -527,30 +468,19 @@ namespace MealsToGo.Controllers
                 {
                     if (arripaddress[i] != "")
                     {
-                        // check if the IP address is supported in demo version
-                        long ipno = IP2Decimal(arripaddress[i]);
+                         long ipno = Common.IP2Decimal(arripaddress[i]);
                         if ((ipno > 0) || (ipno < 33554431))
                         {
                             SqlDataReader reader;
-                            // select MS-SQL database using DSNless connection
-                            SqlConnection sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
-                            // query string to lookup the country by matching the range of IP address number
-                            SqlCommand sqlCmd = new SqlCommand("SELECT TOP 1 * FROM ip2location_db3_ipv6 WHERE " + ipno.ToString() + " <= ip_to ORDER BY ip_to", sqlConn);
+                               SqlConnection sqlConn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+                             SqlCommand sqlCmd = new SqlCommand("SELECT TOP 1 * FROM ip2location_db3_ipv6 WHERE " + ipno.ToString() + " <= ip_to ORDER BY ip_to", sqlConn);
                             sqlCmd.Connection.Open();
-                            // execute the query
-                            reader = sqlCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-                            // display results
+                              reader = sqlCmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
                             if (reader.Read())
                             {
                                 location = Convert.ToString(reader["city_name"]);
                                 address = Convert.ToString(reader["city_name"]) + "," + Convert.ToString(reader["region_name"]) + "," + Convert.ToString(reader["country_name"]);
-
-                                //Response.Write("<tr>");
-                                //Response.Write("<td align=center>" + arripaddress[i] + "</td>");
-                                //Response.Write("<td align=center>" + reader.GetString(0) + "</td>");
-                                //Response.Write("<td align=center>" + reader.GetString(1) + "</td>");
-                                //Response.Write("</tr>");
-                            }
+                           }
                             sqlCmd.Connection.Close();
                         }
                     }
@@ -572,7 +502,7 @@ namespace MealsToGo.Controllers
                 {
                     Session["UserLoc"] = location;
 
-                    GLatLong latlng = GetLatLng(address);
+                    GLatLong latlng = Common.GetLatLng(address);
                     Session["UserLocLat"] = (decimal)latlng.Latitude;
                     Session["UserLocLong"] = (decimal)latlng.Longitude;
                 }
@@ -600,54 +530,15 @@ namespace MealsToGo.Controllers
                 if (Session["UserLocLat"] == null)
                     return RedirectToAction("LocationToSearch", "Home", null);
 
-
             }
             SearchParam searchparam = new SearchParam();
             return RedirectToAction("Index", "Home", new RouteValueDictionary(searchparam));
 
         }
 
-        public GLatLong GetLatLng(string address)
-        {
+     
 
-
-            //IGeoCoder geoCoder = new GoogleGeoCoder("my-api-key");
-            //Address[] addresses = geoCoder.GeoCode("123 Main St");
-
-            //IGeoCoder geoCoder = new YahooGeoCoder("my-app-ID");
-            // addresses = geoCoder.GeoCode(38.8976777, -77.036517);
-
-            GLatLong loc = new GLatLong();
-            var c = GeoCodingHelper.GetLatLong(address);
-            if (c != null)
-            {
-                loc.Latitude = c.Latitude;
-                loc.Longitude = c.Longitude;
-            }
-            return loc;
-        }
-
-        // Convert dotted IP address into IP number in long
-        public long IP2Decimal(String DottedIP)
-        {
-            string[] arrConvert;
-            int i;
-            long intResult = 0;
-            try
-            {
-                arrConvert = DottedIP.Split('.');
-                for (i = arrConvert.Length - 1; i >= 0; i--)
-                {
-                    intResult = intResult + ((long.Parse(arrConvert[i]) % 256) * long.Parse(Math.Pow(256, 3 - i).ToString()));
-                }
-                return intResult;
-            }
-            catch (Exception ex)
-            {
-                //  Response.Write(ex.Message);
-                return 0;
-            }
-        }
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
