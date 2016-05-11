@@ -19,6 +19,7 @@ http://www.iis.net/learn/manage/configuring-security/application-pool-identities
 #github checkin
 
 cd C:/Users/../../../funfooding
+C:/Users/kanja-1/Desktop/1FunfoodingCode/funfooding/mealstogostaging
 
 
 git init

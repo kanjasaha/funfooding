@@ -221,55 +221,74 @@ namespace MealsToGo.Controllers
             //return Json(viewmodel, JsonRequestBehavior.AllowGet);
             try
             {
-            LoginModel model = new LoginModel(); 
-            model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
-            //return Json(viewmodel, JsonRequestBehavior.AllowGet);
-            
-            
-                // Attempt to register the user
-               
-                    string confirmationToken =
-                        WebSecurity.CreateUserAndAccount(viewmodel.UserName, viewmodel.Password,propertyValues: new
-                        {
-                            FirstName = viewmodel.FirstName
-                        }, requireConfirmationToken: true); //new {Email=model.Email}
-
-                   
-                    EmailModel emailmodel = new EmailModel();
-                    emailmodel.To = viewmodel.UserName;
-                    emailmodel.Subject = "Welcome to Fun Fooding";
 
 
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
-                    sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
-                    sb.Append("<head>");
-                    sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
-                    sb.Append("</head>");
-                    sb.Append("<body>");
-                    sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
-                    sb.Append("Hi " + viewmodel.FirstName + ",<br />");
-                    sb.Append("Thank you for signing up!<br />");
-                    sb.Append("<br />");
-                    sb.Append("To complete the sign up process click ");
-                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/EmailConfirmation/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
-                    sb.Append("<br />");
-                    sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@gmail.com</a>.<br />");
-                    sb.Append("<br /> ");
-                    sb.Append("Best regards,<br />");
-                    sb.Append("Support Team<br />");
-                    sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
-                    sb.Append("</body>");
-                    sb.Append("</html>");
-                    emailmodel.EmailBody = sb.ToString();
-                    Common.sendeMail(emailmodel, true);
-                    return Json(new { success = res}, JsonRequestBehavior.AllowGet);
+
+                LoginModel model = new LoginModel();
+                model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
+                
+                if ((model.FirstName == "") || (model.FirstName == null))
+                {
+                    return Json(new { success = false, msg = "First Name is required" }, JsonRequestBehavior.AllowGet);
                 }
+
+
+                bool userexists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
+
+                if (userexists)
+                {
+
+                    return Json(new { success = false, msg = "There is already an account with that email. Please use a different email" }, JsonRequestBehavior.AllowGet);
+                }
+
+               
+
+
+
+                // Attempt to register the user
+
+                string confirmationToken =
+                    WebSecurity.CreateUserAndAccount(viewmodel.UserName, viewmodel.Password, propertyValues: new
+                    {
+                        FirstName = viewmodel.FirstName
+                    }, requireConfirmationToken: true); //new {Email=model.Email}
+
+
+                EmailModel emailmodel = new EmailModel();
+                emailmodel.To = viewmodel.UserName;
+                emailmodel.Subject = "Welcome to Fun Fooding";
+
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                sb.Append("<head>");
+                sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                sb.Append("</head>");
+                sb.Append("<body>");
+                sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                sb.Append("Hi " + viewmodel.FirstName + ",<br />");
+                sb.Append("Thank you for signing up!<br />");
+                sb.Append("<br />");
+                sb.Append("To complete the sign up process click ");
+                sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/MobileApi/EmailConfirmation/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                sb.Append("<br />");
+                sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@gmail.com</a>.<br />");
+                sb.Append("<br /> ");
+                sb.Append("Best regards,<br />");
+                sb.Append("Support Team<br />");
+                sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                sb.Append("</body>");
+                sb.Append("</html>");
+                emailmodel.EmailBody = sb.ToString();
+                Common.sendeMail(emailmodel, true);
+                return Json(new { success = res }, JsonRequestBehavior.AllowGet);
+            }
                 catch (Exception e)
                 {
                     res = false;
                     //ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-                    return Json(new { success=res, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+                    return Json(new { success=res, msg = e.Message.ToString()}, JsonRequestBehavior.AllowGet);
                 }
             
 
@@ -405,11 +424,12 @@ namespace MealsToGo.Controllers
                     emailmodel.To = objResetPasswordModel.UserNameOrEmailId;
                     emailmodel.Subject = "Reset Password";
                     string EncryptMail = Common.Encrypt(emailmodel.To);
+                    EncryptMail = EncryptMail.Replace("+", "%20");
                     StringBuilder sb = new StringBuilder();
                     sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
                     sb.Append("Click the link below for resetting your password.<br />");
                     // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Reset?emailId=" + emailmodel.To + " style=\"color:#0066CC\"> here</a>.<br />");
-                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Reset?emailId=" + EncryptMail + " style=\"color:#0066CC\"> here</a>.<br />");
+                    sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/MobileApi/Reset/" + EncryptMail + " style=\"color:#0066CC\"> here</a>.<br />");
                     sb.Append("regards,<br /> Funfooding Team");
                     emailmodel.EmailBody = sb.ToString();
                     Common.sendeMail(emailmodel, true);
@@ -450,35 +470,43 @@ namespace MealsToGo.Controllers
              EmailModel emailmodel = new EmailModel();
              emailmodel.To = resetModel.UserName;
              emailmodel.Subject = "Reset Password";
+             var user = db.UserProfiles.Where(x => x.UserName.Equals(resetModel.UserName)).First();
+             int UserID = user.UserId;
+             Session["FirstName"] = user.FirstName;
 
              StringBuilder sb = new StringBuilder();
              sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
-             sb.Append("Hi User,<br />");
+             sb.Append("Hi " + user.FirstName + ",<br />");
              sb.Append("Your password has been changed.<br />");
              sb.Append("regards,<br /> Funfooding Team");
              emailmodel.EmailBody = sb.ToString();
              Common.sendeMail(emailmodel, true);
              if (WebSecurity.Login(resetModel.UserName, resetModel.Password, persistCookie: true))
              {
-                var user = db.UserProfiles.Where(x => x.UserName.Equals(resetModel.UserName)).First();
-                 int UserID = user.UserId;
-                 Session["FirstName"] = user.FirstName;
-
+               
                 string  returnUrl = RedirectPage(UserID);
                  return Json(new { success = true, Url = returnUrl }, JsonRequestBehavior.AllowGet);
              }
 
-             return Json(new { success = false}, JsonRequestBehavior.AllowGet);
+             return Json(new { success = false,msg="Login Expired" }, JsonRequestBehavior.AllowGet);
          }
 
         [HttpGet]
-         public JsonResult Reset(string emailId)
+         public JsonResult Reset(string id)
          {
-             ResetModel resetModel = new ResetModel();
-             emailId = emailId.Replace(" ", "+");
-             string DecryptMail = Common.Decrypt(emailId);
-             resetModel.UserName = DecryptMail;
-             return Json(new { success = true, UserName = resetModel.UserName }, JsonRequestBehavior.AllowGet);
+             try
+             {
+                // ResetModel resetModel = new ResetModel();
+                 id = id.Replace(" ", "+");
+                 string DecryptMail = Common.Decrypt(id);
+                 string UserName = DecryptMail;
+                 return Json(new { success = true, UserName = UserName }, JsonRequestBehavior.AllowGet);
+             }
+             catch (Exception e)
+             {
+                 return Json(new { success = false, msg = e.Message.ToString() + id }, JsonRequestBehavior.AllowGet);
+             
+             }
             
          }
 

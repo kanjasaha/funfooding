@@ -11,6 +11,7 @@ using MealsToGo.ViewModels;
 using AutoMapper;
 using MealsToGo.Service;
 using WebMatrix.WebData;
+using Newtonsoft.Json;
 
 
 namespace MealsToGo.Controllers
@@ -176,6 +177,8 @@ namespace MealsToGo.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string json = JsonConvert.SerializeObject(mtvms);
+                    
                     MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
 
                     if (mtvms.Imagelist != null)

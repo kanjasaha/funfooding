@@ -588,7 +588,6 @@ namespace MealsToGo.Controllers
                 LoginModel model = new LoginModel();
                 model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
 
-
                 bool userexists = db.UserProfiles.Any(x => x.UserName.Equals(model.UserName));
 
                 if (userexists)
