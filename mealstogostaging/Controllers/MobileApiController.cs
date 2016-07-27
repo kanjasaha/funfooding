@@ -19,6 +19,7 @@ using WebMatrix.WebData;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.Routing;
+using Microsoft.Web.WebPages.OAuth;
 
 
 namespace MealsToGo.Controllers
@@ -43,6 +44,13 @@ namespace MealsToGo.Controllers
         {
             this.solr = solr;
 
+        }
+
+        public enum ManageMessageId
+        {
+            ChangePasswordSuccess,
+            SetPasswordSuccess,
+            RemoveLoginSuccess,
         }
 
         [HttpGet]
@@ -293,13 +301,13 @@ namespace MealsToGo.Controllers
             
 
             // If we got this far, something failed, redisplay form
-            return Json(res, JsonRequestBehavior.AllowGet);
+            //return Json(res, JsonRequestBehavior.AllowGet);
         }
         [HttpPost()]
         public JsonResult Login(LoginRegisterViewModel viewmodel, string returnUrl)
         {
 
-            bool res = true;
+            bool res = false;
 
             LoginModel model = new LoginModel();
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(viewmodel);
@@ -361,8 +369,9 @@ namespace MealsToGo.Controllers
 
                         }
 
-                      
-                        return Json(new { success = true, Url = returnUrl }, JsonRequestBehavior.AllowGet);
+
+                        return Json(new { success = true, UserId = UserID, UserName = model.UserName, FirstName = user.FirstName, Url = returnUrl }, JsonRequestBehavior.AllowGet);
+                        
                     }
                     else
                     {
@@ -377,7 +386,8 @@ namespace MealsToGo.Controllers
 
                         }
                         returnUrl = RedirectPage(UserID);
-                return Json(new { success = true, Url = returnUrl }, JsonRequestBehavior.AllowGet);
+                        return Json(new { success = true, UserId = UserID, UserName = model.UserName, FirstName = user.FirstName, Url = returnUrl }, JsonRequestBehavior.AllowGet);
+                     
                     }
 
                 }
@@ -446,7 +456,7 @@ namespace MealsToGo.Controllers
                
         }
 
-         [HttpPost]
+           [HttpPost()]
          public JsonResult Reset(ResetModel resetModel)
          {
              if (resetModel.Password == null)
@@ -509,7 +519,7 @@ namespace MealsToGo.Controllers
              }
             
          }
-
+          [HttpGet]
         public JsonResult SearchMealItem(string mealItemName)
         {
             if (!string.IsNullOrEmpty(mealItemName))
@@ -525,6 +535,62 @@ namespace MealsToGo.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult MealItem(int Id)
+        {
+            IMealItemService _service = new MealItemService();
+            MealItem mt = _service.GetById(Id);
+            MealItemViewModel mtvm = Mapper.Map<MealItem, MealItemViewModel>(mt);
+            //mtvm = PopulateDropDown(mtvm);
+
+            return Json(mtvm, JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult DeleteMealItem(int Id)
+        {
+            IMealItemService _service = new MealItemService();
+            MealItem mt = _service.GetById(Id);
+            try
+            {
+                bool msg = _service.Delete(mt);
+                return Json(new { success = msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+            return Json(new { success = false, msg=e.Message.ToString()}, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+          [HttpPost()]
+        public JsonResult UpdateMealItem(MealItemViewModel mtvms)
+        {
+            IMealItemService _service = new MealItemService();
+            MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
+            foreach (var mealaller in mtvms.AllergenDD)
+            {
+                if (mealaller.Selected)
+                {
+                    MealItems_AllergenicFoods aller = new MealItems_AllergenicFoods();
+                    aller.AllergenicFoodID = mealaller.AllergenID;
+                    mealitem.MealItems_AllergenicFoods.Add(aller);
+                }
+            }
+            try
+            {
+                bool msg = _service.Update(mealitem);
+                return Json(new { success = msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+         
+
+          [HttpGet]
         public JsonResult MyMealItem(int userID)
         {
             IMealItemService _service = new MealItemService();
@@ -599,11 +665,10 @@ namespace MealsToGo.Controllers
             return Json(MealAdvm, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
+        [HttpPost()]
         public JsonResult CreateMealItem(MealItemViewModel mtvms)
         {
-     
-        
+             
             IMealItemService _service = new MealItemService();
             MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
             foreach (var mealaller in mtvms.AllergenDD)
@@ -621,14 +686,16 @@ namespace MealsToGo.Controllers
             return Json(new { success = true, id = mealitem.MealItemId }, JsonRequestBehavior.AllowGet);
 
         }
+
+        [HttpGet]
         public JsonResult MyMealAd(int userid)
         {
             ThreeSixtyTwoEntities db = new ThreeSixtyTwoEntities();
             IMealAdService _service = new MealAdService();
             IEnumerable<MealAd> mealad = _service.FindByUser(userid);
-            ViewBag.AddressPresent = false;
-            ViewBag.PrivacySettingConfirmed = false;
-            ViewBag.SellerTermsandSettingAccepted = false;
+          //  ViewBag.AddressPresent = false;
+          //  ViewBag.PrivacySettingConfirmed = false;
+          //  ViewBag.SellerTermsandSettingAccepted = false;
 
             //if (mealad.Count() == 0)
             //{
@@ -658,6 +725,19 @@ namespace MealsToGo.Controllers
 
             return Json(mealadvm, JsonRequestBehavior.AllowGet);
         }
+
+         [HttpGet]
+        public JsonResult MealAd(int Id)
+        {
+            IMealAdService _service = new MealAdService();
+            MealAd mt = _service.GetById(Id);
+            MealAdViewModel mtvm = Mapper.Map<MealAd, MealAdViewModel>(mt);
+            //mtvm = PopulateDropDown(mtvm);
+
+            return Json(mtvm, JsonRequestBehavior.AllowGet);
+        }
+
+          [HttpGet]
         public JsonResult CreateMealAdDD(int userid)
         {
             MealAd mealad = new MealAd();
@@ -672,7 +752,7 @@ namespace MealsToGo.Controllers
             MealAdvm.AvailabilityTypeDD = new AvailabilityTypeViewModel();
             return Json(MealAdvm, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost()]
         public JsonResult CreateMealAd(MealAdViewModel MealAdvm)
         {
             IMealAdService _service = new MealAdService();
@@ -721,9 +801,95 @@ namespace MealsToGo.Controllers
 
 
             //}
+            try
+            {
+                mealad.MealAdID = _service.AddAndReturnID(mealad);
 
-            mealad.MealAdID = _service.AddAndReturnID(mealad);
-            return Json(true, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, id = mealad.MealAdID }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            { return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet); 
+            
+            }
+        }
+
+        [HttpPost()]
+        public JsonResult UpdateMealAd(MealAdViewModel MealAdvm)
+        {
+            IMealAdService _service = new MealAdService();
+            ThreeSixtyTwoEntities db = new ThreeSixtyTwoEntities();
+            MealAd mealad = Mapper.Map<MealAdViewModel, MealAd>(MealAdvm);
+
+            foreach (var payment in MealAdvm.PaymentMethods)
+            {
+                if (payment.Selected)
+                {
+
+                    MealAds_PaymentOptions paymentoptions = new MealAds_PaymentOptions();
+                    paymentoptions.PaymentOptionID = payment.PaymentMethodID;
+                    mealad.MealAds_PaymentOptions.Add(paymentoptions);
+                }
+
+            }
+
+            foreach (var delivery in MealAdvm.DeliveryMethods)
+            {
+                if (delivery.Selected)
+                {
+
+                    MealAds_DeliveryMethods deliverymthd = new MealAds_DeliveryMethods();
+                    deliverymthd.DeliveryMethodID = delivery.DeliveryMethodID;
+                    mealad.MealAds_DeliveryMethods.Add(deliverymthd);
+                }
+
+            }
+            int orderingoptionnum = 0;
+            var availabilityType = db.AvailabilityTypes.Where(x => x.AvaiilabilityTypeID == mealad.AvailabilityTypeID).FirstOrDefault();
+            if (availabilityType != null)
+            {
+
+                string orderingoption = availabilityType.AvailabilityType1;
+                orderingoptionnum = Convert.ToInt32(orderingoption);
+            }
+            //foreach (var schedules in MealAdvm.MealAdSchedules)
+            //{
+
+            //    MealAd_Schedules meadadschedule = new MealAd_Schedules();
+            //    meadadschedule.PickUpStartDateTime = schedules.PickUpStartDateTime;
+            //    meadadschedule.PickUpEndDateTime = schedules.PickUpEndDateTime;
+            //    meadadschedule.LastOrderDateTime = schedules.PickUpEndDateTime.AddHours(-orderingoptionnum);
+            //    mealad.MealAd_Schedules.Add(meadadschedule);
+
+
+            //}
+            try
+            {
+                bool msg = _service.Update(mealad);
+
+                return Json(new { success = msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        [HttpGet]
+        public JsonResult DeleteMealAd(int Id)
+        {
+            IMealAdService _service = new MealAdService();
+            MealAd mt = _service.GetById(Id);
+            try
+            {
+                bool msg = _service.Delete(mt);
+                return Json(new { success = msg }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+
+            }
         }
 
         private MealAdViewModel PopulateDropDown(MealAdViewModel mealadvm, MealAd mealad, int userid)
@@ -827,7 +993,7 @@ namespace MealsToGo.Controllers
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
         }
-        [HttpPost]
+        [HttpPost()]
         public JsonResult AddtoCart(string mealItemId, int qty, string itemName, decimal price,string sessionId,int userId)
         {
 
@@ -851,11 +1017,74 @@ namespace MealsToGo.Controllers
             int count = dbmeals.TempOrderLists.Where(x => x.sessionId == sessionId && x.userid == userId).Count();
             return Json(count, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
         public JsonResult CartList(string sessionId,int userId)
         {
             dbmeals = new ThreeSixtyTwoEntities();
             List<TempOrderList> lstTempOrderList = dbmeals.TempOrderLists.Where(x => x.sessionId == sessionId && x.userid == userId).ToList();
             return Json(lstTempOrderList, JsonRequestBehavior.AllowGet);
+        }
+
+       
+        [HttpPost]
+        public JsonResult Manage(LocalPasswordModel model)
+        {
+            bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            ViewBag.HasLocalPassword = hasLocalAccount;
+            ViewBag.ReturnUrl = Url.Action("Manage");
+            if (hasLocalAccount)
+            {
+                if (ModelState.IsValid)
+                {
+                    // ChangePassword will throw an exception rather than return false in certain failure scenarios.
+                    bool changePasswordSucceeded;
+                    try
+                    {
+                        changePasswordSucceeded = WebSecurity.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword);
+                        return Json(new { success = true, msg = "Password Changed." }, JsonRequestBehavior.AllowGet);
+
+                    }
+                    catch (Exception)
+                    {
+                        return Json(new { success = false, msg = "please try again." }, JsonRequestBehavior.AllowGet);
+
+                    }
+                }
+
+                else
+                { return Json(new { success = false, msg = "modelstate invalid." }, JsonRequestBehavior.AllowGet); }
+            }
+            else
+            {
+                // User does not have a local password so remove any validation errors caused by a missing
+                // OldPassword field
+                ModelState state = ModelState["OldPassword"];
+                if (state != null)
+                {
+                    state.Errors.Clear();
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
+                        return Json(new { success = true, msg = "Password Set." }, JsonRequestBehavior.AllowGet);
+             
+                    }
+                    catch (Exception e)
+                    {
+                        return Json(new { success = false, msg = "please try again." }, JsonRequestBehavior.AllowGet);
+             
+                    }
+                }
+
+                else
+                { return Json(new { success = false, msg = "modelstate invalid." }, JsonRequestBehavior.AllowGet); }
+            }
+
+           
         }
 
 

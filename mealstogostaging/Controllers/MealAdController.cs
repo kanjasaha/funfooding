@@ -11,6 +11,7 @@ using MealsToGo.ViewModels;
 using AutoMapper;
 using MealsToGo.Helpers;
 using WebMatrix.WebData;
+using Newtonsoft.Json;
 
 namespace MealsToGo.Controllers
 {
@@ -127,10 +128,10 @@ namespace MealsToGo.Controllers
         public ActionResult Create(MealAdViewModel MealAdvm,string To, string From)
         {
 
-
+           
             if (ModelState.IsValid)
             {
-
+                string json = JsonConvert.SerializeObject(MealAdvm);
                 MealAd mealad = Mapper.Map<MealAdViewModel, MealAd>(MealAdvm);
                 mealad.UserId = WebSecurity.CurrentUserId;
 

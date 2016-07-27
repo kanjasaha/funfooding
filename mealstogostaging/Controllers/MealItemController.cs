@@ -177,7 +177,7 @@ namespace MealsToGo.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string json = JsonConvert.SerializeObject(mtvms);
+                  //  string json = JsonConvert.SerializeObject(mtvms);
                     
                     MealItem mealitem = Mapper.Map<MealItemViewModel, MealItem>(mtvms);
 

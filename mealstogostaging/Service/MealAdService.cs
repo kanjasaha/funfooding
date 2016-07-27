@@ -131,21 +131,46 @@ namespace MealsToGo.Service
             return mealadid;
 
         }
-   
-
-               
-                
-
-        public void Delete(MealAd mt)
-        {
-            throw new NotImplementedException();
-        }
 
 
-        public void Update(MealAd mt)
-        {
-            throw new NotImplementedException();
-        }
+
+
+
+         public bool Delete(MealAd mt)
+         {
+             try
+             {
+                 unitOfWork.mealadrepository.Delete(mt);
+                 unitOfWork.Save();
+                 unitOfWork.Dispose();
+                 return true;
+             }
+             catch (Exception e)
+             {
+                 unitOfWork.Dispose();
+                 return false;
+             }
+
+         }
+
+
+         public bool Update(MealAd mt)
+         {
+             try
+             {
+                 unitOfWork.mealadrepository.Update(mt);
+                 unitOfWork.Save();
+                 unitOfWork.Dispose();
+                 return true;
+             }
+             catch (Exception e)
+             {
+                 unitOfWork.Dispose();
+                 return false;
+             }
+
+
+         }
 
         //protected override void Dispose(bool disposing)
         //{

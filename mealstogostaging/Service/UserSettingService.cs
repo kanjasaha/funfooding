@@ -71,19 +71,19 @@ namespace MealsToGo.Service
 
 
 
-
-
-
-        public void Delete(UserSetting mt)
+        public bool Delete(UserSetting mt)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
 
-        public void Update(UserSetting mt)
+        public bool Update(UserSetting mt)
         {
-            throw new NotImplementedException();
+            return false;
         }
+
+
+      
 
         //protected override void Dispose(bool disposing)
         //{

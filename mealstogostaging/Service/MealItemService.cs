@@ -127,23 +127,40 @@ namespace MealsToGo.Service
         }
    
 
-        public void Delete (MealItem mt)
+        public bool Delete (MealItem mt)
         {
-            throw new NotImplementedException();
+            try
+            {
+                unitOfWork.mealitemrepository.Delete(mt);
+                unitOfWork.Save();
+                unitOfWork.Dispose();
+                return true;
+            }
+            catch (Exception e)
+            {
+                unitOfWork.Dispose();
+                return false;
+            }
+            
         }
 
 
-        public void Update(MealItem mt)
+        public bool Update(MealItem mt)
         {
-            unitOfWork.mealitemrepository.Update(mt);
-            unitOfWork.Save();
-            unitOfWork.Dispose();
-            //unitOfWork.Save();
-            //unitOfWork.Dispose();
-            //throw new NotImplementedException();
-        }
+            try
+            {
+                unitOfWork.mealitemrepository.Update(mt);
+                unitOfWork.Save();
+                unitOfWork.Dispose();
+                return true;
+            }
+            catch (Exception e)
+            {
+                unitOfWork.Dispose();
+                return false;
+            }
 
-      
-       
+
+        }
     }
 }

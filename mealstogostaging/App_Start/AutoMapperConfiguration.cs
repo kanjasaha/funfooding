@@ -42,11 +42,11 @@ namespace MealsToGo
              .ForMember(d => d.Photo, opt => opt.MapFrom(s => s.Photo));
 
 
-            Mapper.CreateMap<MealItemViewModel, MealItem>().ForMember(d => d.MealTypeID, m => m.MapFrom(p => p.MealTypeDD.SelectedId))
-                                                             .ForMember(d => d.CusineTypeID, m => m.MapFrom(p => p.CusineTypeDD.SelectedId))
-                                                             .ForMember(d => d.DietTypeID, m => m.MapFrom(p => p.DietTypeDD.SelectedId))
-                //.ForMember(d => d.Status, m => m.MapFrom(p => p.Status ? 1 : 0))
-                                                              .AfterMap((s, d) =>
+            Mapper.CreateMap<MealItemViewModel, MealItem>().ForMember(d => d.MealTypeID, m => m.MapFrom(p => int.Parse(p.MealTypeDD.SelectedId)))
+                                                             .ForMember(d => d.CusineTypeID, m => m.MapFrom(p => int.Parse(p.CusineTypeDD.SelectedId)))
+                                                             .ForMember(d => d.DietTypeID, m => m.MapFrom(p => int.Parse(p.DietTypeDD.SelectedId)))
+                                                             .ForMember(d => d.ServingUnit, m => m.MapFrom(p => int.Parse(p.ServingUnitDD.SelectedId)))
+                                                             .AfterMap((s, d) =>
                                                                           {
                                                                               foreach (var mealaller in d.MealItems_AllergenicFoods)
 
@@ -64,8 +64,8 @@ namespace MealsToGo
 
                                                                  });
 
-            Mapper.CreateMap<MealAdViewModel, MealAd>().ForMember(d => d.MealItemID, m => m.MapFrom(p => p.MealItemsDD.SelectedMealItem))
-                                                            .ForMember(d => d.AvailabilityTypeID, m => m.MapFrom(p => p.AvailabilityTypeDD.SelectedAvailabilityType))
+            Mapper.CreateMap<MealAdViewModel, MealAd>().ForMember(d => d.MealItemID, m => m.MapFrom(p => int.Parse(p.MealItemsDD.SelectedMealItem)))
+                                                            .ForMember(d => d.AvailabilityTypeID, m => m.MapFrom(p => int.Parse(p.AvailabilityTypeDD.SelectedAvailabilityType)))
                                                             //.ForMember(d => d.MealItem.MealItemName, m => m.MapFrom(p => p.MealItemName))
                                                             .AfterMap((s, d) =>
                                                             {

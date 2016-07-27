@@ -51,6 +51,7 @@ namespace MealsToGo.Controllers
         {
             this.userRepository = new UserRepository(new ThreeSixtyTwoEntities());
         }
+
         [HttpPost]
         public bool RemovePhoto(int id = 0)
         {

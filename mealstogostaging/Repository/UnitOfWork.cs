@@ -283,18 +283,18 @@ namespace MealsToGo.Repository
         public void Save()
         {
 
-
+            string msg = "";
             try
             {
                 context.SaveChanges();
             }
             catch (DbEntityValidationException ex)
             {
-                string msg = ex.Message;//email support of this error
+                 msg = ex.Message;//email support of this error
             }
             catch (SystemException ex)
             {
-                string msg = ex.Message;//email support of this error
+                 msg = ex.Message;//email support of this error
             }
         }
 

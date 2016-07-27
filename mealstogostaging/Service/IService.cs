@@ -12,8 +12,8 @@ namespace MealsToGo.Service
     public interface IService<T> where T : class
     {
         void Add(T entity);
-        void Delete(T entity);
-        void Update(T entity);
+        bool Delete(T entity);
+        bool Update(T entity);
         T GetById(long Id);
         IEnumerable<T> FindByUser(long userid);
         IEnumerable<T> GetAll();

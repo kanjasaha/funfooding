@@ -206,9 +206,6 @@ namespace MealsToGo.Controllers
         public ActionResult Login(string returnUrl)
         {
 
-
-
-
             model = Mapper.Map<LoginRegisterViewModel, LoginModel>(log);
 
             if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null)
@@ -536,9 +533,7 @@ namespace MealsToGo.Controllers
 
         }
 
-     
-
-      
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -769,7 +764,6 @@ namespace MealsToGo.Controllers
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : "";
             ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
