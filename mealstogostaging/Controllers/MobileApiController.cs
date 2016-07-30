@@ -20,7 +20,9 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Routing;
 using Microsoft.Web.WebPages.OAuth;
-
+using System.IO;
+using System.Text.RegularExpressions;
+using DataAnnotationsExtensions;
 
 namespace MealsToGo.Controllers
 {
@@ -36,10 +38,14 @@ namespace MealsToGo.Controllers
         /// <summary>
         /// All selectable facet fields
         /// </summary>
+        /// 
         private static readonly string[] AllFacetFields = new[] { "Cuisine", "Provider", "Diet", "PriceRange", "Meal" };
         private readonly ISolrReadOnlyOperations<SolrResultSet> solr;
         private ThreeSixtyTwoEntities dbmeals = new ThreeSixtyTwoEntities();
         private UsersContext db = new UsersContext();
+        static string InvaliImage = "";
+         public static string strPhoto = "";
+         static UserDetail userinfo;
         public MobileApiController(ISolrReadOnlyOperations<SolrResultSet> solr)
         {
             this.solr = solr;
@@ -304,6 +310,7 @@ namespace MealsToGo.Controllers
             //return Json(res, JsonRequestBehavior.AllowGet);
         }
         [HttpPost()]
+
         public JsonResult Login(LoginRegisterViewModel viewmodel, string returnUrl)
         {
 
@@ -500,6 +507,63 @@ namespace MealsToGo.Controllers
 
              return Json(new { success = false,msg="Login Expired" }, JsonRequestBehavior.AllowGet);
          }
+           [HttpGet]
+            public JsonResult yournetwork(int UserID)
+           {
+               NetworkViewModel nvm = new NetworkViewModel();
+
+               List<ContactsWaiting> contacts = (from p in dbmeals.ContactLists
+                                                 where p.UserID == UserID && p.RequestAccepted == null
+                                                 group p by new { p.RecipientEmailAddress, p.RequestAccepted, p.UserID, p.RecipientUserID } into g
+                                                 select new ContactsWaiting { EmailAddress = g.Key.RecipientEmailAddress, Accepted = g.Key.RequestAccepted, SenderUserID = g.Key.UserID, RecipientUserID = g.Key.RecipientUserID, Sender = 1 }).ToList(); ;
+
+
+               List<ContactsWaiting> contacts1 = (from p in dbmeals.ContactLists
+                                                  where p.RecipientUserID == UserID && p.RequestAccepted == null
+                                                  group p by new { p.SenderEmailAddress, p.RequestAccepted, p.UserID, p.RecipientUserID } into g
+                                                  select new ContactsWaiting { EmailAddress = g.Key.SenderEmailAddress, Accepted = g.Key.RequestAccepted, SenderUserID = g.Key.UserID, RecipientUserID = g.Key.RecipientUserID, Sender = 0 }).ToList(); ;
+
+               var cninner = (from sa in dbmeals.Connections
+                              where sa.UserId == UserID && sa.DegreeOfSeparation == 1
+                              select new { ContactID = sa.ContactID, Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+
+               var prf = (from s in db.UserProfiles
+                          select new { Name = s.FirstName, UserId = s.UserId }).ToArray();
+
+
+               var InnerCircle = (from s in prf
+                                  join sa in cninner on s.UserId equals sa.ContactID
+                                  select new InnerCircle { Name = s.Name, Email = sa.Email, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+               var cnouter = (from sa in dbmeals.Connections
+                              where sa.UserId == UserID && sa.DegreeOfSeparation == 2
+                              select new { ContactID = sa.ContactID, Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+
+               List<OuterCircle> OuterCircle = (from s in prf
+                                                join sa in cnouter on s.UserId equals sa.ContactID
+                                                select new OuterCircle { Name = s.Name, Email = sa.Email, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToList();
+
+               var cnfood = (from sa in dbmeals.Connections
+                             where sa.UserId == UserID && sa.DegreeOfSeparation > 2
+                             select new { ContactID = sa.ContactID, Email = sa.ContactEmail, SharesFood = sa.SharesFood, BoughtFoodFromUser = sa.BoughtFoodFromUser, SoldFoodToUser = sa.SoldFoodToUser }).ToArray();
+
+               List<FoodCircle> FoodCircle = (from s in prf
+                                              join sa in cnfood on s.UserId equals sa.ContactID
+                                              select new FoodCircle { Name = s.Name, Email = sa.Email, SharesFood = 1, BoughtFoodFromUser = 0, SoldFoodToUser = 1 }).ToList();
+
+
+               contacts.AddRange(contacts1);
+
+               nvm.Contacts = contacts;
+               nvm.InnerCircleContacts = InnerCircle.ToList();
+               nvm.OuterCircleContacts = OuterCircle;
+               nvm.FoodCircleContacts = FoodCircle;
+
+               return Json(nvm , JsonRequestBehavior.AllowGet);
+           }
+
 
         [HttpGet]
          public JsonResult Reset(string id)
@@ -545,6 +609,20 @@ namespace MealsToGo.Controllers
 
             return Json(mtvm, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult accountsetting(int userid)
+        {
+            UserSetting usersetting = dbmeals.UserSettings.Find(userid);
+            UserSettingsViewModel mtvm = Mapper.Map<UserSetting, UserSettingsViewModel>(usersetting);
+            if (usersetting == null)
+            {
+                return Json(new { success=false}, JsonRequestBehavior.AllowGet);
+            }
+            return Json(mtvm, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         [HttpGet]
         public JsonResult DeleteMealItem(int Id)
         {
@@ -558,6 +636,29 @@ namespace MealsToGo.Controllers
             catch (Exception e)
             {
             return Json(new { success = false, msg=e.Message.ToString()}, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+        [HttpPost()]
+        public JsonResult UpdateAccountSettings(UserSettingsViewModel usvm)
+        {
+            
+            try
+            {
+                UserSetting usersetting = dbmeals.UserSettings.Find(usvm.UserSettingsID);
+                usersetting.ReceiveEmailNotificationID = Convert.ToInt32(usvm.EmailNotificationFrequencyDD.SelectedFrequency);
+                usersetting.ReceiveMobileTextNotificationID = Convert.ToInt32(usvm.TextNotificationFrequencyDD.SelectedFrequency);
+                usersetting.PrivacySettingsID = Convert.ToInt32(usvm.PrivacySettingDD.SelectedPrivacySetting);
+
+                UserSetting us = Mapper.Map<UserSettingsViewModel, UserSetting>(usvm);
+                db.Entry(usersetting).State = EntityState.Modified;
+                
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
 
             }
         }
@@ -587,7 +688,141 @@ namespace MealsToGo.Controllers
 
             }
         }
+        private bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
 
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" }; // add more if u like...
+
+            foreach (var item in formats)
+            {
+                if (file.FileName.Contains(item))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        } 
+
+          [HttpPost()]
+          public JsonResult UpdateUser(UserDetail currentinfo,HttpPostedFileBase Photo,string phone)
+          {
+               
+              try
+              {
+                  
+           
+                var fileName = "";
+                // Verify that the user selected a file
+                if (Photo != null && Photo.ContentLength > 0)
+                {
+                    // extract only the fielname
+                    fileName = "Profilephoto" + currentinfo.UserId + Path.GetExtension(Photo.FileName);
+                    
+                    //   .GetFileName(Photo.FileName).;
+                    // store the file inside ~/App_Data/uploads folder
+                    var path = Path.Combine(Server.MapPath("~/ProfilePhotos"), fileName);
+                    Photo.SaveAs(path);
+                }
+                if (currentinfo.AddressList != null)
+                {
+                    currentinfo.AddressID = currentinfo.AddressList.AddressID;
+                }
+            
+              //  currentinfo.AddressList.Telephone = currentinfo.AddressList.Telephone;
+                if (!String.IsNullOrEmpty(fileName))
+                {
+                    if (!(IsImage(Photo)))
+                   {
+                          InvaliImage = "Yes";
+                        if (strPhoto == "Yes")
+                        {
+                           
+                                currentinfo.Photo = "";
+                                strPhoto = "";
+                           
+                        }
+                        else
+                            currentinfo.Photo = fileName;
+                        
+                        dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
+                        dbmeals.SaveChanges();
+                    
+                          return Json(new { success = false, msg = "Please select image file only." }, JsonRequestBehavior.AllowGet);
+           
+                    }
+                    if (strPhoto == "Yes")
+                    {
+                        if (InvaliImage == "Yes")
+                        {
+                            InvaliImage = "";
+                        }
+                        else
+                        {
+                            currentinfo.Photo = "";
+                            strPhoto = "";
+                        }
+                    }
+                    else
+                    currentinfo.Photo = fileName;
+                }
+                else
+                {
+                    if (strPhoto == "Yes")
+                    {
+                        if (InvaliImage == "Yes")
+                        {
+                            InvaliImage = "";
+                        }
+                        else { 
+                        currentinfo.Photo = "";
+                        strPhoto = "";
+                        }
+                    }
+                    else
+                    {
+                        currentinfo.Photo = fileName;
+                        string str = userinfo.Photo;
+                        currentinfo.Photo = str;
+                    }
+                }
+                if (strPhoto == "Yes")
+                {
+                    if (InvaliImage == "Yes")
+                    {
+                        InvaliImage = "";
+                    }
+                    else
+                    {
+                        currentinfo.Photo = "";
+                        strPhoto = "";
+                    }
+                }
+                else
+                    currentinfo.Photo = fileName;
+                dbmeals.Entry(currentinfo).State = System.Data.EntityState.Modified;
+                dbmeals.SaveChanges();
+
+                string str1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                SqlConnection con = new SqlConnection(str1);
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Update AddressList set Telephone='" + currentinfo.AddressList.Telephone + "' where AddressID='"+currentinfo.AddressID+"'",con);
+                cmd.ExecuteNonQuery();
+                con.Close();
+                
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+          
+               }
+              catch (Exception e)
+              {
+                  return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+
+              }
+          }
          
 
           [HttpGet]
@@ -736,6 +971,30 @@ namespace MealsToGo.Controllers
 
             return Json(mtvm, JsonRequestBehavior.AllowGet);
         }
+
+         [HttpGet]
+         public JsonResult UserDetails(int userid)
+         {
+             UserDetail userdetail = dbmeals.UserDetails.Find(userid);
+             if (userdetail == null)
+             {
+
+                 return Json(new { success = false, msg = "Invalid Userid" }, JsonRequestBehavior.AllowGet);
+             }
+             AddressList address = userdetail.AddressList;// dbmeals.AddressLists.Where(x => x.UserId == userid && x.IsCurrent == 1).FirstOrDefault();
+             ViewBag.UserID = userid;
+
+             UserDetailViewModel userinfovm = Mapper.Map<UserDetail, UserDetailViewModel>(userdetail);
+             userinfovm.Address = Mapper.Map<AddressList, AddressViewModel>(address);
+             if (userinfovm.Address != null && dbmeals.LKUPCountries.FirstOrDefault(x => x.CountryID == userinfovm.Address.CountryID) != null)
+                 userinfovm.Address.CountryName = dbmeals.LKUPCountries.FirstOrDefault(x => x.CountryID == userinfovm.Address.CountryID).Country;
+
+
+
+             return Json(userinfovm, JsonRequestBehavior.AllowGet);
+         }
+
+         
 
           [HttpGet]
         public JsonResult CreateMealAdDD(int userid)
@@ -892,6 +1151,26 @@ namespace MealsToGo.Controllers
             }
         }
 
+        [HttpGet]
+        public JsonResult DeleteUser(int userid)
+        {
+           
+            try
+            {
+
+                UserDetail userdetail = dbmeals.UserDetails.Find(userid);
+                dbmeals.UserDetails.Remove(userdetail);
+                dbmeals.SaveChanges();
+                  return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false, msg = e.Message.ToString() }, JsonRequestBehavior.AllowGet);
+
+            }
+        }
+
+
         private MealAdViewModel PopulateDropDown(MealAdViewModel mealadvm, MealAd mealad, int userid)
         {
             ThreeSixtyTwoEntities db = new ThreeSixtyTwoEntities();
@@ -1025,8 +1304,286 @@ namespace MealsToGo.Controllers
             List<TempOrderList> lstTempOrderList = dbmeals.TempOrderLists.Where(x => x.sessionId == sessionId && x.userid == userId).ToList();
             return Json(lstTempOrderList, JsonRequestBehavior.AllowGet);
         }
+        private void InsertRequestInfo(int userid, string SenderEmailAddress, string EmailTo, int? recipientuserid)
+        {
+            try
+            {
+                ContactList ct = new ContactList();
+                ct.UserID = userid;
+                ct.SenderEmailAddress = SenderEmailAddress;
+                ct.RecipientEmailAddress = EmailTo;
+                ct.RecipientUserID = recipientuserid;
+                dbmeals.ContactLists.Add(ct);
+                dbmeals.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                string message = ex.Message;
+            }
+        }
 
+        [HttpPost]
+        public JsonResult Invite(EmailaddressesViewModel invitedemails)
+        {
+            int userid = invitedemails.UserID;
+
+        
+                string invalidemails = "";
+                string repeatrequests = "";
+
+
+                char[] delimiters = (",: ").ToCharArray();
+
+                List<string> emails = invitedemails.Emailaddresses.Split(delimiters).ToList();
+              //  IUserMailer mailer = new UserMailer();
+
+
+                EmailModel emailmodel = new EmailModel();
+                emailmodel.From = db.UserProfiles.Where(x => x.UserId == userid).First().UserName;
+                string SenderFirstName = db.UserProfiles.Where(x => x.UserId == userid).First().FirstName;
+
+                foreach (var emailaddress in emails)
+                {
+                    string email = emailaddress;
+
+                    bool EmailExists = db.UserProfiles.Any(x => x.UserName == email);
+                    bool self = db.UserProfiles.Any(x => x.UserName == email && x.UserId == userid);
+                    int RequestSentCount = dbmeals.ContactLists.Where(x => x.UserID == userid && x.RecipientEmailAddress == emailaddress).Count();
+
+                    if (self)
+                    {
+
+                    }
+                    else if (RequestSentCount >= 2)
+                    {
+                        repeatrequests = repeatrequests + "," + emailaddress;
+                    }
+                    else if (EmailExists)
+                    {
+
+                        var Recipient = db.UserProfiles.Where(x => x.UserName == email).First();
+                        emailmodel.To = emailaddress;
+                        emailmodel.BCC = "kanjasaha@gmail.com";
+                        emailmodel.Subject = "Join me at Funfooding";
+
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                        sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                        sb.Append("<head>");
+                        sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                        sb.Append("</head>");
+                        sb.Append("<body>");
+                        sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                        sb.Append("Hi " + Recipient.FirstName.ToString() + ",<br />");
+                        sb.Append("Connect with " + SenderFirstName + " at Funfooding!<br />");
+                        sb.Append("<br />");
+                        sb.Append("To Sign In click ");
+                        sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/Login/" + " style=\"color:#0066CC\"> here</a>.<br />");
+
+                        // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                        sb.Append("<br />");
+                        sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@funfooding.com</a>.<br />");
+                        sb.Append("<br /> ");
+                        sb.Append("Best regards,<br />");
+                        sb.Append("Support Team<br />");
+                        sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                        sb.Append("</body>");
+                        sb.Append("</html>");
+                        emailmodel.EmailBody = sb.ToString();
+                        Common.sendeMail(emailmodel, EmailExist(emailaddress));
+                        InsertRequestInfo(userid, emailmodel.From, emailmodel.To, Recipient.UserId);
+                    }
+                    else
+                    {
+                        Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                        Match match = regex.Match(email);
+                        if (!match.Success)
+                        {
+                             return Json(new { success = false, msg = "Please enter valid email address" }, JsonRequestBehavior.AllowGet);
+
+                        }
+
+
+                        if (IsValidEmail(emailaddress))
+                        {
+
+                            //string confirmationToken =
+                            //   WebSecurity.CreateUserAndAccount(emailaddress, "Test12345", propertyValues: new
+                            //   {
+                            //       FirstName = "FirstName"
+                            //   }, requireConfirmationToken: true); //new {Email=model.Email}
+                            emailmodel.To = emailaddress;
+                            emailmodel.BCC = "kanjasaha@gmail.com";
+                            emailmodel.Subject = "Join me at Funfooding";
+
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
+                            sb.Append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
+                            sb.Append("<head>");
+                            sb.Append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />");
+                            sb.Append("</head>");
+                            sb.Append("<body>");
+                            sb.Append("<div style=\"padding:20px; font:normal 14px Arial, Helvetica, sans-serif; color:#333333;\">");
+                            sb.Append("Hi there,<br />");
+                            sb.Append("Join Funfooding to find and share food in and around your neighorhood!<br />");
+                            sb.Append("<br />");
+                            sb.Append("To sign up click ");
+                            sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + " style=\"color:#0066CC\"> here</a>.<br />");
+
+                            // sb.Append("<a href=" + ConfigurationManager.AppSettings["funfoodingUrl"] + "/Account/SignUp/" + confirmationToken + " style=\"color:#0066CC\"> here</a>.<br />");
+                            sb.Append("<br />");
+                            sb.Append("If you have any problem completing the process, please contact <a href=\"#\" style=\"color:#0066CC\">support@funfooding.com</a>.<br />");
+                            sb.Append("<br /> ");
+                            sb.Append("Best regards,<br />");
+                            sb.Append("Support Team<br />");
+                            sb.Append("<a href=\"http://funfooding.com/\" style=\"color:#0066CC\">www.funfooding.com</a></div>");
+                            sb.Append("</body>");
+                            sb.Append("</html>");
+                            emailmodel.EmailBody = sb.ToString();
+
+                            Common.sendeMail(emailmodel, EmailExist(emailaddress));
+                            InsertRequestInfo(userid, emailmodel.From, emailmodel.To, null);
+                        }
+                        else
+                        {
+                            invalidemails = invalidemails + "," + emailaddress;
+
+
+                        }
+
+                    }
+
+                }
+
+                if (invalidemails == "" && repeatrequests == "")
+                {
+
+                    return Json(new { success = true, msg = "Invitation Sent." }, JsonRequestBehavior.AllowGet);
+
+                }
+                if (repeatrequests != "")
+
+                    invitedemails.ErrorMessage = "Sorry, you cannot send another request.you have already requested these email address twice. " + repeatrequests;
+                return Json(new { success = true, msg = invitedemails.ErrorMessage }, JsonRequestBehavior.AllowGet);
+
+
+                if (invalidemails != "")
+                {
+                    return Json(new { success = false, msg = "<br><br>Please correct these emailaddresses" + invalidemails }, JsonRequestBehavior.AllowGet);
+
+                              
+                }
+                           
+
+               
+                      
+
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            var attribute = new EmailAttribute();
+
+
+            return attribute.IsValid(email);
+
+
+        }
+         [HttpPost]
+        public JsonResult AcceptRequest(int RecipientUserID, int SenderUserID)
+        {
+            EmailModel em = new EmailModel();
+            string err = "";
+            try
+            {
+                ContactList contact = dbmeals.ContactLists.Where(x => (x.UserID == RecipientUserID && x.RecipientUserID == SenderUserID) || (x.UserID == SenderUserID && x.RecipientUserID == RecipientUserID)).First();
+
+
+                contact.RequestAccepted = 1;
+                dbmeals.Entry(contact).State = EntityState.Modified;
+
+                Connection cn1 = new Connection();
+                cn1.UserId = SenderUserID;
+                cn1.ContactID = RecipientUserID;
+                cn1.DegreeOfSeparation = 1;
+                cn1.ContactEmail = db.UserProfiles.Where(x => x.UserId == RecipientUserID).First().UserName;
+                cn1.ContactStrength = 0;//need to write an algorithm later to define contact strength
+                cn1.BoughtFoodFromUser = HasBoughtFoodFromUser(SenderUserID, RecipientUserID);
+                cn1.SoldFoodToUser = HasSoldFoodToUser(SenderUserID, RecipientUserID); ;
+                cn1.SharesFood = SharesFood(RecipientUserID);
+                dbmeals.Connections.Add(cn1);
+
+                Connection cn2 = new Connection();
+                cn2.UserId = RecipientUserID;
+                cn2.ContactID = SenderUserID;
+                cn2.DegreeOfSeparation = 1;
+                cn2.ContactEmail = db.UserProfiles.Where(x => x.UserId == RecipientUserID).First().UserName;
+                cn2.ContactStrength = 0;
+                cn2.BoughtFoodFromUser = HasBoughtFoodFromUser(RecipientUserID, SenderUserID);
+                cn2.SoldFoodToUser = HasSoldFoodToUser(RecipientUserID, SenderUserID); ;
+                cn2.SharesFood = SharesFood(SenderUserID);
+                dbmeals.Connections.Add(cn2);
+
+                dbmeals.SaveChanges();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+           
+            }
+            catch (Exception e)
+            {
+                err = e.Message.ToString();
+                em.To = "kanjasaha@gmail.com";
+                em.From = "kanjasaha@gmail.com";
+                em.EmailBody = err;
+                Common.sendeMail(em, true);
+                return Json(new { success = false, msg = "There is already an account with that email. Please use a different email" }, JsonRequestBehavior.AllowGet);
+            
+
+            }
+
+         
+
+        }
+         private int HasBoughtFoodFromUser(int UserId, int ContactID)
+         {
+             bool BoughtFood = dbmeals.OrderDetails.Any(x => x.OrderID == (dbmeals.Orders.Where(n => n.UserId == ContactID)).FirstOrDefault().OrderID && x.MealAdID == (dbmeals.MealAds.Where(n => n.UserId == UserId)).FirstOrDefault().MealAdID);//add a column userid in mealadid
+             if (BoughtFood)
+                 return 1;
+             else return 0;
+         }
+
+         private int HasSoldFoodToUser(int UserId, int ContactID)
+         {
+             int SoldFood = (from a in dbmeals.OrderDetails
+                             join b in dbmeals.Orders
+                                   on a.OrderID equals b.OrderID
+                             join c in dbmeals.MealAds
+                             on a.MealAdID equals c.MealAdID
+                             where b.UserId == ContactID
+                             && b.UserId == UserId
+                             select a.MealAdID).Count();
+
+
+             if (SoldFood == 0)
+                 return 0;
+             else return 1;
+         }
+
+         private int SharesFood(int ContactID)
+         {
+             int SharedFood = (from a in dbmeals.MealAds
+                               join b in dbmeals.MealItems
+                                   on a.MealItemID equals b.MealItemId
+                               where b.UserId == ContactID
+                               select a.MealAdID).Count();
+
+
+             if (SharedFood == 0)
+                 return 0;
+             else return 1;
+         }
        
+
         [HttpPost]
         public JsonResult Manage(LocalPasswordModel model)
         {

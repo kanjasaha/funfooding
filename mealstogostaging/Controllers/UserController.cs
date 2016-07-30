@@ -170,17 +170,14 @@ namespace MealsToGo.Controllers
             
             if (ModelState.IsValid)
             {
-               
-                string invalidemails = "";
+               string invalidemails = "";
                 string repeatrequests = "";
-               
-
+        
                 char[] delimiters = (",: ").ToCharArray();
 
                 List<string> emails = invitedemails.Emailaddresses.Split(delimiters).ToList();
                 IUserMailer mailer = new UserMailer();
-               
-
+   
                 EmailModel emailmodel = new EmailModel();
                 emailmodel.From = db.UserProfiles.Where(x => x.UserId == userid).First().UserName;
                 string SenderFirstName = db.UserProfiles.Where(x => x.UserId == userid).First().FirstName;
@@ -729,8 +726,6 @@ namespace MealsToGo.Controllers
                
                 //currentinfo.KitchenName = currentinfo.KitchenName;
                 currentinfo.KitchenName = Kname;
-               
-           
                 var fileName = "";
                 // Verify that the user selected a file
                 if (Photo != null && Photo.ContentLength > 0)
