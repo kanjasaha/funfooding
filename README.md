@@ -20,7 +20,7 @@ http://www.iis.net/learn/manage/configuring-security/application-pool-identities
 
 cd C:/Users/../../../funfooding
 
-C:/Users/kanja-1/Desktop/desktopfiles/1FunfoodingCode/funfooding
+C:/Users/Desktop/desktopfiles/1FunfoodingCode/funfooding
 
 git init
 git add .
